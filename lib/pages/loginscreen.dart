@@ -1,38 +1,41 @@
-import 'package:flutter/material.dart';
-import 'package:soko_beauty/colors/colors.dart';
-import 'package:soko_beauty/pages/homescreen.dart';
-import 'package:soko_beauty/pages/loginscreen.dart';
+// import 'package:flutter/material.dart';
 
-class SplashScreen extends StatelessWidget {
-  const SplashScreen({super.key});
+// class SignUpScreen extends StatelessWidget {
+//   const SignUpScreen({super.key});
+
+//   @override
+//   Widget build(BuildContext context) {
+//     return const Placeholder();
+//   }
+// }
+
+import 'package:flutter/material.dart';
+import 'package:flutter_signin_button/flutter_signin_button.dart';
+import 'package:soko_beauty/colors/colors.dart';
+
+void main() {
+  runApp(MyApp());
+}
+
+class MyApp extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      title: 'Flutter Login UI',
+      theme: ThemeData(
+        primarySwatch: Colors.red,
+        visualDensity: VisualDensity.adaptivePlatformDensity,
+      ),
+      home: LoginScreen(),
+    );
+  }
+}
+
+class LoginScreen extends StatelessWidget {
+  const LoginScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
-    //authenticating user
-    // FirebaseAuth auth = FirebaseAuth.instance;
-    // User? user = auth.currentUser;
-
-    // Future.delayed(Duration(seconds: 3), () {
-    //   if (user != null) {
-    //     //if user is signed in , navigate to home screen
-    //     Navigator.of(context).pushReplacement(
-    //       MaterialPageRoute(builder: (context) => HomeScreen()),
-    //     );
-    //   } else {
-    //     //if user is not signed in , navigate to sign in screen
-    //     Navigator.of(context).pushReplacement(
-    //       MaterialPageRoute(builder: (context) => SignUpScreen()),
-    //     );
-    //   }
-    // });
-
-    Future.delayed(Duration(seconds: 3), () {
-    Navigator.of(context).pushReplacement(
-      MaterialPageRoute(builder: (context) => LoginScreen()),
-    );
-  });
-
-    // splash screen UI
     return Scaffold(
       body: Container(
         width: double.infinity,
