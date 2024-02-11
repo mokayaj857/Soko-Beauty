@@ -29,7 +29,7 @@ class LoginScreen extends StatelessWidget {
   mainAxisAlignment: MainAxisAlignment.center,
   children: [
     Container(
-      padding: EdgeInsets.all(16),
+      padding: EdgeInsets.all(10),
       margin: EdgeInsets.only(top: 70),
       decoration: BoxDecoration(
         color: Colors.white,
@@ -59,7 +59,7 @@ class LoginScreen extends StatelessWidget {
 
     Expanded(
       child: Container(
-        width: double.infinity,
+        width: MediaQuery.of(context).size.width,
         decoration: BoxDecoration(
           color: Colors.white,
           borderRadius: BorderRadius.only(
@@ -68,7 +68,7 @@ class LoginScreen extends StatelessWidget {
           ),
         ),
         child: Padding(
-          padding: const EdgeInsets.all(8.0),
+          padding: const EdgeInsets.all(7.0),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -88,8 +88,14 @@ class LoginScreen extends StatelessWidget {
                 keyboardType: TextInputType.emailAddress,
                 decoration: InputDecoration(
                   labelText: 'Email',
-                  hoverColor: sbwarmRed,
-                  border: OutlineInputBorder(),
+                  labelStyle: TextStyle(
+                    color: sbwarmRed,
+                  ),
+                  enabledBorder: OutlineInputBorder(
+                    borderSide: BorderSide(
+                      color: sbwarmRed,
+                    ),
+                  ),
                 ),
               ),
               SizedBox(height: 10),
@@ -97,9 +103,18 @@ class LoginScreen extends StatelessWidget {
               TextFormField(
                 obscureText: true,
                 decoration: InputDecoration(
-                  labelText: 'Password',
-                  border: OutlineInputBorder(),
-                  fillColor: sbwarmRed,
+              
+                  enabledBorder: OutlineInputBorder(
+                    borderSide: BorderSide(
+                      color: sbwarmRed,
+                    ),
+                  ),
+                  hintText: 'Password',
+                  hintStyle: TextStyle(
+                    color: sbwarmRed,
+                  ),
+                  
+                 
                   
                 ),
               ),
