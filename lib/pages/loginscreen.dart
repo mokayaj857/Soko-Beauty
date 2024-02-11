@@ -1,42 +1,15 @@
-// import 'package:flutter/material.dart';
-
-// class SignUpScreen extends StatelessWidget {
-//   const SignUpScreen({super.key});
-
-//   @override
-//   Widget build(BuildContext context) {
-//     return const Placeholder();
-//   }
-// }
-
 import 'package:flutter/material.dart';
 import 'package:flutter_signin_button/flutter_signin_button.dart';
 import 'package:soko_beauty/colors/colors.dart';
 import 'package:soko_beauty/pages/homescreen.dart';
 
-void main() {
-  runApp(MyApp());
-}
-
-class MyApp extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Flutter Login UI',
-      theme: ThemeData(
-        primarySwatch: Colors.red,
-        visualDensity: VisualDensity.adaptivePlatformDensity,
-      ),
-      home: LoginScreen(),
-    );
-  }
-}
 
 class LoginScreen extends StatelessWidget {
   const LoginScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
+    
     return Scaffold(
       body: Container(
         width: double.infinity,
@@ -82,7 +55,7 @@ class LoginScreen extends StatelessWidget {
         fontSize: 20,
       ),
     ),
-    SizedBox(height: 100),
+    SizedBox(height: 20),
 
     Expanded(
       child: Container(
@@ -94,78 +67,124 @@ class LoginScreen extends StatelessWidget {
             topRight: Radius.circular(20),
           ),
         ),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: <Widget>[
-            // Logo here
-           // FlutterLogo(size: 100),
-            SizedBox(height: 50),
-            // Email TextField
-            TextFormField(
-              keyboardType: TextInputType.emailAddress,
-              decoration: InputDecoration(
-                labelText: 'Email',
-                border: OutlineInputBorder(),
-              ),
-            ),
-            SizedBox(height: 20),
-            // Password TextField
-            TextFormField(
-              obscureText: true,
-              decoration: InputDecoration(
-                labelText: 'Password',
-                border: OutlineInputBorder(),
-              ),
-            ),
-            SizedBox(height: 10),
-            // Remember me Checkbox
-            Row(
-              children: [
-                Checkbox(
-                  value: false,
-                  onChanged: (bool) {},
+        child: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: <Widget>[
+              Text(
+                'LOGIN',
+                style: TextStyle(
+                  fontSize: 24,
+                  fontWeight: FontWeight.bold,
+                  color: sbwarmRed,
                 ),
-                Text('Remember me?'),
-              ],
-            ),
-            // Login Button
-            ElevatedButton(
-              child: Text('LOGIN'),
-              onPressed: () {
-                 Navigator.of(context).pushReplacement(
-                          MaterialPageRoute(
-                              builder: (context) => HomeScreen()),
-                        );
-              },
-            ),
-            SizedBox(height: 10),
-            // Forgot Password
-            TextButton(
-              child: Text('Forgot password'),
-              onPressed: () {},
-            ),
-            SizedBox(height: 10),
-            // Divider
-            Divider(color: Colors.black),
-            // Social Buttons
-           /* SignInButton(
-              Buttons.Google,
-              text: "Login with Google",
-              onPressed: () {},
-            ),
+                textAlign: TextAlign.center,
+              ),
+              SizedBox(height: 10),
+              // Email TextField
+              TextFormField(
+                keyboardType: TextInputType.emailAddress,
+                decoration: InputDecoration(
+                  labelText: 'Email',
+                  hoverColor: sbwarmRed,
+                  border: OutlineInputBorder(),
+                ),
+              ),
+              SizedBox(height: 10),
+              // Password TextField
+              TextFormField(
+                obscureText: true,
+                decoration: InputDecoration(
+                  labelText: 'Password',
+                  border: OutlineInputBorder(),
+                  fillColor: sbwarmRed,
+                  
+                ),
+              ),
+              SizedBox(height: 10),
+              // Remember me Checkbox
+              Row(
+                children: [
+                  Checkbox(
+                    value: false,
+                    onChanged: (bool) {},
+                  ),
+                  Text(
+                    'Remember me?'
+                    ),
+                ],
+              ),
+              // Login Button
+              ElevatedButton(
+                child: Text(
+                  'LOGIN',
+                  style : TextStyle(
+                    color: Colors.white,
+                    fontSize: 20,
+                    fontWeight: FontWeight.bold
+                  ),
+                  ),
+                style: ButtonStyle(
+                  backgroundColor: MaterialStateProperty.all<Color>(sbwarmRed),
+                ),
+                onPressed: () {
+                   Navigator.of(context).pushReplacement(
+                            MaterialPageRoute(
+                                builder: (context) => HomeScreen()),
+                          );
+                },
+              ),
+              SizedBox(height: 10),
+              // Forgot Password
+              TextButton(
+                child: Text(
+                  'Forgot password ?',
+                  style: TextStyle(
+                    color: sbwarmRed,
+                    fontSize: 16,
+                    fontWeight: FontWeight.bold
+                  ),
+                  ),
+                
+                onPressed: () {},
+              ),
+              SizedBox(height: 10),
+
             SignInButton(
-              Buttons.Facebook,
-              text: "Login with Facebook",
+              Buttons.Google,
+              text: "Log in with Google",
               onPressed: () {},
-            ),
-            SizedBox(height: 20),
-            // Sign Up Button*/
-            TextButton(
-              child: Text('Need an account? SIGN UP'),
-              onPressed: () {},
-            ),
-          ],
+              ),
+
+              SignInButton(
+                Buttons.FacebookNew,
+                 text: "Log in with Facebook",
+                onPressed: () {},
+                ),
+
+                SignInButton(
+                  Buttons.AppleDark,
+                   text: "Log in with Apple",
+                onPressed: () {},
+                  ),
+
+              TextButton(
+                child: Text(
+                  'Need an account? SIGN UP',
+                  style: TextStyle(
+                    color: sbwarmRed,
+                    fontSize: 16,
+                    fontWeight: FontWeight.bold
+                  ),
+                  ),
+                 
+                
+                onPressed: () {},
+              ),
+            ],
+          ),
         ),
       ),
     ),
