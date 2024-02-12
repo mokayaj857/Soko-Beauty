@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_signin_button/flutter_signin_button.dart';
 import 'package:soko_beauty/colors/colors.dart';
 import 'package:soko_beauty/pages/homescreen.dart';
+import 'package:soko_beauty/pages/signupscreen.dart';
 
 class LoginScreen extends StatelessWidget {
   const LoginScreen({super.key});
@@ -26,7 +27,7 @@ class LoginScreen extends StatelessWidget {
             child: Column(
               children: [
                 Container(
-                  padding: EdgeInsets.all(10),
+                  padding: EdgeInsets.all(50),
                   margin: EdgeInsets.only(top: 70),
                   decoration: BoxDecoration(
                     color: Colors.white,
@@ -81,8 +82,8 @@ class LoginScreen extends StatelessWidget {
                         TextFormField(
                           keyboardType: TextInputType.emailAddress,
                           decoration: InputDecoration(
-                            labelText: 'Email',
-                            labelStyle: TextStyle(
+                            hintText: 'Email',
+                            hintStyle: TextStyle(
                               color: sbwarmRed,
                             ),
                             enabledBorder: OutlineInputBorder(
@@ -170,17 +171,35 @@ class LoginScreen extends StatelessWidget {
                           text: "Log in with Apple",
                           onPressed: () {},
                         ),
-
-                        TextButton(
-                          child: Text(
-                            'Need an account? SIGN UP',
-                            style: TextStyle(
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Text(
+                              'Don\'t have an account?',
+                              style: TextStyle(
                                 color: sbwarmRed,
+                                fontSize: 16,
+                              ),
+                             // textAlign: TextAlign.center,
+                            ),
+                            TextButton(
+                          child: Text(
+                            'SIGN UP',
+                            style: TextStyle(
+                                color: sbdeepRed,
                                 fontSize: 16,
                                 fontWeight: FontWeight.bold),
                           ),
-                          onPressed: () {},
+                          onPressed: () {
+                            Navigator.of(context).pushReplacement(
+                              MaterialPageRoute(
+                                  builder: (context) => SignUpScreen()),
+                            );
+                          },
                         ),
+                          ],
+                        ),
+                        
                       ],
                     ),
                   ),
