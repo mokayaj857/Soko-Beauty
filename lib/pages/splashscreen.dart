@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:soko_beauty/colors/colors.dart';
 import 'package:soko_beauty/pages/homescreen.dart';
-import 'package:soko_beauty/pages/loginscreen.dart';
+import 'package:soko_beauty/pages/auth/loginscreen.dart';
 
 class SplashScreen extends StatelessWidget {
   const SplashScreen({super.key});

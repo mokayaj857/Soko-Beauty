@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_signin_button/flutter_signin_button.dart';
 import 'package:soko_beauty/colors/colors.dart';
-import 'package:soko_beauty/pages/loginscreen.dart';
+import 'package:soko_beauty/pages/auth/loginscreen.dart';
 //import 'package:soko_beauty/pages/homescreen.dart';
 
 

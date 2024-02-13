@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_signin_button/flutter_signin_button.dart';
 import 'package:soko_beauty/colors/colors.dart';
 import 'package:soko_beauty/pages/homescreen.dart';
-import 'package:soko_beauty/pages/signupscreen.dart';
+import 'package:soko_beauty/pages/shop/shopone.dart';
+import 'package:soko_beauty/pages/auth/signupscreen.dart';
 
 class LoginScreen extends StatelessWidget {
   const LoginScreen({super.key});
@@ -134,10 +135,10 @@ class LoginScreen extends StatelessWidget {
                                 MaterialStateProperty.all<Color>(sbwarmRed),
                           ),
                           onPressed: () {
-                            // Navigator.of(context).pushReplacement(
-                            //   MaterialPageRoute(
-                            //       builder: (context) => HomeScreen()),
-                            // );
+                            Navigator.of(context).pushReplacement(
+                              MaterialPageRoute(
+                                  builder: (context) => shopOne()),
+                             );
                           },
                         ),
                         SizedBox(height: 10),
