@@ -10,9 +10,13 @@ class LoginScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Container(
-          width: double.infinity,
-          height: double.infinity,
+      body:SingleChildScrollView(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          children: [
+      Container(
+          height: 350,
+          width: 452,
           decoration: BoxDecoration(
             gradient: LinearGradient(
               begin: Alignment.topRight,
@@ -23,193 +27,197 @@ class LoginScreen extends StatelessWidget {
               ],
             ),
           ),
-          child: SingleChildScrollView(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
-              children: [
-                Container(
-                  padding: EdgeInsets.all(50),
-                  margin: EdgeInsets.only(top: 70),
-                  decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.all(
-                      Radius.circular(8),
-                    ),
-                  ),
-                  child: Text(
-                    'SOKO\nBEAUTY',
-                    style: TextStyle(
-                      color: sbwarmRed,
-                      fontSize: 24,
-                      fontWeight: FontWeight.bold,
-                    ),
-                    textAlign: TextAlign.center,
-                  ),
-                ),
-                SizedBox(height: 7),
-                Text(
-                  'Everything Beauty.',
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 20,
-                  ),
-                ),
-                SizedBox(height: 30),
-                Align(
-                  alignment: Alignment.bottomCenter,
-                  child: Container(
-                    decoration: BoxDecoration(
-                      color: Colors.white,
-                      borderRadius: BorderRadius.only(
-                        topLeft: Radius.circular(20),
-                        topRight: Radius.circular(20),
+           child:IntrinsicHeight(child:Column(
+             mainAxisAlignment: MainAxisAlignment.end,
+
+             children: [
+
+             Card(
+               margin: EdgeInsets.all(40.0),
+          child:  Padding(
+            padding: EdgeInsets.all(20),
+               child:  Text(
+                 'SOKO\nBEAUTY',
+                 style: TextStyle(
+
+                   color: sbwarmRed,
+                   fontSize: 24,
+                   fontWeight: FontWeight.bold,
+                 ),
+                 textAlign: TextAlign.center,
+               ),
+             ),),
+             Text(
+               'Everything Beauty.',
+               style: TextStyle(
+                 color: Colors.white,
+                 fontSize: 20,
+               ),
+             ),
+            SizedBox(height: 20,),
+             Container(
+               decoration: BoxDecoration(
+                 color: Theme.of(context).cardColor,
+                 borderRadius: BorderRadius.only(topLeft: Radius.circular(20), topRight: Radius.circular(20)),
+               ),
+                padding: EdgeInsets.all(10),
+                 width: double.infinity,
+               ),
+           ],),),
+          ),
+            Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 20.0),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    crossAxisAlignment: CrossAxisAlignment.stretch,
+                    children: <Widget>[
+                      Text(
+                        'LOGIN',
+                        style: TextStyle(
+                          fontSize: 24,
+                          fontWeight: FontWeight.bold,
+                          color: sbwarmRed,
+                        ),
+                        textAlign: TextAlign.center,
                       ),
-                    ),
-                    child: Padding(
-                      padding: const EdgeInsets.all(20.0),
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        crossAxisAlignment: CrossAxisAlignment.stretch,
-                        children: <Widget>[
-                          Text(
-                            'LOGIN',
-                            style: TextStyle(
-                              fontSize: 24,
-                              fontWeight: FontWeight.bold,
+                      SizedBox(height: 15),
+                      // Email TextField
+                      TextFormField(
+                        keyboardType: TextInputType.emailAddress,
+                        decoration: InputDecoration(
+                          hintText: 'Email',
+                          hintStyle: TextStyle(
+                            color: sbwarmRed,
+                          ),
+                          enabledBorder: OutlineInputBorder(
+                            borderSide: BorderSide(
                               color: sbwarmRed,
                             ),
-                            textAlign: TextAlign.center,
                           ),
-                          SizedBox(height: 10),
-                          // Email TextField
-                          TextFormField(
-                            keyboardType: TextInputType.emailAddress,
-                            decoration: InputDecoration(
-                              hintText: 'Email',
-                              hintStyle: TextStyle(
-                                color: sbwarmRed,
-                              ),
-                              enabledBorder: OutlineInputBorder(
-                                borderSide: BorderSide(
-                                  color: sbwarmRed,
-                                ),
-                              ),
+                        ),
+                      ),
+                      SizedBox(height: 10),
+                      // Password TextField
+                      TextFormField(
+                        obscureText: true,
+                        decoration: InputDecoration(
+                          enabledBorder: OutlineInputBorder(
+                            borderSide: BorderSide(
+                              color: sbwarmRed,
                             ),
                           ),
-                          SizedBox(height: 10),
-                          // Password TextField
-                          TextFormField(
-                            obscureText: true,
-                            decoration: InputDecoration(
-                              enabledBorder: OutlineInputBorder(
-                                borderSide: BorderSide(
-                                  color: sbwarmRed,
-                                ),
-                              ),
-                              hintText: 'Password',
-                              hintStyle: TextStyle(
-                                color: sbwarmRed,
-                              ),
+                          hintText: 'Password',
+                          hintStyle: TextStyle(
+                            color: sbwarmRed,
+                          ),
+                        ),
+                      ),
+                      SizedBox(height: 10),
+                      // Remember me Checkbox
+
+                      // Login Button
+                      ElevatedButton(
+                        child: Text(
+                          'LOGIN',
+                          style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 20,
+                              fontWeight: FontWeight.bold),
+                        ),
+                        style: ButtonStyle(
+                          backgroundColor:
+                          MaterialStateProperty.all<Color>(sbwarmRed),
+                        ),
+                        onPressed: () {
+                          Navigator.of(context).pushReplacement(
+                            MaterialPageRoute(
+                                builder: (context) => HomePage()),
+                          );
+                        },
+                      ),
+
+                      SizedBox(height: 10),
+                      Row(
+                        children: [
+                          Checkbox(
+                            value: false,
+                            onChanged: (bool) {},
+                          ),
+                          Text('Remember me?'),
+                        ],
+                      ),
+                      SizedBox(height: 10),
+                      // Forgot Password
+                      TextButton(
+                        child: Text(
+                          'Forgot password ?',
+                          style: TextStyle(
+                              color: sbwarmRed,
+                              fontSize: 16,
+                              fontWeight: FontWeight.bold),
+                        ),
+                        onPressed: () {},
+                      ),
+                      SizedBox(height: 10),
+
+                     Row(
+                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                         children:[SignInButton(
+                        Buttons.Google,
+                        text: "Google",
+                        onPressed: () {},
+                      ),
+
+                      SignInButton(
+                        Buttons.FacebookNew,
+                        text: "Facebook",
+                        onPressed: () {},
+
+                      ),
+
+                      SignInButton(
+                        padding: EdgeInsets.zero,
+
+                        Buttons.AppleDark,
+                        text: "Apple",
+                        onPressed: () {},
+                      ),]),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Text(
+                            'Don\'t have an account?',
+                            style: TextStyle(
+                              color: sbwarmRed,
+                              fontSize: 16,
                             ),
+                            // textAlign: TextAlign.center,
                           ),
-                          SizedBox(height: 10),
-                          // Remember me Checkbox
-                          Row(
-                            children: [
-                              Checkbox(
-                                value: false,
-                                onChanged: (bool) {},
-                              ),
-                              Text('Remember me?'),
-                            ],
-                          ),
-                          // Login Button
-                          ElevatedButton(
+                          TextButton(
                             child: Text(
-                              'LOGIN',
+                              'SIGN UP',
                               style: TextStyle(
-                                  color: Colors.white,
-                                  fontSize: 20,
+                                  color: sbdeepRed,
+                                  fontSize: 16,
                                   fontWeight: FontWeight.bold),
-                            ),
-                            style: ButtonStyle(
-                              backgroundColor:
-                                  MaterialStateProperty.all<Color>(sbwarmRed),
                             ),
                             onPressed: () {
                               Navigator.of(context).pushReplacement(
                                 MaterialPageRoute(
-                                    builder: (context) => HomePage()),
+                                    builder: (context) => SignUpScreen()),
                               );
                             },
                           ),
-                          SizedBox(height: 10),
-                          // Forgot Password
-                          TextButton(
-                            child: Text(
-                              'Forgot password ?',
-                              style: TextStyle(
-                                  color: sbwarmRed,
-                                  fontSize: 16,
-                                  fontWeight: FontWeight.bold),
-                            ),
-                            onPressed: () {},
-                          ),
-                          SizedBox(height: 10),
-                  
-                          SignInButton(
-                            Buttons.Google,
-                            text: "Log in with Google",
-                            onPressed: () {},
-                          ),
-                  
-                          SignInButton(
-                            Buttons.FacebookNew,
-                            text: "Log in with Facebook",
-                            onPressed: () {},
-                          ),
-                  
-                          SignInButton(
-                            Buttons.AppleDark,
-                            text: "Log in with Apple",
-                            onPressed: () {},
-                          ),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Text(
-                                'Don\'t have an account?',
-                                style: TextStyle(
-                                  color: sbwarmRed,
-                                  fontSize: 16,
-                                ),
-                                // textAlign: TextAlign.center,
-                              ),
-                              TextButton(
-                                child: Text(
-                                  'SIGN UP',
-                                  style: TextStyle(
-                                      color: sbdeepRed,
-                                      fontSize: 16,
-                                      fontWeight: FontWeight.bold),
-                                ),
-                                onPressed: () {
-                                  Navigator.of(context).pushReplacement(
-                                    MaterialPageRoute(
-                                        builder: (context) => SignUpScreen()),
-                                  );
-                                },
-                              ),
-                            ],
-                          ),
                         ],
                       ),
-                    ),
+                    ],
                   ),
                 ),
-              ],
-            ),
-          )),
+
+
+          ],
+        ),
+      )
     );
   }
 }

@@ -15,7 +15,7 @@ class _HomePageState extends State<HomePage> {
   int _currentIndex = 0;
   final List<Widget> _screens = [
     VideoPage(),
-    PostPage(),
+    PostPage(onBackButtonPressed: () {  },),
     ShopPage(),
     ProfilePage(),
   ];

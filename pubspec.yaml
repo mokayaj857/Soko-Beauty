@@ -33,9 +33,7 @@ dependencies:
   cupertino_icons: ^1.0.2
   provider: ^6.1.1
   flutter_signin_button: ^2.0.0 
-  chewie: ^1.7.5
-  video_player: ^2.8.2
-
+  http: ^1.2.0
 
 dev_dependencies:
   flutter_test:
@@ -45,7 +43,8 @@ dev_dependencies:
 flutter_launcher_icons:
   android: "launcher_icon"
   ios: true
-  image_path: "assets/icon/logo.png"
+  windows: "launcher_icon"
+  image_path: "assets/launcher_icon.png"
   
   # The "flutter_lints" package below contains a set of recommended lints to
   # encourage good coding practices. The lint set provided by the package is
@@ -66,7 +65,7 @@ flutter:
   uses-material-design: true
 
 assets:
-    - lib/images/splashscreencicon.png
+    - assets/splashscreencicon.png
   #   - images/a_dot_ham.jpeg
   # To add assets to your application, add an assets section, like this:
   # assets:
