@@ -26,10 +26,10 @@ class SplashScreen extends StatelessWidget {
     // });
 
     Future.delayed(Duration(seconds: 3), () {
-    Navigator.of(context).pushReplacement(
-      MaterialPageRoute(builder: (context) => LoginScreen()),
-    );
-  });
+      Navigator.of(context).pushReplacement(
+        MaterialPageRoute(builder: (context) => LoginScreen()),
+      );
+    });
 
     // splash screen UI
     return Scaffold(
@@ -93,8 +93,7 @@ class SplashScreen extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.center,
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
-                    Image.asset('lib/images/splashscreencicon.png',
-                        height: 120),
+                    Image.asset('assets/splashscreencicon.png', height: 120),
                     SizedBox(height: 20),
                     Text(
                       'AI Powered Short-form video\nContent Platform for Beauty\nWith E-Commerce',
