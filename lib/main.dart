@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:soko_beauty/pages/splashscreen.dart';
+import 'package:soko_beauty/pages/public/splashscreen.dart';
+import 'package:soko_beauty/theme/dark.dart';
+import 'package:soko_beauty/theme/light.dart';
 
 void main() {
   runApp(const MyApp());
@@ -12,10 +14,10 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      theme: lightMode,
+      darkTheme: darkMode,
       debugShowCheckedModeBanner: false,
       home: SplashScreen(),
-      
     );
   }
 }
-
