@@ -93,7 +93,7 @@ class SplashScreen extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.center,
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
-                    Image.asset('assets/splashscreencicon.png', height: 120),
+                    Image.asset('assets/logo.png', height: 120),
                     SizedBox(height: 20),
                     Text(
                       'AI Powered Short-form video\nContent Platform for Beauty\nWith E-Commerce',

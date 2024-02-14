@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:soko_beauty/pages/public/splashscreen.dart';
-import 'package:soko_beauty/theme/dark.dart';
+//import 'package:soko_beauty/theme/dark.dart';
 import 'package:soko_beauty/theme/light.dart';
 
 void main() {
