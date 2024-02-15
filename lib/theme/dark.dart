@@ -2,9 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:soko_beauty/colors/colors.dart';
 
 ThemeData darkMode = ThemeData(
-  // 1. App-wide settings
+    // 1. App-wide settings
     brightness: Brightness.dark,
     primaryColor: sbbrickRed,
+    canvasColor: Colors.black,
     //accentColor: Colors.blueAccent,
     fontFamily: 'verdana',
     fontFamilyFallback: ['Helvetica'],
@@ -12,9 +13,26 @@ ThemeData darkMode = ThemeData(
     useMaterial3: true,
     shadowColor: Colors.grey,
 
+    //TabBar Theme
+    tabBarTheme: TabBarTheme(
+      labelColor: sbbrickRed,
+      unselectedLabelColor: Colors.grey.shade300,
+      indicatorColor: sbbrickRed,
+      labelStyle: TextStyle(
+        fontWeight: FontWeight.bold,
+      ),
+      unselectedLabelStyle: TextStyle(
+        fontWeight: FontWeight.bold,
+      ),
+    ),
+
+    progressIndicatorTheme: ProgressIndicatorThemeData(
+      color: sbbrickRed,
+    ),
+
     //2 - floating ACTIONS BUTTON
     floatingActionButtonTheme: FloatingActionButtonThemeData(
-        backgroundColor: Colors.red.shade400.withOpacity(0.2),
+        backgroundColor: Colors.black.withOpacity(0.4),
         foregroundColor: Colors.grey.shade100,
         elevation: 1,
         iconSize: 30,

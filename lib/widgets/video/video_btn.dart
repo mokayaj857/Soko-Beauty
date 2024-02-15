@@ -5,16 +5,16 @@ class VideoActionButtons extends StatelessWidget {
   final VoidCallback onAddPressed;
   final VoidCallback onFavoritePressed;
   final VoidCallback onCommentPressed;
-  final VoidCallback onPlayPausePressed;
-  final bool isPlaying;
+  final VoidCallback onSharePressed;
+  final VoidCallback shoppingCartPressed;
 
   const VideoActionButtons({
     Key? key,
     required this.onAddPressed,
     required this.onFavoritePressed,
     required this.onCommentPressed,
-    required this.onPlayPausePressed,
-    required this.isPlaying,
+    required this.onSharePressed,
+    required this.shoppingCartPressed,
   }) : super(key: key);
 
   @override
@@ -58,29 +58,51 @@ class VideoActionButtons extends StatelessWidget {
             ),
           ),
           SizedBox(height: 30.0),
-          FloatingActionButton(
+          _buildActionButton(
             onPressed: onFavoritePressed,
-            child: Icon(Icons.favorite_border_outlined),
+            icon: Icons.favorite_border_outlined,
+            label: '2.5k',
           ),
-          SizedBox(height: 30.0),
-          FloatingActionButton(
+          _buildActionButton(
             onPressed: onCommentPressed,
-            child: Icon(Icons.comment_rounded),
+            icon: Icons.comment_rounded,
+            label: '300',
           ),
-          SizedBox(height: 30.0),
-          FloatingActionButton(
-            onPressed: onPlayPausePressed,
-            child: Icon(
-              Icons.share
-            ),
+          _buildActionButton(
+            onPressed: onSharePressed,
+            icon: Icons.share,
+            label: '10',
           ),
-           SizedBox(height: 30.0),
-          FloatingActionButton(
-            onPressed: onPlayPausePressed,
-            child: Icon(Icons.shopping_cart),
+          _buildActionButton(
+            onPressed: shoppingCartPressed,
+            icon: Icons.shopping_cart,
+            label: 'Buy Now',
           ),
         ],
       ),
+    );
+  }
+
+  Widget _buildActionButton({
+    required VoidCallback onPressed,
+    required IconData icon,
+    required String label,
+  }) {
+    return Column(
+      children: [
+        FloatingActionButton(
+          onPressed: onPressed,
+          child: Icon(icon),
+        ),
+        if (label.isNotEmpty) ...[
+          SizedBox(height: 5.0),
+          Text(
+            label,
+            style: TextStyle(fontSize: 13.0, fontWeight: FontWeight.bold),
+          ),
+        ],
+        SizedBox(height: 20.0),
+      ],
     );
   }
 }

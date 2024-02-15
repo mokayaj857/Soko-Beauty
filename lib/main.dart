@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:soko_beauty/pages/public/splashscreen.dart';
-//import 'package:soko_beauty/theme/dark.dart';
+import 'package:soko_beauty/theme/dark.dart';
 import 'package:soko_beauty/theme/light.dart';
 
 void main() {
@@ -14,10 +14,9 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-
       // Restrict the app to light theme
       theme: lightMode,
-      darkTheme: lightMode,
+      darkTheme: darkMode,
       debugShowCheckedModeBanner: false,
       home: SplashScreen(),
     );

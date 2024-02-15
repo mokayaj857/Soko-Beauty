@@ -36,6 +36,7 @@ dependencies:
   http: ^1.2.0
   video_player: ^2.8.2
   marquee: ^2.2.3
+  share_link: ^0.2.0
 
 dev_dependencies:
   flutter_test:

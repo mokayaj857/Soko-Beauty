@@ -4,7 +4,8 @@ import 'package:soko_beauty/colors/colors.dart';
 ThemeData lightMode = ThemeData(
     // 1. App-wide settings
     brightness: Brightness.light,
-    primaryColor: Colors.green,
+    primaryColor: sbdarkBrown,
+    canvasColor: Colors.grey.shade100,
     fontFamily: 'verdana',
     fontFamilyFallback: ['Helvetica'],
     package: 'Soko Beauty',
@@ -12,7 +13,7 @@ ThemeData lightMode = ThemeData(
     scaffoldBackgroundColor: Colors.grey.shade100,
     //2 - floating ACTIONS BUTTON
     floatingActionButtonTheme: FloatingActionButtonThemeData(
-        backgroundColor: Colors.black.withOpacity(0.1),
+        backgroundColor: Colors.red.shade50.withOpacity(0.4),
         foregroundColor: Colors.grey.shade100,
         elevation: 0.4,
         iconSize: 30,
@@ -20,6 +21,22 @@ ThemeData lightMode = ThemeData(
           borderRadius: BorderRadius.circular(50.0),
         ),
         splashColor: Color.fromARGB(132, 255, 82, 82)),
+    splashFactory: NoSplash.splashFactory,
+    progressIndicatorTheme: ProgressIndicatorThemeData(
+      color: sbbrickRed,
+    ),
+
+    //TabBar Theme
+    tabBarTheme: TabBarTheme(
+      labelColor: sbbrickRed,
+      indicatorColor: sbbrickRed,
+      labelStyle: TextStyle(
+        fontWeight: FontWeight.bold,
+      ),
+      unselectedLabelStyle: TextStyle(
+        fontWeight: FontWeight.bold,
+      ),
+    ),
 
     //3 - APPBAR THEME
     appBarTheme: AppBarTheme(
