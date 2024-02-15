@@ -48,7 +48,7 @@ class ShopPage extends StatelessWidget {
                   crossAxisSpacing: 35,
                   mainAxisSpacing: 30,
                 ),
-                itemCount: 50, // Set the number of cards you want to display
+                itemCount: 10, // Set the number of cards you want to display
                 itemBuilder: (BuildContext context, int index) {
                   return Card(
                     margin: EdgeInsets.symmetric(

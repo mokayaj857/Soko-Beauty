@@ -4,7 +4,8 @@ import 'package:soko_beauty/colors/colors.dart';
 ThemeData lightMode = ThemeData(
     // 1. App-wide settings
     brightness: Brightness.light,
-    primaryColor: Colors.green,
+    primaryColor: sbdarkBrown,
+    canvasColor: Colors.grey.shade100,
     fontFamily: 'verdana',
     fontFamilyFallback: ['Helvetica'],
     package: 'Soko Beauty',
@@ -12,17 +13,29 @@ ThemeData lightMode = ThemeData(
     scaffoldBackgroundColor: Colors.grey.shade100,
     //2 - floating ACTIONS BUTTON
     floatingActionButtonTheme: FloatingActionButtonThemeData(
-        backgroundColor: Colors.red.shade50.withOpacity(0.7),
-        foregroundColor: sbreddishBrown,
-        elevation: 1,
-      iconSize: 30,
-      smallSizeConstraints: BoxConstraints(
-        maxHeight: 50, maxWidth: 50,
+        backgroundColor: Colors.red.shade50.withOpacity(0.4),
+        foregroundColor: Colors.grey.shade100,
+        elevation: 0.4,
+        iconSize: 30,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(50.0),
+        ),
+        splashColor: Color.fromARGB(132, 255, 82, 82)),
+    splashFactory: NoSplash.splashFactory,
+    progressIndicatorTheme: ProgressIndicatorThemeData(
+      color: sbbrickRed,
+    ),
+
+    //TabBar Theme
+    tabBarTheme: TabBarTheme(
+      labelColor: sbbrickRed,
+      indicatorColor: sbbrickRed,
+      labelStyle: TextStyle(
+        fontWeight: FontWeight.bold,
       ),
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(50.0),
+      unselectedLabelStyle: TextStyle(
+        fontWeight: FontWeight.bold,
       ),
-      splashColor: Color.fromARGB(132, 255, 82, 82)
     ),
 
     //3 - APPBAR THEME
@@ -40,12 +53,11 @@ ThemeData lightMode = ThemeData(
 
     //4 - NAVBAR THEME
     bottomNavigationBarTheme: BottomNavigationBarThemeData(
-      elevation: 10,
-      backgroundColor: Colors.red.shade50,
-      unselectedItemColor: Colors.grey.shade800,
-      unselectedLabelStyle: TextStyle(color: Colors.grey.shade800),
-      type: BottomNavigationBarType.fixed,
-      selectedIconTheme: IconThemeData(color: sbdeepRed),
-      selectedLabelStyle: TextStyle(color: sbdeepRed),
-      selectedItemColor: sbdeepRed
-    ));
+        elevation: 10,
+        backgroundColor: Colors.red.shade50,
+        unselectedItemColor: Colors.grey.shade800,
+        unselectedLabelStyle: TextStyle(color: Colors.grey.shade800),
+        type: BottomNavigationBarType.fixed,
+        selectedIconTheme: IconThemeData(color: sbdeepRed),
+        selectedLabelStyle: TextStyle(color: sbdeepRed),
+        selectedItemColor: sbdeepRed));

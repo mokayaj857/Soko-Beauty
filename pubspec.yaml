@@ -35,6 +35,8 @@ dependencies:
   flutter_signin_button: ^2.0.0 
   http: ^1.2.0
   video_player: ^2.8.2
+  marquee: ^2.2.3
+  share_link: ^0.2.0
 
 dev_dependencies:
   flutter_test:
@@ -64,13 +66,9 @@ flutter:
   # included with your application, so that you can use the icons in
   # the material Icons class.
   uses-material-design: true
-
-assets:
-    - assets/splashscreencicon.png
-  #   - images/a_dot_ham.jpeg
   # To add assets to your application, add an assets section, like this:
-  # assets:
-  #  - assets/icon/logo.png
+  assets:
+   - assets/logo.png
   #  - assets/gif/loading.gif
   #  - assets/map.jpg
   #  - assets/map_dark.jpg
