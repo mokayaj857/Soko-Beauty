@@ -11,10 +11,12 @@ class SignInButtons extends StatelessWidget {
       SignInButton(
         Buttons.Google,
         text: "Google",
+        padding: EdgeInsets.zero,
         onPressed: () {},
       ),
       SignInButton(
         Buttons.FacebookNew,
+        padding: EdgeInsets.zero, 
         text: "Facebook",
         onPressed: () {},
       ),

@@ -1,16 +1,24 @@
 import 'package:flutter/material.dart';
 import 'package:soko_beauty/colors/colors.dart';
 
-class TextInput extends StatelessWidget {
-  const TextInput({super.key});
-  
+class FormTextInput extends StatelessWidget {
+  FormTextInput(
+      {super.key,
+      required this.hintText,
+      required this.controller,
+      required this.keyboardType});
+
+  final String hintText;
+  final TextEditingController controller;
+  final TextInputType keyboardType;
 
   @override
   Widget build(BuildContext context) {
     return TextFormField(
-      keyboardType: TextInputType.emailAddress,
+      keyboardType: keyboardType,
+      controller: controller,
       decoration: InputDecoration(
-        hintText: 'Email',
+        hintText: hintText,
         hintStyle: TextStyle(
           color: sbwarmRed,
         ),
