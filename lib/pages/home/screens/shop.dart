@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:soko_beauty/pages/payment/payment.dart';
 
 class ShopPage extends StatelessWidget {
   @override
