@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:soko_beauty/pages/payment/payment.dart';
 
 class ShopPage extends StatelessWidget {
   @override
@@ -50,19 +51,28 @@ class ShopPage extends StatelessWidget {
                 ),
                 itemCount: 50, // Set the number of cards you want to display
                 itemBuilder: (BuildContext context, int index) {
-                  return Card(
-                    margin: EdgeInsets.symmetric(
-                      horizontal: 10,
-                    ),
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(10.0),
-                    ),
-                    clipBehavior: Clip.antiAlias,
-                    child: Container(
-                      width: double.infinity,
-                      child: Image.network(
-                        "https://picsum.photos/400/200?random=$index",
-                        fit: BoxFit.cover,
+                  return GestureDetector(
+                    onTap: () {
+                      // remove later for demonstration purposes
+                       Navigator.of(context).push(
+                        MaterialPageRoute(
+                            builder: (context) => PaymentScreen()),
+                      );
+                    },
+                    child: Card(
+                      margin: EdgeInsets.symmetric(
+                        horizontal: 10,
+                      ),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(10.0),
+                      ),
+                      clipBehavior: Clip.antiAlias,
+                      child: Container(
+                        width: double.infinity,
+                        child: Image.network(
+                          "https://picsum.photos/400/200?random=$index",
+                          fit: BoxFit.cover,
+                        ),
                       ),
                     ),
                   );
