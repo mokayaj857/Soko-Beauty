@@ -7,7 +7,7 @@ import 'package:video_player/video_player.dart';
 
 class VideoPage extends StatefulWidget {
   const VideoPage({super.key});
-  final int numberOfVideos = 10;
+  final int numberOfVideos = 20;
   @override
   _VideoPageState createState() => _VideoPageState();
 }
