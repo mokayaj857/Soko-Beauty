@@ -14,7 +14,7 @@ class VideoPage extends StatefulWidget {
 
 class _VideoPageState extends State<VideoPage> {
   bool isLoading = true;
-  bool showComments = true;
+  bool showComments = false;
 
   void _shareContent() async {
     await ShareLink.shareUri(

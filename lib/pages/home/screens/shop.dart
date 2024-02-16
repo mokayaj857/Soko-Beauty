@@ -43,9 +43,9 @@ class ShopPage extends StatelessWidget {
                 physics: NeverScrollableScrollPhysics(),
                 padding: EdgeInsets.symmetric(vertical: 20),
                 gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
-                  maxCrossAxisExtent: 250,
-                  mainAxisExtent: 400,
-                  crossAxisSpacing: 20,
+                  maxCrossAxisExtent: 270,
+                  mainAxisExtent: 300,
+                  crossAxisSpacing: 10,
                   mainAxisSpacing: 20,
                 ),
                 itemCount: 10, // Set the number of cards you want to display
