@@ -46,7 +46,7 @@ class MpesaPaymentScreen extends StatelessWidget {
                   Text(
                     'Everything Beauty.',
                     style: TextStyle(
-                      color: Colors.white,
+                      color: Theme.of(context).cardColor,
                       fontSize: 20,
                     ),
                   ),
@@ -113,12 +113,11 @@ class MpesaPaymentScreen extends StatelessWidget {
                             ),
                             SizedBox(height: 10),
                             ElevatedButton(
-                            
                               onPressed: () {},
                               child: Text(
                                 'Pay',
                                 style: TextStyle(
-                                  color: Colors.white,
+                                  //color: Colors.white,
                                   fontSize: 18,
                                 ),
                               ),

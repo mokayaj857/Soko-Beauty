@@ -13,62 +13,7 @@ class PaymentScreen extends StatelessWidget {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: [
-          Container(
-            height: 350,
-            width: 452,
-            decoration: BoxDecoration(
-              gradient: LinearGradient(
-                begin: Alignment.topRight,
-                end: Alignment.topLeft,
-                colors: [
-                  sbwarmRed,
-                  sbdarkBrown,
-                ],
-              ),
-            ),
-            child: IntrinsicHeight(
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.end,
-                children: [
-                  Card(
-                    margin: EdgeInsets.all(40.0),
-                    child: Padding(
-                      padding: EdgeInsets.all(20),
-                      child: Text(
-                        'SOKO\nBEAUTY',
-                        style: TextStyle(
-                          color: sbwarmRed,
-                          fontSize: 24,
-                          fontWeight: FontWeight.bold,
-                        ),
-                        textAlign: TextAlign.center,
-                      ),
-                    ),
-                  ),
-                  Text(
-                    'Everything Beauty.',
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 20,
-                    ),
-                  ),
-                  SizedBox(
-                    height: 20,
-                  ),
-                  Container(
-                    decoration: BoxDecoration(
-                      color: Theme.of(context).cardColor,
-                      borderRadius: BorderRadius.only(
-                          topLeft: Radius.circular(20),
-                          topRight: Radius.circular(20)),
-                    ),
-                    padding: EdgeInsets.all(10),
-                    width: double.infinity,
-                  ),
-                ],
-              ),
-            ),
-          ),
+         
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 20.0),
             child: Column(
