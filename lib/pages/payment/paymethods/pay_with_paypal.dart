@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:soko_beauty/colors/colors.dart';
 
 class PaypalPaymentScreen extends StatelessWidget {
   const PaypalPaymentScreen({super.key});

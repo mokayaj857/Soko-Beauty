@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:soko_beauty/colors/colors.dart';
 
 class MpesaPaymentScreen extends StatelessWidget {
   const MpesaPaymentScreen({super.key});
@@ -59,12 +58,11 @@ class MpesaPaymentScreen extends StatelessWidget {
                             ),
                             SizedBox(height: 10),
                             ElevatedButton(
-                            
                               onPressed: () {},
                               child: Text(
                                 'Pay',
                                 style: TextStyle(
-                                  color: Colors.white,
+                                  //color: Colors.white,
                                   fontSize: 18,
                                 ),
                               ),

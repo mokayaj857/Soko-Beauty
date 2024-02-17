@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:soko_beauty/colors/colors.dart';
-import 'package:soko_beauty/pages/auth/loginscreen.dart';
 import 'package:soko_beauty/pages/home/main_page.dart';
 
 class SplashScreen extends StatelessWidget {

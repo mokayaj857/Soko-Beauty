@@ -12,19 +12,9 @@ class PaymentScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text(
-          'Payment',  
-          style: TextStyle(
-            color: Colors.transparent,
-          ),
-        ),
-      ),
         backgroundColor: Colors.transparent,
-      
         body: SingleChildScrollView(
           child: Stack(
-            
             children: [
               Image.network(
                 'https://picsum.photos/980/1080?random=girl',
@@ -32,7 +22,6 @@ class PaymentScreen extends StatelessWidget {
                 height: MediaQuery.of(context).size.height,
                 width: MediaQuery.of(context).size.width,
               ),
-
               Container(
                 height: MediaQuery.of(context).size.height,
                 width: MediaQuery.of(context).size.width,
@@ -44,19 +33,16 @@ class PaymentScreen extends StatelessWidget {
                 ),
               ),
               SizedBox(
-
                 height: MediaQuery.of(context).size.height,
                 width: MediaQuery.of(context).size.width,
                 child: Align(
                   alignment: Alignment.center,
-                  
                   child: Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 20.0),
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.spaceAround,
                       crossAxisAlignment: CrossAxisAlignment.stretch,
                       children: <Widget>[
-
                         Column(
                           mainAxisAlignment: MainAxisAlignment.spaceAround,
                           crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -90,7 +76,8 @@ class PaymentScreen extends StatelessWidget {
                                   // Handle selection
                                   Navigator.of(context).push(
                                     MaterialPageRoute(
-                                        builder: (context) => CardPaymentScreen()),
+                                        builder: (context) =>
+                                            CardPaymentScreen()),
                                   );
                                 },
                               ),
@@ -137,7 +124,8 @@ class PaymentScreen extends StatelessWidget {
                                   // Handle selection
                                   Navigator.of(context).push(
                                     MaterialPageRoute(
-                                        builder: (context) => MpesaPaymentScreen()),
+                                        builder: (context) =>
+                                            MpesaPaymentScreen()),
                                   );
                                 },
                               ),
@@ -150,7 +138,8 @@ class PaymentScreen extends StatelessWidget {
                                 leading: Icon(Icons.add),
                                 title: Text(
                                   'Add Another Payment Method',
-                                  style: TextStyle(color: sbwarmRed, fontSize: 16),
+                                  style:
+                                      TextStyle(color: sbwarmRed, fontSize: 16),
                                 ),
                                 onTap: () {
                                   // Handle selection

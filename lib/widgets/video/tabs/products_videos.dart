@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:soko_beauty/widgets/video/player.dart';
 
-class SuggestedVideoTab extends StatefulWidget {
+class ProductsVideoTab extends StatefulWidget {
   @override
-  State<SuggestedVideoTab> createState() => _SuggestedVideoTabState();
+  State<ProductsVideoTab> createState() => _ProductsVideoTabState();
 }
 
-class _SuggestedVideoTabState extends State<SuggestedVideoTab> {
+class _ProductsVideoTabState extends State<ProductsVideoTab> {
   final List<Map<String, dynamic>> apiVideos = [
     {
       "url":
@@ -26,7 +26,7 @@ class _SuggestedVideoTabState extends State<SuggestedVideoTab> {
   Widget build(BuildContext context) {
     return PageView(
       scrollDirection: Axis.vertical,
-      physics: BouncingScrollPhysics(),
+      physics: AlwaysScrollableScrollPhysics(),
       children: apiVideos.map((video) {
         return VideoPlayerScreen(videoUrl: video['url']);
       }).toList(),

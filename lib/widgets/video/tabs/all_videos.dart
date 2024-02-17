@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:soko_beauty/widgets/video/player.dart';
 
-class FollowingVideosTab extends StatefulWidget {
+class AllVideosTab extends StatefulWidget {
   @override
-  _FollowingVideosTabState createState() => _FollowingVideosTabState();
+  _AllVideosTabState createState() => _AllVideosTabState();
 }
 
-class _FollowingVideosTabState extends State<FollowingVideosTab> {
+class _AllVideosTabState extends State<AllVideosTab> {
   final List<Map<String, dynamic>> apiVideos = [
     {
       "url":
