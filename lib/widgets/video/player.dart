@@ -87,7 +87,6 @@ class _VideoPlayerScreenState extends State<VideoPlayerScreen> {
             ),
           ),
           InteractiveViewer(
-            
             child: GestureDetector(
               onTap: () {
                 // Toggle play/pause on tap inside the video area

@@ -20,7 +20,7 @@ class FormTextInput extends StatelessWidget {
       decoration: InputDecoration(
         hintText: hintText,
         hintStyle: TextStyle(
-          color: sbwarmRed,
+          color: Colors.green,
         ),
         enabledBorder: OutlineInputBorder(
           borderSide: BorderSide(
