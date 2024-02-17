@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:soko_beauty/colors/colors.dart';
 import 'package:soko_beauty/pages/auth/loginscreen.dart';
+import 'package:soko_beauty/pages/home/main_page.dart';
 
 class SplashScreen extends StatelessWidget {
   const SplashScreen({super.key});
@@ -27,7 +28,7 @@ class SplashScreen extends StatelessWidget {
 
     Future.delayed(Duration(seconds: 3), () {
       Navigator.of(context).pushReplacement(
-        MaterialPageRoute(builder: (context) => LoginScreen()),
+        MaterialPageRoute(builder: (context) => HomePage()),
       );
     });
 

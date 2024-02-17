@@ -3,6 +3,7 @@ import 'package:soko_beauty/pages/home/screens/post.dart';
 import 'package:soko_beauty/pages/home/screens/profile.dart';
 import 'package:soko_beauty/pages/home/screens/shop.dart';
 import 'package:soko_beauty/pages/home/screens/videos.dart';
+import 'package:soko_beauty/pages/payment/payment.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -16,7 +17,8 @@ class _HomePageState extends State<HomePage> {
   final List<Widget> _screens = [
     VideoPage(),
     PostPage(onBackButtonPressed: () {  },),
-    ShopPage(),
+    //ShopPage(),
+    PaymentScreen(),
     ProfilePage(),
   ];
 

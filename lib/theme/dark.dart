@@ -50,7 +50,7 @@ ThemeData darkMode = ThemeData(
       centerTitle: true,
       titleTextStyle: TextStyle(
         color: sbbrickRed,
-        fontSize: 25,
+        fontSize: 20,
         fontWeight: FontWeight.bold,
       ),
       foregroundColor: sbbrickRed,
