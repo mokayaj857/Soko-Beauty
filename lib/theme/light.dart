@@ -43,7 +43,7 @@ ThemeData lightMode = ThemeData(
       centerTitle: true,
       titleTextStyle: TextStyle(
         color: sbdeepRed,
-        fontSize: 25,
+        fontSize: 20,
         fontWeight: FontWeight.bold,
       ),
       foregroundColor: sbdeepRed,
