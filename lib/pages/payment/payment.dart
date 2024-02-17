@@ -12,14 +12,6 @@ class PaymentScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          title: Text(
-            'Payment',
-            style: TextStyle(
-              color: Colors.transparent,
-            ),
-          ),
-        ),
         backgroundColor: Colors.transparent,
         body: SingleChildScrollView(
           child: Stack(

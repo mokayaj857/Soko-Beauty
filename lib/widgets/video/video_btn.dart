@@ -20,19 +20,20 @@ class VideoActionButtons extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Positioned(
-      bottom: 25.0,
+      bottom: 5.0,
       right: 5.0,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.end,
         children: [
           FloatingActionButton(
+            mini: true,
             onPressed: onAddPressed,
             child: Container(
-              width: 56,
-              height: 56,
+              width: double.infinity,
+              height: double.infinity,
               decoration: BoxDecoration(
                 shape: BoxShape.circle,
-                color: Colors.red, // Set your desired background color
+                color: sbbrickRed.withOpacity(0.4),
               ),
               child: Stack(
                 alignment: Alignment.center,
@@ -57,26 +58,29 @@ class VideoActionButtons extends StatelessWidget {
               ),
             ),
           ),
-          SizedBox(height: 30.0),
+          SizedBox(height: 10.0),
+          _buildActionButton(
+            onPressed: shoppingCartPressed,
+            icon: Icons.add_shopping_cart_outlined,
+            label: '500',
+          ),
+          SizedBox(height: 10.0),
           _buildActionButton(
             onPressed: onFavoritePressed,
             icon: Icons.favorite_border_outlined,
             label: '2.5k',
           ),
+          SizedBox(height: 10.0),
           _buildActionButton(
             onPressed: onCommentPressed,
             icon: Icons.comment_rounded,
             label: '300',
           ),
+          SizedBox(height: 10.0),
           _buildActionButton(
             onPressed: onSharePressed,
             icon: Icons.share,
             label: '10',
-          ),
-          _buildActionButton(
-            onPressed: shoppingCartPressed,
-            icon: Icons.shopping_cart,
-            label: 'Buy Now',
           ),
         ],
       ),
@@ -91,8 +95,11 @@ class VideoActionButtons extends StatelessWidget {
     return Column(
       children: [
         FloatingActionButton(
+          mini: true,
           onPressed: onPressed,
-          child: Icon(icon),
+          child: Icon(
+            icon,
+          ),
         ),
         if (label.isNotEmpty) ...[
           SizedBox(height: 5.0),
@@ -101,7 +108,6 @@ class VideoActionButtons extends StatelessWidget {
             style: TextStyle(fontSize: 13.0, fontWeight: FontWeight.bold),
           ),
         ],
-        SizedBox(height: 20.0),
       ],
     );
   }

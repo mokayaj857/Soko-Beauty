@@ -1,71 +1,59 @@
+import 'dart:math';
 import 'package:flutter/material.dart';
+import 'package:soko_beauty/widgets/user/user_profile_card.dart';
 
 class ProfilePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text('Profile'),
+      body: CustomScrollView(
+        slivers: [
+          UserProfileCard(),
+          _buildPostGrid(),
+        ],
       ),
-      body: SingleChildScrollView(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            SizedBox(height: 20),
-            CircleAvatar(
-              radius: 60,
-              backgroundImage: NetworkImage('https://placekitten.com/200/200'), // Replace with the user's actual avatar URL
-            ),
-            SizedBox(height: 10),
-            Text(
-              'John Doe', // Replace with the user's actual name
-              style: TextStyle(
-                fontSize: 18,
-                fontWeight: FontWeight.bold,
-              ),
-            ),
-            SizedBox(height: 10),
-            Text(
-              'john.doe@example.com', // Replace with the user's actual email
-              style: TextStyle(
-                color: Colors.grey,
-              ),
-            ),
-            SizedBox(height: 20),
-            Card(
-              margin: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-              elevation: 0,
-              child: ListTile(
-                title: Text('Account Settings'),
-                onTap: () {
-                  // Handle Account Settings tap
-                },
-              ),
-            ),
-            Card(
-              margin: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-              elevation: 0,
-              child: ListTile(
-                title: Text('Privacy Policy'),
-                onTap: () {
-                  // Handle Privacy Policy tap
-                },
-              ),
-            ),
-            Card(
-              margin: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-              elevation: 0,
-              child: ListTile(
-                title: Text('About'),
-                onTap: () {
-                  // Handle About tap
-                },
-              ),
-            ),
-            // Add more cards for additional settings
-          ],
+    );
+  }
+
+  
+  Widget _buildPostGrid() {
+    return SliverGrid(
+
+      delegate: SliverChildBuilderDelegate(
+        
+        (BuildContext context, int index) {
+          return _buildPostCard(index);
+        },
+        childCount: 20, // Number of posts to display
+      ),
+      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+        crossAxisCount: 2,
+        crossAxisSpacing: 2.0,
+        mainAxisSpacing: 2.0,
+        childAspectRatio: 1.0,
+      ),
+    );
+  }
+
+  Widget _buildPostCard(int index) {
+    final int imageId = Random().nextInt(1000); // Random image ID from Picsum
+
+    return Card(
+      elevation: 0,
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(0),
+      ),
+      child: Container(
+        height: 100.0,
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(0),
+          image: DecorationImage(
+            image: NetworkImage('https://picsum.photos/id/$imageId/300/200'),
+            fit: BoxFit.cover,
+          ),
         ),
+        alignment: Alignment.center,
+        child: Text("Post $index"),
       ),
     );
   }

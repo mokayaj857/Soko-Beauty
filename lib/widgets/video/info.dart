@@ -32,8 +32,10 @@ class _VideoInfoState extends State<VideoInfo> {
         child: SingleChildScrollView(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisAlignment: MainAxisAlignment.start,
             children: [
               Row(
+                mainAxisSize: MainAxisSize.min,
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
                   Text(
@@ -46,6 +48,7 @@ class _VideoInfoState extends State<VideoInfo> {
                   ),
                   SizedBox(width: 8),
                   IconButton(
+                    padding: EdgeInsets.zero,
                     icon: Icon(
                       isMinimized ? Icons.arrow_upward : Icons.arrow_downward,
                     ),
@@ -84,14 +87,15 @@ class _VideoInfoState extends State<VideoInfo> {
               Row(
                 children: [
                   CircleAvatar(
-                    minRadius: 15,
+                    minRadius: 7,
                     backgroundColor: Colors.black54,
                     child: Icon(
                       Icons.audio_file_outlined,
+                      size: 12,
                       color: Colors.white,
                     ),
                   ),
-                  SizedBox(width: 8),
+                  SizedBox(width: 4),
                   Text(
                     "Beauty by Godfrey Williams",
                     style: TextStyle(
