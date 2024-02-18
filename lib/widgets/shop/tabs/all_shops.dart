@@ -1,55 +1,59 @@
 import 'package:flutter/material.dart';
+import 'package:soko_beauty/widgets/shop/common/selection_chips.dart';
+import 'package:soko_beauty/widgets/shop/common/shop_list_title.dart';
+import 'package:soko_beauty/widgets/shop/for_you.dart';
+import 'package:soko_beauty/widgets/shop/highly_rated.dart';
+import 'package:soko_beauty/widgets/shop/new_arrivals.dart';
 
 class AllShopsScreen extends StatelessWidget {
-  const AllShopsScreen({super.key});
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: GridView.builder(
-        shrinkWrap: true,
+      body: ListView(
         physics: NeverScrollableScrollPhysics(),
-        padding: EdgeInsets.symmetric(vertical: 20),
-        gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
-          maxCrossAxisExtent: 400,
-          
-          mainAxisExtent: 300,
-          crossAxisSpacing: 10,
-          mainAxisSpacing: 20,
-        ),
-        itemCount: 10, // Set the number of cards you want to display
-        itemBuilder: (BuildContext context, int index) {
-          return Card(
-            margin: EdgeInsets.symmetric(horizontal: 10),
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(10.0),
+        padding: EdgeInsets.all(0),
+        children: <Widget>[
+         SelectionChips(),
+          ShopListTitle(title: "For You"),
+          Container(
+            height: 200,
+            child: ListView.builder(
+              scrollDirection: Axis.horizontal,
+              itemCount: 10, // Number of restaurants
+              itemBuilder: (context, index) {
+                return ForYouCard();
+              },
             ),
-            clipBehavior: Clip.antiAlias,
-            child: Column(
-              children: <Widget>[
-                Expanded(
-                  child: Image.network(
-                    "https://picsum.photos/400/200?random=$index",
-                    fit: BoxFit.cover,
-                  ),
-                ),
-                ListTile(
-                  title: Text('Product Name'),
-                  subtitle: Text('Price: \Ksh 1000'),
-                ),
-                ButtonBar(
-                  children: <Widget>[
-                    TextButton(
-                      child: const Text('BUY'),
-                      onPressed: () {/* Add your action here */},
-                    ),
-                  ],
-                ),
-              ],
+          ),
+          ShopListTitle(title: "Highly Rated",),
+          Container(
+            height: 300,
+            child: ListView.builder(
+              scrollDirection: Axis.horizontal,
+              itemCount: 10, // Number of dishes
+              itemBuilder: (context, index) {
+                return HighlyRated();
+              },
             ),
-          );
-        },
+          ),
+          ShopListTitle(
+            title: "New Arrivals",
+          ),
+          Container(
+            height: 120,
+            child: ListView.builder(
+              scrollDirection: Axis.horizontal,
+              itemCount: 10, // Number of dishes
+              itemBuilder: (context, index) {
+                return RestaurantCard();
+              },
+            ),
+          ),
+        ],
       ),
     );
   }
 }
+
+
+
