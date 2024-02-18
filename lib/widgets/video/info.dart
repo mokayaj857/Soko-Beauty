@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
 import 'package:soko_beauty/widgets/video/hashtags.dart';
 
@@ -24,7 +26,8 @@ class _VideoInfoState extends State<VideoInfo> {
         padding: EdgeInsets.only(
           left: 8,
           right: 8,
-          top: 8,
+          top: 4,
+          bottom: 15,
         ),
         color: isMinimized
             ? Colors.transparent
@@ -44,7 +47,9 @@ class _VideoInfoState extends State<VideoInfo> {
                       fontSize: 18,
                       fontWeight: FontWeight.bold,
                     ),
-                    overflow: TextOverflow.ellipsis,
+                    overflow: isMinimized
+                        ? TextOverflow.ellipsis
+                        : TextOverflow.clip,
                   ),
                   SizedBox(width: 8),
                   IconButton(
@@ -61,11 +66,12 @@ class _VideoInfoState extends State<VideoInfo> {
                 ],
               ),
               Text(
-                "Darling style | A more detailed info about this video",
+                "Darling style | A more detailed info about this video Darling style | A more detailed info about this video",
                 style: TextStyle(
                   fontSize: 14,
                 ),
-                overflow: TextOverflow.ellipsis,
+                overflow:
+                    isMinimized ? TextOverflow.ellipsis : TextOverflow.clip,
               ),
               Row(
                 children: [
@@ -73,6 +79,7 @@ class _VideoInfoState extends State<VideoInfo> {
                     "1.2M views",
                     style: TextStyle(
                       fontSize: 14,
+                      fontWeight: FontWeight.bold,
                     ),
                   ),
                   SizedBox(width: 8),
@@ -80,6 +87,7 @@ class _VideoInfoState extends State<VideoInfo> {
                     "2 days ago",
                     style: TextStyle(
                       fontSize: 14,
+                      fontWeight: FontWeight.bold,
                     ),
                   ),
                 ],

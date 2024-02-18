@@ -33,109 +33,18 @@ class _HomePageState extends State<HomePage> {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
-                TextButton(
-                  style: TextButton.styleFrom(
-                    padding: EdgeInsets.all(0.0),
-                  ),
-                  onPressed: () {
-                    setState(() {
-                      _currentIndex = 0;
-                    });
-                  },
-                  child: Column(
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      Icon(Icons.video_library),
-                      Text('Home'),
-                    ],
-                  ),
-                ),
-                Stack(
-                  children: [
-                    TextButton(
-                      style: TextButton.styleFrom(
-                        padding: EdgeInsets.all(0.0),
-                      ),
-                      onPressed: () {
-                        setState(() {
-                          _currentIndex = 1;
-                        });
-                      },
-                      child: Column(
-                        mainAxisSize: MainAxisSize.min,
-                        children: [
-                          Icon(Icons.shop),
-                          Text('Inbox'),
-                        ],
-                      ),
-                    ),
-                    Positioned(
-                      right: 0,
-                      child: Container(
-                        padding: EdgeInsets.all(2),
-                        decoration: BoxDecoration(
-                          color: sbwarmRed,
-                          borderRadius: BorderRadius.circular(10),
-                        ),
-                        constraints: BoxConstraints(
-                          minWidth: 16,
-                          minHeight: 16,
-                        ),
-                        child: Text(
-                          '3',
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 10,
-                          ),
-                          textAlign: TextAlign.center,
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-                TextButton(
-                  style: TextButton.styleFrom(
-                    padding: EdgeInsets.all(0.0),
-                  ),
-                  onPressed: () {
-                    setState(() {
-                      _currentIndex = 2;
-                    });
-                  },
-                  child: Column(
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      Icon(Icons.shop),
-                      Text('Market'),
-                    ],
-                  ),
-                ),
-                TextButton(
-                  style: TextButton.styleFrom(
-                    padding: EdgeInsets.all(0.0),
-                  ),
-                  onPressed: () {
-                    setState(() {
-                      _currentIndex = 3;
-                    });
-                  },
-                  child: Column(
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      Icon(Icons.person),
-                      Text('Profile'),
-                    ],
-                  ),
-                ),
+                buildNavItem(0, Icons.video_library, 'Home'),
+                buildNavItemWithBadge(1, Icons.shop, 'Inbox', 3),
+                SizedBox(width: 10,),
+                buildNavItem(2, Icons.shop, 'Market'),
+                buildNavItem(3, Icons.person, 'Profile'),
               ],
             ),
           ),
           floatingActionButton: Positioned(
             bottom: 0.0,
             child: FloatingActionButton(
-              backgroundColor: Theme.of(context)
-                  .bottomAppBarTheme
-                  .color, //Colors.red.shade50,
+              backgroundColor: Theme.of(context).bottomAppBarTheme.color,
               onPressed: () {
                 Navigator.push(
                   context,
@@ -146,7 +55,8 @@ class _HomePageState extends State<HomePage> {
               },
               mini: true,
               child: Icon(
-                Icons.camera,
+                Icons.add_a_photo_rounded,
+                size: 20,
                 color: Theme.of(context).hintColor,
               ),
             ),
@@ -154,6 +64,59 @@ class _HomePageState extends State<HomePage> {
           floatingActionButtonLocation:
               FloatingActionButtonLocation.centerDocked,
         ),
+      ],
+    );
+  }
+
+  Widget buildNavItem(int index, IconData icon, String label) {
+    return TextButton(
+      style: TextButton.styleFrom(padding: EdgeInsets.all(0.0)),
+      onPressed: () {
+        setState(() {
+          _currentIndex = index;
+        });
+      },
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Icon(
+            icon,
+            color: _currentIndex == index ? sbbrickRed : null,
+          ),
+          Text(label, style: TextStyle(fontSize: 10, color: _currentIndex == index ? sbbrickRed : null)),
+        ],
+      ),
+    );
+  }
+
+  Widget buildNavItemWithBadge(
+      int index, IconData icon, String label, int badgeCount) {
+    return Stack(
+      children: [
+        buildNavItem(index, icon, label),
+        if (badgeCount > 0)
+          Positioned(
+            right: 0,
+            child: Container(
+              padding: EdgeInsets.all(2),
+              decoration: BoxDecoration(
+                color: sbwarmRed,
+                borderRadius: BorderRadius.circular(10),
+              ),
+              constraints: BoxConstraints(
+                minWidth: 16,
+                minHeight: 16,
+              ),
+              child: Text(
+                '$badgeCount',
+                style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 10,
+                ),
+                textAlign: TextAlign.center,
+              ),
+            ),
+          ),
       ],
     );
   }

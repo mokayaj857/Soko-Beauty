@@ -25,7 +25,7 @@ class SplashScreen extends StatelessWidget {
     //   }
     // });
 
-    Future.delayed(Duration(seconds: 3), () {
+    Future.delayed(Duration(seconds: 10), () {
       Navigator.of(context).pushReplacement(
         MaterialPageRoute(builder: (context) => HomePage()),
       );
@@ -34,81 +34,44 @@ class SplashScreen extends StatelessWidget {
     // splash screen UI
     return Scaffold(
       body: Container(
-        width: double.infinity,
         height: double.infinity,
+        width: double.infinity,
         decoration: BoxDecoration(
-          gradient: LinearGradient(
-            begin: Alignment.topRight,
-            end: Alignment.topLeft,
-            colors: [
-              sbwarmRed,
-              sbdarkBrown,
-            ],
-          ),
-        ),
-        //linear gradient hapa
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Container(
-              padding: EdgeInsets.all(16),
-              margin: EdgeInsets.only(top: 70),
-              decoration: BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.all(
-                  Radius.circular(8),
-                ),
-              ),
-              child: Text(
-                'SOKO\nBEAUTY',
-                style: TextStyle(
-                  color: sbwarmRed,
-                  fontSize: 24,
-                  fontWeight: FontWeight.bold,
-                ),
-                textAlign: TextAlign.center,
-              ),
-            ),
-            SizedBox(height: 7),
-            Text(
-              'Everything Beauty.',
-              style: TextStyle(
-                color: Colors.white,
-                fontSize: 20,
-              ),
-            ),
-            SizedBox(height: 100),
 
-            Expanded(
-              child: Container(
-                width: double.infinity,
-                decoration: BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.only(
-                    topLeft: Radius.circular(20),
-                    topRight: Radius.circular(20),
+          gradient: LinearGradient(
+            begin: Alignment.center,
+            end: Alignment.topCenter,
+            colors: [
+            sbbrickRed.withOpacity(0.1),
+            sbdarkBrown.withOpacity(0.2)
+          ]),
+        ),
+        child: Expanded(
+          child: Center(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                Image.asset('assets/logo.png', height: 120),
+                SizedBox(height: 20),
+                Text("SokoBeauty",
+                    style: TextStyle(
+                      fontSize: 20,
+                      fontWeight: FontWeight.bold
+                    ),
+                ),
+                Text(
+                  'AI Powered Short-form video\nContent Platform for Beauty\nWith E-Commerce',
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                    fontStyle: FontStyle.italic,
+                    color: sbdeepRed,
+                    fontSize: 14,
                   ),
                 ),
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    Image.asset('assets/logo.png', height: 120),
-                    SizedBox(height: 20),
-                    Text(
-                      'AI Powered Short-form video\nContent Platform for Beauty\nWith E-Commerce',
-                      textAlign: TextAlign.center,
-                      style: TextStyle(
-                        color: sbdeepRed,
-                        fontSize: 14,
-                      ),
-                    ),
-                  ],
-                ),
-              ),
+              ],
             ),
-            // other widgets hapa
-          ],
+          ),
         ),
       ),
     );
