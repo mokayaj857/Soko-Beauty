@@ -6,12 +6,14 @@ ThemeData darkMode = ThemeData(
   brightness: Brightness.dark,
   primaryColor: sbbrickRed,
   canvasColor: Colors.black,
+  cardColor: Colors.black54,
   //accentColor: Colors.blueAccent,
   fontFamily: 'verdana',
   fontFamilyFallback: ['Helvetica'],
   package: 'Soko Beauty',
   useMaterial3: true,
   shadowColor: Colors.grey,
+
 
   //TabBar Theme
   tabBarTheme: TabBarTheme(
@@ -31,7 +33,10 @@ ThemeData darkMode = ThemeData(
 
   //2 - floating ACTIONS BUTTON
   floatingActionButtonTheme: FloatingActionButtonThemeData(
-    backgroundColor: Colors.black.withOpacity(0.4),
+    backgroundColor: Colors.black.withOpacity(0.6),
+    elevation: 1,
+    hoverColor: Colors.transparent,
+    highlightElevation: 0.0,
     foregroundColor: Colors.grey.shade100,
     hoverElevation: 0.0,
     //extendedIconLabelSpacing: ,
@@ -89,8 +94,21 @@ ThemeData darkMode = ThemeData(
     color: Colors.black87,
     surfaceTintColor: Colors.transparent,
     elevation: 10,
-    height: 55.0,
+    height: 50.0,
     padding: EdgeInsets.all(0.0),
   ),
+   textButtonTheme: TextButtonThemeData(
+    style: ButtonStyle(
+      padding: MaterialStateProperty.all(EdgeInsets.all(0.0)),
+      foregroundColor: MaterialStateProperty.all(Colors.white70),
+      iconColor: MaterialStateProperty.all(Colors.white70),
+    ),
+  ),
   // scaffold theme
+  iconButtonTheme: IconButtonThemeData(
+    style: ButtonStyle(
+      padding: MaterialStateProperty.all(EdgeInsets.all(0.0)),
+      backgroundColor: MaterialStateProperty.all(Colors.transparent),
+    ),
+  ),
 );

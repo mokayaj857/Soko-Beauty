@@ -5,7 +5,9 @@ ThemeData lightMode = ThemeData(
   // 1. App-wide settings
   brightness: Brightness.light,
   primaryColor: sbdarkBrown,
+  
   canvasColor: Colors.grey.shade100,
+  cardColor: Colors.white,
   fontFamily: 'verdana',
   fontFamilyFallback: ['Helvetica'],
   package: 'Soko Beauty',
@@ -13,9 +15,9 @@ ThemeData lightMode = ThemeData(
   scaffoldBackgroundColor: Colors.grey.shade100,
   //2 - floating ACTIONS BUTTON
   floatingActionButtonTheme: FloatingActionButtonThemeData(
-      backgroundColor: Colors.red.shade50.withOpacity(0.4),
-      foregroundColor: Colors.grey.shade100,
-      elevation: 0.4,
+      backgroundColor: Colors.red.shade50.withOpacity(0.6),
+      foregroundColor: Colors.white,
+      elevation: 1,
       iconSize: 30,
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(50.0),
@@ -65,10 +67,17 @@ ThemeData lightMode = ThemeData(
   //5 - BottomAppbar THEME
   bottomAppBarTheme: BottomAppBarTheme(
     color: Colors.red.shade50,
+    
     surfaceTintColor: Colors.transparent,
     elevation: 10,
-    height: 55.0,
+    height: 50.0,
     padding: EdgeInsets.all(0.0),
+  ),
+  textButtonTheme: TextButtonThemeData(
+    style: ButtonStyle(
+      padding: MaterialStateProperty.all(EdgeInsets.all(0.0)),
+      foregroundColor: MaterialStateProperty.all(sbdarkBrown),
+    ),
   ),
   iconButtonTheme: IconButtonThemeData(
    style: 
