@@ -12,6 +12,7 @@ class AllShopsScreen extends StatelessWidget {
         padding: EdgeInsets.symmetric(vertical: 20),
         gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
           maxCrossAxisExtent: 400,
+          
           mainAxisExtent: 300,
           crossAxisSpacing: 10,
           mainAxisSpacing: 20,
