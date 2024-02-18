@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:soko_beauty/pages/home/screens/conversation.dart';
 import 'package:soko_beauty/widgets/chat/chat_card.dart';
 
 class ChatsPage extends StatelessWidget {

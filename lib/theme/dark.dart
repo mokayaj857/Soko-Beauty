@@ -63,19 +63,19 @@ ThemeData darkMode = ThemeData(
     disabledColor: Colors.grey.shade300,
     selectedColor: sbbrickRed,
     secondarySelectedColor: sbbrickRed,
-    padding: EdgeInsets.all(10.0),
+    padding: EdgeInsets.symmetric(vertical: 5, horizontal: 10),
     shape: RoundedRectangleBorder(
-      borderRadius: BorderRadius.circular(10.0),
+      borderRadius: BorderRadius.circular(30.0),
     ),
     labelStyle: TextStyle(
       color: Colors.grey.shade300,
-      fontSize: 16,
-      fontWeight: FontWeight.bold,
+      fontSize: 13,
+     
     ),
     secondaryLabelStyle: TextStyle(
       color: Colors.grey.shade300,
-      fontSize: 16,
-      fontWeight: FontWeight.bold,
+      fontSize: 13,
+      // fontWeight: FontWeight.bolD,
     ),
     brightness: Brightness.dark,
   ),

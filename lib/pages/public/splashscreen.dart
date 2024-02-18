@@ -25,7 +25,7 @@ class SplashScreen extends StatelessWidget {
     //   }
     // });
 
-    Future.delayed(Duration(seconds: 10), () {
+    Future.delayed(Duration(seconds: 2), () {
       Navigator.of(context).pushReplacement(
         MaterialPageRoute(builder: (context) => HomePage()),
       );
@@ -60,15 +60,15 @@ class SplashScreen extends StatelessWidget {
                       fontWeight: FontWeight.bold
                     ),
                 ),
-                Text(
-                  'AI Powered Short-form video\nContent Platform for Beauty\nWith E-Commerce',
-                  textAlign: TextAlign.center,
-                  style: TextStyle(
-                    fontStyle: FontStyle.italic,
-                    color: sbdeepRed,
-                    fontSize: 14,
-                  ),
-                ),
+                // Text(
+                //   'AI Powered Short-form video\nContent Platform for Beauty\nWith E-Commerce',
+                //   textAlign: TextAlign.center,
+                //   style: TextStyle(
+                //     fontStyle: FontStyle.italic,
+                //     color: sbdeepRed,
+                //     fontSize: 14,
+                //   ),
+                // ),
               ],
             ),
           ),

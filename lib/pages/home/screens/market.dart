@@ -70,7 +70,7 @@ class MarketPage extends StatelessWidget {
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             Text(
-                              'Soko Bueaty Market',
+                              'Soko Beauty Market',
                               style: TextStyle(
                                 color: sbbrickRed,
                                 fontSize: 20,
@@ -118,6 +118,7 @@ class MarketPage extends StatelessWidget {
               ProductShopsScreen(),
             ],
           ),
+          
              ),
           ],
         ),
