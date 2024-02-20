@@ -60,12 +60,6 @@ class VideoActionButtons extends StatelessWidget {
           ),
           SizedBox(height: 10.0),
           _buildActionButton(
-            onPressed: shoppingCartPressed,
-            icon: Icons.add_shopping_cart_outlined,
-            label: '500',
-          ),
-          SizedBox(height: 10.0),
-          _buildActionButton(
             onPressed: onFavoritePressed,
             icon: Icons.favorite_border_outlined,
             label: '2.5k',
@@ -82,6 +76,31 @@ class VideoActionButtons extends StatelessWidget {
             icon: Icons.share,
             label: '10',
           ),
+          SizedBox(height: 10.0),
+          FloatingActionButton(
+            mini: true,
+            onPressed: shoppingCartPressed,
+            child: Stack(
+              alignment: Alignment.center,
+              children: [
+                Icon(
+                  Icons.shopping_cart,
+                ),
+                Align(
+                  alignment: Alignment.topRight,
+                  child: CircleAvatar(
+                      radius: 7.0,
+                      backgroundColor: sbbrickRed,
+                      child: Text(
+                        '2',
+                        style: TextStyle(fontSize: 10.0, color: Colors.white),
+                      )),
+                ),
+              ],
+            ),
+          ),
+          SizedBox(height: 10.0),
+          //Center(child: Text("Cart")),
         ],
       ),
     );

@@ -45,7 +45,7 @@ class AllShopsScreen extends StatelessWidget {
               scrollDirection: Axis.horizontal,
               itemCount: 10, // Number of dishes
               itemBuilder: (context, index) {
-                return RestaurantCard();
+                return NewArrivalsCard();
               },
             ),
           ),

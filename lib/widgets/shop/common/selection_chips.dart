@@ -14,6 +14,12 @@ class SelectionChips extends StatelessWidget {
                 Chip(
                   label: Text('All'),
                 ),
+                 Chip(
+                  label: Text('Products'),
+                ),
+                Chip(
+                  label: Text('Services'),
+                ),
                 Chip(
                   label: Text('Offers'),
                 ),

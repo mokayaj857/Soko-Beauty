@@ -17,8 +17,8 @@ class _HomePageState extends State<HomePage> {
   int _currentIndex = 0;
   final List<Widget> _screens = [
     VideoPage(),
-    ChatsPage(),
     MarketPage(),
+    ChatsPage(),
     ProfilePage(),
   ];
 
@@ -30,13 +30,17 @@ class _HomePageState extends State<HomePage> {
           body: _screens[_currentIndex],
           bottomNavigationBar: BottomAppBar(
             shape: CircularNotchedRectangle(),
+            notchMargin: 10,
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
-                buildNavItem(0, Icons.video_library, 'Home'),
-                buildNavItemWithBadge(1, Icons.shop, 'Inbox', 3),
-                SizedBox(width: 10,),
-                buildNavItem(2, Icons.shop, 'Market'),
+                buildNavItem(0, Icons.home_filled, 'Home'),
+                buildNavItem(1, Icons.shop, 'Shop'),
+                SizedBox(
+                  width: 10,
+                ),
+                buildNavItemWithBadge(
+                    3, Icons.mark_chat_unread_rounded, 'Inbox', 3),
                 buildNavItem(3, Icons.person, 'Profile'),
               ],
             ),
@@ -55,8 +59,8 @@ class _HomePageState extends State<HomePage> {
               },
               mini: true,
               child: Icon(
-                Icons.add_a_photo_rounded,
-                size: 20,
+                Icons.add_circle_outline_rounded,
+                size: 24,
                 color: Theme.of(context).hintColor,
               ),
             ),
@@ -83,7 +87,10 @@ class _HomePageState extends State<HomePage> {
             icon,
             color: _currentIndex == index ? sbbrickRed : null,
           ),
-          Text(label, style: TextStyle(fontSize: 10, color: _currentIndex == index ? sbbrickRed : null)),
+          Text(label,
+              style: TextStyle(
+                  fontSize: 10,
+                  color: _currentIndex == index ? sbbrickRed : null)),
         ],
       ),
     );

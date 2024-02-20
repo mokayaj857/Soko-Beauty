@@ -14,7 +14,7 @@ class HighlyRated extends StatelessWidget {
         
       ),
       child: Card(
-        elevation: 5,
+        elevation: 1,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(0),
         ),
