@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:soko_beauty/models/Product.dart';
+import 'package:soko_beauty/pages/payment/payment.dart';
 import 'package:soko_beauty/widgets/shop/cart/cart_item.dart';
 
 final List<Product> cartProducts = [
@@ -90,7 +91,10 @@ class _CartPageState extends State<CartPage> {
                 ),
               ),
               ElevatedButton(
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.push(context, MaterialPageRoute(builder: (context) => PaymentScreen())
+                  );
+                },
                 child: Text('Checkout'),
               ),
             ],
