@@ -11,22 +11,21 @@ class StarRating extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Row(
-       mainAxisSize: MainAxisSize.min,
+      mainAxisSize: MainAxisSize.min,
       children: [
         Row(
           mainAxisSize: MainAxisSize.min,
-          children: List.generate(starCount, (index) => buildStar(context, index)),
-
+          children:
+              List.generate(starCount, (index) => buildStar(context, index)),
         ),
-        
-         Text('(${rating.toStringAsFixed(1)})'),
+        Text('(${rating.toStringAsFixed(1)})'),
       ],
     );
   }
 
   Widget buildStar(BuildContext context, int index) {
     Icon icon;
-    
+
     if (index >= rating) {
       icon = Icon(
         Icons.star_border,
@@ -47,9 +46,7 @@ class StarRating extends StatelessWidget {
       );
     }
     return InkResponse(
-      onTap: () {
-        // TODO: Add your action on tap here (if any)
-      },
+      onTap: () {},
       child: icon,
     );
   }

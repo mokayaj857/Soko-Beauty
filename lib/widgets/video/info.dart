@@ -1,5 +1,3 @@
-import 'dart:ui';
-
 import 'package:flutter/material.dart';
 import 'package:soko_beauty/widgets/video/hashtags.dart';
 
@@ -47,9 +45,8 @@ class _VideoInfoState extends State<VideoInfo> {
                       fontSize: 18,
                       fontWeight: FontWeight.bold,
                     ),
-                    overflow: isMinimized
-                        ? TextOverflow.ellipsis
-                        : TextOverflow.clip,
+                    overflow:
+                        isMinimized ? TextOverflow.ellipsis : TextOverflow.clip,
                   ),
                   SizedBox(width: 8),
                   IconButton(

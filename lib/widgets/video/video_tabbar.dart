@@ -35,26 +35,6 @@ class _VideoTabBarState extends State<VideoTabBar> {
                 ),
               ),
             ),
-            Positioned(
-              top:  0,
-              right: 40,
-              child: SafeArea(
-                child: IconButton(
-                  onPressed: () {},
-                  icon: Icon(Icons.shopping_cart_checkout_sharp),
-                ),
-              ),
-            ),
-             Positioned(
-              top: 0,
-              left: 40,
-              child: SafeArea(
-                child: IconButton(
-                  onPressed: () {},
-                  icon: Icon(Icons.arrow_drop_down_outlined),
-                ),
-              ),
-            ),
             Align(
               alignment: Alignment.topRight,
               child: SafeArea(

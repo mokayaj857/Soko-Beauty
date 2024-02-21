@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-class RestaurantCard extends StatelessWidget {
+class NewArrivalsCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -15,7 +15,7 @@ class RestaurantCard extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             Icon(Icons.restaurant, size: 50),
-            Text('Restaurant Name'),
+            Text('Shop Name'),
             Text('Address'),
           ],
         ),

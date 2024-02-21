@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:soko_beauty/pages/shop/cart.dart';
 import 'package:soko_beauty/widgets/video/comments.dart';
 import 'package:soko_beauty/widgets/video/info.dart';
 import 'package:share_link/share_link.dart';
@@ -28,7 +29,6 @@ class _VideoPageState extends State<VideoPage> {
     return Stack(fit: StackFit.loose, children: [
       VideoTabBar(),
       if (isLoading) ...[
-        // Components displayed when not in loading state
         VideoActionButtons(
           onAddPressed: () {},
           onFavoritePressed: () {},
@@ -40,7 +40,9 @@ class _VideoPageState extends State<VideoPage> {
           onSharePressed: () {
             _shareContent();
           },
-          shoppingCartPressed: () {},
+          shoppingCartPressed: () {
+            Navigator.push(context, MaterialPageRoute(builder: (context) => CartPage()));
+          },
         ),
         if (showComments) CommentSection(),
         VideoInfo(),
