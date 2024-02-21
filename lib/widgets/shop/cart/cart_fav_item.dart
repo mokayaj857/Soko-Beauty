@@ -2,11 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:soko_beauty/colors/colors.dart';
 import 'package:soko_beauty/models/Product.dart';
 
-class CartItem extends StatelessWidget {
+class CartFavoriteItem extends StatelessWidget {
   final Product product;
   final VoidCallback onRemove;
 
-  const CartItem({
+  const CartFavoriteItem({
     required this.product,
     required this.onRemove,
     required Null Function() onAddPressed,
@@ -48,8 +48,8 @@ class CartItem extends StatelessWidget {
                         color: sbbrickRed,
                       ),
                     ),
-                      IconButton(
-                      icon: Icon(Icons.favorite_border),
+                    IconButton(
+                      icon: Icon(Icons.favorite),
                       color: sbbrickRed,
                       onPressed: () {},
                     ),
@@ -60,37 +60,6 @@ class CartItem extends StatelessWidget {
                   style: TextStyle(
                     fontSize: 13,
                   ),
-                ),
-              ],
-            ),
-          ),
-          Center(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
-              children: [
-                Text(
-                  '\$${product.price.toStringAsFixed(2)}',
-                  style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
-                ),
-                Row(
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    IconButton(
-                      icon: Icon(Icons.remove),
-                      color: sbbrickRed,
-                      onPressed: onRemove,
-                    ),
-                    Text(
-                      '3',
-                      style:
-                          TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
-                    ),
-                    IconButton(
-                      icon: Icon(Icons.add),
-                      color: sbbrickRed,
-                      onPressed: () {},
-                    ),
-                  ],
                 ),
               ],
             ),

@@ -40,7 +40,7 @@ class _HomePageState extends State<HomePage> {
                   width: 10,
                 ),
                 buildNavItemWithBadge(
-                    3, Icons.mark_chat_unread_rounded, 'Inbox', 3),
+                    2, Icons.mark_chat_unread_rounded, 'Inbox', 3),
                 buildNavItem(3, Icons.person, 'Profile'),
               ],
             ),
@@ -60,7 +60,7 @@ class _HomePageState extends State<HomePage> {
               mini: true,
               child: Icon(
                 Icons.add_circle_outline_rounded,
-                size: 24,
+                size: 30,
                 color: Theme.of(context).hintColor,
               ),
             ),

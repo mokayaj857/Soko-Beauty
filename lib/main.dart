@@ -1,16 +1,18 @@
-import 'package:firebase_core/firebase_core.dart';
+//import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:soko_beauty/pages/public/splashscreen.dart';
 import 'package:soko_beauty/theme/dark.dart';
 import 'package:soko_beauty/theme/light.dart';
-import 'firebase_options.dart';
+//import 'firebase_options.dart';
 
-Future<void> main() async {
-  WidgetsFlutterBinding.ensureInitialized();
+// Future<void> 
+void  main() {
+// async {
+  //WidgetsFlutterBinding.ensureInitialized();
 
-  await Firebase.initializeApp(
-    options: DefaultFirebaseOptions.currentPlatform,
-  );
+  // await Firebase.initializeApp(
+  //   options: DefaultFirebaseOptions.currentPlatform,
+  // );
 
   // Enable Firestore offline persistence
   // FirebaseFirestore.instance.settings = Settings(

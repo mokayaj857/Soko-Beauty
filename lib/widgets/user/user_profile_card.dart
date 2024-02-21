@@ -15,22 +15,22 @@ class UserProfileCard extends StatelessWidget {
       foregroundColor: sbbrickRed,
       pinned: true,
       expandedHeight: 300,
-      bottom: PreferredSize(
-        preferredSize: Size.fromHeight(0),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Icon(
-              Icons.location_on,
-              size: 14,
-              color: sbbrickRed,
-            ),
-            Text(
-              'Nairobi, Kenya',
-            ),
-          ],
-        ),
-      ),
+      // bottom: PreferredSize(
+      //   preferredSize: Size.fromHeight(0),
+      //   child: Row(
+      //     mainAxisAlignment: MainAxisAlignment.center,
+      //     children: [
+      //       Icon(
+      //         Icons.location_on,
+      //         size: 14,
+      //         color: sbbrickRed,
+      //       ),
+      //       Text(
+      //         'Nairobi, Kenya',
+      //       ),
+      //     ],
+      //   ),
+      // ),
       leading: IconButton(
         onPressed: () {
           // Handle back button tap

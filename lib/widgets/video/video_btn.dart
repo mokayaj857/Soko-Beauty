@@ -58,25 +58,25 @@ class VideoActionButtons extends StatelessWidget {
               ),
             ),
           ),
-          SizedBox(height: 10.0),
+          SizedBox(height: 20.0),
           _buildActionButton(
             onPressed: onFavoritePressed,
             icon: Icons.favorite_border_outlined,
             label: '2.5k',
           ),
-          SizedBox(height: 10.0),
+          SizedBox(height: 20.0),
           _buildActionButton(
             onPressed: onCommentPressed,
             icon: Icons.comment_rounded,
-            label: '300',
+            label: '1M',
           ),
-          SizedBox(height: 10.0),
+          SizedBox(height: 20.0),
           _buildActionButton(
             onPressed: onSharePressed,
             icon: Icons.share,
-            label: '10',
+            label: '20k',
           ),
-          SizedBox(height: 10.0),
+          SizedBox(height: 20.0),
           FloatingActionButton(
             mini: true,
             onPressed: shoppingCartPressed,
@@ -89,11 +89,13 @@ class VideoActionButtons extends StatelessWidget {
                 Align(
                   alignment: Alignment.topRight,
                   child: CircleAvatar(
-                      radius: 7.0,
+                      radius: 9.0,
                       backgroundColor: sbbrickRed,
-                      child: Text(
-                        '2',
-                        style: TextStyle(fontSize: 10.0, color: Colors.white),
+                      child: Center(
+                        child: Text(
+                          '2',
+                          style: TextStyle(fontSize: 10.0, color: Colors.white),
+                        ),
                       )),
                 ),
               ],

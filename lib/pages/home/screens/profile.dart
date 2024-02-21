@@ -18,16 +18,14 @@ class ProfilePage extends StatelessWidget {
   
   Widget _buildPostGrid() {
     return SliverGrid(
-
       delegate: SliverChildBuilderDelegate(
-        
         (BuildContext context, int index) {
           return _buildPostCard(index);
         },
         childCount: 20, // Number of posts to display
       ),
-      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-        crossAxisCount: 2,
+      gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
+        maxCrossAxisExtent: 250.0,
         crossAxisSpacing: 2.0,
         mainAxisSpacing: 2.0,
         childAspectRatio: 1.0,

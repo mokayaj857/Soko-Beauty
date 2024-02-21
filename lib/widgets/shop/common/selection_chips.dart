@@ -6,7 +6,7 @@ class SelectionChips extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
-            padding: EdgeInsets.symmetric(vertical: 15, horizontal: 10),
+            padding: EdgeInsets.symmetric(vertical: 5, horizontal: 10),
             scrollDirection: Axis.horizontal,
             child: Wrap(
               spacing: 10, // space between chips
