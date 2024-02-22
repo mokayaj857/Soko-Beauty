@@ -1,12 +1,10 @@
 //import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:soko_beauty/pages/public/splashscreen.dart';
 import 'package:soko_beauty/theme/dark.dart';
 import 'package:soko_beauty/theme/light.dart';
 //import 'firebase_options.dart';
-
-// Future<void> 
-void  main() {
 // async {
   //WidgetsFlutterBinding.ensureInitialized();
 
@@ -18,10 +16,13 @@ void  main() {
   // FirebaseFirestore.instance.settings = Settings(
   //   persistenceEnabled: true,
   // );
-
-  runApp(
-    const MyApp(),
-  );
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await SystemChrome.setPreferredOrientations([
+    DeviceOrientation.portraitUp,
+    DeviceOrientation.portraitDown,
+  ]);
+  runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {

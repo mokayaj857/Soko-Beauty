@@ -1,10 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:soko_beauty/colors/colors.dart';
 import 'package:soko_beauty/pages/home/screens/chats.dart';
 import 'package:soko_beauty/pages/home/screens/market.dart';
-import 'package:soko_beauty/pages/home/screens/post.dart';
 import 'package:soko_beauty/pages/home/screens/profile.dart';
 import 'package:soko_beauty/pages/home/screens/videos.dart';
+import 'package:soko_beauty/post/bloc/camera_bloc.dart';
+import 'package:soko_beauty/post/utils/camera_utils.dart';
+import 'package:soko_beauty/post/utils/permission_utils.dart';
+import 'package:soko_beauty/pages/home/screens/camera_page.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -50,10 +54,17 @@ class _HomePageState extends State<HomePage> {
             child: FloatingActionButton(
               backgroundColor: Theme.of(context).bottomAppBarTheme.color,
               onPressed: () {
-                Navigator.push(
-                  context,
+                 Navigator.of(context).push(
                   MaterialPageRoute(
-                    builder: (context) => PostPage(),
+                    builder: (context) => BlocProvider(
+                      create: (context) {
+                        return CameraBloc(
+                          cameraUtils: CameraUtils(),
+                          permissionUtils: PermissionUtils(),
+                        )..add(const CameraInitialize(recordingLimit: 15));
+                      },
+                      child: const CameraPage(),
+                    ),
                   ),
                 );
               },
