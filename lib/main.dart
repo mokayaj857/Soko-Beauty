@@ -6,16 +6,16 @@ import 'package:soko_beauty/theme/dark.dart';
 import 'package:soko_beauty/theme/light.dart';
 //import 'firebase_options.dart';
 // async {
-  //WidgetsFlutterBinding.ensureInitialized();
+//WidgetsFlutterBinding.ensureInitialized();
 
-  // await Firebase.initializeApp(
-  //   options: DefaultFirebaseOptions.currentPlatform,
-  // );
+// await Firebase.initializeApp(
+//   options: DefaultFirebaseOptions.currentPlatform,
+// );
 
-  // Enable Firestore offline persistence
-  // FirebaseFirestore.instance.settings = Settings(
-  //   persistenceEnabled: true,
-  // );
+// Enable Firestore offline persistence
+// FirebaseFirestore.instance.settings = Settings(
+//   persistenceEnabled: true,
+// );
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await SystemChrome.setPreferredOrientations([

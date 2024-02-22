@@ -34,14 +34,35 @@ class _HomePageState extends State<HomePage> {
           body: _screens[_currentIndex],
           bottomNavigationBar: BottomAppBar(
             shape: CircularNotchedRectangle(),
-            notchMargin: 10,
+            notchMargin: 15,
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
                 buildNavItem(0, Icons.home_filled, 'Home'),
                 buildNavItem(1, Icons.shop, 'Shop'),
-                SizedBox(
-                  width: 10,
+                FloatingActionButton(
+                  backgroundColor: Theme.of(context).bottomAppBarTheme.color,
+                  onPressed: () {
+                    Navigator.of(context).push(
+                      MaterialPageRoute(
+                        builder: (context) => BlocProvider(
+                          create: (context) {
+                            return CameraBloc(
+                              cameraUtils: CameraUtils(),
+                              permissionUtils: PermissionUtils(),
+                            )..add(const CameraInitialize(recordingLimit: 15));
+                          },
+                          child: const CameraPage(),
+                        ),
+                      ),
+                    );
+                  },
+                  mini: true,
+                  child: Icon(
+                    Icons.add_circle_outline_rounded,
+                    size: 30,
+                    color: Theme.of(context).hintColor,
+                  ),
                 ),
                 buildNavItemWithBadge(
                     2, Icons.mark_chat_unread_rounded, 'Inbox', 3),
@@ -49,32 +70,8 @@ class _HomePageState extends State<HomePage> {
               ],
             ),
           ),
-          floatingActionButton: Positioned(
-            bottom: 0.0,
-            child: FloatingActionButton(
-              backgroundColor: Theme.of(context).bottomAppBarTheme.color,
-              onPressed: () {
-                 Navigator.of(context).push(
-                  MaterialPageRoute(
-                    builder: (context) => BlocProvider(
-                      create: (context) {
-                        return CameraBloc(
-                          cameraUtils: CameraUtils(),
-                          permissionUtils: PermissionUtils(),
-                        )..add(const CameraInitialize(recordingLimit: 15));
-                      },
-                      child: const CameraPage(),
-                    ),
-                  ),
-                );
-              },
-              mini: true,
-              child: Icon(
-                Icons.add_circle_outline_rounded,
-                size: 30,
-                color: Theme.of(context).hintColor,
-              ),
-            ),
+          floatingActionButton: SizedBox(
+            width: 10,
           ),
           floatingActionButtonLocation:
               FloatingActionButtonLocation.centerDocked,

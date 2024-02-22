@@ -162,7 +162,7 @@ class PaymentScreen extends StatelessWidget {
                         mainAxisSize: MainAxisSize.min,
                         children: [
                           Icon(
-                            Icons.arrow_back,
+                            Icons.arrow_back_ios_sharp,
                             color: sbwarmRed,
                           ),
                           SizedBox(width: 5),

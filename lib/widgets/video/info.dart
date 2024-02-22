@@ -25,7 +25,7 @@ class _VideoInfoState extends State<VideoInfo> {
           left: 8,
           right: 8,
           top: 4,
-          bottom: 15,
+          bottom: 0,
         ),
         color: isMinimized
             ? Colors.transparent
@@ -52,7 +52,7 @@ class _VideoInfoState extends State<VideoInfo> {
                   IconButton(
                     padding: EdgeInsets.zero,
                     icon: Icon(
-                      isMinimized ? Icons.arrow_upward : Icons.arrow_downward,
+                      isMinimized ? Icons.arrow_upward_sharp : Icons.arrow_drop_down,
                     ),
                     onPressed: () {
                       setState(() {

@@ -5,6 +5,13 @@ class SavedCardsScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: Theme.of(context).bottomAppBarTheme.color,
+        leading: IconButton(
+          icon: Icon(Icons.arrow_back_ios_sharp),
+          onPressed: () {
+            Navigator.of(context).pop();
+          },
+        ),
         title: Text('Saved Cards'),
       ),
       body: Padding(

@@ -64,9 +64,45 @@ class _CameraPageState extends State<CameraPage> with WidgetsBindingObserver {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color.fromARGB(255, 54, 53, 53),
       extendBodyBehindAppBar: true,
       resizeToAvoidBottomInset: false,
+      appBar: AppBar(
+        backgroundColor: Colors.transparent,
+        elevation: 0,
+        leading: IconButton(
+          onPressed: () {
+            Navigator.of(context).pop();
+          },
+          icon: const Icon(
+            size: 30,
+            Icons.close_rounded,
+            color: Colors.white,
+          ),
+        ),
+        actions: [
+          //butttons to controll video recording switch camera settings, flashlight
+          IconButton(
+            onPressed: () {
+              //cameraBloc.add(CameraFlash());
+            },
+            icon: const Icon(
+              Icons.flash_on_rounded,
+              color: Colors.white,
+              size: 30,
+            ),
+          ),
+          IconButton(
+            onPressed: () {
+              //cameraBloc.add(CameraSettings());
+            },
+            icon: const Icon(
+              Icons.settings_rounded,
+              size: 30,
+              color: Colors.white,
+            ),
+          ),
+        ],
+      ),
       body: VisibilityDetector(
         key: const Key("my_camera"),
         onVisibilityChanged: _handleVisibilityChanged,
@@ -180,14 +216,99 @@ class _CameraPageState extends State<CameraPage> with WidgetsBindingObserver {
                           : const SizedBox.shrink(),
                 ),
               ),
+              if (state is CameraReady)
+                //display three chips for selecting video, photo and ai scanner
+                Positioned(
+                    bottom: 120,
+                    right: 20,
+                    left: 20,
+                    child: Row(
+                      //three chips
+                      mainAxisSize: MainAxisSize.max,
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: [
+                        Chip(
+                          label: Text("AI Scanner"),
+                          padding: const EdgeInsets.symmetric(
+                              horizontal: 10, vertical: 10),
+                        ),
+                        Chip(
+                          label: Text("Video"),
+                          padding: const EdgeInsets.symmetric(
+                              horizontal: 20, vertical: 10),
+                        ),
+                        Chip(
+                          label: Text("Photo"),
+                          padding: const EdgeInsets.symmetric(
+                              horizontal: 20, vertical: 10),
+                        ),
+                      ],
+                    )),
               if (state is CameraError) errorWidget(state),
               Positioned(
-                bottom: 30,
-                child: SizedBox(
-                  width: 250,
-                  child: Stack(
-                    alignment: Alignment.center,
+                bottom: 20,
+                child: Container(
+                  constraints: BoxConstraints(
+                    minWidth: MediaQuery.of(context).size.width * 0.9,
+                    maxWidth: 500,
+                  ),
+                  width: MediaQuery.of(context).size.width * 0.9,
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
+                      Visibility(
+                        visible: !disableButtons,
+                        child: Column(
+                          children: [
+                            IconButton(
+                              onPressed: () async {
+                                //cameraBloc.add(CameraUpload());
+                              },
+                              icon: const Icon(
+                                Icons.photo_filter_outlined,
+                                color: Colors.white,
+                                size: 40,
+                              ),
+                            ),
+                            Text(
+                              "Filters",
+                              style: const TextStyle(
+                                color: Colors.white,
+                                fontSize: 14,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                      Visibility(
+                        visible: !disableButtons,
+                        child:
+                            StatefulBuilder(builder: (context, localSetState) {
+                          return GestureDetector(
+                            onTap: () {
+                              final List<int> time = [15, 30, 60, 90];
+                              int currentIndex =
+                                  time.indexOf(cameraBloc.recordDurationLimit);
+                              localSetState(() {
+                                cameraBloc.setRecordDurationLimit =
+                                    time[(currentIndex + 1) % time.length];
+                              });
+                            },
+                            child: CircleAvatar(
+                              backgroundColor: Colors.white.withOpacity(0.5),
+                              radius: 20,
+                              child: FittedBox(
+                                  child: Text(
+                                "${cameraBloc.recordDurationLimit}",
+                                style: const TextStyle(
+                                  color: Colors.black,
+                                ),
+                              )),
+                            ),
+                          );
+                        }),
+                      ),
+                      //ICON TO UPLOAD FROM FILE
                       IgnorePointer(
                         ignoring: state is! CameraReady ||
                             state.decativateRecordButton,
@@ -199,62 +320,52 @@ class _CameraPageState extends State<CameraPage> with WidgetsBindingObserver {
                           child: animatedProgressButton(state),
                         ),
                       ),
-                      Positioned(
-                        right: 0,
-                        child: Visibility(
-                          visible: !disableButtons,
-                          child: CircleAvatar(
-                            backgroundColor: Colors.white.withOpacity(0.5),
-                            radius: 25,
-                            child: IconButton(
-                              onPressed: () async {
-                                try {
-                                  screenshotBytes = await takeCameraScreenshot(
-                                      key: screenshotKey);
-                                  if (context.mounted)
-                                    cameraBloc.add(CameraSwitch());
-                                } catch (e) {
-                                  //screenshot error
-                                }
-                              },
-                              icon: const Icon(
-                                Icons.cameraswitch,
-                                color: Colors.black,
-                                size: 28,
-                              ),
+                      Visibility(
+                        visible: !disableButtons,
+                        child: CircleAvatar(
+                          backgroundColor: Colors.white.withOpacity(0.5),
+                          radius: 20,
+                          child: IconButton(
+                            onPressed: () async {
+                              try {
+                                screenshotBytes = await takeCameraScreenshot(
+                                    key: screenshotKey);
+                                if (context.mounted)
+                                  cameraBloc.add(CameraSwitch());
+                              } catch (e) {
+                                //screenshot error
+                              }
+                            },
+                            icon: const Icon(
+                              Icons.cameraswitch,
+                              color: Colors.black,
+                              size: 20,
                             ),
                           ),
                         ),
                       ),
-                      Positioned(
-                        left: 0,
-                        child: Visibility(
-                          visible: !disableButtons,
-                          child: StatefulBuilder(
-                              builder: (context, localSetState) {
-                            return GestureDetector(
-                              onTap: () {
-                                final List<int> time = [15, 30, 60, 90];
-                                int currentIndex = time
-                                    .indexOf(cameraBloc.recordDurationLimit);
-                                localSetState(() {
-                                  cameraBloc.setRecordDurationLimit =
-                                      time[(currentIndex + 1) % time.length];
-                                });
+                      Visibility(
+                        visible: !disableButtons,
+                        child: Column(
+                          children: [
+                            IconButton(
+                              onPressed: () async {
+                                //cameraBloc.add(CameraUpload());
                               },
-                              child: CircleAvatar(
-                                backgroundColor: Colors.white.withOpacity(0.5),
-                                radius: 25,
-                                child: FittedBox(
-                                    child: Text(
-                                  "${cameraBloc.recordDurationLimit}",
-                                  style: const TextStyle(
-                                    color: Colors.black,
-                                  ),
-                                )),
+                              icon: const Icon(
+                                Icons.filter,
+                                color: Colors.white,
+                                size: 35,
                               ),
-                            );
-                          }),
+                            ),
+                            Text(
+                              "Gallery",
+                              style: const TextStyle(
+                                color: Colors.white,
+                                fontSize: 14,
+                              ),
+                            ),
+                          ],
                         ),
                       ),
                     ],
