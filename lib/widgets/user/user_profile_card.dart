@@ -56,17 +56,26 @@ class UserProfileCard extends StatelessWidget {
           ),
         ),
       ],
+      bottom: PreferredSize(
+        preferredSize: Size.fromHeight(30),
+        child: TabBar(
+          indicatorSize: TabBarIndicatorSize.tab,
+          dividerHeight: 0,
+          padding: EdgeInsets.all(0),
+          tabs: [
+            Tab(
+              text: 'Videos',
+            ),
+            Tab(
+              text: 'Saved',
+            ),
+            Tab(
+              text: 'Shops',
+            ),
+          ],
+        ),
+      ),
       flexibleSpace: FlexibleSpaceBar(
-        title: Text(
-          'Your Posts',
-          style: TextStyle(
-            fontSize: 14,
-            color: sbbrickRed,
-          ),
-        ),
-        titlePadding: EdgeInsets.only(
-          left: 16,
-        ),
         collapseMode: CollapseMode.pin,
         centerTitle: false,
         background: Container(
@@ -112,7 +121,7 @@ class UserProfileCard extends StatelessWidget {
                               ),
                             ),
                             child: CircleAvatar(
-                              radius: 60,
+                              radius: 50,
                               backgroundImage:
                                   NetworkImage('https://picsum.photos/200/200'),
                             ),
@@ -120,18 +129,18 @@ class UserProfileCard extends StatelessWidget {
                           Text(
                             'Happy Valentine',
                             style: TextStyle(
-                              fontSize: 24,
+                              fontSize: 20,
                               fontWeight: FontWeight.bold,
                             ),
                           ),
                           Text(
                             'Salon Owner and Makeup Artist',
                             style: TextStyle(
-                              fontSize: 16,
+                              fontSize: 12,
                             ),
                           ),
                           SizedBox(
-                            height: 16,
+                            height: 10,
                           ),
                           Row(
                             mainAxisAlignment: MainAxisAlignment.spaceEvenly,

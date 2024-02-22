@@ -15,10 +15,10 @@ class ShopsAppbar extends StatelessWidget {
       foregroundColor: sbbrickRed,
       pinned: true,
       expandedHeight: 300,
-      collapsedHeight: 25,
+      collapsedHeight: 30,
       toolbarHeight: 0.0,
       bottom: PreferredSize(
-        preferredSize: Size.fromHeight(25),
+        preferredSize: Size.fromHeight(30),
         child: SelectionChips(),
       ),
       flexibleSpace: FlexibleSpaceBar(
@@ -65,32 +65,34 @@ class ShopsAppbar extends StatelessWidget {
                 ),
               ),
             ),
-            Container(
-              width: MediaQuery.of(context).size.width,
-              height: 100,
-              child: Center(
-                child: Padding(
-                  padding: const EdgeInsets.all(20.0),
-                  child: Container(
-                    constraints: BoxConstraints(maxWidth: 400),
-                    child: TextField(
-                      decoration: InputDecoration(
-                        contentPadding: EdgeInsets.symmetric(
-                            horizontal: 20, vertical: 0),
-                        hintText: 'Search for shops',
-                        prefixIcon: Icon(
-                          Icons.search_outlined,
-                          color: sbbrickRed,
+            SafeArea(
+              child: Container(
+                width: MediaQuery.of(context).size.width,
+                height: 100,
+                child: Center(
+                  child: Padding(
+                    padding: const EdgeInsets.all(20.0),
+                    child: Container(
+                      constraints: BoxConstraints(maxWidth: 400),
+                      child: TextField(
+                        decoration: InputDecoration(
+                          contentPadding: EdgeInsets.symmetric(
+                              horizontal: 20, vertical: 0),
+                          hintText: 'Search for shops',
+                          prefixIcon: Icon(
+                            Icons.search_outlined,
+                            color: sbbrickRed,
+                          ),
+                          border: OutlineInputBorder(
+                            borderSide: BorderSide.none,
+                            borderRadius: BorderRadius.circular(50),
+                          ),
+                          fillColor: Theme.of(context)
+                              .bottomAppBarTheme
+                              .color!
+                              .withOpacity(0.9),
+                          filled: true,
                         ),
-                        border: OutlineInputBorder(
-                          borderSide: BorderSide.none,
-                          borderRadius: BorderRadius.circular(50),
-                        ),
-                        fillColor: Theme.of(context)
-                            .bottomAppBarTheme
-                            .color!
-                            .withOpacity(0.9),
-                        filled: true,
                       ),
                     ),
                   ),

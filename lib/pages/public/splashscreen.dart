@@ -33,44 +33,31 @@ class SplashScreen extends StatelessWidget {
 
     // splash screen UI
     return Scaffold(
-      body: Container(
-        height: double.infinity,
-        width: double.infinity,
-        decoration: BoxDecoration(
-
-          gradient: LinearGradient(
-            begin: Alignment.center,
-            end: Alignment.topCenter,
-            colors: [
-            sbbrickRed.withOpacity(0.1),
-            sbdarkBrown.withOpacity(0.2)
-          ]),
-        ),
-        child: Expanded(
-          child: Center(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                Image.asset('assets/logo.png', height: 120),
-                SizedBox(height: 20),
-                Text("SokoBeauty",
-                    style: TextStyle(
-                      fontSize: 20,
-                      fontWeight: FontWeight.bold
-                    ),
-                ),
-                // Text(
-                //   'AI Powered Short-form video\nContent Platform for Beauty\nWith E-Commerce',
-                //   textAlign: TextAlign.center,
-                //   style: TextStyle(
-                //     fontStyle: FontStyle.italic,
-                //     color: sbdeepRed,
-                //     fontSize: 14,
-                //   ),
-                // ),
-              ],
-            ),
+      body: Expanded(
+        child: Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              Image.asset('assets/logo.png', height: 120),
+              SizedBox(height: 10),
+              Text("SokoBeauty",
+                  style: TextStyle(
+                    fontSize: 30,
+                    fontWeight: FontWeight.bold,
+                    color: sbdeepRed,
+                  ),
+              ),
+              // Text(
+              //   'AI Powered Short-form video\nContent Platform for Beauty\nWith E-Commerce',
+              //   textAlign: TextAlign.center,
+              //   style: TextStyle(
+              //     fontStyle: FontStyle.italic,
+              //     color: sbdeepRed,
+              //     fontSize: 14,
+              //   ),
+              // ),
+            ],
           ),
         ),
       ),

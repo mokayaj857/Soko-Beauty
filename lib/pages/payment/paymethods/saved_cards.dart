@@ -11,9 +11,10 @@ class SavedCardsScreen extends StatelessWidget {
         padding: const EdgeInsets.symmetric(horizontal: 20),
         child: GridView.builder(
           gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
-            maxCrossAxisExtent: 400,
-            crossAxisSpacing: 16,
-            mainAxisSpacing: 16,
+            maxCrossAxisExtent: 300,
+            crossAxisSpacing: 20,
+            mainAxisSpacing: 20,
+            childAspectRatio: 1,
           ),
           itemCount: 2, // Number of saved cards
           itemBuilder: (context, index) {
