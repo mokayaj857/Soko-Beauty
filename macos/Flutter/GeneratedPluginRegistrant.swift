@@ -5,14 +5,10 @@
 import FlutterMacOS
 import Foundation
 
-import firebase_auth
-import firebase_core
 import share_link
 import video_player_avfoundation
 
 func RegisterGeneratedPlugins(registry: FlutterPluginRegistry) {
-  FLTFirebaseAuthPlugin.register(with: registry.registrar(forPlugin: "FLTFirebaseAuthPlugin"))
-  FLTFirebaseCorePlugin.register(with: registry.registrar(forPlugin: "FLTFirebaseCorePlugin"))
   ShareLinkPlugin.register(with: registry.registrar(forPlugin: "ShareLinkPlugin"))
   FVPVideoPlayerPlugin.register(with: registry.registrar(forPlugin: "FVPVideoPlayerPlugin"))
 }

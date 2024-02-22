@@ -9,47 +9,91 @@ class CartItem extends StatelessWidget {
   const CartItem({
     required this.product,
     required this.onRemove,
+    required Null Function() onAddPressed,
   });
 
   @override
   Widget build(BuildContext context) {
-    return ListTile(
-      leading: ClipRRect(
-        borderRadius: BorderRadius.circular(10),
-        child: Image.network(
-          product.imageUrl,
-
-          width: 100,
-          height: 150,
-          fit: BoxFit.cover,
-        ),
-      ),
-      title: Text(
-        product.name,
-        style: TextStyle(
-          fontSize: 20,
-          fontWeight: FontWeight.bold,
-          color: sbbrickRed,
-        ),
-      ),
-      subtitle: Text(
-        '500 ml 2pcs',
-        style: TextStyle(
-          fontSize: 16,
-          color: sbwarmRed,
-        ),
-      ),
-      trailing: Row(
-        mainAxisSize: MainAxisSize.min,
+    return Container(
+      padding: EdgeInsets.all(8.0),
+      child: Row(
         children: [
-          IconButton(
-            icon: Icon(Icons.remove),
-            onPressed: onRemove,
+          Container(
+            margin: EdgeInsets.only(left: 8.0),
+            decoration: BoxDecoration(
+              image: DecorationImage(
+                image: Image.network(product.imageUrl).image,
+                fit: BoxFit.cover,
+              ),
+              borderRadius: BorderRadius.circular(10),
+            ),
+            alignment: Alignment.center,
+            width: 80,
+            height: 80,
           ),
-          Text('\$${product.price.toStringAsFixed(2)}'),
-          IconButton(
-            icon: Icon(Icons.add),
-            onPressed: () {},
+          SizedBox(width: 8.0),
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: [
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(
+                      product.name,
+                      style: TextStyle(
+                        fontSize: 16,
+                        fontWeight: FontWeight.bold,
+                        color: sbbrickRed,
+                      ),
+                    ),
+                      IconButton(
+                      icon: Icon(Icons.favorite_border),
+                      color: sbbrickRed,
+                      onPressed: () {},
+                    ),
+                  ],
+                ),
+                Text(
+                  "short description",
+                  style: TextStyle(
+                    fontSize: 13,
+                  ),
+                ),
+              ],
+            ),
+          ),
+          Center(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: [
+                Text(
+                  '\$${product.price.toStringAsFixed(2)}',
+                  style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+                ),
+                Row(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    IconButton(
+                      icon: Icon(Icons.remove),
+                      color: sbbrickRed,
+                      onPressed: onRemove,
+                    ),
+                    Text(
+                      '3',
+                      style:
+                          TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+                    ),
+                    IconButton(
+                      icon: Icon(Icons.add),
+                      color: sbbrickRed,
+                      onPressed: () {},
+                    ),
+                  ],
+                ),
+              ],
+            ),
           ),
         ],
       ),

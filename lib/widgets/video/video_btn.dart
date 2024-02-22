@@ -26,6 +26,7 @@ class VideoActionButtons extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.end,
         children: [
           FloatingActionButton(
+            heroTag: 'add',
             mini: true,
             onPressed: onAddPressed,
             child: Container(
@@ -58,26 +59,28 @@ class VideoActionButtons extends StatelessWidget {
               ),
             ),
           ),
-          SizedBox(height: 10.0),
+          SizedBox(height: 20.0),
           _buildActionButton(
+
             onPressed: onFavoritePressed,
             icon: Icons.favorite_border_outlined,
-            label: '2.5k',
+            label: '2.5k', heroTag: 'favorite',
           ),
-          SizedBox(height: 10.0),
+          SizedBox(height: 20.0),
           _buildActionButton(
             onPressed: onCommentPressed,
             icon: Icons.comment_rounded,
-            label: '300',
+            label: '1M', heroTag: 'comment',
           ),
-          SizedBox(height: 10.0),
+          SizedBox(height: 20.0),
           _buildActionButton(
             onPressed: onSharePressed,
             icon: Icons.share,
-            label: '10',
+            label: '20k', heroTag: 'share',
           ),
-          SizedBox(height: 10.0),
+          SizedBox(height: 20.0),
           FloatingActionButton(
+            heroTag: 'cart',
             mini: true,
             onPressed: shoppingCartPressed,
             child: Stack(
@@ -89,11 +92,13 @@ class VideoActionButtons extends StatelessWidget {
                 Align(
                   alignment: Alignment.topRight,
                   child: CircleAvatar(
-                      radius: 7.0,
+                      radius: 9.0,
                       backgroundColor: sbbrickRed,
-                      child: Text(
-                        '2',
-                        style: TextStyle(fontSize: 10.0, color: Colors.white),
+                      child: Center(
+                        child: Text(
+                          '2',
+                          style: TextStyle(fontSize: 10.0, color: Colors.white),
+                        ),
                       )),
                 ),
               ],
@@ -110,10 +115,12 @@ class VideoActionButtons extends StatelessWidget {
     required VoidCallback onPressed,
     required IconData icon,
     required String label,
+    required String heroTag,
   }) {
     return Column(
       children: [
         FloatingActionButton(
+          heroTag: heroTag,
           mini: true,
           onPressed: onPressed,
           child: Icon(

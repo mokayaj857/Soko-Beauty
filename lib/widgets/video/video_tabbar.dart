@@ -21,8 +21,8 @@ class _VideoTabBarState extends State<VideoTabBar> {
             TabBarView(
               physics: NeverScrollableScrollPhysics(),
               children: [
-                Expanded(child: ServicesVideosTab()),
                 Expanded(child: AllVideosTab()),
+                Expanded(child: ServicesVideosTab()),
                 Expanded(child: ProductsVideoTab()),
               ],
             ),
@@ -53,10 +53,10 @@ class _VideoTabBarState extends State<VideoTabBar> {
                     dividerHeight: 0,
                     tabs: [
                       Tab(
-                        text: 'Sevices',
+                        text: 'All',
                       ),
                       Tab(
-                        text: 'All',
+                        text: 'Sevices',
                       ),
                       Tab(
                         text: 'Products',

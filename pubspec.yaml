@@ -37,13 +37,24 @@ dependencies:
   video_player: ^2.8.2
   marquee: ^2.2.3
   share_link: ^0.2.0
-  firebase_auth: ^4.17.4
-  firebase_core: ^2.25.4
+# post dependencies
+  camera: ^0.10.5+2  # Provides camera functionality for video recording
+  flutter_bloc: ^8.1.3  # Implements the BLoC pattern for state management
+  equatable: ^2.0.5  # Simplifies equality comparisons for objects
+  permission_handler: ^11.3.0  # Manages permissions for camera and microphone
+  visibility_detector: ^0.4.0+2  # Detects visibility changes of widgets
+  # path_provider: ^2.1.2
+  # path: ^1.8.3
+  # firebase_auth: ^4.17.4
+  # firebase_core: ^2.25.4
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
   flutter_launcher_icons: "^0.13.1"
+  flutter_lints: ^3.0.1  # Enforces Flutter lint rules for code quality
+  bloc_test: ^9.1.4  # Provides testing utilities for BLoC testing
+  mocktail:  # Provides mock objects for unit testing
 
 flutter_launcher_icons:
   android: "launcher_icon"
@@ -100,3 +111,7 @@ flutter:
   #
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/custom-fonts/#from-packages
+
+
+
+

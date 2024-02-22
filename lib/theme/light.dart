@@ -17,6 +17,7 @@ ThemeData lightMode = ThemeData(
   floatingActionButtonTheme: FloatingActionButtonThemeData(
       backgroundColor: Colors.red.shade50.withOpacity(0.6),
       foregroundColor: Colors.white,
+      
       elevation: 1,
       iconSize: 30,
       shape: RoundedRectangleBorder(
@@ -40,23 +41,23 @@ ThemeData lightMode = ThemeData(
     ),
   ),
   //chip theme
-  chipTheme: ChipThemeData(
-    backgroundColor: Colors.transparent,
-    selectedColor: sbbrickRed,
-    secondarySelectedColor: sbbrickRed,
-    padding: EdgeInsets.symmetric(vertical: 5, horizontal: 10),
+   chipTheme: ChipThemeData(
+    side: BorderSide(
+      color: sbdeepRed,
+      width: 0.5,
+    ),
+    padding: EdgeInsets.symmetric(horizontal: 10, vertical: 5),
     shape: RoundedRectangleBorder(
-      borderRadius: BorderRadius.circular(30.0),
+      side: BorderSide(
+        color: sbdeepRed,
+        width: 1,),
+      borderRadius: BorderRadius.circular(30.0), // Set the border radius
     ),
+    backgroundColor: Colors.transparent, // Set background color to transparent
+    brightness: Brightness.light,
     labelStyle: TextStyle(
-      color: sbdarkBrown,
-      fontSize: 13,
+      color: Colors.black, // Set text color to match the app's text color
     ),
-    secondaryLabelStyle: TextStyle(
-      fontSize: 13,
-      // fontWeight: FontWeight.bolD,
-    ),
-    brightness: Brightness.dark,
   ),
   //3 - APPBAR THEME
   appBarTheme: AppBarTheme(

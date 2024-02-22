@@ -5,33 +5,45 @@ import 'package:soko_beauty/widgets/user/user_profile_card.dart';
 class ProfilePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: CustomScrollView(
-        slivers: [
-          UserProfileCard(),
-          _buildPostGrid(),
-        ],
+    return DefaultTabController(
+      length: 3,
+      child: Scaffold(
+        body: CustomScrollView(
+          slivers: [
+            UserProfileCard(),
+            SliverToBoxAdapter(
+              child: SizedBox(height: MediaQuery.of(context).size.height,
+              child: _buildPostGrid(),
+              ),
+            )
+          ],
+        ),
       ),
     );
   }
 
-  
   Widget _buildPostGrid() {
-    return SliverGrid(
+    return TabBarView(
+      children: [
+        Expanded(child: _buildPostGridContent()),
+        Expanded(child: _buildPostGridContent()),
+        Expanded(child: _buildPostGridContent()),
+      ],
+    );
+  }
 
-      delegate: SliverChildBuilderDelegate(
-        
-        (BuildContext context, int index) {
-          return _buildPostCard(index);
-        },
-        childCount: 20, // Number of posts to display
-      ),
-      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-        crossAxisCount: 2,
+  Widget _buildPostGridContent() {
+    return GridView.builder(
+      gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
+        maxCrossAxisExtent: 250.0,
         crossAxisSpacing: 2.0,
         mainAxisSpacing: 2.0,
         childAspectRatio: 1.0,
       ),
+      itemCount: 20, // Number of posts to display
+      itemBuilder: (BuildContext context, int index) {
+        return _buildPostCard(index);
+      },
     );
   }
 
@@ -58,4 +70,3 @@ class ProfilePage extends StatelessWidget {
     );
   }
 }
-
