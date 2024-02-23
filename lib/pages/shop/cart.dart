@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:soko_beauty/models/dummy_data/cart.dart';
+import 'package:soko_beauty/data/shop/cart.dart';
 import 'package:soko_beauty/pages/payment/payment.dart';
 import 'package:soko_beauty/pages/shop/cart_archives.dart';
 import 'package:soko_beauty/widgets/shop/cart/cart_item.dart';

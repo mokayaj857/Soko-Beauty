@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:soko_beauty/colors/colors.dart';
+import 'package:soko_beauty/theme/colors/colors.dart';
 import 'package:soko_beauty/pages/auth/signupscreen.dart';
 import 'package:soko_beauty/pages/home/main_page.dart';
 

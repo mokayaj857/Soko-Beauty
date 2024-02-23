@@ -1,7 +1,7 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
-import 'package:soko_beauty/colors/colors.dart';
+import 'package:soko_beauty/theme/colors/colors.dart';
 import 'package:soko_beauty/pages/user/settings.dart';
 
 class UserProfileCard extends StatelessWidget {
@@ -10,27 +10,12 @@ class UserProfileCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SliverAppBar(
+      title: Text('@valHappysalon'),
       backgroundColor:
-          Theme.of(context).bottomAppBarTheme.color!.withOpacity(0.7),
+          Theme.of(context).bottomAppBarTheme.color!.withOpacity(0.9),
       foregroundColor: sbbrickRed,
       pinned: true,
       expandedHeight: 300,
-      // bottom: PreferredSize(
-      //   preferredSize: Size.fromHeight(0),
-      //   child: Row(
-      //     mainAxisAlignment: MainAxisAlignment.center,
-      //     children: [
-      //       Icon(
-      //         Icons.location_on,
-      //         size: 14,
-      //         color: sbbrickRed,
-      //       ),
-      //       Text(
-      //         'Nairobi, Kenya',
-      //       ),
-      //     ],
-      //   ),
-      // ),
       leading: IconButton(
         onPressed: () {
           // Handle back button tap
@@ -79,6 +64,7 @@ class UserProfileCard extends StatelessWidget {
         collapseMode: CollapseMode.pin,
         centerTitle: false,
         background: Container(
+          margin: EdgeInsets.only(top: 30),
           child: Stack(
             children: [
               Container(
@@ -127,7 +113,7 @@ class UserProfileCard extends StatelessWidget {
                             ),
                           ),
                           Text(
-                            'Happy Valentine',
+                            'Beauty Salon',
                             style: TextStyle(
                               fontSize: 20,
                               fontWeight: FontWeight.bold,

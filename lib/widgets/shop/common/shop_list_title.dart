@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:soko_beauty/models/dummy_data/shop.dart';
+import 'package:soko_beauty/data/shop/shop.dart';
 import 'package:soko_beauty/pages/shop/view_all.dart';
 
 class ShopListTitle extends StatelessWidget {

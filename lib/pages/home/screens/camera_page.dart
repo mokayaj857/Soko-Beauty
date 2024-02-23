@@ -250,7 +250,7 @@ class _CameraPageState extends State<CameraPage> with WidgetsBindingObserver {
                 child: Container(
                   constraints: BoxConstraints(
                     minWidth: MediaQuery.of(context).size.width * 0.9,
-                    maxWidth: 500,
+                   //maxWidth: 500,
                   ),
                   width: MediaQuery.of(context).size.width * 0.9,
                   child: Row(

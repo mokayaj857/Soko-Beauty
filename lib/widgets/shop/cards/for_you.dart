@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:soko_beauty/models/shop.dart';
+import 'package:soko_beauty/models/shop/shop.dart';
 
 class ShopsForYouCard extends StatelessWidget {
   final Shop shop;
@@ -12,7 +12,8 @@ class ShopsForYouCard extends StatelessWidget {
       height: 300,
       width: 200,
       margin: EdgeInsets.only(
-        left: 4, right: 4,
+        left: 4,
+        right: 4,
       ),
       child: Card(
         elevation: 3,

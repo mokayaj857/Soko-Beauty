@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:soko_beauty/colors/colors.dart';
+import 'package:soko_beauty/theme/colors/colors.dart';
 import 'package:soko_beauty/pages/home/screens/chats.dart';
 import 'package:soko_beauty/pages/home/screens/market.dart';
 import 'package:soko_beauty/pages/home/screens/profile.dart';

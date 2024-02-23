@@ -1,7 +1,7 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
-import 'package:soko_beauty/colors/colors.dart';
+import 'package:soko_beauty/theme/colors/colors.dart';
 import 'package:soko_beauty/pages/payment/paymethods/pay_with_card.dart';
 import 'package:soko_beauty/pages/payment/paymethods/pay_with_mpesa.dart';
 import 'package:soko_beauty/pages/payment/paymethods/pay_with_paypal.dart';

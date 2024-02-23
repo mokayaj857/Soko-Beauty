@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:soko_beauty/colors/colors.dart';
+import 'package:soko_beauty/theme/colors/colors.dart';
 import 'package:soko_beauty/widgets/payment/pay_with_card_checkbox.dart';
 import 'package:soko_beauty/widgets/payment/pay_with_card_merchants.dart';
 

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:soko_beauty/models/dummy_data/videos.dart';
+import 'package:soko_beauty/data/video/videos.dart';
 import 'package:soko_beauty/widgets/video/player.dart';
 
 class AllVideosTab extends StatefulWidget {
