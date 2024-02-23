@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:soko_beauty/colors/colors.dart';
-import 'package:soko_beauty/models/Product.dart';
+import 'package:soko_beauty/theme/colors/colors.dart';
+import 'package:soko_beauty/models/shop/Product.dart';
 
 class CartItem extends StatelessWidget {
   final Product product;
@@ -22,7 +22,7 @@ class CartItem extends StatelessWidget {
             margin: EdgeInsets.only(left: 8.0),
             decoration: BoxDecoration(
               image: DecorationImage(
-                image: Image.network(product.imageUrl).image,
+                image: Image.network("product.imageUrl").image,
                 fit: BoxFit.cover,
               ),
               borderRadius: BorderRadius.circular(10),

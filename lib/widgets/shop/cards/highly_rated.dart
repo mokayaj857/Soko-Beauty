@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:soko_beauty/models/shop.dart';
+import 'package:soko_beauty/models/shop/shop.dart';
 
 class HighRatedShopsCard extends StatelessWidget {
   final Shop shop;

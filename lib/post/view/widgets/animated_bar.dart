@@ -48,7 +48,7 @@ class RadialGaugePainter extends CustomPainter {
     // Paint for the track of the progress
     final Paint progressTrackPaint = Paint()
       ..color = Colors.white.withOpacity(0.9)
-      ..colorFilter = ColorFilter.mode(Colors.black.withOpacity(0.2), BlendMode.darken)
+      ..colorFilter = ColorFilter.mode(Colors.white.withOpacity(0.5), BlendMode.darken)
       ..style = PaintingStyle.stroke
       ..strokeWidth = strokeWidth
       ..strokeCap = StrokeCap.round;

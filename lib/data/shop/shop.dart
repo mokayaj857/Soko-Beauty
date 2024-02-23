@@ -1,4 +1,4 @@
-import 'package:soko_beauty/models/shop.dart';
+import 'package:soko_beauty/models/shop/shop.dart';
 
 final List<Shop> shops = [
   Shop(
@@ -10,6 +10,11 @@ final List<Shop> shops = [
         "A stylish beauty salon offering a variety of beauty services.",
     rating: 4.8,
     isOpen: true,
+    openHours: [],
+    location: '',
+    products: [],
+    services: [],
+    payment: [],
   ),
   Shop(
     id: "2",
@@ -19,6 +24,11 @@ final List<Shop> shops = [
     description: "Your go-to store for glamorous and high-quality cosmetics.",
     rating: 4.5,
     isOpen: true,
+    openHours: [],
+    location: '',
+    products: [],
+    services: [],
+    payment: [],
   ),
   Shop(
     id: "3",
@@ -29,6 +39,11 @@ final List<Shop> shops = [
         "Relax and rejuvenate at our spa with a range of facial treatments.",
     rating: 4.2,
     isOpen: true,
+    openHours: [],
+    location: '',
+    products: [],
+    services: [],
+    payment: [],
   ),
   Shop(
     id: "4",
@@ -38,6 +53,11 @@ final List<Shop> shops = [
     description: "Discover a collection of elegant and captivating perfumes.",
     rating: 4.0,
     isOpen: true,
+    openHours: [],
+    location: '',
+    products: [],
+    services: [],
+    payment: [],
   ),
   Shop(
     id: "5",
@@ -48,6 +68,11 @@ final List<Shop> shops = [
         "Achieve radiant and healthy skin with our personalized skincare services.",
     rating: 4.7,
     isOpen: true,
+    openHours: [],
+    location: '',
+    products: [],
+    services: [],
+    payment: [],
   ),
   Shop(
     id: "6",
@@ -58,6 +83,11 @@ final List<Shop> shops = [
         "Stay in style with the latest haircuts and trendy hairstyles.",
     rating: 4.3,
     isOpen: true,
+    openHours: [],
+    location: '',
+    products: [],
+    services: [],
+    payment: [],
   ),
   Shop(
     id: "7",
@@ -68,6 +98,11 @@ final List<Shop> shops = [
         "Explore natural and healthy products for a balanced lifestyle.",
     rating: 4.6,
     isOpen: true,
+    openHours: [],
+    location: '',
+    products: [],
+    services: [],
+    payment: [],
   ),
   Shop(
     id: "8",
@@ -77,6 +112,11 @@ final List<Shop> shops = [
     description: "Adorn yourself with timeless and elegant jewelry pieces.",
     rating: 4.1,
     isOpen: true,
+    openHours: [],
+    location: '',
+    products: [],
+    services: [],
+    payment: [],
   ),
   Shop(
     id: "9",
@@ -87,6 +127,11 @@ final List<Shop> shops = [
         "Stay fit and healthy with our state-of-the-art fitness facilities.",
     rating: 3.9,
     isOpen: true,
+    openHours: [],
+    location: '',
+    products: [],
+    services: [],
+    payment: [],
   ),
   Shop(
     id: "10",
@@ -97,5 +142,10 @@ final List<Shop> shops = [
         "Discover the latest in technology with our cutting-edge gadgets and devices.",
     rating: 4.4,
     isOpen: true,
+    openHours: [],
+    location: '',
+    products: [],
+    services: [],
+    payment: [],
   ),
 ];

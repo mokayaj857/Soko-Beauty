@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:soko_beauty/models/Product.dart';
+import 'package:soko_beauty/models/shop/Product.dart';
 import 'package:soko_beauty/widgets/shop/cart/cart_fav_item.dart';
 
 class CartArchivesPage extends StatelessWidget {
@@ -11,6 +11,13 @@ class CartArchivesPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: Theme.of(context).bottomAppBarTheme.color,
+        leading: IconButton(
+          icon: Icon(Icons.arrow_back_ios_sharp),
+          onPressed: () {
+            Navigator.of(context).pop();
+          },
+        ),
         title: Text('Favorite Items'),
       ),
       body: archivedProducts.isEmpty

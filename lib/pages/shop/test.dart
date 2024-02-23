@@ -2,7 +2,7 @@ import 'dart:convert';
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
-import 'package:soko_beauty/colors/colors.dart';
+import 'package:soko_beauty/theme/colors/colors.dart';
 import 'package:video_player/video_player.dart';
 
 class VideoPage extends StatefulWidget {
