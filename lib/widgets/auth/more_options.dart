@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:soko_beauty/theme/colors/colors.dart';
 import 'package:soko_beauty/pages/auth/signupscreen.dart';
-import 'package:soko_beauty/pages/home/main_page.dart';
+
 
 class MoreSignInOptions extends StatelessWidget {
   const MoreSignInOptions({super.key});
@@ -39,9 +39,9 @@ class MoreSignInOptions extends StatelessWidget {
               backgroundColor: MaterialStateProperty.all<Color>(sbwarmRed),
             ),
             onPressed: () {
-              Navigator.of(context).pushReplacement(
-                MaterialPageRoute(builder: (context) => HomePage()),
-              );
+              // Navigator.of(context).pushReplacement(
+              //   MaterialPageRoute(builder: (context) => HomePage()),
+              // );
             },
           ),
 

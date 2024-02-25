@@ -48,13 +48,13 @@ dependencies:
   # path: ^1.8.3
   # firebase_auth: ^4.17.4
   # firebase_core: ^2.25.4
-  flutter_svg: ^0.22.0
+  flutter_svg: 2.0.10+1
 
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  flutter_launcher_icons: "^0.13.1"
+  flutter_launcher_icons: 0.11.0
   flutter_lints: ^3.0.1 # Enforces Flutter lint rules for code quality
   bloc_test: ^9.1.4 # Provides testing utilities for BLoC testing
   mocktail: # Provides mock objects for unit testing
