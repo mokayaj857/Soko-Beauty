@@ -4,7 +4,7 @@ import 'package:soko_beauty/models/video/video_type.dart';
 class Video {
   int id;
   String url;
-  VideoType videoType;
+  VideoType videoType; // enum  Service, Product, Review, None,
   int associatedItemId; // ID of the associated service, product, or review
   List<Comment> comments;
   List<String> likes; // List of user IDs who liked the video

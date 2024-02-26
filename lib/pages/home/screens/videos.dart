@@ -1,9 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:soko_beauty/pages/shop/cart.dart';
-import 'package:soko_beauty/widgets/video/comments.dart';
-import 'package:soko_beauty/widgets/video/info.dart';
-import 'package:share_link/share_link.dart';
-import 'package:soko_beauty/widgets/video/video_btn.dart';
 import 'package:soko_beauty/widgets/video/video_tabbar.dart';
 
 class VideoPage extends StatefulWidget {
@@ -14,39 +9,8 @@ class VideoPage extends StatefulWidget {
 }
 
 class _VideoPageState extends State<VideoPage> {
-  bool isLoading = true;
-  bool showComments = false;
-
-  void _shareContent() async {
-    await ShareLink.shareUri(
-      Uri.parse('https://2312.nl'),
-      subject: '2312.nl website',
-    );
-  }
-
   @override
   Widget build(BuildContext context) {
-    return Stack(fit: StackFit.loose, children: [
-      VideoTabBar(),
-      if (isLoading) ...[
-        VideoActionButtons(
-          onAddPressed: () {},
-          onFavoritePressed: () {},
-          onCommentPressed: () {
-            setState(() {
-              showComments = !showComments;
-            });
-          },
-          onSharePressed: () {
-            _shareContent();
-          },
-          shoppingCartPressed: () {
-            Navigator.push(context, MaterialPageRoute(builder: (context) => CartPage()));
-          },
-        ),
-        if (showComments) CommentSection(),
-        VideoInfo(),
-      ]
-    ]);
+    return VideoTabBar();
   }
 }
