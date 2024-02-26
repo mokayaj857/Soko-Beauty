@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:soko_beauty/data/video/videos.dart';
+import 'package:soko_beauty/models/video/video.dart';
 import 'package:soko_beauty/widgets/video/player.dart';
 
 class AllVideosTab extends StatefulWidget {
@@ -8,14 +9,16 @@ class AllVideosTab extends StatefulWidget {
 }
 
 class _AllVideosTabState extends State<AllVideosTab> {
- 
+  List<Video> allVideos = fetchDummyData();
+
   @override
   Widget build(BuildContext context) {
-    return PageView(
+   return PageView(
       scrollDirection: Axis.vertical,
       physics: BouncingScrollPhysics(),
       children: allVideos.map((video) {
-        return VideoPlayerScreen(videoUrl: video['url']);
+        Key key = Key('video_${video.id}');
+        return VideoPlayerScreen(videoInfo: video, key: key);
       }).toList(),
     );
   }

@@ -1,6 +1,5 @@
 import 'dart:ui';
 import 'package:flutter/material.dart';
-import 'package:soko_beauty/models/shop/shop.dart';
 import 'package:soko_beauty/theme/colors/colors.dart';
 import 'package:soko_beauty/widgets/products/common/product_selection_chips.dart';
 
