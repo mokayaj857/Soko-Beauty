@@ -47,7 +47,7 @@ dependencies:
   # path: ^1.8.3
   # firebase_auth: ^4.17.4
   # firebase_core: ^2.25.4
-  flutter_svg: ^0.22.0
+  flutter_svg: 2.0.10+1
 
 dev_dependencies:
   flutter_test:
