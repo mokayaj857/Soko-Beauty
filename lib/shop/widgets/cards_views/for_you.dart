@@ -16,7 +16,7 @@ class ShopsForYouCard extends StatelessWidget {
         right: 4,
       ),
       child: Card(
-        elevation: 3,
+        elevation: 1,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(12),
         ),
@@ -27,20 +27,21 @@ class ShopsForYouCard extends StatelessWidget {
               borderRadius: BorderRadius.vertical(top: Radius.circular(12)),
               child: Image.network(
                 shop.imageUrl,
-                height: 130,
+                height: 110,
                 width: double.infinity,
                 fit: BoxFit.cover,
               ),
             ),
             Padding(
-              padding: const EdgeInsets.all(12.0),
+              padding: const EdgeInsets.symmetric(horizontal: 8,),
               child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
                   Text(
                     shop.name,
                     style: TextStyle(
-                      fontSize: 18,
+                      overflow: TextOverflow.ellipsis,
+                      fontSize: 16,
                       fontWeight: FontWeight.bold,
                     ),
                   ),
@@ -48,6 +49,7 @@ class ShopsForYouCard extends StatelessWidget {
                   Text(
                     shop.category,
                     style: TextStyle(
+                      overflow: TextOverflow.ellipsis,
                       color: Colors.grey,
                     ),
                   ),
@@ -55,6 +57,7 @@ class ShopsForYouCard extends StatelessWidget {
                   Text(
                     shop.description,
                     style: TextStyle(
+                      overflow: TextOverflow.ellipsis,
                       fontSize: 14,
                     ),
                   ),

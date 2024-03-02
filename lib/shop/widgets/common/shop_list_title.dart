@@ -19,7 +19,7 @@ class ShopListTitle extends StatelessWidget {
             onTap: () {
               // Navigate to view all
               //ViewAllShopsScreen();
-              Navigator.push(context, MaterialPageRoute(builder: (context) => ViewAllShopsScreen(shops: shops)));
+              Navigator.push(context, MaterialPageRoute(builder: (context) => ViewAllShopsScreen(shops: getShops())));
             },
             child: Text("View All",
                 style: TextStyle(

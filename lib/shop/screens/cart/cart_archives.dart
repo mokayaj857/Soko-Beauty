@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:soko_beauty/models/shop/Product.dart';
-import 'package:soko_beauty/models/shop/shop/cart/cart_fav_item.dart';
+import 'package:soko_beauty/shop/widgets/cart/cart_fav_item.dart';
 
 class CartArchivesPage extends StatelessWidget {
   final List<Product> archivedProducts; // List of archived products

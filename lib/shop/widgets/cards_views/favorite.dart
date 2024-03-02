@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:soko_beauty/models/shop/shop.dart';
 
-
 class FavoriteShopsCard extends StatelessWidget {
   final Shop shop;
 
@@ -10,15 +9,18 @@ class FavoriteShopsCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 180,
-      width: 180,
-      margin: EdgeInsets.all(8),
+      height: 250,
+      width: 200,
+      margin: EdgeInsets.symmetric(horizontal: 10),
+      padding: EdgeInsets.all(0),
       child: Card(
-        elevation: 0, // No elevation for a paper effect
+        margin: EdgeInsets.all(0),
+        elevation: 0,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(10),
         ),
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             ClipPath(
               clipper: ShapeBorderClipper(
@@ -43,26 +45,24 @@ class FavoriteShopsCard extends StatelessWidget {
                     style: TextStyle(
                       fontSize: 16,
                       fontWeight: FontWeight.bold,
-                      color: Colors.black,
                     ),
                   ),
                   SizedBox(height: 4),
                   Text(
                     shop.category,
-                    style: TextStyle(
-                      color: Colors.grey[600],
-                    ),
+                    style: TextStyle(),
                   ),
                   SizedBox(height: 4),
                   Text(
                     shop.description,
                     style: TextStyle(
+                      overflow: TextOverflow.ellipsis,
                       fontSize: 12,
-                      color: Colors.grey[600],
                     ),
                   ),
                   SizedBox(height: 4),
                   Row(
+                    mainAxisAlignment: MainAxisAlignment.start,
                     children: [
                       Icon(Icons.star, color: Colors.orange),
                       SizedBox(width: 4),
@@ -70,7 +70,6 @@ class FavoriteShopsCard extends StatelessWidget {
                         shop.rating.toString(),
                         style: TextStyle(
                           fontWeight: FontWeight.bold,
-                          color: Colors.black,
                         ),
                       ),
                       Spacer(),
@@ -92,4 +91,3 @@ class FavoriteShopsCard extends StatelessWidget {
     );
   }
 }
-

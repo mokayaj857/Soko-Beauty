@@ -1,7 +1,7 @@
 import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:soko_beauty/theme/colors/colors.dart';
-import 'package:soko_beauty/models/shop/shop/common/selection_chips.dart';
+import 'package:soko_beauty/shop/widgets/common/selection_chips.dart';
 
 class ShopsAppbar extends StatelessWidget {
   const ShopsAppbar({
@@ -29,19 +29,22 @@ class ShopsAppbar extends StatelessWidget {
               width: double.infinity,
               height: double.infinity,
               decoration: BoxDecoration(
-                image: DecorationImage(
-                  image: NetworkImage('https://picsum.photos/1080/920'),
-                  fit: BoxFit.cover,
-                ),
-              ),
+                  color: Theme.of(context).cardColor.withOpacity(0.95),
+                  image: DecorationImage(
+                    image: NetworkImage('https://picsum.photos/1080/920'),
+                    fit: BoxFit.cover,
+                  ),
+                  backgroundBlendMode: BlendMode.darken,
+                  gradient: LinearGradient(colors: [
+                    Colors.black.withOpacity(0.5),
+                    Colors.transparent
+                  ], begin: Alignment.bottomCenter, end: Alignment.topCenter)),
             ),
             BackdropFilter(
               filter: ImageFilter.blur(sigmaX: 1, sigmaY: 1),
               child: Container(
-                color: Theme.of(context)
-                    .bottomAppBarTheme
-                    .color!
-                    .withOpacity(0.1),
+                color:
+                    Theme.of(context).bottomAppBarTheme.color!.withOpacity(0.1),
               ),
             ),
             Positioned(
@@ -76,8 +79,8 @@ class ShopsAppbar extends StatelessWidget {
                       constraints: BoxConstraints(maxWidth: 400),
                       child: TextField(
                         decoration: InputDecoration(
-                          contentPadding: EdgeInsets.symmetric(
-                              horizontal: 20, vertical: 0),
+                          contentPadding:
+                              EdgeInsets.symmetric(horizontal: 20, vertical: 0),
                           hintText: 'Search for shops',
                           prefixIcon: Icon(
                             Icons.search_outlined,
@@ -90,7 +93,7 @@ class ShopsAppbar extends StatelessWidget {
                           fillColor: Theme.of(context)
                               .bottomAppBarTheme
                               .color!
-                              .withOpacity(0.9),
+                              .withOpacity(0.5),
                           filled: true,
                         ),
                       ),

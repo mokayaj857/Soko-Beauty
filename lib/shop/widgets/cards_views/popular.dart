@@ -52,8 +52,9 @@ class PopularShopsCard extends StatelessWidget {
                         color: Colors.grey,
                       ),
                     ),
-                    SizedBox(height: 8),
+                    Spacer(),
                     Row(
+
                       children: [
                         Icon(Icons.star, color: Colors.amber),
                         SizedBox(width: 4),

@@ -9,7 +9,7 @@ class ProductListTitle extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.symmetric(horizontal: 12, vertical: 4),
+      padding: EdgeInsets.symmetric(horizontal: 12, vertical: 20),
       child: Row(
         children: [
           Text(title,
@@ -22,7 +22,8 @@ class ProductListTitle extends StatelessWidget {
               Navigator.push(
                   context,
                   MaterialPageRoute(
-                      builder: (context) => ViewAllShopsScreen(shops: shops)));
+                      builder: (context) =>
+                          ViewAllShopsScreen(shops: getShops())));
             },
             child: Text("View All",
                 style: TextStyle(
