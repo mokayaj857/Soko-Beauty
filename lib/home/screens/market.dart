@@ -9,10 +9,7 @@ class MarketPage extends StatelessWidget {
       body: CustomScrollView(
         slivers: [
           ShopsAppbar(),
-          SliverFillRemaining(
-            child:
-          AllShopsView(),
-          ),
+          SliverList(delegate: SliverChildListDelegate([AllShopsView()]))
         ],
       ),
     );
