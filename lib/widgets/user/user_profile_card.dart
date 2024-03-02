@@ -2,7 +2,7 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:soko_beauty/theme/colors/colors.dart';
-import 'package:soko_beauty/pages/user/settings.dart';
+import 'package:soko_beauty/home/utils/settings.dart';
 
 class UserProfileCard extends StatelessWidget {
   const UserProfileCard({Key? key}) : super(key: key);

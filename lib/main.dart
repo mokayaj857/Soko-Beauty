@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:soko_beauty/pages/public/splashscreen.dart';
-import 'package:soko_beauty/theme/dark.dart';
-import 'package:soko_beauty/theme/light.dart';
+import 'package:soko_beauty/home/utils/splashscreen.dart';
+import 'package:soko_beauty/theme/themes/dark.dart';
+import 'package:soko_beauty/theme/themes/light.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
