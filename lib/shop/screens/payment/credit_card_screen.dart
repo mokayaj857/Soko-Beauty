@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:soko_beauty/shop/widgets/shared/pay_with_card_checkbox.dart';
+import 'package:soko_beauty/shop/widgets/shared/pay_with_card_merchants.dart';
 import 'package:soko_beauty/theme/colors/colors.dart';
-import 'package:soko_beauty/shop/widgets/pay_with_card_checkbox.dart';
-import 'package:soko_beauty/shop/widgets/pay_with_card_merchants.dart';
 
-class DebitCardScreen extends StatelessWidget {
-  const DebitCardScreen({
+class CreditCardScreen extends StatelessWidget {
+  const CreditCardScreen({
     super.key,
   });
 

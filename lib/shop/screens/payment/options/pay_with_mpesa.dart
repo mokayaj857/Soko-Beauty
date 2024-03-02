@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:soko_beauty/shop/widgets/instruction_list_item.dart';
+import 'package:soko_beauty/shop/widgets/shared/instruction_list_item.dart';
 
 class MpesaPaymentScreen extends StatelessWidget {
   const MpesaPaymentScreen({super.key});

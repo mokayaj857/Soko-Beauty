@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:soko_beauty/models/shop/Product.dart';
-import 'package:soko_beauty/shop/product/product_page.dart';
-import 'package:soko_beauty/shop/widgets/products/common/product_appbar.dart';
+import 'package:soko_beauty/shop/screens/product/product_page.dart';
+import 'package:soko_beauty/shop/widgets/common/product_appbar.dart';
 
 class ViewShopPage extends StatelessWidget {
   final String shopName;

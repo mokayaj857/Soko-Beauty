@@ -3,7 +3,7 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:share_link/share_link.dart';
 import 'package:soko_beauty/models/video/video.dart';
-import 'package:soko_beauty/shop/screens/cart.dart';
+import 'package:soko_beauty/shop/screens/cart/cart.dart';
 import 'package:soko_beauty/video/widgets/comments.dart';
 import 'package:soko_beauty/video/widgets/info.dart';
 import 'package:soko_beauty/video/widgets/play_pause_icon.dart';

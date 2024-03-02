@@ -1,7 +1,7 @@
 import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:soko_beauty/theme/colors/colors.dart';
-import 'package:soko_beauty/shop/widgets/products/common/product_selection_chips.dart';
+import 'package:soko_beauty/shop/widgets/common/product_selection_chips.dart';
 
 class ProductsAppbar extends StatelessWidget {
   final String shopName;

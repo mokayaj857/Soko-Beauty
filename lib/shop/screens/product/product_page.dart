@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:soko_beauty/models/data/shop/products.dart';
 import 'package:soko_beauty/models/data/shop/shop.dart';
-import 'package:soko_beauty/shop/widgets/products/cards/highly_rated.dart';
-import 'package:soko_beauty/shop/widgets/products/cards/new_products.dart';
-import 'package:soko_beauty/shop/widgets/products/cards/popular_products.dart';
-import 'package:soko_beauty/shop/widgets/products/common/product_list_title.dart';
+import 'package:soko_beauty/shop/widgets/cards/highly_rated.dart';
+import 'package:soko_beauty/shop/widgets/cards/new_products.dart';
+import 'package:soko_beauty/shop/widgets/cards/popular_products.dart';
+import 'package:soko_beauty/shop/widgets/common/product_list_title.dart';
 
 
 

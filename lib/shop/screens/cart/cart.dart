@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:soko_beauty/models/data/shop/cart.dart';
-import 'package:soko_beauty/shop/payment/payment.dart';
-import 'package:soko_beauty/shop/screens/cart_archives.dart';
+import 'package:soko_beauty/shop/screens/payment/payment.dart';
+import 'package:soko_beauty/shop/screens/cart/cart_archives.dart';
 import 'package:soko_beauty/models/shop/shop/cart/cart_item.dart';
 
 

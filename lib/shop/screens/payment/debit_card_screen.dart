@@ -3,8 +3,9 @@ import 'package:soko_beauty/shop/widgets/shared/pay_with_card_checkbox.dart';
 import 'package:soko_beauty/shop/widgets/shared/pay_with_card_merchants.dart';
 import 'package:soko_beauty/theme/colors/colors.dart';
 
-class CreditCardScreen extends StatelessWidget {
-  const CreditCardScreen({
+
+class DebitCardScreen extends StatelessWidget {
+  const DebitCardScreen({
     super.key,
   });
 

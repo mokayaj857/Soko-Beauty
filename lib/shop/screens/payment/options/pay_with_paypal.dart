@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../widgets/instruction_list_item.dart';
+import '../../../widgets/shared/instruction_list_item.dart';
 
 class PaypalPaymentScreen extends StatelessWidget {
   const PaypalPaymentScreen({super.key});

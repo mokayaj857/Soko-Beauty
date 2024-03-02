@@ -19,116 +19,116 @@ class AllShopsView extends StatelessWidget {
     return ListView(
       padding: EdgeInsets.all(0),
       children: <Widget>[
-        ShopListTitle(title: "Favorite"),
-        Container(
-          height: 260,
-          child: ListView.builder(
-            scrollDirection: Axis.horizontal,
-            itemCount: shops.length,
-            itemBuilder: (context, index) {
-              return GestureDetector(
-                  onTap: () {
-                    //GO TO VIEW SHOP PAGE
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => ViewShopPage(
-                                shopName: shops[index].name,
-                                shopDescription: shops[index].description,
-                                products: products)));
-                  },
-                  child: FavoriteShopsCard(shop: shops[index]));
-            },
-          ),
-        ),
-        ShopListTitle(title: "For You"),
-        Container(
-          height: 300,
-          child: ListView.builder(
-            scrollDirection: Axis.horizontal,
-            itemCount: shops.length,
-            itemBuilder: (context, index) {
-              return ShopsForYouCard(shop: shops[index]);
-            },
-          ),
-        ),
-        ShopListTitle(title: "Highly Rated"),
-        Container(
-          height: 250,
-          child: ListView.builder(
-            scrollDirection: Axis.horizontal,
-            itemCount: shops.length,
-            itemBuilder: (context, index) {
-              return HighRatedShopsCard(shop: shops[index]);
-            },
-          ),
-        ),
-        ShopListTitle(title: "Luxurious"),
-        Container(
-          height: 250,
-          child: ListView.builder(
-            scrollDirection: Axis.horizontal,
-            itemCount: shops.length,
-            itemBuilder: (context, index) {
-              return LuxuriousShopsCard(shop: shops[index]);
-            },
-          ),
-        ),
-        ShopListTitle(title: "New Shops"),
-        Container(
-          height: 250,
-          child: ListView.builder(
-            scrollDirection: Axis.horizontal,
-            itemCount: shops.length,
-            itemBuilder: (context, index) {
-              return NewShopsCard(shop: shops[index]);
-            },
-          ),
-        ),
-        ShopListTitle(title: "New to You"),
-        Container(
-          height: 300,
-          child: ListView.builder(
-            scrollDirection: Axis.horizontal,
-            itemCount: shops.length,
-            itemBuilder: (context, index) {
-              return NewToYouCard(shop: shops[index]);
-            },
-          ),
-        ),
-        ShopListTitle(title: "Popular"),
-        Container(
-          height: 300,
-          child: ListView.builder(
-            scrollDirection: Axis.horizontal,
-            itemCount: shops.length,
-            itemBuilder: (context, index) {
-              return PopularShopsCard(shop: shops[index]);
-            },
-          ),
-        ),
-        ShopListTitle(title: "Skin Care"),
-        Container(
-          height: 300,
-          child: ListView.builder(
-            scrollDirection: Axis.horizontal,
-            itemCount: shops.length,
-            itemBuilder: (context, index) {
-              return RecentCartegoryShopsCard(shop: shops[index]);
-            },
-          ),
-        ),
-        ShopListTitle(title: "Trending"),
-        Container(
-          height: 300,
-          child: ListView.builder(
-            scrollDirection: Axis.horizontal,
-            itemCount: shops.length,
-            itemBuilder: (context, index) {
-              return TrendingShops(shop: shops[index]);
-            },
-          ),
-        ),
+        // ShopListTitle(title: "Favorite"),
+        // Container(
+        //   height: 260,
+        //   child: ListView.builder(
+        //     scrollDirection: Axis.horizontal,
+        //     itemCount: shops.length,
+        //     itemBuilder: (context, index) {
+        //       return GestureDetector(
+        //           onTap: () {
+        //             //GO TO VIEW SHOP PAGE
+        //             Navigator.push(
+        //                 context,
+        //                 MaterialPageRoute(
+        //                     builder: (context) => ViewShopPage(
+        //                         shopName: shops[index].name,
+        //                         shopDescription: shops[index].description,
+        //                         products: products)));
+        //           },
+        //           child: FavoriteShopsCard(shop: shops[index]));
+        //     },
+        //   ),
+        // ),
+        // ShopListTitle(title: "For You"),
+        // Container(
+        //   height: 300,
+        //   child: ListView.builder(
+        //     scrollDirection: Axis.horizontal,
+        //     itemCount: shops.length,
+        //     itemBuilder: (context, index) {
+        //       return ShopsForYouCard(shop: shops[index]);
+        //     },
+        //   ),
+        // ),
+        // ShopListTitle(title: "Highly Rated"),
+        // Container(
+        //   height: 250,
+        //   child: ListView.builder(
+        //     scrollDirection: Axis.horizontal,
+        //     itemCount: shops.length,
+        //     itemBuilder: (context, index) {
+        //       return HighRatedShopsCard(shop: shops[index]);
+        //     },
+        //   ),
+        // ),
+        // ShopListTitle(title: "Luxurious"),
+        // Container(
+        //   height: 250,
+        //   child: ListView.builder(
+        //     scrollDirection: Axis.horizontal,
+        //     itemCount: shops.length,
+        //     itemBuilder: (context, index) {
+        //       return LuxuriousShopsCard(shop: shops[index]);
+        //     },
+        //   ),
+        // ),
+        // ShopListTitle(title: "New Shops"),
+        // Container(
+        //   height: 250,
+        //   child: ListView.builder(
+        //     scrollDirection: Axis.horizontal,
+        //     itemCount: shops.length,
+        //     itemBuilder: (context, index) {
+        //       return NewShopsCard(shop: shops[index]);
+        //     },
+        //   ),
+        // ),
+        // ShopListTitle(title: "New to You"),
+        // Container(
+        //   height: 300,
+        //   child: ListView.builder(
+        //     scrollDirection: Axis.horizontal,
+        //     itemCount: shops.length,
+        //     itemBuilder: (context, index) {
+        //       return NewToYouCard(shop: shops[index]);
+        //     },
+        //   ),
+        // ),
+        // ShopListTitle(title: "Popular"),
+        // Container(
+        //   height: 300,
+        //   child: ListView.builder(
+        //     scrollDirection: Axis.horizontal,
+        //     itemCount: shops.length,
+        //     itemBuilder: (context, index) {
+        //       return PopularShopsCard(shop: shops[index]);
+        //     },
+        //   ),
+        // ),
+        // ShopListTitle(title: "Skin Care"),
+        // Container(
+        //   height: 300,
+        //   child: ListView.builder(
+        //     scrollDirection: Axis.horizontal,
+        //     itemCount: shops.length,
+        //     itemBuilder: (context, index) {
+        //       return RecentCartegoryShopsCard(shop: shops[index]);
+        //     },
+        //   ),
+        // ),
+        // ShopListTitle(title: "Trending"),
+        // Container(
+        //   height: 300,
+        //   child: ListView.builder(
+        //     scrollDirection: Axis.horizontal,
+        //     itemCount: shops.length,
+        //     itemBuilder: (context, index) {
+        //       return TrendingShops(shop: shops[index]);
+        //     },
+        //   ),
+        // ),
       ],
     );
   }

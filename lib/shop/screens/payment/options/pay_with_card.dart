@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:soko_beauty/shop/payment/paymethods/saved_cards.dart';
-import 'package:soko_beauty/shop/widgets/credit_card_screen.dart';
-import 'package:soko_beauty/shop/widgets/debit_card_screen.dart';
+import 'package:soko_beauty/shop/screens/payment/options/saved_cards.dart';
+import 'package:soko_beauty/shop/screens/payment/credit_card_screen.dart';
+import 'package:soko_beauty/shop/screens/payment/debit_card_screen.dart';
 
 class CardPaymentScreen extends StatelessWidget {
   const CardPaymentScreen({super.key});
