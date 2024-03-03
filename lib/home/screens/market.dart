@@ -15,13 +15,18 @@ class MarketPage extends StatelessWidget {
           ShopsAppbar(),
           ItemsSliverList(
             shops: shops,
-            cardType: 'favorite',
-            title: 'Favorite shops',
+            cardType: 'for_you',
+            title: 'For you',
           ),
           ItemsSliverList(
             shops: shops,
-            cardType: 'for_you',
-            title: 'For you',
+            cardType: 'luxurious',
+            title: 'Luxury',
+          ),
+          ItemsSliverList(
+            shops: shops,
+            cardType: 'favorite',
+            title: 'Favorite shops',
           ),
           ItemsSliverList(
             shops: shops,
@@ -31,12 +36,7 @@ class MarketPage extends StatelessWidget {
           ItemsSliverList(
             shops: shops,
             cardType: 'trending',
-            title: '',
-          ),
-          ItemsSliverList(
-            shops: shops,
-            cardType: 'luxurious',
-            title: '',
+            title: 'Trending',
           ),
           ItemsSliverList(
             shops: shops,

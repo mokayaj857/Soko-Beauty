@@ -5,19 +5,18 @@ ThemeData lightMode = ThemeData(
   // 1. App-wide settings
   brightness: Brightness.light,
   primaryColor: sbdarkBrown,
-
+  primarySwatch: Colors.red,
   canvasColor: Colors.grey.shade100,
   cardColor: Colors.white,
   fontFamily: 'Poppins',
   fontFamilyFallback: ['Helvetica'],
   package: 'Soko Beauty',
   useMaterial3: true,
-  scaffoldBackgroundColor: Colors.grey.shade100,
+  scaffoldBackgroundColor: Colors.white,
   //2 - floating ACTIONS BUTTON
   floatingActionButtonTheme: FloatingActionButtonThemeData(
       backgroundColor: Colors.red.shade50.withOpacity(0.6),
       foregroundColor: Colors.white,
-      
       elevation: 1,
       iconSize: 30,
       shape: RoundedRectangleBorder(
@@ -41,7 +40,7 @@ ThemeData lightMode = ThemeData(
     ),
   ),
   //chip theme
-   chipTheme: ChipThemeData(
+  chipTheme: ChipThemeData(
     side: BorderSide(
       color: sbdeepRed,
       width: 0.5,
@@ -50,7 +49,8 @@ ThemeData lightMode = ThemeData(
     shape: RoundedRectangleBorder(
       side: BorderSide(
         color: sbdeepRed,
-        width: 1,),
+        width: 1,
+      ),
       borderRadius: BorderRadius.circular(30.0), // Set the border radius
     ),
     backgroundColor: Colors.transparent, // Set background color to transparent

@@ -11,7 +11,7 @@ class LuxuriousShopsCard extends StatelessWidget {
     return Container(
       height: 200,
       width: 180,
-      margin: EdgeInsets.all(8),
+      margin: EdgeInsets.symmetric(horizontal: 4),
       child: Card(
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(10),
@@ -22,6 +22,7 @@ class LuxuriousShopsCard extends StatelessWidget {
             ClipRRect(
               borderRadius: BorderRadius.vertical(top: Radius.circular(10)),
               child: Container(
+                margin: EdgeInsets.all(10),
                 width: double.infinity,
                 height: 100,
                 decoration: BoxDecoration(
@@ -41,6 +42,7 @@ class LuxuriousShopsCard extends StatelessWidget {
                   Text(
                     shop.name,
                     style: TextStyle(
+                      overflow: TextOverflow.ellipsis,
                       fontSize: 16,
                       fontWeight: FontWeight.bold,
                     ),
@@ -49,6 +51,7 @@ class LuxuriousShopsCard extends StatelessWidget {
                   Text(
                     shop.category,
                     style: TextStyle(
+                      overflow: TextOverflow.ellipsis,
                       color: Colors.grey,
                     ),
                   ),
@@ -56,6 +59,7 @@ class LuxuriousShopsCard extends StatelessWidget {
                   Text(
                     shop.description,
                     style: TextStyle(
+                      overflow: TextOverflow.ellipsis,
                       fontSize: 12,
                     ),
                   ),

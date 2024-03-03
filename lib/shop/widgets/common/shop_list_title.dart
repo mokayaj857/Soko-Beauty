@@ -13,7 +13,7 @@ class ShopListTitle extends StatelessWidget {
       child: Row(
         children: [
           Text(title,
-              style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
+              style: TextStyle(fontSize: 18, color: Theme.of(context).hintColor,fontWeight: FontWeight.bold)),
           Spacer(),
           GestureDetector(
             onTap: () {
