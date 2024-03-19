@@ -32,7 +32,7 @@ class _CartPageState extends State<CartPage> {
             Navigator.of(context).pop();
           },
         ),
-        backgroundColor: Theme.of(context).bottomAppBarTheme.color,
+        backgroundColor: Theme.of(context).bottomAppBarTheme.color?.withOpacity(0.5),
         title: Text('Cart'),
         actions: [
           IconButton(
@@ -52,26 +52,23 @@ class _CartPageState extends State<CartPage> {
           ? Center(
               child: Text('Your Cart Is Empty.'),
             )
-          : Column(
-              mainAxisSize: MainAxisSize.max,
-              children: [
-                Expanded(
-                  child: ListView.builder(
-                    itemExtent: 100,
-                    itemCount: cartProducts.length,
-                    itemBuilder: (context, index) {
-                      final product = cartProducts[index];
-                      return CartItem(
-                        product: product,
-                        onRemove: () => _removeProduct(index),
-                        onAddPressed: () {},
-                      );
-                    },
-                  ),
-                ),
-              ],
+          : Expanded(
+            child: ListView.builder(
+              itemExtent: 150,
+              itemCount: cartProducts.length,
+              itemBuilder: (context, index) {
+                final product = cartProducts[index];
+                return CartItem(
+                  product: product,
+                  onRemove: () => _removeProduct(index),
+                  onAddPressed: () {},
+                );
+              },
             ),
+          ),
       bottomNavigationBar: BottomAppBar(
+        color: Theme.of(context).scaffoldBackgroundColor,
+        height: 80,
         elevation: 0,
         child: Padding(
           padding: const EdgeInsets.all(8.0),
@@ -85,12 +82,22 @@ class _CartPageState extends State<CartPage> {
                   fontWeight: FontWeight.bold,
                 ),
               ),
+            //create a beautiful button
               ElevatedButton(
                 onPressed: () {
-                  Navigator.push(context,
-                      MaterialPageRoute(builder: (context) => PaymentScreen()));
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => PaymentScreen(
+                        
+                      ),
+                    ),
+                  );
                 },
                 child: Text('Checkout'),
+                style: ButtonStyle(
+                  backgroundColor: MaterialStateProperty.all(Theme.of(context).primaryColor),
+                ),
               ),
             ],
           ),

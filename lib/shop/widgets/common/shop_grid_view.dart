@@ -65,7 +65,7 @@ class ShopGridView extends StatelessWidget {
                   },
                   child: Text('ADD TO CART'),
                   style: ElevatedButton.styleFrom(
-                    primary: Colors.orange,
+                    backgroundColor: Colors.orange,
                   ),
                 ),
               ],
