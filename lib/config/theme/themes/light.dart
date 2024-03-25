@@ -13,6 +13,19 @@ ThemeData lightMode = ThemeData(
   package: 'Soko Beauty',
   useMaterial3: true,
   scaffoldBackgroundColor: Colors.white,
+  colorScheme: ColorScheme.light(
+    primary: sbdarkBrown,
+    secondary: sbdeepRed,
+    surface: Colors.white,
+    background: Colors.white,
+    error: Colors.red,
+    onPrimary: Colors.white,
+    onSecondary: Colors.white,
+    onSurface: Colors.black,
+    onBackground: Colors.black,
+    onError: Colors.white,
+    brightness: Brightness.light,
+  ),
   //2 - floating ACTIONS BUTTON
   floatingActionButtonTheme: FloatingActionButtonThemeData(
       backgroundColor: Colors.red.shade50.withOpacity(0.6),

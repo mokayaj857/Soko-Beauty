@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:soko_beauty/config/colors/colors.dart';
-import 'package:soko_beauty/feautures/auth/views/screens/signupscreen.dart';
+import 'package:soko_beauty/feautures/auth/views/screens/signup.dart';
 
 
 class MoreSignInOptions extends StatelessWidget {

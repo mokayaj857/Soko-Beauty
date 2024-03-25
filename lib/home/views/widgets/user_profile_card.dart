@@ -1,16 +1,20 @@
-import 'dart:ui';
-
 import 'package:flutter/material.dart';
 import 'package:soko_beauty/config/colors/colors.dart';
-import 'package:soko_beauty/home/views/screens/settings.dart';
+import 'package:soko_beauty/feautures/auth/data/models/user_model.dart';
+import 'package:soko_beauty/feautures/auth/views/screens/profile.dart';
 
 class UserProfileCard extends StatelessWidget {
-  const UserProfileCard({Key? key}) : super(key: key);
+  final UserModel user; 
+
+  const UserProfileCard({Key? key, required this.user}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return SliverAppBar(
-      title: Text('@valHappysalon'),
+      title: Text(user.username,
+          style: TextStyle(
+            fontSize: 16,
+          )),
       backgroundColor:
           Theme.of(context).bottomAppBarTheme.color!.withOpacity(0.9),
       foregroundColor: sbbrickRed,
@@ -28,11 +32,10 @@ class UserProfileCard extends StatelessWidget {
         IconButton(
           onPressed: () {
             //navigate to settings page
-
             Navigator.push(
               context,
               MaterialPageRoute(
-                builder: (context) => SettingsPage(),
+                builder: (context) => AccountPage(),
               ),
             );
           },
@@ -49,10 +52,10 @@ class UserProfileCard extends StatelessWidget {
           padding: EdgeInsets.all(0),
           tabs: [
             Tab(
-              text: 'Videos',
+              text: 'Posts',
             ),
             Tab(
-              text: 'Saved',
+              text: 'Liked',
             ),
             Tab(
               text: 'Shops',
@@ -67,25 +70,6 @@ class UserProfileCard extends StatelessWidget {
           margin: EdgeInsets.only(top: 30),
           child: Stack(
             children: [
-              Container(
-                width: double.infinity,
-                height: double.infinity,
-                decoration: BoxDecoration(
-                  image: DecorationImage(
-                    image: NetworkImage('https://picsum.photos/1080/920'),
-                    fit: BoxFit.cover,
-                  ),
-                ),
-              ),
-              BackdropFilter(
-                filter: ImageFilter.blur(sigmaX: 3, sigmaY: 3),
-                child: Container(
-                  color: Theme.of(context)
-                      .bottomAppBarTheme
-                      .color!
-                      .withOpacity(0.9),
-                ),
-              ),
               Positioned(
                 top: 0,
                 left: 0,
@@ -97,7 +81,7 @@ class UserProfileCard extends StatelessWidget {
                     child: Center(
                       child: Column(
                         children: [
-                          // USER PROFILE BODERED IMAGE AND NAME
+                          // USER PROFILE BORDERED IMAGE AND NAME
                           Container(
                             decoration: BoxDecoration(
                               shape: BoxShape.circle,
@@ -107,20 +91,20 @@ class UserProfileCard extends StatelessWidget {
                               ),
                             ),
                             child: CircleAvatar(
-                              radius: 50,
-                              backgroundImage:
-                                  NetworkImage('https://picsum.photos/200/200'),
+                              radius: 35,
+                              backgroundImage: NetworkImage(
+                                  user.profilePhotoUrl ?? ''), // Use user data
                             ),
                           ),
                           Text(
-                            'Beauty Salon',
+                            '${user.fname ?? ''} ${user.lname ?? ''}',
                             style: TextStyle(
                               fontSize: 20,
                               fontWeight: FontWeight.bold,
                             ),
                           ),
                           Text(
-                            'Salon Owner and Makeup Artist',
+                            user.bio ?? '', // Use user data
                             style: TextStyle(
                               fontSize: 12,
                             ),
@@ -134,7 +118,7 @@ class UserProfileCard extends StatelessWidget {
                               Column(
                                 children: [
                                   Text(
-                                    '900',
+                                    user.postsCount.toString(), // Use user data
                                     style: TextStyle(
                                       fontSize: 16,
                                       fontWeight: FontWeight.bold,
@@ -145,7 +129,7 @@ class UserProfileCard extends StatelessWidget {
                                     child: Text(
                                       'Posts',
                                       style: TextStyle(
-                                        fontSize: 16,
+                                        fontSize: 14,
                                         fontWeight: FontWeight.bold,
                                         color: sbbrickRed,
                                       ),
@@ -156,7 +140,8 @@ class UserProfileCard extends StatelessWidget {
                               Column(
                                 children: [
                                   Text(
-                                    '10M',
+                                    user.followersCount
+                                        .toString(), // Use user data
                                     style: TextStyle(
                                       fontSize: 16,
                                       fontWeight: FontWeight.bold,
@@ -167,7 +152,7 @@ class UserProfileCard extends StatelessWidget {
                                     child: Text(
                                       'Followers',
                                       style: TextStyle(
-                                        fontSize: 16,
+                                        fontSize: 14,
                                         fontWeight: FontWeight.bold,
                                         color: sbbrickRed,
                                       ),
@@ -178,7 +163,8 @@ class UserProfileCard extends StatelessWidget {
                               Column(
                                 children: [
                                   Text(
-                                    '10.2k',
+                                    user.followingCount
+                                        .toString(), // Use user data
                                     style: TextStyle(
                                       fontSize: 16,
                                       fontWeight: FontWeight.bold,
@@ -189,7 +175,7 @@ class UserProfileCard extends StatelessWidget {
                                     child: Text(
                                       'Following',
                                       style: TextStyle(
-                                        fontSize: 16,
+                                        fontSize: 14,
                                         fontWeight: FontWeight.bold,
                                         color: sbbrickRed,
                                       ),

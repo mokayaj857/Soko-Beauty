@@ -1,7 +1,6 @@
 import 'dart:async';
 import 'dart:ui';
 import 'package:flutter/material.dart';
-import 'package:share_link/share_link.dart';
 import 'package:soko_beauty/feautures/video/data/models/video.dart';
 import 'package:soko_beauty/feautures/shop/views/screens/cart/cart.dart';
 import 'package:soko_beauty/feautures/video/views/widgets/comments.dart';
@@ -26,13 +25,6 @@ class _VideoPlayerScreenState extends State<VideoPlayerScreen> {
   late bool showIcon;
   bool isLoading = true;
   bool showComments = false;
-
-  void _shareContent() async {
-    await ShareLink.shareUri(
-      Uri.parse('https://2312.nl'),
-      subject: '2312.nl website',
-    );
-  }
 
   @override
   void initState() {
@@ -148,16 +140,14 @@ class _VideoPlayerScreenState extends State<VideoPlayerScreen> {
               showComments = !showComments;
             });
           },
-          onSharePressed: () {
-            _shareContent();
-          },
           shoppingCartPressed: () {
             Navigator.push(
                 context, MaterialPageRoute(builder: (context) => CartPage()));
           },
+          onSharePressed: () {},
         ),
         if (showComments) CommentSection(),
-         VideoInfo(videoInfo: widget.videoInfo),
+        VideoInfo(videoInfo: widget.videoInfo),
       ]),
     );
   }

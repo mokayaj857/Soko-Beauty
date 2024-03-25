@@ -13,7 +13,20 @@ ThemeData darkMode = ThemeData(
   package: 'Soko Beauty',
   useMaterial3: true,
   shadowColor: Colors.grey,
+  colorScheme: ColorScheme.dark(
+    primary: sbbrickRed,
+    secondary: sbdeepRed,
+    // surface: Colors.black,
+    // background: Colors.black,
+    error: Colors.red,
+    onPrimary: Colors.white,
+    onSecondary: Colors.white,
+    onSurface: Colors.white,
+    onBackground: Colors.white,
+    onError: Colors.white,
+    brightness: Brightness.dark,
 
+  ),
 
   //TabBar Theme
   tabBarTheme: TabBarTheme(
@@ -70,7 +83,6 @@ ThemeData darkMode = ThemeData(
     labelStyle: TextStyle(
       color: Colors.grey.shade300,
       fontSize: 13,
-     
     ),
     secondaryLabelStyle: TextStyle(
       color: Colors.grey.shade300,
@@ -88,7 +100,7 @@ ThemeData darkMode = ThemeData(
     selectedItemColor: sbbrickRed,
     selectedIconTheme: IconThemeData(size: 30),
     unselectedIconTheme: IconThemeData(size: 30),
-    type: BottomNavigationBarType.fixed, 
+    type: BottomNavigationBarType.fixed,
   ),
   bottomAppBarTheme: BottomAppBarTheme(
     color: Colors.black87,
@@ -97,7 +109,7 @@ ThemeData darkMode = ThemeData(
     height: 50.0,
     padding: EdgeInsets.all(0.0),
   ),
-   textButtonTheme: TextButtonThemeData(
+  textButtonTheme: TextButtonThemeData(
     style: ButtonStyle(
       padding: MaterialStateProperty.all(EdgeInsets.all(0.0)),
       foregroundColor: MaterialStateProperty.all(Colors.white70),

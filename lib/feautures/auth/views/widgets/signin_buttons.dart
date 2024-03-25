@@ -1,31 +1,39 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_signin_button/button_list.dart';
-import 'package:flutter_signin_button/button_view.dart';
 
-class SignInButtons extends StatelessWidget {
-  const SignInButtons({super.key});
+class SocialSignIn extends StatelessWidget {
+  final VoidCallback onGoogleSignInPressed;
+  final VoidCallback onIOSSignInPressed;
+  final VoidCallback onMicrosoftSignInPressed;
+
+  SocialSignIn({
+    required this.onGoogleSignInPressed,
+    required this.onIOSSignInPressed,
+    required this.onMicrosoftSignInPressed,
+  });
 
   @override
   Widget build(BuildContext context) {
-    return Row(mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: [
-      SignInButton(
-        Buttons.Google,
-        text: "Google",
-        padding: EdgeInsets.zero,
-        onPressed: () {},
-      ),
-      SignInButton(
-        Buttons.FacebookNew,
-        padding: EdgeInsets.zero, 
-        text: "Facebook",
-        onPressed: () {},
-      ),
-      SignInButton(
-        padding: EdgeInsets.zero,
-        Buttons.AppleDark,
-        text: "Apple",
-        onPressed: () {},
-      ),
-    ]);
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+      children: [
+        IconButton(
+          onPressed: onGoogleSignInPressed,
+          icon: Image.asset('assets/icons/google.png'),
+          iconSize: 40,
+        ),
+        IconButton(
+          onPressed: onIOSSignInPressed,
+          icon: Theme.of(context).brightness == Brightness.dark
+              ? Image.asset('assets/icons/ios-white.png')
+              : Image.asset('assets/icons/ios.png'),
+          iconSize: 40,
+        ),
+        IconButton(
+          onPressed: onMicrosoftSignInPressed,
+          icon: Image.asset('assets/icons/facebook.png'),
+          iconSize: 40,
+        ),
+      ],
+    );
   }
 }

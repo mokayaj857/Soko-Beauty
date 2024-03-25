@@ -7,7 +7,7 @@ import 'package:soko_beauty/home/views/screens/camera_page.dart';
 import 'package:soko_beauty/config/colors/colors.dart';
 import 'package:soko_beauty/home/views/screens/chats.dart';
 import 'package:soko_beauty/home/views/screens/market.dart';
-import 'package:soko_beauty/home/views/screens/profile.dart';
+import 'package:soko_beauty/home/views/screens/my_account.dart';
 import 'package:soko_beauty/home/views/screens/videos.dart';
 
 class HomePage extends StatefulWidget {

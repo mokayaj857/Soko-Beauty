@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "619847627673",
+    "project_id": "sokobeauty-20bb2",
+    "storage_bucket": "sokobeauty-20bb2.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:619847627673:android:944e560b3e0c715b519908",
+        "android_client_info": {
+          "package_name": "com.example.soko_beauty"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDBEs7rRT9s9624ZsBZgg9bZPMftuTjIEU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
