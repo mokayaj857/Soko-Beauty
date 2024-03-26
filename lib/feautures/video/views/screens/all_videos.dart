@@ -22,5 +22,6 @@ class _AllVideosTabState extends State<AllVideosTab> {
         return VideoPlayerScreen(videoInfo: video, key: key);
       }).toList(),
     );
+  
   }
 }
