@@ -31,7 +31,7 @@ class IntroPage1 extends StatelessWidget {
                 SizedBox(height: 20),
                 // Subtitle
                 Text(
-                  'Beauty at your fingertips',
+                  'Everything Beauty',
                   style: TextStyle(
                     fontSize: 24,
                     color: Colors.blueGrey,
