@@ -21,7 +21,7 @@ class IntroPage1 extends StatelessWidget {
                 SizedBox(height: 20),
                 // Title
                 Text(
-                  'SoKo Beauty',
+                  'Soko Beauty',
                   style: TextStyle(
                     fontSize: 32,
                     fontWeight: FontWeight.bold,
