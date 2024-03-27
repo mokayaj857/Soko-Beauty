@@ -15,8 +15,8 @@ class IntroPage1 extends StatelessWidget {
                 // App logo or icon
                 Image.asset(
                   'assets/logo.png', // Replace with your app logo path
-                  width: 200,
-                  height: 200,
+                  width: 150,
+                  height: 150,
                 ),
                 SizedBox(height: 20),
                 // Title
