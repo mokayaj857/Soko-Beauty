@@ -59,27 +59,28 @@ class VideoActionButtons extends StatelessWidget {
               ),
             ),
           ),
-          SizedBox(height: 20.0),
+          SizedBox(height: 10.0),
           _buildActionButton(
 
             onPressed: onFavoritePressed,
             icon: Icons.favorite_border_outlined,
             label: '2.5k', heroTag: 'favorite',
           ),
-          SizedBox(height: 20.0),
+          SizedBox(height: 10.0),
           _buildActionButton(
             onPressed: onCommentPressed,
             icon: Icons.comment_rounded,
             label: '1M', heroTag: 'comment',
           ),
-          SizedBox(height: 20.0),
+          SizedBox(height: 10.0),
           _buildActionButton(
             onPressed: onSharePressed,
             icon: Icons.share,
             label: '20k', heroTag: 'share',
           ),
-          SizedBox(height: 20.0),
+          SizedBox(height: 10.0),
           FloatingActionButton(
+            backgroundColor: Colors.transparent,
             heroTag: 'cart',
             mini: true,
             onPressed: shoppingCartPressed,
@@ -104,7 +105,7 @@ class VideoActionButtons extends StatelessWidget {
               ],
             ),
           ),
-          SizedBox(height: 10.0),
+          SizedBox(height: 150.0),
           //Center(child: Text("Cart")),
         ],
       ),
@@ -120,6 +121,7 @@ class VideoActionButtons extends StatelessWidget {
     return Column(
       children: [
         FloatingActionButton(
+          backgroundColor: Colors.transparent,
           heroTag: heroTag,
           mini: true,
           onPressed: onPressed,
@@ -128,7 +130,7 @@ class VideoActionButtons extends StatelessWidget {
           ),
         ),
         if (label.isNotEmpty) ...[
-          SizedBox(height: 5.0),
+          
           Text(
             label,
             style: TextStyle(fontSize: 13.0, fontWeight: FontWeight.bold),
