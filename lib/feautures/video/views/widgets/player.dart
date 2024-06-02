@@ -136,9 +136,14 @@ class _VideoPlayerScreenState extends State<VideoPlayerScreen> {
           onAddPressed: () {},
           onFavoritePressed: () {},
           onCommentPressed: () {
-            setState(() {
-              showComments = !showComments;
-            });
+            
+            showModalBottomSheet(context: context, builder: (context){
+
+              return CommentSection();
+            },shape: RoundedRectangleBorder(borderRadius:BorderRadius.only(
+              topLeft: Radius.circular(20),
+              topRight:Radius.circular(20),
+            ) ));
           },
           shoppingCartPressed: () {
             Navigator.push(
@@ -146,7 +151,6 @@ class _VideoPlayerScreenState extends State<VideoPlayerScreen> {
           },
           onSharePressed: () {},
         ),
-        if (showComments) CommentSection(),
         VideoInfo(videoInfo: widget.videoInfo),
       ]),
     );
