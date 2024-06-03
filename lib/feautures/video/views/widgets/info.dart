@@ -17,7 +17,7 @@ class _VideoInfoState extends State<VideoInfo> {
   @override
   Widget build(BuildContext context) {
     return Positioned(
-      bottom: 0,
+      bottom: 6,
       child: AnimatedContainer(
         duration: Duration(milliseconds: 300),
         height: isMinimized ? 120 : 220,

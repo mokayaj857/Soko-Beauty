@@ -49,15 +49,15 @@ class _VideoTabBarState extends State<VideoTabBar> {
               alignment: Alignment.topCenter,
               child: SafeArea(
                 child: TabBar(
-                    isScrollable: true,
+                    
                     tabAlignment: TabAlignment.center,
                     dividerHeight: 0,
                     tabs: [
                       Tab(
-                        text: 'All',
+                        text: 'Community',
                       ),
                       Tab(
-                        text: 'Sevices',
+                        text: 'Services',
                       ),
                       Tab(
                         text: 'Products',
