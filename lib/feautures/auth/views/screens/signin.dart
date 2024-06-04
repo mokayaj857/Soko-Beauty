@@ -4,7 +4,7 @@ import 'package:soko_beauty/feautures/auth/views/widgets/auth_buttons.dart';
 import 'package:soko_beauty/feautures/auth/views/widgets/custom_textfield.dart';
 import 'package:soko_beauty/feautures/auth/views/widgets/greet_info.dart';
 import 'package:soko_beauty/feautures/auth/views/widgets/signin_buttons.dart';
-import 'package:soko_beauty/home/views/screens/landing.dart';
+import 'package:soko_beauty/home/views/screens/landing/landing.dart';
 
 import 'signup.dart';
 

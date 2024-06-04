@@ -2,10 +2,10 @@ import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 import 'package:flutter/material.dart';
 import 'package:soko_beauty/feautures/auth/views/screens/signin.dart';
 import 'package:soko_beauty/feautures/auth/views/widgets/auth_buttons.dart';
-import 'info/intro_1.dart';
-import 'info/intro_2.dart';
-import 'info/intro_3.dart';
-import 'info/intro_4.dart';
+import '../info/intro_1.dart';
+import '../info/intro_2.dart';
+import '../info/intro_3.dart';
+import '../info/intro_4.dart';
 
 class OnboardingPage extends StatefulWidget {
   @override

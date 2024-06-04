@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:soko_beauty/config/colors/colors.dart';
+import 'package:soko_beauty/config/theme/themes/light.dart';
+import 'package:soko_beauty/core/services/theme_provider.dart';
 import 'package:soko_beauty/feautures/auth/data/models/user_model.dart';
 import 'package:soko_beauty/feautures/auth/views/screens/profile.dart';
 
 class UserProfileCard extends StatelessWidget {
-  final UserModel user; 
+  final UserModel user;
 
   const UserProfileCard({Key? key, required this.user}) : super(key: key);
 
@@ -29,6 +32,19 @@ class UserProfileCard extends StatelessWidget {
         ),
       ),
       actions: [
+        IconButton(
+          style: ButtonStyle(
+            padding: MaterialStateProperty.all(EdgeInsets.all(0)),
+          ),
+          icon: Icon(Provider.of<ThemeProvider>(context).themeData == lightMode
+              ? Icons.dark_mode
+              : Icons.light_mode),
+          onPressed: () {
+            // Toggle theme
+            Provider.of<ThemeProvider>(context, listen: false)
+                .toggleTheme(context);
+          },
+        ),
         IconButton(
           onPressed: () {
             //navigate to settings page

@@ -14,10 +14,14 @@ import 'package:soko_beauty/feautures/post/views/services/camera_state.dart';
 import 'package:soko_beauty/feautures/post/views/widgets/animated_bar.dart';
 import 'package:soko_beauty/home/views/widgets/gallery_picker.dart';
 import 'package:visibility_detector/visibility_detector.dart';
-import 'package:file_picker/file_picker.dart';
 
 class CameraPage extends StatefulWidget {
-  const CameraPage({super.key});
+  final VoidCallback onExit;
+
+  const CameraPage({
+    Key? key,
+    required this.onExit,
+  }) : super(key: key);
 
   @override
   State<CameraPage> createState() => _CameraPageState();
@@ -73,7 +77,7 @@ class _CameraPageState extends State<CameraPage> with WidgetsBindingObserver {
         elevation: 0,
         leading: IconButton(
           onPressed: () {
-            Navigator.of(context).pop();
+             widget.onExit();
           },
           icon: const Icon(
             size: 30,

@@ -6,7 +6,7 @@ ThemeData lightMode = ThemeData(
   brightness: Brightness.light,
   primaryColor: sbdarkBrown,
   primarySwatch: Colors.red,
-  canvasColor: Colors.grey.shade100,
+  canvasColor: Colors.grey.shade50,
   cardColor: Colors.white,
   fontFamily: 'Poppins',
   fontFamilyFallback: ['Helvetica'],
@@ -26,17 +26,19 @@ ThemeData lightMode = ThemeData(
     onError: Colors.white,
     brightness: Brightness.light,
   ),
+
   //2 - floating ACTIONS BUTTON
   floatingActionButtonTheme: FloatingActionButtonThemeData(
       backgroundColor: Colors.red.shade50.withOpacity(0.6),
       foregroundColor: Colors.white,
-      elevation: 1,
+      elevation: 0.0,
       iconSize: 30,
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(50.0),
       ),
       splashColor: Color.fromARGB(132, 255, 82, 82)),
   splashFactory: NoSplash.splashFactory,
+
   progressIndicatorTheme: ProgressIndicatorThemeData(
     color: sbbrickRed,
   ),
@@ -52,26 +54,7 @@ ThemeData lightMode = ThemeData(
       fontWeight: FontWeight.bold,
     ),
   ),
-  //chip theme
-  chipTheme: ChipThemeData(
-    side: BorderSide(
-      color: sbdeepRed,
-      width: 0.5,
-    ),
-    padding: EdgeInsets.symmetric(horizontal: 10, vertical: 5),
-    shape: RoundedRectangleBorder(
-      side: BorderSide(
-        color: sbdeepRed,
-        width: 1,
-      ),
-      borderRadius: BorderRadius.circular(30.0), // Set the border radius
-    ),
-    backgroundColor: Colors.transparent, // Set background color to transparent
-    brightness: Brightness.light,
-    labelStyle: TextStyle(
-      color: Colors.black, // Set text color to match the app's text color
-    ),
-  ),
+
   //3 - APPBAR THEME
   appBarTheme: AppBarTheme(
     centerTitle: true,
@@ -88,7 +71,7 @@ ThemeData lightMode = ThemeData(
   //4 - NAVBAR THEME
   bottomNavigationBarTheme: BottomNavigationBarThemeData(
       elevation: 10,
-      backgroundColor: Colors.red.shade50,
+      backgroundColor: Colors.white,
       unselectedItemColor: Colors.grey.shade800,
       unselectedLabelStyle: TextStyle(color: Colors.grey.shade800),
       type: BottomNavigationBarType.fixed,
@@ -98,9 +81,9 @@ ThemeData lightMode = ThemeData(
 
   //5 - BottomAppbar THEME
   bottomAppBarTheme: BottomAppBarTheme(
-    color: Colors.red.shade50,
+    color: Colors.white,
     surfaceTintColor: Colors.transparent,
-    elevation: 10,
+    elevation: 1,
     height: 50.0,
     padding: EdgeInsets.all(0.0),
   ),
