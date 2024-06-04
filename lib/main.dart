@@ -32,6 +32,7 @@ void main() async {
         ChangeNotifierProvider(create: (context) => UserProvider()),
       ],
       child: MyApp()
+
     )
   );
 }
@@ -49,6 +50,7 @@ class MyApp extends StatelessWidget {
               ? Brightness.light
               : Brightness.dark,
       systemNavigationBarColor: themeProvider.themeData.scaffoldBackgroundColor,
+     systemNavigationBarDividerColor: themeProvider.themeData.scaffoldBackgroundColor,
       statusBarIconBrightness:
           themeProvider.themeData.brightness == Brightness.dark
               ? Brightness.light
@@ -57,7 +59,6 @@ class MyApp extends StatelessWidget {
           ? Brightness.light
           : Brightness.dark,
       systemStatusBarContrastEnforced: false,
-      systemNavigationBarDividerColor: themeProvider.themeData.scaffoldBackgroundColor,
     ));
     return MaterialApp(
       theme: themeProvider.themeData,

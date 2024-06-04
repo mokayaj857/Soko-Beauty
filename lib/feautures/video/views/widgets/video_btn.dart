@@ -23,7 +23,7 @@ class VideoActionButtons extends StatelessWidget {
   Widget build(BuildContext context) {
     return Positioned(
       bottom: 5.0,
-      right: 5.0,
+      right: 15.0,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.end,
         children: [
@@ -33,21 +33,21 @@ class VideoActionButtons extends StatelessWidget {
             label: '2.5k',
             heroTag: 'favorite',
           ),
-          SizedBox(height: 10.0),
+          SizedBox(height: 20.0),
           _buildActionButton(
             onPressed: onCommentPressed,
             icon: Icons.comment_outlined,
             label: '1M',
             heroTag: 'comment',
           ),
-          SizedBox(height: 10.0),
+          SizedBox(height: 20.0),
           _buildActionButton(
             onPressed: onSharePressed,
             icon: Icons.share,
             label: '20k',
             heroTag: 'share',
           ),
-          SizedBox(height: 10.0),
+          SizedBox(height: 20.0),
           if (currentTab == "products")
             Column(
               children: [
@@ -62,7 +62,7 @@ class VideoActionButtons extends StatelessWidget {
                     children: [
                       Icon(
                         Icons.shopping_cart,
-                        size: 20.0,
+                        size: 30.0,
                       ),
                       Align(
                         alignment: Alignment.topRight,
@@ -102,7 +102,7 @@ class VideoActionButtons extends StatelessWidget {
                     children: [
                       Icon(
                         Icons.calendar_today_rounded,
-                        size: 20.0,
+                        size: 30.0,
                       ),
                       Align(
                         alignment: Alignment.topRight,
@@ -136,7 +136,7 @@ class VideoActionButtons extends StatelessWidget {
               size: 30.0,
             ),
           ),
-          SizedBox(height: 30.0),
+          SizedBox(height: 40.0),
         ],
       ),
     );
@@ -160,14 +160,14 @@ class VideoActionButtons extends StatelessWidget {
           onPressed: onPressed,
           child: Icon(
             icon,
-            size: 25.0,
+            size: 30.0,
           ),
         ),
         if (label.isNotEmpty) ...[
           Text(
             label,
             style: TextStyle(
-                fontSize: 14.0,
+                fontSize: 12.0,
                 fontWeight: FontWeight.bold,
                 color: Colors.white.withOpacity(0.9)),
           ),

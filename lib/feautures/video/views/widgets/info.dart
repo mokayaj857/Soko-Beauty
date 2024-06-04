@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:soko_beauty/feautures/video/data/models/video.dart';
-import 'package:soko_beauty/feautures/video/views/widgets/hashtags.dart';
 
 class VideoInfo extends StatefulWidget {
   const VideoInfo({Key? key, required this.videoInfo}) : super(key: key);
@@ -18,15 +17,15 @@ class _VideoInfoState extends State<VideoInfo> {
   Widget build(BuildContext context) {
     return Positioned(
       bottom: 30,
-      child: AnimatedContainer(
-        duration: Duration(milliseconds: 300),
-        height: isMinimized ? 120 : 220,
+      child: Container(
         constraints: BoxConstraints(
           maxWidth: 520,
+          maxHeight: isMinimized ? 120 : 220,
         ),
         width: isMinimized
             ? MediaQuery.of(context).size.width * 0.8
             : MediaQuery.of(context).size.width,
+        height: isMinimized ? 120 : 220,
         padding: EdgeInsets.only(
           left: 8,
           right: 8,
@@ -43,66 +42,115 @@ class _VideoInfoState extends State<VideoInfo> {
               mainAxisSize: MainAxisSize.min,
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
-                CircleAvatar(
-                  radius: 15,
-                  backgroundImage: NetworkImage("https://picsum.photos/200"),
+                Container(
+                  decoration: BoxDecoration(
+                    border: Border.all(
+                        color: Colors.white.withOpacity(0.5), width: 1),
+                    borderRadius: BorderRadius.circular(50),
+                  ),
+                  child: CircleAvatar(
+                    radius: 18,
+                    backgroundImage: NetworkImage("https://picsum.photos/200"),
+                  ),
                 ),
-                SizedBox(width: 5),
+                SizedBox(width: 8),
                 Text(
                   widget.videoInfo.ownerId,
                   style: TextStyle(
-                      fontSize: 16,
+                      fontSize: 15,
                       fontWeight: FontWeight.bold,
                       color: Colors.white.withOpacity(0.9)),
                   overflow:
                       isMinimized ? TextOverflow.ellipsis : TextOverflow.clip,
                 ),
-              ],
-            ),
-            SizedBox(height: 3),
-            Row(
-              children: [
-                Text(
-                  widget.videoInfo.likeCount.toString() + " views",
-                  style: TextStyle(
-                      fontSize: 14,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.white.withOpacity(0.9)),
-                ),
-                SizedBox(width: 8),
-                Text(
-                  "2 days ago",
-                  style: TextStyle(
-                      fontSize: 14,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.white.withOpacity(0.9)),
-                ),
-                SizedBox(width: 45),
+                SizedBox(width: 25),
                 Container(
                   padding: EdgeInsets.symmetric(horizontal: 20, vertical: 3),
                   decoration: BoxDecoration(
-                    color: Colors.black.withOpacity(0.2),
+                    color: Colors.white.withOpacity(0.9),
                     borderRadius: BorderRadius.circular(20),
                     border: Border.all(
                         color: Colors.white.withOpacity(0.5), width: 1),
                   ),
                   child: Text(
-                    "Follow",
+                    "follow",
                     style: TextStyle(
                         fontSize: 14,
-                        color: Colors.white.withOpacity(0.9),
+                        color: Colors.black.withOpacity(0.8),
                         fontWeight: FontWeight.bold),
                   ),
                 ),
               ],
             ),
+            SizedBox(height: 10),
+            Padding(
+              padding: const EdgeInsets.only(left: 5.0),
+              child: Row(
+                children: [
+                  Text(
+                    "${widget.videoInfo.likeCount} views",
+                    style: TextStyle(
+                        fontSize: 14,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.white.withOpacity(0.9)),
+                  ),
+                  SizedBox(width: 5),
+                  Text(
+                    "•",
+                    style: TextStyle(
+                        fontSize: 18,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.white.withOpacity(0.9)),
+                  ),
+                  SizedBox(width: 5),
+                  Text(
+                    "2 days ago",
+                    style: TextStyle(
+                        fontSize: 14,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.white.withOpacity(0.9)),
+                  ),
+                ],
+              ),
+            ),
             SizedBox(height: 3),
-            Text(
-              widget.videoInfo.description,
-              style: TextStyle(
-                  fontSize: 14, color: Colors.white.withOpacity(0.9)),
-              overflow:
-                  isMinimized ? TextOverflow.ellipsis : TextOverflow.clip,
+            Padding(
+              padding: const EdgeInsets.only(left: 5.0),
+              child: Row(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Expanded(
+                    child: SingleChildScrollView(
+                      child: Text(
+                        widget.videoInfo.description,
+                        style: TextStyle(
+                            fontSize: 14,
+                            color: Colors.white.withOpacity(0.9),
+                            fontWeight: FontWeight.bold),
+                        overflow: isMinimized ? TextOverflow.ellipsis : null,
+                        maxLines: isMinimized ? 1 : null,
+                      ),
+                    ),
+                  ),
+                  SizedBox(width: 2),
+                  GestureDetector(
+                    onTap: () {
+                      setState(() {
+                        isMinimized = !isMinimized;
+                      });
+                    },
+                    child: Text(
+                      isMinimized ? "see more" : "hide",
+                      style: TextStyle(
+                        color: Colors.blue,
+                        fontWeight: FontWeight.bold,
+                        decoration: TextDecoration.underline,
+                        decorationColor: Colors.blue,
+                      ),
+                    ),
+                  ),
+                ],
+              ),
             ),
             SizedBox(height: 7),
             // HashtagsWidget(),

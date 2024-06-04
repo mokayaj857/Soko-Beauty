@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:provider/provider.dart';
+import 'package:soko_beauty/core/services/theme_provider.dart';
 import 'package:soko_beauty/core/utils/camera_utils.dart';
 import 'package:soko_beauty/core/utils/permission_utils.dart';
 import 'package:soko_beauty/config/colors/colors.dart';
@@ -24,6 +27,26 @@ class _HomePageState extends State<HomePage> {
   @override
   void initState() {
     super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      _setSystemUIOverlayStyle();
+    });
+  }
+
+  void _setSystemUIOverlayStyle() {
+    final themeProvider = Provider.of<ThemeProvider>(context, listen: false);
+    SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
+      systemNavigationBarIconBrightness: _currentIndex == 0
+          ? Brightness.light
+          : themeProvider.themeData.brightness == Brightness.dark
+              ? Brightness.light
+              : Brightness.dark,
+      systemNavigationBarColor: _currentIndex == 0
+          ? Colors.black
+          : themeProvider.themeData.scaffoldBackgroundColor,
+      systemNavigationBarDividerColor: _currentIndex == 0
+          ? Colors.black
+          : themeProvider.themeData.scaffoldBackgroundColor,
+    ));
   }
 
   Widget _buildCameraPage() {
@@ -37,6 +60,7 @@ class _HomePageState extends State<HomePage> {
           setState(() {
             _currentIndex = _previousIndex;
           });
+          _setSystemUIOverlayStyle();
         },
       ),
     );
@@ -54,6 +78,10 @@ class _HomePageState extends State<HomePage> {
       ProfilePage(),
     ];
 
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      _setSystemUIOverlayStyle();
+    });
+
     return Scaffold(
       extendBodyBehindAppBar: true,
       extendBody: isOnCamera || _currentIndex == 0,
@@ -62,7 +90,7 @@ class _HomePageState extends State<HomePage> {
           ? null
           : BottomAppBar(
               color: _currentIndex == 0
-                  ? Colors.black.withOpacity(0.7)
+                  ? Colors.black.withOpacity(0.9)
                   : Theme.of(context).scaffoldBackgroundColor,
               shape: CircularNotchedRectangle(),
               notchMargin: 0,
@@ -79,6 +107,7 @@ class _HomePageState extends State<HomePage> {
                         _previousIndex = _currentIndex;
                         _currentIndex = 2;
                       });
+                      _setSystemUIOverlayStyle();
                     },
                     mini: true,
                     child: Icon(
@@ -112,6 +141,7 @@ class _HomePageState extends State<HomePage> {
         setState(() {
           _currentIndex = index;
         });
+        _setSystemUIOverlayStyle();
       },
       child: Column(
         mainAxisSize: MainAxisSize.min,
@@ -139,6 +169,7 @@ class _HomePageState extends State<HomePage> {
       ),
     );
   }
+
 
   Widget buildNavItemWithBadge(
       int index, IconData icon, String label, int badgeCount) {

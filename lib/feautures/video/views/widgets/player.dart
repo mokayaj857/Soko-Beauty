@@ -21,8 +21,7 @@ class VideoPlayerScreen extends StatefulWidget {
 class _VideoPlayerScreenState extends State<VideoPlayerScreen> {
   late VideoPlayerController _controller;
   late Future<void> _initializeVideoPlayerFuture;
-  late bool showIcon;
-  bool isLoading = true;
+  bool showIcon = false;
   bool showComments = false;
 
   @override
@@ -38,7 +37,6 @@ class _VideoPlayerScreenState extends State<VideoPlayerScreen> {
 
     // Auto-play after initialization
     _controller.play();
-    showIcon = false;
 
     _controller.setLooping(true);
   }
@@ -50,7 +48,7 @@ class _VideoPlayerScreenState extends State<VideoPlayerScreen> {
   }
 
   void startTimer() {
-    // Wait for two seconds and then update then hide the icon
+    // Wait for two seconds and then hide the icon
     Future.delayed(Duration(seconds: 2), () {
       if (_controller.value.isPlaying)
         setState(() {
@@ -62,19 +60,16 @@ class _VideoPlayerScreenState extends State<VideoPlayerScreen> {
   @override
   Widget build(BuildContext context) {
     double screenWidth = MediaQuery.of(context).size.width;
-    double screenHeight = MediaQuery.of(context).size.height;
-    double aspectRatio = screenWidth / screenHeight;
-
     return Scaffold(
+      backgroundColor: Colors.black,
       body: Stack(children: [
-        Positioned(
-          bottom: 50,
+        Positioned.fill(
           child: FutureBuilder(
             future: _initializeVideoPlayerFuture,
             builder: (context, snapshot) {
               if (snapshot.connectionState == ConnectionState.done) {
                 return AspectRatio(
-                  aspectRatio: aspectRatio,
+                  aspectRatio: _controller.value.aspectRatio,
                   child: VideoPlayer(_controller),
                 );
               } else {
@@ -85,13 +80,11 @@ class _VideoPlayerScreenState extends State<VideoPlayerScreen> {
             },
           ),
         ),
-        Container(
-          width: screenWidth,
-          height: screenHeight,
+        Positioned.fill(
           child: BackdropFilter(
-            filter: ImageFilter.blur(sigmaX: .01, sigmaY: .01),
+            filter: ImageFilter.blur(sigmaX: 100, sigmaY: 100),
             child: Container(
-              color: Colors.black.withOpacity(0.95),
+              color: Colors.black.withOpacity(0.85),
             ),
           ),
         ),
@@ -135,20 +128,38 @@ class _VideoPlayerScreenState extends State<VideoPlayerScreen> {
             ),
           ),
         // Video actions
-        Positioned(bottom: 50, right: 0, child: widget.videoActions),
+        Positioned(bottom: 50, right: 10, child: widget.videoActions),
 
-        // video in such as description,
-        Positioned(bottom: 80, child: VideoInfo(videoInfo: widget.videoInfo)),
+        // Video info such as description
+        Positioned(
+            bottom: 100,
+            left: 10,
+            child: VideoInfo(videoInfo: widget.videoInfo)),
 
-        // video audio data such as song name and artist
+        // Video progress indicator
+        Positioned(
+          bottom: 85,
+          left: 0,
+          right: 0,
+          child: VideoProgressIndicator(
+            _controller,
+            allowScrubbing: true,
+            colors: VideoProgressColors(
+              playedColor: Colors.red.withOpacity(0.7),
+              bufferedColor: Colors.white.withOpacity(0.0),
+              backgroundColor: Colors.grey.withOpacity(0.4),
+            ),
+          ),
+        ),
+        // Video audio data such as song name and artist
         Positioned(
           bottom: 50,
           right: 0,
           left: 0,
           child: Container(
             width: screenWidth,
-            // height: 30,
-            padding: EdgeInsets.symmetric(horizontal: 10, vertical: 3),
+            height: 35,
+            padding: EdgeInsets.symmetric(horizontal: 10, vertical: 2),
             decoration: BoxDecoration(
               color: Colors.black.withOpacity(0.3),
               border: Border(
@@ -185,17 +196,9 @@ class _VideoPlayerScreenState extends State<VideoPlayerScreen> {
                   flex: 1,
                 ),
                 Container(
-                  padding: EdgeInsets.symmetric(horizontal: 10, vertical: 2),
+                  padding: EdgeInsets.symmetric(horizontal: 10, vertical: 4),
                   decoration: BoxDecoration(
-                    // color: Colors.white.withOpacity(0.05),
                     borderRadius: BorderRadius.circular(20),
-                    // boxShadow: [
-                    //   BoxShadow(
-                    //     color: Colors.black.withOpacity(0.2),
-                    //     blurRadius: 5,
-                    //     spreadRadius: 0.5,
-                    //   )
-                    // ],
                     gradient: LinearGradient(
                       colors: [
                         Colors.red.withOpacity(0.4),
@@ -228,5 +231,13 @@ class _VideoPlayerScreenState extends State<VideoPlayerScreen> {
         )
       ]),
     );
+  }
+
+  String _formatDuration(Duration duration) {
+    String twoDigits(int n) => n.toString().padLeft(2, "0");
+    final hours = twoDigits(duration.inHours);
+    final minutes = twoDigits(duration.inMinutes.remainder(60));
+    final seconds = twoDigits(duration.inSeconds.remainder(60));
+    return [if (duration.inHours > 0) hours, minutes, seconds].join(":");
   }
 }
