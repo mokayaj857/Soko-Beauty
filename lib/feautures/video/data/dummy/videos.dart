@@ -24,7 +24,7 @@ List<Video> fetchDummyData() {
       shares: ['user2', 'user4'],
       likeCount: 3,
       shareCount: 2,
-      ownerId: 'user1',
+      ownerId: '@joycebeauty',
       tags: ['hair', 'tutorial', 'beauty'],
       description:
           'Learn how to create a beautiful hairstyle with this tutorial.',
@@ -49,7 +49,7 @@ List<Video> fetchDummyData() {
       shares: ['user3'],
       likeCount: 2,
       shareCount: 1,
-      ownerId: 'user2',
+      ownerId: '@dukatech',
       tags: ['makeup', 'lipstick', 'beauty'],
       description: 'Check out this gorgeous lipstick color review.',
     ),
@@ -61,7 +61,7 @@ List<Video> fetchDummyData() {
       associatedItemId: 102,
       comments: [
         Comment(
-            userId: 'user2',
+            userId: '@decorate',
             text: 'Amazing spa experience!',
             timestamp: DateTime.now().subtract(Duration(days: 1))),
         Comment(

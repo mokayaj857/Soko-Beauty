@@ -49,8 +49,9 @@ class _AnimatedPlayPauseIconState extends State<AnimatedPlayPauseIcon>
   @override
   Widget build(BuildContext context) {
     return AnimatedIcon(
-      size: 50,
+      size: 75,
       icon: AnimatedIcons.play_pause,
+      color: Colors.white.withOpacity(0.7),
       progress: animation,
     );
   }

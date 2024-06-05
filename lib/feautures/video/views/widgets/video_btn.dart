@@ -7,6 +7,8 @@ class VideoActionButtons extends StatelessWidget {
   final VoidCallback onCommentPressed;
   final VoidCallback onSharePressed;
   final VoidCallback shoppingCartPressed;
+  final VoidCallback bookingIconPressed;
+  final String currentTab;
 
   const VideoActionButtons({
     Key? key,
@@ -15,97 +17,128 @@ class VideoActionButtons extends StatelessWidget {
     required this.onCommentPressed,
     required this.onSharePressed,
     required this.shoppingCartPressed,
+    required this.currentTab,
+    required this.bookingIconPressed
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Positioned(
       bottom: 5.0,
-      right: 5.0,
+      right: 15.0,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.end,
         children: [
-          FloatingActionButton(
-            heroTag: 'add',
-            mini: true,
-            onPressed: onAddPressed,
-            child: Container(
-              width: double.infinity,
-              height: double.infinity,
-              decoration: BoxDecoration(
-                shape: BoxShape.circle,
-                color: sbbrickRed.withOpacity(0.4),
-              ),
-              child: Stack(
-                alignment: Alignment.center,
-                children: [
-                  Positioned.fill(
-                    child: ClipOval(
-                      child: Image.network(
-                        'https://picsum.photos/100/100',
-                        fit: BoxFit.cover,
-                      ),
-                    ),
-                  ),
-                  Align(
-                    alignment: Alignment.topRight,
-                    child: Icon(
-                      color: sbbrickRed,
-                      Icons.add_circle,
-                      size: 20,
-                    ),
-                  ),
-                ],
-              ),
-            ),
-          ),
-          SizedBox(height: 20.0),
           _buildActionButton(
-
             onPressed: onFavoritePressed,
-            icon: Icons.favorite_border_outlined,
-            label: '2.5k', heroTag: 'favorite',
+            icon: Icons.favorite_outline_rounded,
+            label: '2.5k',
+            heroTag: 'favorite',
           ),
           SizedBox(height: 20.0),
           _buildActionButton(
             onPressed: onCommentPressed,
-            icon: Icons.comment_rounded,
-            label: '1M', heroTag: 'comment',
+            icon: Icons.comment_outlined,
+            label: '1M',
+            heroTag: 'comment',
           ),
           SizedBox(height: 20.0),
           _buildActionButton(
             onPressed: onSharePressed,
             icon: Icons.share,
-            label: '20k', heroTag: 'share',
+            label: '20k',
+            heroTag: 'share',
           ),
           SizedBox(height: 20.0),
-          FloatingActionButton(
-            heroTag: 'cart',
-            mini: true,
-            onPressed: shoppingCartPressed,
-            child: Stack(
-              alignment: Alignment.center,
+          if (currentTab == "products")
+            Column(
               children: [
-                Icon(
-                  Icons.shopping_cart,
+                FloatingActionButton(
+                  backgroundColor: Colors.transparent,
+                  elevation: 1,
+                  heroTag: 'cart',
+                  mini: true,
+                  onPressed: shoppingCartPressed,
+                  child: Stack(
+                    alignment: Alignment.center,
+                    children: [
+                      Icon(
+                        Icons.shopping_cart,
+                        size: 30.0,
+                      ),
+                      Align(
+                        alignment: Alignment.topRight,
+                        child: CircleAvatar(
+                            radius: 9.0,
+                            backgroundColor: sbbrickRed,
+                            child: Center(
+                              child: Text(
+                                '2',
+                                style: TextStyle(
+                                    fontSize: 10.0, color: Colors.white),
+                              ),
+                            )),
+                      ),
+                    ],
+                  ),
                 ),
-                Align(
-                  alignment: Alignment.topRight,
-                  child: CircleAvatar(
-                      radius: 9.0,
-                      backgroundColor: sbbrickRed,
-                      child: Center(
-                        child: Text(
-                          '2',
-                          style: TextStyle(fontSize: 10.0, color: Colors.white),
-                        ),
-                      )),
-                ),
+                Text("Cart",
+                    style: TextStyle(
+                      fontSize: 13.0,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.white.withOpacity(0.9),
+                    )),
               ],
             ),
+          if (currentTab == "services")
+            Column(
+              children: [
+                FloatingActionButton(
+                  backgroundColor: Colors.transparent,
+                  elevation: 1,
+                  heroTag: 'cart',
+                  mini: true,
+                  onPressed: bookingIconPressed,
+                  child: Stack(
+                    alignment: Alignment.center,
+                    children: [
+                      Icon(
+                        Icons.calendar_today_rounded,
+                        size: 30.0,
+                      ),
+                      Align(
+                        alignment: Alignment.topRight,
+                        child: CircleAvatar(
+                            radius: 9.0,
+                            backgroundColor: sbbrickRed,
+                            child: Center(
+                              child: Text(
+                                '2',
+                                style: TextStyle(
+                                    fontSize: 10.0, color: Colors.white),
+                              ),
+                            )),
+                      ),
+                    ],
+                  ),
+                ),
+                Text("Book",
+                    style: TextStyle(
+                      fontSize: 13.0,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.white.withOpacity(0.9),
+                    )),
+              ],
+            ),
+          IconButton(
+            onPressed: () {},
+            icon: Icon(
+              Icons.more_horiz_rounded,
+              color: Colors.white.withOpacity(0.9),
+              size: 30.0,
+            ),
           ),
-          SizedBox(height: 10.0),
-          //Center(child: Text("Cart")),
+          SizedBox(height: 40.0),
         ],
       ),
     );
@@ -120,18 +153,25 @@ class VideoActionButtons extends StatelessWidget {
     return Column(
       children: [
         FloatingActionButton(
+          backgroundColor: Colors.black.withOpacity(0.1),
+          elevation: 0,
+          enableFeedback: false,
+          hoverElevation: 0.0,
           heroTag: heroTag,
           mini: true,
           onPressed: onPressed,
           child: Icon(
             icon,
+            size: 30.0,
           ),
         ),
         if (label.isNotEmpty) ...[
-          SizedBox(height: 5.0),
           Text(
             label,
-            style: TextStyle(fontSize: 13.0, fontWeight: FontWeight.bold),
+            style: TextStyle(
+                fontSize: 12.0,
+                fontWeight: FontWeight.bold,
+                color: Colors.white.withOpacity(0.9)),
           ),
         ],
       ],

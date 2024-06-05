@@ -237,9 +237,4 @@ ThemeData darkMode = ThemeData(
     textStyle: TextStyle(color: Colors.white),
   ),
 
-  // toggleableActiveColor: Colors.blue,
-  // selectedRowColor: Colors.grey.shade200,
-  // errorColor: Colors.red,
-  // backgroundColor: Colors.white,
-  // bottomAppBarColor: Colors.blue,
 );

@@ -13,6 +13,7 @@ class TagWidget extends StatelessWidget {
         style: TextStyle(
             fontSize: 13,
             fontWeight: FontWeight.w300,
+            color: Colors.white.withOpacity(0.9)
             ),
       ),
     );
