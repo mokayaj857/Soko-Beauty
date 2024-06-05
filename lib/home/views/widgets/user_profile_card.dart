@@ -18,6 +18,7 @@ class UserProfileCard extends StatelessWidget {
           style: TextStyle(
             fontSize: 16,
           )),
+      scrolledUnderElevation: 0.0,
       backgroundColor:
           Theme.of(context).bottomAppBarTheme.color!.withOpacity(0.9),
       foregroundColor: sbbrickRed,

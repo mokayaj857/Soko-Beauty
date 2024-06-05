@@ -132,9 +132,7 @@ class _VideoPlayerScreenState extends State<VideoPlayerScreen> {
 
         // Video info such as description
         Positioned(
-            bottom: 100,
-            left: 10,
-            child: VideoInfo(videoInfo: widget.videoInfo)),
+            bottom: 85, left: 0, child: VideoInfo(videoInfo: widget.videoInfo)),
 
         // Video progress indicator
         Positioned(

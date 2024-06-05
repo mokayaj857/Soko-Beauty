@@ -10,16 +10,16 @@ class VideoActionButtons extends StatelessWidget {
   final VoidCallback bookingIconPressed;
   final String currentTab;
 
-  const VideoActionButtons({
-    Key? key,
-    required this.onAddPressed,
-    required this.onFavoritePressed,
-    required this.onCommentPressed,
-    required this.onSharePressed,
-    required this.shoppingCartPressed,
-    required this.currentTab,
-    required this.bookingIconPressed
-  }) : super(key: key);
+  const VideoActionButtons(
+      {Key? key,
+      required this.onAddPressed,
+      required this.onFavoritePressed,
+      required this.onCommentPressed,
+      required this.onSharePressed,
+      required this.shoppingCartPressed,
+      required this.currentTab,
+      required this.bookingIconPressed})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -54,8 +54,8 @@ class VideoActionButtons extends StatelessWidget {
             Column(
               children: [
                 FloatingActionButton(
-                  backgroundColor: Colors.transparent,
-                  elevation: 1,
+                  backgroundColor: Colors.black.withOpacity(0.15),
+                  elevation: 0,
                   heroTag: 'cart',
                   mini: true,
                   onPressed: shoppingCartPressed,
@@ -94,8 +94,8 @@ class VideoActionButtons extends StatelessWidget {
             Column(
               children: [
                 FloatingActionButton(
-                  backgroundColor: Colors.transparent,
-                  elevation: 1,
+                  backgroundColor: Colors.black.withOpacity(0.15),
+                  elevation: 0,
                   heroTag: 'cart',
                   mini: true,
                   onPressed: bookingIconPressed,
@@ -103,7 +103,7 @@ class VideoActionButtons extends StatelessWidget {
                     alignment: Alignment.center,
                     children: [
                       Icon(
-                        Icons.calendar_today_rounded,
+                        Icons.edit_calendar_rounded,
                         size: 30.0,
                       ),
                       Align(
@@ -153,7 +153,7 @@ class VideoActionButtons extends StatelessWidget {
     return Column(
       children: [
         FloatingActionButton(
-          backgroundColor: Colors.black.withOpacity(0.1),
+          backgroundColor: Colors.black.withOpacity(0.15),
           elevation: 0,
           enableFeedback: false,
           hoverElevation: 0.0,
