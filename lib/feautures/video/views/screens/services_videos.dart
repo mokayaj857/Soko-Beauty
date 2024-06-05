@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:soko_beauty/feautures/video/data/dummy/videos.dart';
 import 'package:soko_beauty/feautures/video/data/models/video.dart';
+import 'package:soko_beauty/feautures/video/views/widgets/booking_page/booking_page.dart';
 import 'package:soko_beauty/feautures/video/views/widgets/comments.dart';
 import 'package:soko_beauty/feautures/video/views/widgets/player.dart';
 import 'package:soko_beauty/feautures/video/views/widgets/video_btn.dart';
@@ -30,6 +31,10 @@ class _ServicesVideosTabState extends State<ServicesVideosTab> {
                   builder: (context) {
                     return CommentSection();
                   });
+            },
+            bookingIconPressed: () {
+               Navigator.push(
+                  context, MaterialPageRoute(builder: (context) => BookingPage()));
             },
             shoppingCartPressed: () {},
             onSharePressed: () {},

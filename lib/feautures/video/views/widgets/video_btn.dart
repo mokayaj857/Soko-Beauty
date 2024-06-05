@@ -7,6 +7,7 @@ class VideoActionButtons extends StatelessWidget {
   final VoidCallback onCommentPressed;
   final VoidCallback onSharePressed;
   final VoidCallback shoppingCartPressed;
+  final VoidCallback bookingIconPressed;
   final String currentTab;
 
   const VideoActionButtons({
@@ -17,6 +18,7 @@ class VideoActionButtons extends StatelessWidget {
     required this.onSharePressed,
     required this.shoppingCartPressed,
     required this.currentTab,
+    required this.bookingIconPressed
   }) : super(key: key);
 
   @override
@@ -96,7 +98,7 @@ class VideoActionButtons extends StatelessWidget {
                   elevation: 1,
                   heroTag: 'cart',
                   mini: true,
-                  onPressed: shoppingCartPressed,
+                  onPressed: bookingIconPressed,
                   child: Stack(
                     alignment: Alignment.center,
                     children: [
