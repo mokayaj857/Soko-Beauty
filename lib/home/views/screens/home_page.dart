@@ -35,15 +35,15 @@ class _HomePageState extends State<HomePage> {
   void _setSystemUIOverlayStyle() {
     final themeProvider = Provider.of<ThemeProvider>(context, listen: false);
     SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
-      systemNavigationBarIconBrightness: _currentIndex == 0
+      systemNavigationBarIconBrightness: _currentIndex == 0 || _currentIndex == 2
           ? Brightness.light
           : themeProvider.themeData.brightness == Brightness.dark
               ? Brightness.light
               : Brightness.dark,
-      systemNavigationBarColor: _currentIndex == 0
+      systemNavigationBarColor: _currentIndex == 0 || _currentIndex == 2
           ? Colors.black
           : themeProvider.themeData.scaffoldBackgroundColor,
-      systemNavigationBarDividerColor: _currentIndex == 0
+      systemNavigationBarDividerColor: _currentIndex == 0 || _currentIndex == 2
           ? Colors.black
           : themeProvider.themeData.scaffoldBackgroundColor,
     ));

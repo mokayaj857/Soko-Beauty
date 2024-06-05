@@ -125,10 +125,6 @@ class _BookingCalendarWidgetState extends State<BookingCalendarWidget> {
                   ),
             const SizedBox(height: 20),
             ElevatedButton(
-              style: ElevatedButton.styleFrom(
-                primary: Theme.of(context).primaryColor,
-                onPrimary: Colors.white,
-              ),
               onPressed: _selectedDay == null
                   ? null
                   : () {

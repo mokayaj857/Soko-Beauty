@@ -21,43 +21,36 @@ class _VideoPageState extends State<VideoPage> {
           titleSpacing: 0.0,
           backgroundColor: Colors.transparent,
           elevation: 0,
+          leadingWidth: 300,
           centerTitle: false,
-          title: TabBar(
+          automaticallyImplyLeading: false,
+          leading: TabBar(
             dividerColor: Colors.transparent,
             indicatorSize: TabBarIndicatorSize.tab,
             indicator: BoxDecoration(
               borderRadius: BorderRadius.circular(50),
-              color: Colors.white.withOpacity(0.3),
-              border: Border.all(color: Colors.white.withOpacity(0.1)),
-            ),
-            indicatorPadding: EdgeInsets.symmetric(
-              horizontal: 14.0,
-              vertical: 0.0,
+              color: Colors.black.withOpacity(0.3),
+              border: Border.all(color: Colors.white.withOpacity(0.3)),
             ),
             labelColor: Colors.white.withOpacity(0.7),
-            // labelStyle: TextStyle(
-            //   fontWeight: FontWeight.w600,
-            //   decorationStyle: TextDecorationStyle.solid,
-            //   decoration: TextDecoration.underline,
-            //   decorationThickness: 3.0,
-            //   decorationColor: Theme.of(context).primaryColor.withOpacity(0.75),
-            // ),
+            indicatorPadding: EdgeInsets.only(
+                left: 0.0, right: 0.0, top: 15.0, bottom: 15.0),
             labelPadding: EdgeInsets.zero,
             unselectedLabelColor: Colors.white.withOpacity(0.9),
-            padding: EdgeInsets.symmetric(horizontal: 5.0),
+            padding: EdgeInsets.symmetric(horizontal: 5.0, vertical: 0.0),
             splashFactory: NoSplash.splashFactory,
             tabs: [
               Tab(
                 text: 'Community',
-                height: 25,
+                height: 20,
               ),
               Tab(
                 text: 'Services',
-                height: 25,
+                height: 20,
               ),
               Tab(
                 text: 'Products',
-                height: 25,
+                height: 20,
               ),
             ],
           ),

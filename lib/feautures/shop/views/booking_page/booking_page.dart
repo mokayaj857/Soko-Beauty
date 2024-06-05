@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:soko_beauty/feautures/video/views/widgets/booking_page/booking_calendar.dart';
-import 'package:soko_beauty/feautures/video/views/widgets/booking_page/image_caraousel.dart';
+import 'package:soko_beauty/feautures/shop/views/booking_page/booking_calendar.dart';
+import 'package:soko_beauty/feautures/shop/views/booking_page/image_caraousel.dart';
 
 class BookingPage extends StatelessWidget {
   @override

@@ -27,7 +27,7 @@ List<Video> fetchDummyData() {
       ownerId: '@joycebeauty',
       tags: ['hair', 'tutorial', 'beauty'],
       description:
-          'Learn how to create a beautiful hairstyle with this tutorial.',
+          'Learn how to create a beautiful hairstyle with this tutorial. Learn how to create a beautiful hairstyle with this tutorial.',
     ),
     Video(
       id: 2,
