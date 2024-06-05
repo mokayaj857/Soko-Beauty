@@ -35,6 +35,9 @@ class _AllVideosTabState extends State<AllVideosTab> {
             },
             shoppingCartPressed: () {},
             onSharePressed: () {},
+            bookingIconPressed: () {
+              
+            },
             currentTab: '',
           ),
         );

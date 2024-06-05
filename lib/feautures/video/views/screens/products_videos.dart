@@ -35,6 +35,9 @@ class _ProductsVideoTabState extends State<ProductsVideoTab> {
               Navigator.push(
                   context, MaterialPageRoute(builder: (context) => CartPage()));
             },
+            bookingIconPressed: () {
+              
+            },
             onSharePressed: () {},
             currentTab: 'products',
           ),); // Pass the entire Video object
