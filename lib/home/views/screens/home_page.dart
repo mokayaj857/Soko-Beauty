@@ -7,10 +7,10 @@ import 'package:soko_beauty/core/utils/camera_utils.dart';
 import 'package:soko_beauty/core/utils/permission_utils.dart';
 import 'package:soko_beauty/config/colors/colors.dart';
 import 'package:soko_beauty/feautures/post/views/services/camera_bloc.dart';
-import 'package:soko_beauty/home/views/screens/main/camera_page.dart';
 import 'package:soko_beauty/home/views/screens/main/chats.dart';
-import 'package:soko_beauty/home/views/screens/main/market.dart';
-import 'package:soko_beauty/home/views/screens/main/my_account.dart';
+import 'package:soko_beauty/home/views/screens/main/post.dart';
+import 'package:soko_beauty/home/views/screens/main/shop.dart';
+import 'package:soko_beauty/home/views/screens/main/profile.dart';
 import 'package:soko_beauty/home/views/screens/main/videos.dart';
 
 class HomePage extends StatefulWidget {
@@ -55,7 +55,7 @@ class _HomePageState extends State<HomePage> {
         cameraUtils: CameraUtils(),
         permissionUtils: PermissionUtils(),
       )..add(const CameraInitialize(recordingLimit: 15)),
-      child: CameraPage(
+      child: PostPage(
         onExit: () {
           setState(() {
             _currentIndex = _previousIndex;

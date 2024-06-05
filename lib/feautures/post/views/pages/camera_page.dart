@@ -16,11 +16,8 @@ import 'package:soko_beauty/home/views/widgets/gallery_picker.dart';
 import 'package:visibility_detector/visibility_detector.dart';
 
 class CameraPage extends StatefulWidget {
-  final VoidCallback onExit;
-
   const CameraPage({
     Key? key,
-    required this.onExit,
   }) : super(key: key);
 
   @override
@@ -75,16 +72,6 @@ class _CameraPageState extends State<CameraPage> with WidgetsBindingObserver {
       appBar: AppBar(
         backgroundColor: Colors.transparent,
         elevation: 0,
-        leading: IconButton(
-          onPressed: () {
-             widget.onExit();
-          },
-          icon: const Icon(
-            size: 30,
-            Icons.close_rounded,
-            color: Colors.white,
-          ),
-        ),
         actions: [
           //butttons to controll video recording switch camera settings, flashlight
           IconButton(
