@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:soko_beauty/feautures/video/views/screens/all_videos.dart';
 import 'package:soko_beauty/feautures/video/views/screens/products_videos.dart';
@@ -33,8 +34,8 @@ class _VideoPageState extends State<VideoPage> {
               border: Border.all(color: Colors.white.withOpacity(0.3)),
             ),
             labelColor: Colors.white.withOpacity(0.7),
-            indicatorPadding: EdgeInsets.only(
-                left: 0.0, right: 0.0, top: 15.0, bottom: 15.0),
+            indicatorPadding:
+                EdgeInsets.only(left: 0.0, right: 0.0, top: 15.0, bottom: 15.0),
             labelPadding: EdgeInsets.zero,
             unselectedLabelColor: Colors.white.withOpacity(0.9),
             padding: EdgeInsets.symmetric(horizontal: 5.0, vertical: 0.0),
@@ -57,7 +58,7 @@ class _VideoPageState extends State<VideoPage> {
           actions: [
             IconButton(
               onPressed: () {},
-              icon: Icon(Icons.search_rounded,
+              icon: Icon(CupertinoIcons.search,
                   color: Colors.white.withOpacity(0.9), size: 30.0),
             ),
           ],

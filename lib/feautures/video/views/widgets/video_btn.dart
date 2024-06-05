@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:soko_beauty/config/colors/colors.dart';
 
@@ -31,25 +32,25 @@ class VideoActionButtons extends StatelessWidget {
         children: [
           _buildActionButton(
             onPressed: onFavoritePressed,
-            icon: Icons.favorite_outline_rounded,
+            icon: CupertinoIcons.heart_fill,
             label: '2.5k',
             heroTag: 'favorite',
           ),
-          SizedBox(height: 20.0),
+          SizedBox(height: 15.0),
           _buildActionButton(
             onPressed: onCommentPressed,
-            icon: Icons.comment_outlined,
+            icon: CupertinoIcons.chat_bubble_text_fill,
             label: '1M',
             heroTag: 'comment',
           ),
-          SizedBox(height: 20.0),
+          SizedBox(height: 15.0),
           _buildActionButton(
             onPressed: onSharePressed,
-            icon: Icons.share,
+            icon: CupertinoIcons.arrowshape_turn_up_right_fill,
             label: '20k',
             heroTag: 'share',
           ),
-          SizedBox(height: 20.0),
+          SizedBox(height: 15.0),
           if (currentTab == "products")
             Column(
               children: [
@@ -63,7 +64,7 @@ class VideoActionButtons extends StatelessWidget {
                     alignment: Alignment.center,
                     children: [
                       Icon(
-                        Icons.shopping_cart,
+                        CupertinoIcons.cart_fill,
                         size: 30.0,
                       ),
                       Align(
@@ -103,7 +104,7 @@ class VideoActionButtons extends StatelessWidget {
                     alignment: Alignment.center,
                     children: [
                       Icon(
-                        Icons.edit_calendar_rounded,
+                        CupertinoIcons.book_fill,
                         size: 30.0,
                       ),
                       Align(
