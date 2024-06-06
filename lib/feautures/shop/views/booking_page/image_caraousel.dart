@@ -12,7 +12,6 @@ class ImageCarousel extends StatefulWidget {
 }
 
 class _ImageCarouselState extends State<ImageCarousel> {
-  int _currentIndex = 0;
   CarouselController _carouselController = CarouselController();
 
   @override
@@ -24,11 +23,7 @@ class _ImageCarouselState extends State<ImageCarousel> {
           options: CarouselOptions(
             height: 400,
             viewportFraction: 1.0,
-            onPageChanged: (index, reason) {
-              setState(() {
-                _currentIndex = index;
-              });
-            },
+            onPageChanged: (index, reason) {},
           ),
           items: [
             'https://picsum.photos/id/1041/300/202',
@@ -79,7 +74,7 @@ class VerticalImageSlider extends StatelessWidget {
         ),
         GestureDetector(
           onTap: () {
-           onImageSelected(1);
+            onImageSelected(1);
           },
           child: Image.network(
             'https://picsum.photos/id/1045/300/202',
@@ -90,7 +85,7 @@ class VerticalImageSlider extends StatelessWidget {
         ),
         GestureDetector(
           onTap: () {
-           onImageSelected(2);
+            onImageSelected(2);
           },
           child: Image.network(
             'https://picsum.photos/id/1050/300/204',
@@ -101,7 +96,7 @@ class VerticalImageSlider extends StatelessWidget {
         ),
         GestureDetector(
           onTap: () {
-           onImageSelected(3);
+            onImageSelected(3);
           },
           child: Image.network(
             'https://picsum.photos/id/1021/300/202',

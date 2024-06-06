@@ -17,12 +17,10 @@ ThemeData lightMode = ThemeData(
     primary: sbdarkBrown,
     secondary: sbdeepRed,
     surface: Colors.white,
-    background: Colors.white,
     error: Colors.red,
     onPrimary: Colors.white,
     onSecondary: Colors.white,
     onSurface: Colors.black,
-    onBackground: Colors.black,
     onError: Colors.white,
     brightness: Brightness.light,
   ),
@@ -89,14 +87,14 @@ ThemeData lightMode = ThemeData(
   ),
   textButtonTheme: TextButtonThemeData(
     style: ButtonStyle(
-      padding: MaterialStateProperty.all(EdgeInsets.all(0.0)),
-      foregroundColor: MaterialStateProperty.all(sbdarkBrown),
+      padding: WidgetStateProperty.all(EdgeInsets.all(0.0)),
+      foregroundColor: WidgetStateProperty.all(sbdarkBrown),
     ),
   ),
   iconButtonTheme: IconButtonThemeData(
     style: ButtonStyle(
-      padding: MaterialStateProperty.all(EdgeInsets.all(0.0)),
-      backgroundColor: MaterialStateProperty.all(Colors.transparent),
+      padding: WidgetStateProperty.all(EdgeInsets.all(0.0)),
+      backgroundColor: WidgetStateProperty.all(Colors.transparent),
     ),
   ),
 );

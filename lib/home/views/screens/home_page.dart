@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -7,11 +8,11 @@ import 'package:soko_beauty/core/utils/camera_utils.dart';
 import 'package:soko_beauty/core/utils/permission_utils.dart';
 import 'package:soko_beauty/config/colors/colors.dart';
 import 'package:soko_beauty/feautures/post/views/services/camera_bloc.dart';
-import 'package:soko_beauty/home/views/screens/main/chats.dart';
+import 'package:soko_beauty/home/views/screens/main/chat.dart';
 import 'package:soko_beauty/home/views/screens/main/post.dart';
 import 'package:soko_beauty/home/views/screens/main/shop.dart';
 import 'package:soko_beauty/home/views/screens/main/profile.dart';
-import 'package:soko_beauty/home/views/screens/main/videos.dart';
+import 'package:soko_beauty/home/views/screens/main/video.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -49,7 +50,7 @@ class _HomePageState extends State<HomePage> {
     ));
   }
 
-  Widget _buildCameraPage() {
+  Widget _buildPostPage() {
     return BlocProvider(
       create: (context) => CameraBloc(
         cameraUtils: CameraUtils(),
@@ -73,7 +74,7 @@ class _HomePageState extends State<HomePage> {
     final List<Widget> _screens = [
       VideoPage(),
       MarketPage(),
-      _buildCameraPage(),
+      _buildPostPage(),
       ChatsPage(),
       ProfilePage(),
     ];
@@ -98,8 +99,10 @@ class _HomePageState extends State<HomePage> {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
-                  buildNavItem(0, Icons.home_filled, 'Home'),
-                  buildNavItem(1, Icons.shop, 'Shop'),
+                  buildNavItem(0, CupertinoIcons.house_alt_fill
+                  , 'Home'),
+                  buildNavItem(1, CupertinoIcons.bag_fill
+                  , 'Shop'),
                   FloatingActionButton(
                     backgroundColor: Colors.transparent,
                     onPressed: () {
@@ -119,8 +122,10 @@ class _HomePageState extends State<HomePage> {
                     ),
                   ),
                   buildNavItemWithBadge(
-                      3, Icons.mark_chat_unread_rounded, 'Inbox', 3),
-                  buildNavItem(4, Icons.person, 'Profile'),
+                      3, CupertinoIcons.chat_bubble_2_fill
+                      , 'Inbox', 3),
+                  buildNavItem(4, CupertinoIcons.person_fill
+                  , 'Profile'),
                 ],
               ),
             ),
@@ -183,7 +188,7 @@ class _HomePageState extends State<HomePage> {
             child: Container(
               padding: EdgeInsets.all(1),
               decoration: BoxDecoration(
-                color: sbwarmRed,
+                color: Colors.redAccent,
                 borderRadius: BorderRadius.circular(15),
               ),
               constraints: BoxConstraints(

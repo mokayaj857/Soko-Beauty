@@ -68,7 +68,7 @@ class ConversationScreen extends StatelessWidget {
               children: [
                 IconButton(
                   style: ButtonStyle(
-                    padding: MaterialStateProperty.all(EdgeInsets.all(0.0)),
+                    padding: WidgetStateProperty.all(EdgeInsets.all(0.0)),
                   ),
                   icon: Icon(Icons.attach_file),
                   onPressed: () {
@@ -77,7 +77,7 @@ class ConversationScreen extends StatelessWidget {
                 ),
                 // IconButton(
                 //   style: ButtonStyle(
-                //     padding: MaterialStateProperty.all(EdgeInsets.all(0.0)),
+                //     padding: WidgetStateProperty.all(EdgeInsets.all(0.0)),
                 //   ),
                 //   icon: Icon(Icons.camera_alt),
                 //   onPressed: () {
@@ -106,7 +106,7 @@ class ConversationScreen extends StatelessWidget {
                         child: IconButton(
                           style: ButtonStyle(
                             padding:
-                                MaterialStateProperty.all(EdgeInsets.all(0.0)),
+                                WidgetStateProperty.all(EdgeInsets.all(0.0)),
                           ),
                           icon: Icon(Icons.emoji_emotions),
                           onPressed: () {

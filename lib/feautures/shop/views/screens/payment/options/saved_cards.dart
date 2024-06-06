@@ -111,7 +111,7 @@ class SavedCardItem extends StatelessWidget {
               onPressed: onDeletePressed,
               child: Text('Delete'),
               style: ButtonStyle(
-                backgroundColor: MaterialStateProperty.all(Colors.red),
+                backgroundColor: WidgetStateProperty.all(Colors.red),
               ),
             ),
           ],

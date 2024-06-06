@@ -4,7 +4,6 @@ import 'package:soko_beauty/feautures/shop/views/screens/cart/cart_archives.dart
 import 'package:soko_beauty/feautures/shop/views/screens/payment/payment.dart';
 import 'package:soko_beauty/feautures/shop/views/widgets/cart/cart_item.dart';
 
-
 class CartPage extends StatefulWidget {
   @override
   _CartPageState createState() => _CartPageState();
@@ -32,7 +31,8 @@ class _CartPageState extends State<CartPage> {
             Navigator.of(context).pop();
           },
         ),
-        backgroundColor: Theme.of(context).bottomAppBarTheme.color?.withOpacity(0.5),
+        backgroundColor:
+            Theme.of(context).bottomAppBarTheme.color?.withOpacity(0.5),
         title: Text('Cart'),
         actions: [
           IconButton(
@@ -53,19 +53,19 @@ class _CartPageState extends State<CartPage> {
               child: Text('Your Cart Is Empty.'),
             )
           : Expanded(
-            child: ListView.builder(
-              itemExtent: 150,
-              itemCount: cartProducts.length,
-              itemBuilder: (context, index) {
-                final product = cartProducts[index];
-                return CartItem(
-                  product: product,
-                  onRemove: () => _removeProduct(index),
-                  onAddPressed: () {},
-                );
-              },
+              child: ListView.builder(
+                itemExtent: 150,
+                itemCount: cartProducts.length,
+                itemBuilder: (context, index) {
+                  final product = cartProducts[index];
+                  return CartItem(
+                    product: product,
+                    onRemove: () => _removeProduct(index),
+                    onAddPressed: () {},
+                  );
+                },
+              ),
             ),
-          ),
       bottomNavigationBar: BottomAppBar(
         color: Theme.of(context).scaffoldBackgroundColor,
         height: 80,
@@ -82,21 +82,20 @@ class _CartPageState extends State<CartPage> {
                   fontWeight: FontWeight.bold,
                 ),
               ),
-            //create a beautiful button
+              //create a beautiful button
               ElevatedButton(
                 onPressed: () {
                   Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder: (context) => PaymentScreen(
-                        
-                      ),
+                      builder: (context) => PaymentScreen(),
                     ),
                   );
                 },
                 child: Text('Checkout'),
                 style: ButtonStyle(
-                  backgroundColor: MaterialStateProperty.all(Theme.of(context).primaryColor),
+                  backgroundColor:
+                      WidgetStateProperty.all(Theme.of(context).primaryColor),
                 ),
               ),
             ],

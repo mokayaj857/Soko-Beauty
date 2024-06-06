@@ -14,9 +14,9 @@ void main() async {
     DeviceOrientation.portraitUp,
     DeviceOrientation.portraitDown,
   ]);
-  
+
   // Initialize Firebase
-  
+
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
@@ -25,20 +25,14 @@ void main() async {
   FirebaseFirestore.instance.settings = Settings(
     persistenceEnabled: true,
   );
-  runApp( 
-     MultiProvider(
-      providers: [
-        ChangeNotifierProvider(create: (context) => ThemeProvider()),
-        ChangeNotifierProvider(create: (context) => UserProvider()),
-      ],
-      child: MyApp()
-
-    )
-  );
+  runApp(MultiProvider(providers: [
+    ChangeNotifierProvider(create: (context) => ThemeProvider()),
+    ChangeNotifierProvider(create: (context) => UserProvider()),
+  ], child: SokoBeauty()));
 }
 
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+class SokoBeauty extends StatelessWidget {
+  const SokoBeauty({super.key});
   @override
   Widget build(BuildContext context) {
     final themeProvider = Provider.of<ThemeProvider>(context);
@@ -50,7 +44,8 @@ class MyApp extends StatelessWidget {
               ? Brightness.light
               : Brightness.dark,
       systemNavigationBarColor: themeProvider.themeData.scaffoldBackgroundColor,
-     systemNavigationBarDividerColor: themeProvider.themeData.scaffoldBackgroundColor,
+      systemNavigationBarDividerColor:
+          themeProvider.themeData.scaffoldBackgroundColor,
       statusBarIconBrightness:
           themeProvider.themeData.brightness == Brightness.dark
               ? Brightness.light

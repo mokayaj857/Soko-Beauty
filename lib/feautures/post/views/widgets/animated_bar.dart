@@ -1,6 +1,6 @@
 import 'dart:math';
 import 'package:flutter/material.dart';
-import '../../../../core/constants/color_constant.dart';
+import 'package:soko_beauty/core/constants/color_constant.dart';
 
 class RecordingProgressIndicator extends StatelessWidget {
   const RecordingProgressIndicator({
