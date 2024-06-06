@@ -42,8 +42,7 @@ class PaypalPaymentScreen extends StatelessWidget {
                           child: Column(
                             children: [
                               Column(
-                                crossAxisAlignment:
-                                    CrossAxisAlignment.stretch,
+                                crossAxisAlignment: CrossAxisAlignment.stretch,
                                 children: [
                                   InstructionListItem(
                                       number: "1.",
@@ -85,11 +84,11 @@ class PaypalPaymentScreen extends StatelessWidget {
                                   ),
                                 ),
                                 style: ButtonStyle(
-                                  padding: MaterialStateProperty.all(
+                                  padding: WidgetStateProperty.all(
                                       EdgeInsets.symmetric(
                                           horizontal: 40, vertical: 15)),
-                                  backgroundColor: MaterialStateProperty.all(
-                                      Colors.blue[800]),
+                                  backgroundColor:
+                                      WidgetStateProperty.all(Colors.blue[800]),
                                 ),
                               ),
                             ],

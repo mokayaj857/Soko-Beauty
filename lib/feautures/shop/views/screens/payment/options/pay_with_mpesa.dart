@@ -87,13 +87,13 @@ class MpesaPaymentScreen extends StatelessWidget {
                                   ),
                                 ),
                                 style: ButtonStyle(
-                                  padding: MaterialStateProperty.all(
+                                  padding: WidgetStateProperty.all(
                                     EdgeInsets.symmetric(
                                       vertical: 15,
                                       horizontal: 40,
                                     ),
                                   ),
-                                  backgroundColor: MaterialStateProperty.all(
+                                  backgroundColor: WidgetStateProperty.all(
                                       Colors.green[800]),
                                 ),
                               ),

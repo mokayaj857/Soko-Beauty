@@ -35,7 +35,7 @@ class UserProfileCard extends StatelessWidget {
       actions: [
         IconButton(
           style: ButtonStyle(
-            padding: MaterialStateProperty.all(EdgeInsets.all(0)),
+            padding: WidgetStateProperty.all(EdgeInsets.all(0)),
           ),
           icon: Icon(Provider.of<ThemeProvider>(context).themeData == lightMode
               ? Icons.dark_mode

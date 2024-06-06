@@ -22,10 +22,8 @@ ThemeData darkMode = ThemeData(
     onPrimary: Colors.white,
     onSecondary: Colors.white,
     onSurface: Colors.white,
-    onBackground: Colors.white,
     onError: Colors.white,
     brightness: Brightness.dark,
-
   ),
 
   //TabBar Theme
@@ -111,16 +109,16 @@ ThemeData darkMode = ThemeData(
   ),
   textButtonTheme: TextButtonThemeData(
     style: ButtonStyle(
-      padding: MaterialStateProperty.all(EdgeInsets.all(0.0)),
-      foregroundColor: MaterialStateProperty.all(Colors.white70),
-      iconColor: MaterialStateProperty.all(Colors.white70),
+      padding: WidgetStateProperty.all(EdgeInsets.all(0.0)),
+      foregroundColor: WidgetStateProperty.all(Colors.white70),
+      iconColor: WidgetStateProperty.all(Colors.white70),
     ),
   ),
   // scaffold theme
   iconButtonTheme: IconButtonThemeData(
     style: ButtonStyle(
-      padding: MaterialStateProperty.all(EdgeInsets.all(0.0)),
-      backgroundColor: MaterialStateProperty.all(Colors.transparent),
+      padding: WidgetStateProperty.all(EdgeInsets.all(0.0)),
+      backgroundColor: WidgetStateProperty.all(Colors.transparent),
     ),
   ),
 );

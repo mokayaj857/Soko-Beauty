@@ -4,7 +4,6 @@ import 'package:soko_beauty/config/colors/colors.dart';
 import 'package:soko_beauty/feautures/shop/views/widgets/shared/pay_with_card_checkbox.dart';
 import 'package:soko_beauty/feautures/shop/views/widgets/shared/pay_with_card_merchants.dart';
 
-
 class DebitCardScreen extends StatelessWidget {
   const DebitCardScreen({
     super.key,
@@ -75,7 +74,7 @@ class DebitCardScreen extends StatelessWidget {
                         'Pay',
                       ),
                       style: ButtonStyle(
-                        backgroundColor: MaterialStateProperty.all(sbwarmRed),
+                        backgroundColor: WidgetStateProperty.all(sbwarmRed),
                       ),
                     ),
                     ElevatedButton(

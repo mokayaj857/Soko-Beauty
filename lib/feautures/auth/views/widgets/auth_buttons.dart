@@ -18,12 +18,12 @@ class AuthButtonPrimary extends StatelessWidget {
       onPressed: onPressed,
       child: Text(text),
       style: ButtonStyle(
-        elevation: MaterialStateProperty.all(0),
+        elevation: WidgetStateProperty.all(0),
         backgroundColor:
-            MaterialStateProperty.all(Theme.of(context).colorScheme.primary),
-        foregroundColor: MaterialStateProperty.all(Colors.white),
-        padding: MaterialStateProperty.all(padding),
-        shape: MaterialStateProperty.all(
+            WidgetStateProperty.all(Theme.of(context).colorScheme.primary),
+        foregroundColor: WidgetStateProperty.all(Colors.white),
+        padding: WidgetStateProperty.all(padding),
+        shape: WidgetStateProperty.all(
           RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(50.0),
           ),
@@ -51,8 +51,8 @@ class AuthButtonSecondary extends StatelessWidget {
       onPressed: onPressed,
       child: Text(text),
       style: ButtonStyle(
-        padding: MaterialStateProperty.all(padding),
-        shape: MaterialStateProperty.all(
+        padding: WidgetStateProperty.all(padding),
+        shape: WidgetStateProperty.all(
           RoundedRectangleBorder(
             side: BorderSide(color: Colors.green, width: 3.0),
             borderRadius: BorderRadius.circular(60.0),
@@ -63,7 +63,6 @@ class AuthButtonSecondary extends StatelessWidget {
   }
 }
 
-
 // create an auth text button
 class AuthTextButton extends StatelessWidget {
   final String text;
@@ -73,7 +72,8 @@ class AuthTextButton extends StatelessWidget {
   const AuthTextButton({
     Key? key,
     required this.text,
-    required this.onPressed, required this.question,
+    required this.onPressed,
+    required this.question,
   }) : super(key: key);
 
   @override

@@ -74,7 +74,7 @@ class CreditCardScreen extends StatelessWidget {
                         'Pay',
                       ),
                       style: ButtonStyle(
-                        backgroundColor: MaterialStateProperty.all(sbwarmRed),
+                        backgroundColor: WidgetStateProperty.all(sbwarmRed),
                       ),
                     ),
                     ElevatedButton(

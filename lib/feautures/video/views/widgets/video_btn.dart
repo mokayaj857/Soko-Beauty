@@ -40,7 +40,7 @@ class VideoActionButtons extends StatelessWidget {
           _buildActionButton(
             onPressed: onCommentPressed,
             icon: CupertinoIcons.chat_bubble_text_fill,
-            label: '1M',
+            label: '1.2k',
             heroTag: 'comment',
           ),
           SizedBox(height: 15.0),
@@ -50,7 +50,7 @@ class VideoActionButtons extends StatelessWidget {
             label: '20k',
             heroTag: 'share',
           ),
-          SizedBox(height: 15.0),
+          if (currentTab == "products") SizedBox(height: 15.0),
           if (currentTab == "products")
             Column(
               children: [
@@ -91,6 +91,7 @@ class VideoActionButtons extends StatelessWidget {
                     )),
               ],
             ),
+          if (currentTab == "services") SizedBox(height: 15.0),
           if (currentTab == "services")
             Column(
               children: [
@@ -131,7 +132,13 @@ class VideoActionButtons extends StatelessWidget {
                     )),
               ],
             ),
+          SizedBox(height: 15.0),
           IconButton(
+            style: ButtonStyle(
+              backgroundColor:
+                  WidgetStateProperty.all(Colors.black.withOpacity(0.15)),
+              shape: WidgetStateProperty.all(CircleBorder()),
+            ),
             onPressed: () {},
             icon: Icon(
               Icons.more_horiz_rounded,

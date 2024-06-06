@@ -86,11 +86,11 @@
 
 //   // Radio and Switch styles
 //   radioTheme: RadioThemeData(
-//     fillColor: MaterialStateProperty.resolveWith((states) => Colors.indigo),
+//     fillColor: WidgetStateProperty.resolveWith((states) => Colors.indigo),
 //   ),
 //   switchTheme: SwitchThemeData(
-//     thumbColor: MaterialStateProperty.resolveWith((states) => Colors.indigo),
-//     trackColor: MaterialStateProperty.resolveWith(
+//     thumbColor: WidgetStateProperty.resolveWith((states) => Colors.indigo),
+//     trackColor: WidgetStateProperty.resolveWith(
 //         (states) => Colors.indigo.withOpacity(0.5)),
 //   ),
 //   cupertinoOverrideTheme: NoDefaultCupertinoThemeData(),
@@ -146,7 +146,7 @@
 //   ),
 
 //   checkboxTheme: CheckboxThemeData(
-//     fillColor: MaterialStateProperty.resolveWith((states) => Colors.blue),
+//     fillColor: WidgetStateProperty.resolveWith((states) => Colors.blue),
 //   ),
 
 //   dataTableTheme: DataTableThemeData(
