@@ -98,14 +98,14 @@ class VideoActionButtons extends StatelessWidget {
                 FloatingActionButton(
                   backgroundColor: Colors.black.withOpacity(0.15),
                   elevation: 0,
-                  heroTag: 'cart',
+                  heroTag: 'book',
                   mini: true,
                   onPressed: bookingIconPressed,
                   child: Stack(
                     alignment: Alignment.center,
                     children: [
                       Icon(
-                        CupertinoIcons.book_fill,
+                        CupertinoIcons.calendar_today,
                         size: 30.0,
                       ),
                       Align(

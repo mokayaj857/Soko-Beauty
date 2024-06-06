@@ -55,13 +55,13 @@ ThemeData lightMode = ThemeData(
 
   //3 - APPBAR THEME
   appBarTheme: AppBarTheme(
+    scrolledUnderElevation: 0.0,
     centerTitle: true,
     titleTextStyle: TextStyle(
-      color: sbdeepRed,
-      fontSize: 20,
+      color: Colors.black.withOpacity(0.9),
+      fontSize: 16,
       fontWeight: FontWeight.bold,
     ),
-    foregroundColor: sbdeepRed,
     backgroundColor: Colors.transparent,
     elevation: 0,
   ),

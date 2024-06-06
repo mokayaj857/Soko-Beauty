@@ -1,12 +1,15 @@
 import 'dart:typed_data';
+import 'package:camera/camera.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gallery_picker/gallery_picker.dart';
 import 'package:soko_beauty/feautures/post/views/pages/media_picker.dart';
+import 'package:soko_beauty/feautures/post/views/pages/take_picture.dart';
+import 'package:soko_beauty/feautures/post/views/pages/take_video.dart';
 import 'package:soko_beauty/feautures/post/views/services/camera_bloc.dart';
 import 'package:soko_beauty/feautures/post/views/services/camera_state.dart';
-import 'package:soko_beauty/feautures/post/views/pages/take_video.dart';
+import 'package:soko_beauty/feautures/post/views/widgets/custom_button.dart';
 import 'package:visibility_detector/visibility_detector.dart';
 
 class PostPage extends StatefulWidget {
@@ -25,13 +28,27 @@ class _PostPageState extends State<PostPage> with WidgetsBindingObserver {
   late CameraBloc cameraBloc;
   final GlobalKey screenshotKey = GlobalKey();
   Uint8List? screenshotBytes;
-  bool isThisPageVisibe = true;
+  bool isThisPageVisible = true;
+  List<MediaFile> selectedFiles = []; // Variable to store selected files
+  int currentPageIndex = 2;
+  late PageController _pageController;
+
+  CameraDescription? firstCamera;
 
   @override
   void initState() {
     cameraBloc = BlocProvider.of<CameraBloc>(context);
     WidgetsBinding.instance.addObserver(this);
+    _pageController = PageController();
+    _initializeCamera();
     super.initState();
+  }
+
+  Future<void> _initializeCamera() async {
+    final cameras = await availableCameras();
+    setState(() {
+      firstCamera = cameras.first;
+    });
   }
 
   @override
@@ -40,6 +57,7 @@ class _PostPageState extends State<PostPage> with WidgetsBindingObserver {
     cameraBloc.add(CameraReset());
     cameraBloc.close();
     WidgetsBinding.instance.removeObserver(this);
+    _pageController.dispose();
     super.dispose();
   }
 
@@ -54,7 +72,7 @@ class _PostPageState extends State<PostPage> with WidgetsBindingObserver {
       cameraBloc.add(CameraDisable());
     }
     if (state == AppLifecycleState.resumed) {
-      if (isThisPageVisibe) {
+      if (isThisPageVisible) {
         // Enable the camera when the app is resumed and this page is visible
         cameraBloc.add(CameraEnable());
       }
@@ -64,180 +82,134 @@ class _PostPageState extends State<PostPage> with WidgetsBindingObserver {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        extendBodyBehindAppBar: true,
-        resizeToAvoidBottomInset: false,
-        extendBody: true,
-        backgroundColor: Colors.black,
-        appBar: AppBar(
-          centerTitle: false,
-          backgroundColor: Colors.transparent,
-          elevation: 0,
-          title: Padding(
-            padding: const EdgeInsets.only(left: 0.0),
+      extendBodyBehindAppBar: true,
+      resizeToAvoidBottomInset: false,
+      extendBody: true,
+      backgroundColor: Colors.black,
+      appBar: AppBar(
+        centerTitle: false,
+        backgroundColor: Colors.transparent,
+        elevation: 0,
+        title: Padding(
+          padding: const EdgeInsets.only(left: 0.0),
+          child: IconButton.filled(
+            style: ButtonStyle(
+              backgroundColor:
+                  MaterialStateProperty.all(Colors.white.withOpacity(0.2)),
+            ),
+            icon: const Icon(Icons.close),
+            color: Colors.white,
+            iconSize: 30,
+            onPressed: widget.onExit,
+          ),
+        ),
+        actions: [
+          Padding(
+            padding: const EdgeInsets.only(right: 20.0),
             child: IconButton.filled(
               style: ButtonStyle(
                 backgroundColor:
-                    WidgetStateProperty.all(Colors.white.withOpacity(0.2)),
+                    MaterialStateProperty.all(Colors.white.withOpacity(0.2)),
               ),
-              icon: const Icon(Icons.close),
+              icon: const Icon(CupertinoIcons.settings_solid),
               color: Colors.white,
               iconSize: 30,
-              onPressed: widget.onExit,
+              onPressed: () {},
             ),
           ),
-          actions: [
-            Padding(
-              padding: const EdgeInsets.only(right: 20.0),
-              child: IconButton.filled(
-                style: ButtonStyle(
-                  backgroundColor:
-                      WidgetStateProperty.all(Colors.white.withOpacity(0.2)),
-                ),
-                icon: Icon(
-                  CupertinoIcons.settings_solid,
-                ),
-                color: Colors.white,
-                iconSize: 30,
-                onPressed: () {},
+        ],
+      ),
+      body: PageView(
+        controller: _pageController,
+        physics: NeverScrollableScrollPhysics(),
+        children: [
+          Center(
+              child: Text('Feature coming soon',
+                  style: TextStyle(color: Colors.white))),
+          Center(
+              child: Text('Feature coming soon',
+                  style: TextStyle(color: Colors.white))),
+          CameraWidget(
+            cameraBloc: cameraBloc,
+            screenshotKey: screenshotKey,
+            screenshotBytes: screenshotBytes,
+          ),
+          firstCamera != null
+              ? TakePictureScreen(camera: firstCamera!)
+              : Center(child: CircularProgressIndicator()),
+          BottomSheetExample(
+            onFilesSelected: (List<MediaFile> files) {
+              setState(() {
+                selectedFiles = files;
+              });
+            },
+          ),
+        ],
+      ),
+      bottomNavigationBar: BottomAppBar(
+        color: Colors.transparent,
+        height: 70,
+        padding: EdgeInsets.zero,
+        elevation: 0,
+        child: Container(
+          height: double.infinity,
+          padding: const EdgeInsets.only(left: 30, right: 30, bottom: 0),
+          decoration: BoxDecoration(
+            color: Colors.black.withOpacity(0.3),
+            borderRadius: const BorderRadius.only(
+              topLeft: Radius.circular(5),
+              topRight: Radius.circular(5),
+            ),
+            border: Border(
+              top: BorderSide(
+                color: Colors.white.withOpacity(0.2),
+                width: 1,
               ),
             ),
-          ],
+          ),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              CustomButton(
+                label: 'Effects',
+                imageUrl: 'https://picsum.photos/200/300',
+                onPressed: () {
+                  _pageController.jumpToPage(0);
+                },
+              ),
+              CustomButton(
+                label: 'AI',
+                icon: Icons.memory,
+                onPressed: () {
+                  _pageController.jumpToPage(1);
+                },
+              ),
+              CustomButton(
+                label: 'Video',
+                icon: Icons.videocam,
+                onPressed: () {
+                  _pageController.jumpToPage(2);
+                },
+              ),
+              CustomButton(
+                label: 'Photo',
+                icon: Icons.photo_camera,
+                onPressed: () {
+                  _pageController.jumpToPage(3);
+                },
+              ),
+              CustomButton(
+                label: 'Gallery',
+                imageUrl: 'https://picsum.photos/200/200',
+                onPressed: () {
+                  _pageController.jumpToPage(4);
+                },
+              ),
+            ],
+          ),
         ),
-        body: VisibilityDetector(
-          key: const Key("camera"),
-          onVisibilityChanged: _handleVisibilityChanged,
-          child: BlocConsumer<CameraBloc, CameraState>(
-            listener: _cameraBlocListener,
-            builder: buildCameraWidget,
-          ),
-        ),
-        bottomNavigationBar: BottomAppBar(
-          color: Colors.transparent,
-          height: 70,
-          padding: EdgeInsets.zero,
-          elevation: 0,
-          child: Container(
-            height: double.infinity,
-            padding: const EdgeInsets.only(left: 30, right: 30, bottom: 0),
-            decoration: BoxDecoration(
-              color: Colors.black.withOpacity(0.3),
-              borderRadius: BorderRadius.only(
-                topLeft: Radius.circular(30),
-                topRight: Radius.circular(30),
-              ),
-              border: Border(
-                top: BorderSide(
-                  color: Colors.white.withOpacity(0.2),
-                  width: 1,
-                ),
-              ),
-            ),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Center(
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      const SizedBox(height: 10),
-                      Container(
-                        width: 35,
-                        height: 35,
-                        decoration: BoxDecoration(
-                          color: Colors.white,
-                          image: DecorationImage(
-                            image:
-                                NetworkImage('https://picsum.photos/200/300'),
-                            fit: BoxFit.cover,
-                          ),
-                          borderRadius: BorderRadius.circular(5),
-                          border: Border.all(
-                            color: Colors.white.withOpacity(0.8),
-                            width: 1,
-                          ),
-                        ),
-                      ),
-                      const SizedBox(height: 2),
-                      Text(
-                        'filters',
-                        style: TextStyle(
-                          color: Colors.white.withOpacity(0.8),
-                          fontSize: 10,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-                buildOutlinedButton(
-                  label: 'AI',
-                  icon: Icons.memory,
-                  onPressed: () {
-                    // TODO: Implement AI button functionality
-                  },
-                ),
-                buildOutlinedButton(
-                  label: 'Video',
-                  icon: Icons.videocam,
-                  onPressed: () {
-                    // TODO: Implement Video button functionality
-                  },
-                ),
-                buildOutlinedButton(
-                  label: 'Photo',
-                  icon: Icons.photo_camera,
-                  onPressed: () {
-                    // TODO: Implement Photo button functionality
-                  },
-                ),
-                GestureDetector(
-                  onTap: () {
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => BottomSheetExample()));
-                  },
-                  child: Center(
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      mainAxisSize: MainAxisSize.min,
-                      children: [
-                        const SizedBox(height: 10),
-                        Container(
-                          width: 35,
-                          height: 35,
-                          decoration: BoxDecoration(
-                            color: Colors.white,
-                            image: DecorationImage(
-                              image:
-                                  NetworkImage('https://picsum.photos/200/200'),
-                              fit: BoxFit.cover,
-                            ),
-                            border: Border.all(
-                              color: Colors.white.withOpacity(0.8),
-                              width: 1,
-                            ),
-                            borderRadius: BorderRadius.circular(5),
-                          ),
-                        ),
-                        const SizedBox(height: 2),
-                        Text(
-                          'upload',
-                          style: TextStyle(
-                            color: Colors.white.withOpacity(0.8),
-                            fontSize: 10,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
-              ],
-            ),
-          ),
-        ));
+      ),
+    );
   }
 
   void _cameraBlocListener(BuildContext context, CameraState state) {
@@ -257,48 +229,5 @@ class _PostPageState extends State<PostPage> with WidgetsBindingObserver {
         ),
       );
     }
-  }
-
-  void _handleVisibilityChanged(VisibilityInfo info) {
-    if (info.visibleFraction == 0.0) {
-      // Camera page is not visible, disable the camera.
-      if (mounted) {
-        cameraBloc.add(CameraDisable());
-        isThisPageVisibe = false;
-      }
-    } else {
-      // Camera page is visible, enable the camera.
-      isThisPageVisibe = true;
-      cameraBloc.add(CameraEnable());
-    }
-  }
-
-  Widget buildCameraWidget(BuildContext context, CameraState state) {
-    return CameraWidget(
-      cameraBloc: cameraBloc,
-      screenshotKey: screenshotKey,
-      screenshotBytes: screenshotBytes,
-    );
-  }
-
-  Widget buildOutlinedButton({
-    required String label,
-    required IconData icon,
-    required VoidCallback onPressed,
-  }) {
-    return OutlinedButton(
-      onPressed: onPressed,
-      child: Text(
-        label,
-        style: TextStyle(color: Colors.white.withOpacity(0.8)),
-      ),
-      style: OutlinedButton.styleFrom(
-        padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 0),
-        side: BorderSide(color: Colors.white.withOpacity(0.8), width: 1),
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(30.0),
-        ),
-      ),
-    );
   }
 }

@@ -65,7 +65,6 @@ ThemeData darkMode = ThemeData(
       fontWeight: FontWeight.bold,
     ),
     foregroundColor: sbbrickRed,
-    backgroundColor: Colors.grey.shade900.withOpacity(0.3),
     elevation: 0,
   ),
   //chip theme
