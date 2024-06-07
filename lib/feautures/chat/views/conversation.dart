@@ -1,18 +1,27 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
 class ConversationScreen extends StatelessWidget {
-  final List<Message> messages = [
-    Message(sender: 'Alice', text: 'Hi there!'),
-    Message(sender: 'Bob', text: 'Hey, how are you?'),
-    Message(sender: 'Alice', text: 'I\'m doing well, thanks!'),
-    Message(sender: 'Bob', text: 'That\'s great!'),
-    Message(sender: 'Alice', text: 'How was your day?'),
-    Message(sender: 'Bob', text: 'It was good. How about yours?'),
-    Message(sender: 'Alice', text: 'Pretty busy, but good!'),
-    Message(sender: 'Bob', text: 'Glad to hear that.'),
-    Message(sender: 'Alice', text: 'We should catch up soon.'),
-    Message(sender: 'Bob', text: 'Definitely! Let\'s plan something.'),
-  ];
+  final String chatId;
+
+  ConversationScreen({required this.chatId});
+
+  final TextEditingController _controller = TextEditingController();
+
+  void sendMessage(String chatId, String text) {
+    if (text.trim().isEmpty) return;
+
+    FirebaseFirestore.instance
+        .collection('chats')
+        .doc(chatId)
+        .collection('messages')
+        .add({
+      'text': text,
+      'sender': 'currentUser', // Replace with actual user ID
+      'timestamp': FieldValue.serverTimestamp(),
+    });
+    _controller.clear();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -25,7 +34,7 @@ class ConversationScreen extends StatelessWidget {
           },
         ),
         backgroundColor: Theme.of(context).bottomAppBarTheme.color,
-        title: Text('Bob'),
+        title: Text('Chat'), // Replace with dynamic title if needed
         actions: [
           IconButton(
             icon: Icon(Icons.videocam),
@@ -50,12 +59,31 @@ class ConversationScreen extends StatelessWidget {
       body: Column(
         children: [
           Expanded(
-            child: ListView.builder(
-              itemCount: messages.length,
-              itemBuilder: (context, index) {
-                return MessageBubble(
-                  sender: messages[index].sender,
-                  text: messages[index].text,
+            child: StreamBuilder<QuerySnapshot>(
+              stream: FirebaseFirestore.instance
+                  .collection('chats')
+                  .doc(chatId)
+                  .collection('messages')
+                  .orderBy('timestamp', descending: true)
+                  .snapshots(),
+              builder: (context, snapshot) {
+                if (!snapshot.hasData) {
+                  return Center(child: CircularProgressIndicator());
+                }
+                var messages = snapshot.data!.docs;
+                List<MessageBubble> messageBubbles = [];
+                for (var message in messages) {
+                  var messageText = message['text'] ?? '';
+                  var messageSender = message['sender'] ?? 'Unknown';
+                  var messageBubble = MessageBubble(
+                    sender: messageSender,
+                    text: messageText,
+                  );
+                  messageBubbles.add(messageBubble);
+                }
+                return ListView(
+                  reverse: true,
+                  children: messageBubbles,
                 );
               },
             ),
@@ -67,27 +95,16 @@ class ConversationScreen extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
                 IconButton(
-                  style: ButtonStyle(
-                    padding: WidgetStateProperty.all(EdgeInsets.all(0.0)),
-                  ),
                   icon: Icon(Icons.attach_file),
                   onPressed: () {
-                    // Handle sending messages
+                    // Handle attachment
                   },
                 ),
-                // IconButton(
-                //   style: ButtonStyle(
-                //     padding: WidgetStateProperty.all(EdgeInsets.all(0.0)),
-                //   ),
-                //   icon: Icon(Icons.camera_alt),
-                //   onPressed: () {
-                //     // Handle sending messages
-                //   },
-                // ),
                 Expanded(
                   child: Stack(
                     children: [
                       TextField(
+                        controller: _controller,
                         decoration: InputDecoration(
                           filled: true,
                           fillColor: Theme.of(context).cardColor,
@@ -104,13 +121,9 @@ class ConversationScreen extends StatelessWidget {
                       Positioned(
                         left: 0,
                         child: IconButton(
-                          style: ButtonStyle(
-                            padding:
-                                WidgetStateProperty.all(EdgeInsets.all(0.0)),
-                          ),
                           icon: Icon(Icons.emoji_emotions),
                           onPressed: () {
-                            // Handle sending messages
+                            // Handle emoji
                           },
                         ),
                       ),
@@ -119,7 +132,7 @@ class ConversationScreen extends StatelessWidget {
                         child: IconButton(
                           icon: Icon(Icons.send),
                           onPressed: () {
-                            // Handle sending messages
+                            sendMessage(chatId, _controller.text);
                           },
                         ),
                       ),
@@ -128,18 +141,11 @@ class ConversationScreen extends StatelessWidget {
                 ),
               ],
             ),
-          )
+          ),
         ],
       ),
     );
   }
-}
-
-class Message {
-  final String sender;
-  final String text;
-
-  Message({required this.sender, required this.text});
 }
 
 class MessageBubble extends StatelessWidget {
@@ -153,19 +159,19 @@ class MessageBubble extends StatelessWidget {
     return Padding(
       padding: EdgeInsets.symmetric(vertical: 8, horizontal: 16),
       child: Align(
-        alignment:
-            sender == 'Alice' ? Alignment.centerLeft : Alignment.centerRight,
+        alignment: sender == 'currentUser'
+            ? Alignment.centerRight
+            : Alignment
+                .centerLeft, // Replace 'currentUser' with actual user ID check
         child: Container(
           padding: EdgeInsets.all(12),
           decoration: BoxDecoration(
-            color: sender == 'Alice'
-                ? Theme.of(context).cardColor
-                : Theme.of(context).bottomAppBarTheme.color,
+            color: sender == 'currentUser'
+                ? Theme.of(context).bottomAppBarTheme.color
+                : Theme.of(context).cardColor,
             borderRadius: BorderRadius.circular(12),
           ),
-          child: Text(
-            text,
-          ),
+          child: Text(text),
         ),
       ),
     );

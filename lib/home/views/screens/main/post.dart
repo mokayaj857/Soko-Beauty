@@ -10,7 +10,6 @@ import 'package:soko_beauty/feautures/post/views/pages/take_video.dart';
 import 'package:soko_beauty/feautures/post/views/services/camera_bloc.dart';
 import 'package:soko_beauty/feautures/post/views/services/camera_state.dart';
 import 'package:soko_beauty/feautures/post/views/widgets/custom_button.dart';
-import 'package:visibility_detector/visibility_detector.dart';
 
 class PostPage extends StatefulWidget {
   final VoidCallback onExit;

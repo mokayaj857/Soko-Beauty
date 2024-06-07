@@ -5,27 +5,25 @@ class ChatCard extends StatelessWidget {
   final String userName;
   final String lastMessage;
   final String imageUrl;
+  final String chatId;
 
   ChatCard({
     required this.userName,
     required this.lastMessage,
     required this.imageUrl,
+    required this.chatId,
   });
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        print("Chat open clicked");
         Navigator.push(
           context,
           MaterialPageRoute(
-            builder: (context) => ConversationScreen(),
+            builder: (context) => ConversationScreen(chatId: chatId),
           ),
-        ).then((result) {
-          // Handle any callbacks after returning from the ConversationScreen
-          print("Returned from ConversationScreen");
-        });
+        );
       },
       child: Card(
         elevation: 0,
@@ -37,18 +35,6 @@ class ChatCard extends StatelessWidget {
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(30),
           ),
-          onLongPress: () {
-            print("Chat open clicked");
-            Navigator.push(
-              context,
-              MaterialPageRoute(
-                builder: (context) => ConversationScreen(),
-              ),
-            ).then((result) {
-              // Handle any callbacks after returning from the ConversationScreen
-              print("Returned from ConversationScreen");
-            });
-          },
           contentPadding: EdgeInsets.all(10),
           leading: CircleAvatar(
             radius: 22,
@@ -59,9 +45,6 @@ class ChatCard extends StatelessWidget {
             style: TextStyle(fontWeight: FontWeight.bold),
           ),
           subtitle: Text(lastMessage),
-          onTap: () {
-            // Add any onTap logic here if needed
-          },
         ),
       ),
     );

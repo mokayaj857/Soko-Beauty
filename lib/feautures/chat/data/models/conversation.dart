@@ -1,3 +1,5 @@
+import 'package:soko_beauty/feautures/chat/data/models/message.dart';
+// ignore: unused_import
 import 'package:soko_beauty/feautures/chat/views/conversation.dart';
 
 class Conversation {

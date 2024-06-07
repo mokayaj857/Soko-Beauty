@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:soko_beauty/feautures/shop/views/booking_page/book_item_screen.dart';
 import 'package:soko_beauty/feautures/shop/views/widgets/book_widget.dart';
 import 'package:soko_beauty/feautures/video/data/dummy/videos.dart';
 import 'package:soko_beauty/feautures/video/data/models/video.dart';
