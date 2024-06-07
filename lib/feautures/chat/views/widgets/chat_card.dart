@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:soko_beauty/feautures/chat/views/conversation.dart';
+import 'package:soko_beauty/feautures/chat/views/widgets/conversation.dart';
 
 class ChatCard extends StatelessWidget {
   final String userName;

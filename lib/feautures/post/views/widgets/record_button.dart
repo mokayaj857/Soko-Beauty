@@ -7,7 +7,7 @@ import 'package:soko_beauty/feautures/post/views/widgets/animated_bar.dart';
 
 // ignore: must_be_immutable
 class RecordButton extends StatefulWidget {
-  final CameraState state;
+  CameraState? state;
   final CameraBloc cameraBloc;
   Uint8List? screenshotBytes;
   final GlobalKey screenshotKey = GlobalKey();
@@ -71,33 +71,34 @@ class _RecordButtonState extends State<RecordButton> {
                 color: isRecording ? Colors.transparent : Colors.white,
               ),
             ),
-            ValueListenableBuilder<int>(
-              valueListenable: widget.cameraBloc.recordingDuration,
-              builder: (context, val, child) {
-                return TweenAnimationBuilder<double>(
-                  duration: Duration(milliseconds: isRecording ? 1100 : 0),
-                  tween: Tween<double>(
-                    begin: isRecording ? 1 : 0,
-                    end: isRecording ? val.toDouble() + 1 : 0,
-                  ),
-                  curve: Curves.linear,
-                  builder: (context, value, _) {
-                    return Center(
-                      child: AnimatedContainer(
-                        duration: const Duration(milliseconds: 200),
-                        height: isRecording ? 90 : 30,
-                        width: isRecording ? 90 : 30,
-                        child: RecordingProgressIndicator(
-                          value: value,
-                          maxValue:
-                              widget.cameraBloc.recordDurationLimit.toDouble(),
+            if (widget.state != null)
+              ValueListenableBuilder<int>(
+                valueListenable: widget.cameraBloc.recordingDuration,
+                builder: (context, val, child) {
+                  return TweenAnimationBuilder<double>(
+                    duration: Duration(milliseconds: isRecording ? 1100 : 0),
+                    tween: Tween<double>(
+                      begin: isRecording ? 1 : 0,
+                      end: isRecording ? val.toDouble() + 1 : 0,
+                    ),
+                    curve: Curves.linear,
+                    builder: (context, value, _) {
+                      return Center(
+                        child: AnimatedContainer(
+                          duration: const Duration(milliseconds: 200),
+                          height: isRecording ? 90 : 30,
+                          width: isRecording ? 90 : 30,
+                          child: RecordingProgressIndicator(
+                            value: value,
+                            maxValue: widget.cameraBloc.recordDurationLimit
+                                .toDouble(),
+                          ),
                         ),
-                      ),
-                    );
-                  },
-                );
-              },
-            ),
+                      );
+                    },
+                  );
+                },
+              ),
             Center(
               child: Container(
                 decoration: BoxDecoration(
