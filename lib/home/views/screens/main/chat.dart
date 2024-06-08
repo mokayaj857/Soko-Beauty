@@ -14,7 +14,6 @@ class AuthService {
 
 class ChatsPage extends StatelessWidget {
   final AuthService _authService = AuthService();
-
   @override
   Widget build(BuildContext context) {
     User? currentUser = _authService.getCurrentUser();
@@ -56,10 +55,10 @@ class ChatsPage extends StatelessWidget {
             itemCount: users.length,
             itemBuilder: (context, index) {
               return ChatCard(
-                userName: users[index].userName,
+                username: users[index].username,
                 lastMessage: users[index].lastMessage,
                 imageUrl: users[index].imageUrl,
-                chatId: users[index].chatId,
+                userId: users[index].userId,
               );
             },
           );
@@ -67,52 +66,4 @@ class ChatsPage extends StatelessWidget {
       ),
     );
   }
-}
-
-@override
-Widget build(BuildContext context) {
-  return Scaffold(
-    appBar: AppBar(
-      backgroundColor: Theme.of(context).bottomAppBarTheme.color,
-      title: Text('Chats'),
-      actions: [
-        IconButton(
-          icon: Icon(Icons.search),
-          onPressed: () {
-            // Handle search
-          },
-        ),
-        IconButton(
-          icon: Icon(Icons.more_vert),
-          onPressed: () {
-            // Handle more options
-          },
-        ),
-      ],
-    ),
-    body: StreamBuilder<QuerySnapshot>(
-      stream: FirebaseFirestore.instance.collection('users').snapshots(),
-      builder: (context, snapshot) {
-        if (!snapshot.hasData) {
-          return Center(child: CircularProgressIndicator());
-        }
-
-        var users = snapshot.data!.docs.map((doc) {
-          return Chat.fromFirestore(doc);
-        }).toList();
-
-        return ListView.builder(
-          itemCount: users.length,
-          itemBuilder: (context, index) {
-            return ChatCard(
-              userName: users[index].userName,
-              lastMessage: users[index].lastMessage,
-              imageUrl: users[index].imageUrl,
-              chatId: users[index].chatId,
-            );
-          },
-        );
-      },
-    ),
-  );
 }

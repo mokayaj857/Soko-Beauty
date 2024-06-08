@@ -1,30 +1,47 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:soko_beauty/feautures/chat/views/services/chat_service.dart';
 
-class ConversationScreen extends StatelessWidget {
-  final String chatId;
+class ConversationScreen extends StatefulWidget {
+  final String receiverId;
+  final String receiverName;
 
-  ConversationScreen({required this.chatId});
+  ConversationScreen({
+    Key? key,
+    required this.receiverId,
+    required this.receiverName,
+  }) : super(key: key);
 
-  final TextEditingController _controller = TextEditingController();
+  @override
+  State<ConversationScreen> createState() => _ConversationScreenState();
+}
 
-  void sendMessage(String chatId, String text) {
-    if (text.trim().isEmpty) return;
+class _ConversationScreenState extends State<ConversationScreen> {
+  final TextEditingController _messageController = TextEditingController();
+  final ChatService chatService = ChatService();
+  final FirebaseAuth _firebaseAuth = FirebaseAuth.instance;
 
-    FirebaseFirestore.instance
-        .collection('chats')
-        .doc(chatId)
-        .collection('messages')
-        .add({
-      'text': text,
-      'sender': 'currentUser', // Replace with actual user ID
-      'timestamp': FieldValue.serverTimestamp(),
-    });
-    _controller.clear();
+  void sendMessage() async {
+    if (_messageController.text.isNotEmpty) {
+      await chatService.sendMessage(
+        widget.receiverId,
+        _messageController.text,
+      );
+      _messageController.clear();
+    }
   }
 
   @override
   Widget build(BuildContext context) {
+    var currentUser = _firebaseAuth.currentUser;
+    if (currentUser == null) {
+      // Handle user not authenticated
+      return Scaffold(
+        body: Center(child: Text('User not authenticated')),
+      );
+    }
+
     return Scaffold(
       appBar: AppBar(
         leading: IconButton(
@@ -34,25 +51,19 @@ class ConversationScreen extends StatelessWidget {
           },
         ),
         backgroundColor: Theme.of(context).bottomAppBarTheme.color,
-        title: Text('Chat'), // Replace with dynamic title if needed
+        title: Text(widget.receiverName),
         actions: [
           IconButton(
             icon: Icon(Icons.videocam),
-            onPressed: () {
-              // Handle video call
-            },
+            onPressed: () {},
           ),
           IconButton(
             icon: Icon(Icons.call),
-            onPressed: () {
-              // Handle call
-            },
+            onPressed: () {},
           ),
           IconButton(
             icon: Icon(Icons.more_vert),
-            onPressed: () {
-              // Handle more options
-            },
+            onPressed: () {},
           ),
         ],
       ),
@@ -60,12 +71,10 @@ class ConversationScreen extends StatelessWidget {
         children: [
           Expanded(
             child: StreamBuilder<QuerySnapshot>(
-              stream: FirebaseFirestore.instance
-                  .collection('chats')
-                  .doc(chatId)
-                  .collection('messages')
-                  .orderBy('timestamp', descending: true)
-                  .snapshots(),
+              stream: chatService.getMessages(
+                widget.receiverId,
+                currentUser.uid,
+              ),
               builder: (context, snapshot) {
                 if (!snapshot.hasData) {
                   return Center(child: CircularProgressIndicator());
@@ -73,11 +82,14 @@ class ConversationScreen extends StatelessWidget {
                 var messages = snapshot.data!.docs;
                 List<MessageBubble> messageBubbles = [];
                 for (var message in messages) {
-                  var messageText = message['text'] ?? '';
-                  var messageSender = message['sender'] ?? 'Unknown';
+                  var data = message.data() as Map<String, dynamic>;
+                  var messageText = data['content'];
+                  var messageSender = data['senderId'];
+
                   var messageBubble = MessageBubble(
-                    sender: messageSender,
                     text: messageText,
+                    isMe: currentUser.uid == messageSender,
+                    time: data['timestamp'].toDate(),
                   );
                   messageBubbles.add(messageBubble);
                 }
@@ -104,7 +116,7 @@ class ConversationScreen extends StatelessWidget {
                   child: Stack(
                     children: [
                       TextField(
-                        controller: _controller,
+                        controller: _messageController,
                         decoration: InputDecoration(
                           filled: true,
                           fillColor: Theme.of(context).cardColor,
@@ -132,7 +144,7 @@ class ConversationScreen extends StatelessWidget {
                         child: IconButton(
                           icon: Icon(Icons.send),
                           onPressed: () {
-                            sendMessage(chatId, _controller.text);
+                            sendMessage();
                           },
                         ),
                       ),
@@ -149,31 +161,70 @@ class ConversationScreen extends StatelessWidget {
 }
 
 class MessageBubble extends StatelessWidget {
-  final String sender;
   final String text;
+  final bool isMe;
+  final DateTime time;
 
-  MessageBubble({required this.sender, required this.text});
+  MessageBubble({
+    required this.text,
+    required this.isMe,
+    required this.time,
+  });
 
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.symmetric(vertical: 8, horizontal: 16),
+      padding: EdgeInsets.symmetric(vertical: 4, horizontal: 8),
       child: Align(
-        alignment: sender == 'currentUser'
-            ? Alignment.centerRight
-            : Alignment
-                .centerLeft, // Replace 'currentUser' with actual user ID check
+        alignment: isMe ? Alignment.centerRight : Alignment.centerLeft,
         child: Container(
-          padding: EdgeInsets.all(12),
+          padding: EdgeInsets.symmetric(vertical: 10, horizontal: 16),
           decoration: BoxDecoration(
-            color: sender == 'currentUser'
-                ? Theme.of(context).bottomAppBarTheme.color
-                : Theme.of(context).cardColor,
-            borderRadius: BorderRadius.circular(12),
+            color: isMe ? Color.fromARGB(76, 101, 32, 21) : Colors.grey[300],
+            borderRadius: BorderRadius.only(
+              topLeft: Radius.circular(12),
+              topRight: Radius.circular(12),
+              bottomLeft: isMe ? Radius.circular(12) : Radius.zero,
+              bottomRight: isMe ? Radius.zero : Radius.circular(12),
+            ),
           ),
-          child: Text(text),
+          child: Column(
+            crossAxisAlignment:
+                isMe ? CrossAxisAlignment.end : CrossAxisAlignment.start,
+            children: [
+              RichText(
+                text: TextSpan(
+                  children: [
+                    TextSpan(
+                      text: text,
+                      style: TextStyle(
+                        fontSize: 16,
+                        color: Colors.black,
+                      ),
+                    ),
+                    TextSpan(
+                      text: '  ',
+                    ),
+                    TextSpan(
+                      text: _formatTime(time),
+                      style: TextStyle(
+                        fontSize: 10,
+                        color: Colors.grey[600],
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );
+  }
+
+  String _formatTime(DateTime time) {
+    final hour = time.hour.toString().padLeft(2, '0');
+    final minute = time.minute.toString().padLeft(2, '0');
+    return '$hour:$minute';
   }
 }

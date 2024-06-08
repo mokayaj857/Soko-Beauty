@@ -2,16 +2,16 @@ import 'package:flutter/material.dart';
 import 'package:soko_beauty/feautures/chat/views/conversation.dart';
 
 class ChatCard extends StatelessWidget {
-  final String userName;
+  final String username;
   final String lastMessage;
   final String imageUrl;
-  final String chatId;
+  final String userId;
 
   ChatCard({
-    required this.userName,
+    required this.username,
     required this.lastMessage,
     required this.imageUrl,
-    required this.chatId,
+    required this.userId,
   });
 
   @override
@@ -21,7 +21,8 @@ class ChatCard extends StatelessWidget {
         Navigator.push(
           context,
           MaterialPageRoute(
-            builder: (context) => ConversationScreen(chatId: chatId),
+            builder: (context) =>
+                ConversationScreen(receiverId: userId, receiverName: username),
           ),
         );
       },
@@ -41,7 +42,7 @@ class ChatCard extends StatelessWidget {
             backgroundImage: NetworkImage(imageUrl),
           ),
           title: Text(
-            userName,
+            username,
             style: TextStyle(fontWeight: FontWeight.bold),
           ),
           subtitle: Text(lastMessage),
