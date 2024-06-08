@@ -8,11 +8,11 @@ import 'package:soko_beauty/core/utils/camera_utils.dart';
 import 'package:soko_beauty/core/utils/permission_utils.dart';
 import 'package:soko_beauty/config/colors/colors.dart';
 import 'package:soko_beauty/feautures/post/views/services/camera_bloc.dart';
-import 'package:soko_beauty/home/views/screens/main/chat.dart';
-import 'package:soko_beauty/home/views/screens/main/post.dart';
-import 'package:soko_beauty/home/views/screens/main/shop.dart';
-import 'package:soko_beauty/home/views/screens/main/profile.dart';
-import 'package:soko_beauty/home/views/screens/main/video.dart';
+import 'package:soko_beauty/home/screens/main/chat.dart';
+import 'package:soko_beauty/home/screens/main/post.dart';
+import 'package:soko_beauty/home/screens/main/shop.dart';
+import 'package:soko_beauty/home/screens/main/profile.dart';
+import 'package:soko_beauty/home/screens/main/video.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);

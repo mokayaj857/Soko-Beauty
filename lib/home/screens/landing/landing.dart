@@ -4,8 +4,8 @@ import 'package:provider/provider.dart';
 import 'package:soko_beauty/feautures/auth/data/models/user_model.dart';
 import 'package:soko_beauty/feautures/auth/views/screens/add_info.dart';
 import 'package:soko_beauty/feautures/auth/views/services/user_provider.dart';
-import 'package:soko_beauty/home/views/screens/home_page.dart';
-import 'package:soko_beauty/home/views/screens/landing/splashscreen.dart';
+import 'package:soko_beauty/home/screens/home_page.dart';
+import 'package:soko_beauty/home/screens/landing/splashscreen.dart';
 
 import 'onboarding.dart';
 

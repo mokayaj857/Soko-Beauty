@@ -228,4 +228,23 @@ class CameraBloc extends Bloc<CameraEvent, CameraState> {
         lensDirection:
             currentLensDirection); // it's important to remove old camera controller instances otherwise _cameraController!.value will remain unchanged hence _cameraController!.value.isInitialized will always true
   }
+
+
+  // Handle capture image event
+  // void _onCameraCaptureImage(CameraCaptureImage event, Emitter<CameraState> emit) async {
+  //   try {
+  //     if (_cameraController != null && _cameraController!.value.isInitialized) {
+  //       final XFile file = await _cameraController!.takePicture();
+  //       capturedImage = file;
+  //       emit(CameraImageCaptureSuccess(file: file));
+  //     } else {
+  //       emit(CameraError(error: CameraErrorType.notInitialized));
+  //     }
+  //   } catch (e) {
+  //     emit(CameraError(error: CameraErrorType.other));
+  //   }
+  // }
+
+
+
 }

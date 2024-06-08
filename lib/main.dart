@@ -3,7 +3,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
-import 'package:soko_beauty/home/views/screens/landing/splashscreen.dart';
+import 'package:soko_beauty/home/screens/landing/splashscreen.dart';
 import 'core/services/theme_provider.dart';
 import 'feautures/auth/views/services/user_provider.dart';
 import 'firebase_options.dart';

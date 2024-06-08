@@ -7,8 +7,8 @@ import 'package:soko_beauty/feautures/auth/views/services/user_provider.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:soko_beauty/feautures/auth/views/widgets/auth_buttons.dart';
 import 'package:soko_beauty/feautures/auth/views/widgets/custom_textfield.dart';
-import 'package:soko_beauty/home/data/controllers/file_controller.dart';
-import 'package:soko_beauty/home/views/screens/landing/landing.dart';
+import 'package:soko_beauty/core/data/controllers/file_controller.dart';
+import 'package:soko_beauty/home/screens/landing/landing.dart';
 
 class AddAccountInfo extends StatefulWidget {
   final User user;

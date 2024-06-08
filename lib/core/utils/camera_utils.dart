@@ -16,11 +16,24 @@ class CameraUtils {
       orElse: () => cameras.first, // If not found, default to the first camera
     );
 
+     String formatRecordDuration(int durationInSeconds) {
+      if (durationInSeconds == 60) {
+        return "60s";
+      } else if (durationInSeconds > 60) {
+        final int minutes = durationInSeconds ~/ 60;
+        return "${minutes}m";
+      } else {
+        return "${durationInSeconds}s";
+      }
+    }
+
     // Create a CameraController instance with the selected camera and configuration
     return CameraController(
       camera,
       resolutionPreset,
-      imageFormatGroup: Platform.isIOS ? ImageFormatGroup.yuv420 : null, // iOS-specific configuration
+      imageFormatGroup: Platform.isIOS
+          ? ImageFormatGroup.yuv420
+          : null, // iOS-specific configuration
     );
   }
 }

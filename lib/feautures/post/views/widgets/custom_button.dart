@@ -5,6 +5,7 @@ class CustomButton extends StatelessWidget {
   final IconData? icon;
   final String? imageUrl;
   final VoidCallback onPressed;
+  final bool isSelected;
 
   const CustomButton({
     Key? key,
@@ -12,6 +13,7 @@ class CustomButton extends StatelessWidget {
     this.icon,
     this.imageUrl,
     required this.onPressed,
+    required this.isSelected,
   }) : super(key: key);
 
   @override
@@ -29,7 +31,7 @@ class CustomButton extends StatelessWidget {
                 width: 30,
                 height: 30,
                 decoration: BoxDecoration(
-                  color: Colors.white,
+                  color: isSelected ? Colors.blue : Colors.white,
                   image: DecorationImage(
                     image: NetworkImage(imageUrl!),
                     fit: BoxFit.cover,
@@ -44,14 +46,14 @@ class CustomButton extends StatelessWidget {
             else if (icon != null)
               Icon(
                 icon,
-                color: Colors.white.withOpacity(0.8),
+                color: isSelected ? Colors.blue : Colors.white.withOpacity(0.8),
                 size: 35,
               ),
             const SizedBox(height: 2),
             Text(
               label,
               style: TextStyle(
-                color: Colors.white.withOpacity(0.8),
+                color: isSelected ? Colors.blue : Colors.white.withOpacity(0.8),
                 fontSize: 10,
                 fontWeight: FontWeight.bold,
               ),
