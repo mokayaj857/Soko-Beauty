@@ -2,30 +2,29 @@ import 'package:flutter/material.dart';
 import 'package:soko_beauty/feautures/chat/views/widgets/conversation.dart';
 
 class ChatCard extends StatelessWidget {
-  final String userName;
+  final String username;
   final String lastMessage;
   final String imageUrl;
+  final String userId;
 
   ChatCard({
-    required this.userName,
+    required this.username,
     required this.lastMessage,
     required this.imageUrl,
+    required this.userId,
   });
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        print("Chat open clicked");
         Navigator.push(
           context,
           MaterialPageRoute(
-            builder: (context) => ConversationScreen(),
+            builder: (context) =>
+                ConversationScreen(receiverId: userId, receiverName: username),
           ),
-        ).then((result) {
-          // Handle any callbacks after returning from the ConversationScreen
-          print("Returned from ConversationScreen");
-        });
+        );
       },
       child: Card(
         elevation: 0,
@@ -37,31 +36,16 @@ class ChatCard extends StatelessWidget {
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(30),
           ),
-          onLongPress: () {
-            print("Chat open clicked");
-            Navigator.push(
-              context,
-              MaterialPageRoute(
-                builder: (context) => ConversationScreen(),
-              ),
-            ).then((result) {
-              // Handle any callbacks after returning from the ConversationScreen
-              print("Returned from ConversationScreen");
-            });
-          },
           contentPadding: EdgeInsets.all(10),
           leading: CircleAvatar(
             radius: 22,
             backgroundImage: NetworkImage(imageUrl),
           ),
           title: Text(
-            userName,
+            username,
             style: TextStyle(fontWeight: FontWeight.bold),
           ),
           subtitle: Text(lastMessage),
-          onTap: () {
-            // Add any onTap logic here if needed
-          },
         ),
       ),
     );

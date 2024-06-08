@@ -1,4 +1,5 @@
-import 'package:soko_beauty/feautures/chat/views/widgets/conversation.dart';
+import 'package:soko_beauty/feautures/chat/data/models/message.dart';
+
 
 class Conversation {
   String conversationId;

@@ -1,117 +1,69 @@
 import 'package:flutter/material.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:soko_beauty/feautures/chat/data/models/chat.dart';
 import 'package:soko_beauty/feautures/chat/views/widgets/chat_card.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+
+class AuthService {
+  final FirebaseAuth _auth = FirebaseAuth.instance;
+
+  User? getCurrentUser() {
+    return _auth.currentUser;
+  }
+}
 
 class ChatsPage extends StatelessWidget {
-  final List<Chat> chats = [
-    Chat(
-      userName: 'Alice',
-      lastMessage: 'Hi there!',
-      imageUrl: 'https://picsum.photos/200/300/?random=girl',
-    ),
-    Chat(
-      userName: 'Bob',
-      lastMessage: 'Hey, how are you?',
-      imageUrl: 'https://picsum.photos/200/300/?random=gentleman',
-    ),
-    Chat(
-      userName: 'Charlie',
-      lastMessage: 'What\'s up?',
-      imageUrl: 'https://picsum.photos/200/300/?random=lady',
-    ),
-    Chat(
-      userName: 'David',
-      lastMessage: 'Having a great day!',
-      imageUrl: 'https://picsum.photos/200/300/?random=man',
-    ),
-    Chat(
-      userName: 'Eva',
-      lastMessage: 'Hello!',
-      imageUrl: 'https://picsum.photos/200/300/?random=child',
-    ),
-    Chat(
-      userName: 'Frank',
-      lastMessage: 'Nice weather today.',
-      imageUrl: 'https://picsum.photos/200/300/?random=boy',
-    ),
-    Chat(
-      userName: 'Grace',
-      lastMessage: 'How are you doing?',
-      imageUrl: 'https://picsum.photos/200/300/?random=woman',
-    ),
-    Chat(
-      userName: 'Henry',
-      lastMessage: 'Good morning!',
-      imageUrl: 'https://picsum.photos/200/300',
-    ),
-    Chat(
-      userName: 'Ivy',
-      lastMessage: 'Let\'s catch up soon.',
-      imageUrl: 'https://picsum.photos/200/300',
-    ),
-    Chat(
-      userName: 'Jack',
-      lastMessage: 'Hey, long time no see!',
-      imageUrl: 'https://picsum.photos/200/300',
-    ),
-  ];
-
+  final AuthService _authService = AuthService();
   @override
   Widget build(BuildContext context) {
+    User? currentUser = _authService.getCurrentUser();
+    String? currentUserId = currentUser?.uid;
+
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Theme.of(context).bottomAppBarTheme.color,
-        title: Row(
-          children: [
-            CircleAvatar(
-              maxRadius: 13,
-              minRadius: 13,
-              backgroundImage: NetworkImage(
-                'https://picsum.photos/200/300',
-              ),
-            ),
-            SizedBox(width: 10),
-            Text('Inbox'),
-          ],
-        ),
-        centerTitle: false,
+        title: Text('Chats'),
         actions: [
           IconButton(
-            onPressed: () {},
             icon: Icon(Icons.search),
+            onPressed: () {
+              // Handle search
+            },
           ),
           IconButton(
-            onPressed: () {},
-            icon: Icon(Icons.menu),
+            icon: Icon(Icons.more_vert),
+            onPressed: () {
+              // Handle more options
+            },
           ),
         ],
       ),
-      body: ListView.builder(
-        padding: EdgeInsets.symmetric(vertical: 10),
-        itemCount: chats.length,
-        itemBuilder: (context, index) {
-          return Hero(
-            tag: chats[index].userName,
-            transitionOnUserGestures: true,
-            child: ChatCard(
-              userName: chats[index].userName,
-              lastMessage: chats[index].lastMessage,
-              imageUrl: chats[index].imageUrl,
-            ),
+      body: StreamBuilder<QuerySnapshot>(
+        stream: FirebaseFirestore.instance.collection('users').snapshots(),
+        builder: (context, snapshot) {
+          if (!snapshot.hasData) {
+            return Center(child: CircularProgressIndicator());
+          }
+
+          var users = snapshot.data!.docs.where((doc) {
+            return doc.id != currentUserId;
+          }).map((doc) {
+            return Chat.fromFirestore(doc);
+          }).toList();
+
+          return ListView.builder(
+            itemCount: users.length,
+            itemBuilder: (context, index) {
+              return ChatCard(
+                username: users[index].username,
+                lastMessage: users[index].lastMessage,
+                imageUrl: users[index].imageUrl,
+                userId: users[index].userId,
+              );
+            },
           );
         },
       ),
     );
   }
-}
-
-class Chat {
-  final String userName;
-  final String lastMessage;
-  final String imageUrl;
-
-  Chat({
-    required this.userName,
-    required this.lastMessage,
-    required this.imageUrl,
-  });
 }
