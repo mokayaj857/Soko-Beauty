@@ -2,13 +2,13 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
-import 'package:soko_beauty/core/services/theme_provider.dart';
-import 'package:soko_beauty/config/colors/colors.dart';
-import 'package:soko_beauty/home/screens/main/chat.dart';
-import 'package:soko_beauty/home/screens/main/post.dart';
-import 'package:soko_beauty/home/screens/main/shop.dart';
-import 'package:soko_beauty/home/screens/main/profile.dart';
-import 'package:soko_beauty/home/screens/main/video.dart';
+import 'package:soko_beauty/core/views/services/theme_provider.dart';
+import 'package:soko_beauty/config/colors/global_colors.dart';
+import 'package:soko_beauty/home/chat.dart';
+import 'package:soko_beauty/home/post.dart';
+import 'package:soko_beauty/home/shop.dart';
+import 'package:soko_beauty/home/profile.dart';
+import 'package:soko_beauty/home/video.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);

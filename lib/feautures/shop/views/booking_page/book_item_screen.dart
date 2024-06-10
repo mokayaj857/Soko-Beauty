@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:soko_beauty/config/colors/colors.dart';
+import 'package:soko_beauty/config/colors/global_colors.dart';
 import 'package:soko_beauty/feautures/shop/views/widgets/service_item.dart';
 
 class BookingPage extends StatefulWidget {

@@ -1,7 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:dartz/dartz.dart';
 import 'package:flutter/material.dart';
-import 'package:soko_beauty/core/widgets/custom_snackbar.dart';
+import 'package:soko_beauty/core/views/widgets/custom_snackbar.dart';
 
 class SignInController {
   final FirebaseAuth _auth = FirebaseAuth.instance;

@@ -1,12 +1,12 @@
 import 'package:soko_beauty/feautures/video/data/models/video.dart';
-import 'package:soko_beauty/feautures/video/data/models/video_type.dart';
+import 'package:soko_beauty/feautures/video/data/models/type.dart';
 import 'package:soko_beauty/feautures/video/data/repositories/video_repo.dart';
 
 class VideoController {
   final VideoRepository _videoRepository = VideoRepository();
 
   Future<Video> createVideo(Video video) async {
-   return await _videoRepository.addVideo(video);
+    return await _videoRepository.addVideo(video);
   }
 
   Future<void> updateVideo(String id, Video video) async {
@@ -38,7 +38,6 @@ class VideoController {
   }
 
   Future<List<Video>> getAllVideos({int limit = 50, int page = 1}) async {
-    print("Getting all videos... at controller");
     return await _videoRepository.getAllVideos(limit: limit, page: page);
   }
 }

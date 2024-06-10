@@ -2,9 +2,11 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 
 class Chat {
   final String userId;
+  //final String Id;
   final String username;
   final String lastMessage;
   final String imageUrl;
+  //final List<String> participants;
 
   Chat({
     required this.userId,

@@ -27,7 +27,7 @@ class PostPageAppBar extends StatelessWidget implements PreferredSizeWidget {
           iconSize: 25,
           onPressed: onExit,
           style: ButtonStyle(
-            backgroundColor: MaterialStateProperty.all(
+            backgroundColor: WidgetStateProperty.all(
               Colors.white.withOpacity(0.2),
             ),
           ),
@@ -40,7 +40,7 @@ class PostPageAppBar extends StatelessWidget implements PreferredSizeWidget {
           iconSize: 25,
           onPressed: onFlashToggle,
           style: ButtonStyle(
-            backgroundColor: MaterialStateProperty.all(
+            backgroundColor: WidgetStateProperty.all(
               Colors.white.withOpacity(0.2),
             ),
           ),
@@ -53,7 +53,7 @@ class PostPageAppBar extends StatelessWidget implements PreferredSizeWidget {
             iconSize: 25,
             onPressed: onSwitchCamera,
             style: ButtonStyle(
-              backgroundColor: MaterialStateProperty.all(
+              backgroundColor: WidgetStateProperty.all(
                 Colors.white.withOpacity(0.2),
               ),
             ),

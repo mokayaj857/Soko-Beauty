@@ -1,15 +1,17 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:cloudinary_flutter/cloudinary_object.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
+import 'package:soko_beauty/core/constants/cloudinary_constants.dart';
 import 'package:soko_beauty/feautures/video/views/services/video_provider.dart';
-import 'package:soko_beauty/home/screens/landing/splashscreen.dart';
-import 'core/services/theme_provider.dart';
+import 'package:soko_beauty/core/views/screens/landing/splashscreen.dart';
+import 'core/views/services/theme_provider.dart';
 import 'feautures/auth/views/services/user_provider.dart';
 import 'package:cloudinary_url_gen/cloudinary.dart';
-import 'package:cloudinary_flutter/cloudinary_context.dart';
-import 'firebase_options.dart';
+import 'core/utils/firebase_options.dart';
+import 'landing.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -19,9 +21,8 @@ void main() async {
   ]);
 
   // initialize cloudinary
-  CloudinaryContext.cloudinary =
-      Cloudinary.fromCloudName(cloudName: 'dqsflflhg');
-  CloudinaryContext.cloudinary.config.urlConfig.secure = true;
+  Cloudinary cloudinary = CloudinaryObject.fromCloudName(cloudName: cloudName);
+  cloudinary.config.urlConfig.secure = true;
 
   // Initialize Firebase
 
@@ -66,7 +67,7 @@ class SokoBeauty extends StatelessWidget {
     ));
     return MaterialApp(
       theme: themeProvider.themeData,
-      home: SplashScreen(),
+      home: LandingPage(),
       debugShowCheckedModeBanner: false,
       themeAnimationCurve: Curves.easeInOut,
       themeAnimationDuration: const Duration(milliseconds: 500),

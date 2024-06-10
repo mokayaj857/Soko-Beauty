@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:soko_beauty/core/widgets/custom_appbar.dart';
+import 'package:soko_beauty/core/views/widgets/custom_appbar.dart';
 import 'package:soko_beauty/feautures/auth/data/models/user_model.dart';
 import 'package:soko_beauty/feautures/auth/views/services/user_provider.dart';
 import 'package:soko_beauty/feautures/auth/views/widgets/user_actions.dart';

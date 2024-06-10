@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:soko_beauty/core/utils/camera_utils.dart';
 import 'package:soko_beauty/core/utils/permission_utils.dart';
-import 'package:soko_beauty/core/widgets/custom_snackbar.dart';
+import 'package:soko_beauty/core/views/widgets/custom_snackbar.dart';
 import 'package:soko_beauty/feautures/post/pages/take_video.dart';
 import 'package:soko_beauty/feautures/post/pages/upload_post.dart';
 import 'package:soko_beauty/feautures/post/services/camera_bloc.dart';

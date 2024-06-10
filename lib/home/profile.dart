@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:soko_beauty/core/widgets/custom_empty_state_msg.dart';
+import 'package:soko_beauty/core/views/widgets/custom_empty_state_msg.dart';
 import 'package:soko_beauty/feautures/auth/views/services/user_provider.dart';
-import 'package:soko_beauty/home/widgets/user_profile_card.dart';
+import 'package:soko_beauty/core/views/widgets/user_profile_card.dart';
 
 class ProfilePage extends StatelessWidget {
   @override

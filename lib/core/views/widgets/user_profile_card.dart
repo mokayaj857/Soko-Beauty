@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:soko_beauty/config/colors/colors.dart';
-import 'package:soko_beauty/config/theme/themes/light.dart';
-import 'package:soko_beauty/core/services/theme_provider.dart';
+import 'package:soko_beauty/config/colors/global_colors.dart';
+import 'package:soko_beauty/config/theme/light.dart';
+import 'package:soko_beauty/core/views/services/theme_provider.dart';
 import 'package:soko_beauty/feautures/auth/data/models/user_model.dart';
 import 'package:soko_beauty/feautures/auth/views/screens/profile.dart';
 
