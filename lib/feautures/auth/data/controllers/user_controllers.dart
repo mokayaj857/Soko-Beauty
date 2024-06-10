@@ -27,6 +27,28 @@ class UserController {
     await _firestore.collection('users').doc(userId).delete();
   }
 
+  //method to follow a user or unfollow a user using boolean
+  Future<bool> followUser( String userId, String followedUserId, bool follow) async {
+    if (follow) {
+      await _firestore.collection('users').doc(userId).update({
+        'following': FieldValue.arrayUnion([followedUserId])
+      });
+      await _firestore.collection('users').doc(followedUserId).update({
+        'followers': FieldValue.arrayUnion([userId])
+      });
+      return true;
+    } else {
+      await _firestore.collection('users').doc(userId).update({
+        'following': FieldValue.arrayRemove([followedUserId])
+      });
+      await _firestore.collection('users').doc(followedUserId).update({
+        'followers': FieldValue.arrayRemove([userId])
+      });
+      return true;
+    }
+    // return false;
+  }
+
   Future<void> logout() async {
     await FirebaseAuth.instance.signOut();
   }

@@ -1,39 +1,48 @@
 import 'dart:async';
 import 'dart:ui';
 import 'package:flutter/material.dart';
+import 'package:soko_beauty/core/constants/cloudinary_constants.dart';
 import 'package:soko_beauty/feautures/video/data/models/video.dart';
 import 'package:soko_beauty/feautures/video/views/widgets/info.dart';
 import 'package:soko_beauty/feautures/video/views/widgets/play_pause_icon.dart';
 import 'package:video_player/video_player.dart';
+import 'package:cloudinary_flutter/cloudinary_object.dart';
+import 'package:cloudinary_flutter/video/cld_video_controller.dart';
+import 'package:cloudinary_url_gen/cloudinary.dart';
 
 class VideoPlayerScreen extends StatefulWidget {
   const VideoPlayerScreen(
-      {Key? key, required this.videoInfo, required this.videoActions})
+      {Key? key,
+      required this.videoInfo,
+      required this.videoActions,
+      required this.onFollow, required this.soundName, required this.ownerUsername})
       : super(key: key);
 
   final Video videoInfo;
   final Widget videoActions;
+  final VoidCallback onFollow;
+  final String ownerUsername;
+  final String soundName;
 
   @override
   State<VideoPlayerScreen> createState() => _VideoPlayerScreenState();
 }
 
 class _VideoPlayerScreenState extends State<VideoPlayerScreen> {
-  late VideoPlayerController _controller;
-  late Future<void> _initializeVideoPlayerFuture;
+  late CldVideoController _controller;
+  Cloudinary cloudinary = CloudinaryObject.fromCloudName(cloudName: cloudName);
+  // late Future<void> _initializeVideoPlayerFuture;
   bool showIcon = false;
-  bool showComments = false;
 
   @override
   void initState() {
     super.initState();
 
-    _controller = VideoPlayerController.networkUrl(
-      Uri.parse(
-        widget.videoInfo.url,
-      ),
-    );
-    _initializeVideoPlayerFuture = _controller.initialize();
+    _controller = CldVideoController(
+        cloudinary: cloudinary, publicId: widget.videoInfo.publicId)
+      ..initialize().then((_) {
+        setState(() {});
+      });
 
     // Auto-play after initialization
     _controller.play();
@@ -65,7 +74,7 @@ class _VideoPlayerScreenState extends State<VideoPlayerScreen> {
       body: Stack(children: [
         Positioned.fill(
           child: FutureBuilder(
-            future: _initializeVideoPlayerFuture,
+            future: _controller.initialize(),
             builder: (context, snapshot) {
               if (snapshot.connectionState == ConnectionState.done) {
                 return AspectRatio(
@@ -104,7 +113,7 @@ class _VideoPlayerScreenState extends State<VideoPlayerScreen> {
             },
             child: Center(
               child: FutureBuilder(
-                future: _initializeVideoPlayerFuture,
+                future: _controller.initialize(),
                 builder: (context, snapshot) {
                   if (snapshot.connectionState == ConnectionState.done) {
                     return AspectRatio(
@@ -132,7 +141,13 @@ class _VideoPlayerScreenState extends State<VideoPlayerScreen> {
 
         // Video info such as description
         Positioned(
-            bottom: 85, left: 0, child: VideoInfo(videoInfo: widget.videoInfo)),
+            bottom: 85,
+            left: 0,
+            child: VideoInfo(
+              videoInfo: widget.videoInfo,
+              onFollow: () {},
+              ownerUsername: widget.ownerUsername,
+            )),
 
         // Video progress indicator
         Positioned(
@@ -185,7 +200,7 @@ class _VideoPlayerScreenState extends State<VideoPlayerScreen> {
                     )),
                 SizedBox(width: 4),
                 Text(
-                  "Beauty by Godfrey Williams",
+                  widget.soundName,
                   style: TextStyle(
                       fontSize: 13, color: Colors.white.withOpacity(0.9)),
                   overflow: TextOverflow.ellipsis,
@@ -231,11 +246,11 @@ class _VideoPlayerScreenState extends State<VideoPlayerScreen> {
     );
   }
 
-  String _formatDuration(Duration duration) {
-    String twoDigits(int n) => n.toString().padLeft(2, "0");
-    final hours = twoDigits(duration.inHours);
-    final minutes = twoDigits(duration.inMinutes.remainder(60));
-    final seconds = twoDigits(duration.inSeconds.remainder(60));
-    return [if (duration.inHours > 0) hours, minutes, seconds].join(":");
-  }
+  // String _formatDuration(Duration duration) {
+  //   String twoDigits(int n) => n.toString().padLeft(2, "0");
+  //   final hours = twoDigits(duration.inHours);
+  //   final minutes = twoDigits(duration.inMinutes.remainder(60));
+  //   final seconds = twoDigits(duration.inSeconds.remainder(60));
+  //   return [if (duration.inHours > 0) hours, minutes, seconds].join(":");
+  // }
 }

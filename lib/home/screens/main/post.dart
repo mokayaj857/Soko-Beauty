@@ -1,253 +1,124 @@
-import 'dart:typed_data';
-import 'package:camera/camera.dart';
+import 'dart:io';
+
+import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:soko_beauty/core/utils/screenshot_utils.dart';
-import 'package:soko_beauty/feautures/post/views/pages/take_picture.dart';
-import 'package:soko_beauty/feautures/post/views/pages/take_video.dart';
-import 'package:soko_beauty/feautures/post/views/services/camera_bloc.dart';
-import 'package:soko_beauty/feautures/post/views/services/camera_state.dart';
-import 'package:soko_beauty/feautures/post/views/widgets/camera_option.dart';
-import 'package:soko_beauty/feautures/post/views/widgets/display_video.dart';
-import 'package:soko_beauty/feautures/post/views/widgets/post_page_appbar.dart';
-import 'package:soko_beauty/feautures/post/views/widgets/post_page_bottombar.dart';
-import 'package:soko_beauty/feautures/post/views/widgets/record_button.dart';
+import 'package:soko_beauty/core/utils/camera_utils.dart';
+import 'package:soko_beauty/core/utils/permission_utils.dart';
+import 'package:soko_beauty/core/widgets/custom_snackbar.dart';
+import 'package:soko_beauty/feautures/post/pages/take_video.dart';
+import 'package:soko_beauty/feautures/post/pages/upload_post.dart';
+import 'package:soko_beauty/feautures/post/services/camera_bloc.dart';
 
-class PostPage extends StatefulWidget {
-  final VoidCallback onExit;
-
-  const PostPage({
-    Key? key,
-    required this.onExit,
-  }) : super(key: key);
-
-  @override
-  State<PostPage> createState() => _PostPageState();
-}
-
-class _PostPageState extends State<PostPage> with WidgetsBindingObserver {
-  late CameraBloc cameraBloc;
-  final GlobalKey screenshotKey = GlobalKey();
-  Uint8List? screenshotBytes;
-  bool isThisPageVisible = true;
-  int currentPageIndex = 1;
-  late PageController _pageController;
-  CameraDescription? firstCamera;
-  CameraState? _takeVideoState;
-  bool canRecord = false;
-
-  @override
-  void initState() {
-    cameraBloc = BlocProvider.of<CameraBloc>(context);
-    WidgetsBinding.instance.addObserver(this);
-    _pageController = PageController(
-      initialPage: currentPageIndex,
-      keepPage: true,
-    );
-    _initializeCamera();
-    super.initState();
-  }
-
-  Future<void> _initializeCamera() async {
-    final cameras = await availableCameras();
-    setState(() {
-      firstCamera = cameras.first;
-    });
-  }
-
-  @override
-  void dispose() {
-    // Clean up resources and reset the CameraBloc on page dispose
-    cameraBloc.add(CameraReset());
-    cameraBloc.close();
-    WidgetsBinding.instance.removeObserver(this);
-    _pageController.dispose();
-    super.dispose();
-  }
-
-  @override
-  void didChangeAppLifecycleState(AppLifecycleState state) {
-    // App state changed before we got the chance to initialize.
-    if (cameraBloc.getController() == null) return;
-
-    // Handle app lifecycle state changes (e.g., background, foreground)
-    if (state == AppLifecycleState.inactive) {
-      // Disable the camera when the app is inactive
-      cameraBloc.add(CameraDisable());
-    }
-    if (state == AppLifecycleState.resumed) {
-      if (isThisPageVisible) {
-        // Enable the camera when the app is resumed and this page is visible
-        cameraBloc.add(CameraEnable());
-      }
-    }
-  }
-
+// ignore: must_be_immutable
+class BottomSheetContent extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      extendBodyBehindAppBar: true,
-      resizeToAvoidBottomInset: false,
-      extendBody: true,
-      backgroundColor: Colors.black,
-      appBar: PostPageAppBar(
-        onExit: () => {widget.onExit()},
-        onFlashToggle: () {},
-        onSwitchCamera: _switchCamera,
-      ),
-      body: Stack(
+    return Container(
+      // margin: EdgeInsets.symmetric(horizontal: 12, vertical: 10),
+      padding: EdgeInsets.symmetric(horizontal: 16, vertical: 5),
+      decoration: BoxDecoration(
+          color: Theme.of(context).scaffoldBackgroundColor,
+          borderRadius: BorderRadius.only(
+              topLeft: Radius.circular(35), topRight: Radius.circular(35)),
+          border: Border.all(
+              width: 2,
+              color: Theme.of(context).primaryColor.withOpacity(0.1))),
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
         children: [
-          PageView(
-            controller: _pageController,
-            physics: const NeverScrollableScrollPhysics(),
-            onPageChanged: (index) {
-              setState(() {
-                currentPageIndex = index;
-              });
-            },
-            children: [
-              Container(
-                  color: Colors.red,
-                  child: Center(child: Text('Effects Page'))),
-              BlocConsumer<CameraBloc, CameraState>(
-                builder: (context, state) {
-                  return TakeVideo(
-                    cameraBloc: cameraBloc,
-                    screenshotKey: screenshotKey,
-                    onStateChanged: _handleCameraStateChange,
-                  );
-                },
-                listener: _cameraBlocListener,
-              ),
-              BlocConsumer<CameraBloc, CameraState>(
-                builder: (context, state) {
-                  return Container();
-
-                  // TakePicture(
-                  //   cameraBloc: cameraBloc,
-                  //   screenshotKey: screenshotKey,
-                  //   onPictureTaken: _handlePictureTaken,
-                  // );
-                },
-                listener: _cameraBlocListener,
-              ),
-              Container(
-                  color: Colors.green, child: Center(child: Text('AI Page'))),
-            ],
+          Center(
+            child: Container(
+              margin: EdgeInsets.symmetric(vertical: 16),
+              height: 3,
+              width: 100,
+              decoration: BoxDecoration(
+                  color: Theme.of(context).primaryColor,
+                  borderRadius: BorderRadius.circular(15)),
+            ),
           ),
-          CameraControls(
-            disableButtons:
-                cameraBloc.state is CameraRecordingSuccess ? true : false,
-            onDurationLimitTap: () {},
-            recordDurationLimit: '10',
-            isCameraReady: cameraBloc.state is CameraReady ? true : false,
-            deactivateRecordButton:
-                cameraBloc.state is CameraRecordingSuccess ? true : false,
-            recordButton: _buildRecordButton(),
-            onGalleryTap: () {},
+          _buildListTile(
+            context,
+            icon: Icons.camera_alt,
+            title: 'Camera',
+            subtitle: 'Take a video using your camera',
+            onTap: () {
+              Navigator.pop(context);
+              Navigator.of(context).push(
+                MaterialPageRoute(
+                  builder: (context) => BlocProvider(
+                    create: (context) {
+                      return CameraBloc(
+                        cameraUtils: CameraUtils(),
+                        permissionUtils: PermissionUtils(),
+                      )..add(const CameraInitialize(recordingLimit: 15));
+                    },
+                    child: const CameraPage(),
+                  ),
+                ),
+              );
+            },
+          ),
+          _buildListTile(context,
+              icon: Icons.photo_library,
+              title: 'Gallery',
+              subtitle: 'Choose a video from the gallery', onTap: () async {
+            Future<void> pickVideo() async {
+              // Use FilePicker to select a video file from the gallery
+              FilePickerResult? result = await FilePicker.platform.pickFiles(
+                type: FileType.video,
+                allowMultiple: false,
+              );
+              Navigator.pop(context);
+
+              if (result != null && result.files.single.path != null) {
+                // Navigate to upload page with the selected video
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => UploadPage(
+                      videoFile: File(result.files.single.path!),
+                    ),
+                  ),
+                );
+              } else {
+                CustomSnackbar.show(context, 'info', 'No video selected');
+              }
+            }
+
+            pickVideo();
+          }),
+          _buildListTile(
+            context,
+            icon: Icons.scanner,
+            title: 'AI Scanner',
+            subtitle: 'Scan using AI-powered scanner',
+            onTap: () {
+              // Handle AI scanner action
+              Navigator.pop(context);
+            },
           ),
         ],
       ),
-      bottomNavigationBar: PostPageBottomBar(
-        onEffectsPressed: _onEffectsPressed,
-        onVideoPressed: _onVideoPressed,
-        onPhotoPressed: _onPhotoPressed,
-        onAIPressed: _onAIPressed,
-      ),
     );
   }
 
-  void _cameraBlocListener(BuildContext context, CameraState state) {
-    if (state is CameraRecordingSuccess) {
-      // Navigate to the VideoPage when video recording is successful
-      Navigator.of(context).push(
-        MaterialPageRoute(
-          builder: (context) => RecordedVideoPage(
-            videoFile: state.file,
-          ),
-        ),
-      );
-    } else if (state is CameraReady && state.hasRecordingError) {
-      // Show a snackbar when there is a recording error (less than 2 seconds)
-      ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(
-          backgroundColor: Colors.black45,
-          duration: Duration(milliseconds: 1000),
-          content: Text(
-            'Please record for at least 2 seconds.',
-            style: TextStyle(color: Colors.white),
-          ),
-        ),
-      );
-    }
-  }
-
-  void _handleCameraStateChange(CameraState state) {
-    setState(() {
-      _takeVideoState = state;
-    });
-  }
-
-  void _handlePictureTaken(Uint8List imageBytes) {
-    setState(() {
-      screenshotBytes = imageBytes;
-    });
-  }
-
-  // camera switch code
-  void _switchCamera() async {
-    try {
-      screenshotBytes = await takeCameraScreenshot(key: screenshotKey);
-      if (context.mounted) cameraBloc.add(CameraSwitch());
-    } catch (e) {
-      //screenshot error
-    }
-  }
-
-  void _onEffectsPressed() {
-    _pageController.jumpToPage(0);
-  }
-
-  void _onVideoPressed() {
-    _pageController.jumpToPage(1);
-  }
-
-  void _onAIPressed() {
-    _pageController.jumpToPage(3);
-  }
-
-  void _onPhotoPressed() {
-    _pageController.jumpToPage(2);
-  }
-
-  Widget _buildRecordButton() {
-    switch (currentPageIndex) {
-      case 0:
-        return Container(
-            color: Colors.red,
-            child: Center(
-                child: Text(
-                    'Effects Page'))); // Replace with your record button for the Effects page
-      case 1:
-        return RecordButton(
-          cameraBloc: cameraBloc,
-          state: _takeVideoState,
-        ); // Replace with your record button for the AI page
-      case 2:
-        return Container(
-            color: Colors.yellow, child: Center(child: Text('Photo Page')));
-      case 3:
-        return Container(
-            color: Colors.green,
-            child: Center(
-                child: Text(
-                    'AI Page'))); // Replace with your record button for the Photo page
-      default:
-        return Container(
-            color: Colors.red,
-            child: Center(
-                child: Text(
-                    'Effects Page'))); // Default to an empty container if no match
-    }
+  Widget _buildListTile(
+    BuildContext context, {
+    required IconData icon,
+    required String title,
+    required String subtitle,
+    required VoidCallback onTap,
+  }) {
+    return ListTile(
+      leading: CircleAvatar(
+        backgroundColor: Theme.of(context).primaryColor.withOpacity(0.1),
+        child: Icon(icon, size: 35, color: Theme.of(context).primaryColor),
+      ),
+      title: Text(title, style: TextStyle(fontWeight: FontWeight.bold)),
+      subtitle: Text(subtitle),
+      onTap: onTap,
+      contentPadding: EdgeInsets.symmetric(vertical: 4.0, horizontal: 16.0),
+    );
   }
 }
