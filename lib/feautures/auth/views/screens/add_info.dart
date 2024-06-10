@@ -1,14 +1,14 @@
 import 'dart:io';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:soko_beauty/core/widgets/custom_snackbar.dart';
+import 'package:soko_beauty/core/views/widgets/custom_snackbar.dart';
 import 'package:soko_beauty/feautures/auth/data/models/user_model.dart';
 import 'package:soko_beauty/feautures/auth/views/services/user_provider.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:soko_beauty/feautures/auth/views/widgets/auth_buttons.dart';
 import 'package:soko_beauty/feautures/auth/views/widgets/custom_textfield.dart';
-import 'package:soko_beauty/core/data/controllers/file_controller.dart';
-import 'package:soko_beauty/home/screens/landing/landing.dart';
+import 'package:soko_beauty/core/controllers/file_controller.dart';
+import 'package:soko_beauty/landing.dart';
 
 class AddAccountInfo extends StatefulWidget {
   final User user;

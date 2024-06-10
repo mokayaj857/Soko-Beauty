@@ -1,4 +1,6 @@
-import 'package:soko_beauty/feautures/video/data/models/video_type.dart';
+
+import 'package:soko_beauty/feautures/video/data/models/metrics.dart';
+import 'package:soko_beauty/feautures/video/data/models/type.dart';
 
 class Video {
   String id;
@@ -8,10 +10,7 @@ class Video {
   String associatedItemId;
   List<String> likes;
   List<String> shares;
-  int likeCount;
-  int shareCount;
-  int viewCount;
-  int commentCount;
+  VideoMetrics metrics;
   String ownerId;
   List<String> tags;
   String description;
@@ -25,19 +24,14 @@ class Video {
     this.associatedItemId = '',
     this.likes = const [],
     this.shares = const [],
-    this.likeCount = 0,
-    this.shareCount = 0,
-    this.commentCount = 0,
-    this.viewCount = 0,
+    VideoMetrics? metrics,
     this.ownerId = '',
     this.tags = const [],
     this.description = '',
     required this.createdAt,
-  });
+  }) : metrics = metrics ?? VideoMetrics.defaultMetrics(videoType);
 
   factory Video.fromMap(Map<String, dynamic> data, String id) {
-    print("the from map data is $data was called");
-    print("the id is $id");
     return Video(
       id: id,
       url: data['url'],
@@ -46,12 +40,10 @@ class Video {
       associatedItemId: data['associatedItemId'] ?? '',
       likes: List<String>.from(data['likes'] ?? []),
       shares: List<String>.from(data['shares'] ?? []),
-      likeCount: data['likeCount'] ?? 0,
-      shareCount: data['shareCount'] ?? 0,
-      viewCount: data['viewCount'] ?? 0,
-      commentCount: data['commentCount'] ?? 0,
+      metrics: VideoMetrics.fromMap(
+          data['metrics'] ?? {}, VideoType.values[data['videoType']]),
       ownerId: data['ownerId'] ?? '',
-      // tags: List<String>.from(data['tags'] ?? []),
+      tags: List<String>.from(data['tags'] ?? []),
       description: data['description'] ?? '',
       createdAt: DateTime.parse(data['createdAt']),
     );
@@ -65,10 +57,7 @@ class Video {
       'associatedItemId': associatedItemId,
       'likes': likes,
       'shares': shares,
-      'likeCount': likeCount,
-      'shareCount': shareCount,
-      'viewCount': viewCount,
-      'commentCount': commentCount,
+      'metrics': metrics.toMap(videoType),
       'ownerId': ownerId,
       'tags': tags,
       'description': description,

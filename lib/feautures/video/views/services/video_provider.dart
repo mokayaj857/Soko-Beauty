@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:soko_beauty/feautures/video/data/models/video.dart';
-import 'package:soko_beauty/feautures/video/data/models/video_type.dart';
+import 'package:soko_beauty/feautures/video/data/models/type.dart';
 import 'package:soko_beauty/feautures/video/data/controllers/video_controller.dart';
 
 class VideoProvider with ChangeNotifier {

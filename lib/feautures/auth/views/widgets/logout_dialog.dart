@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:soko_beauty/core/widgets/custom_snackbar.dart';
+import 'package:soko_beauty/core/views/widgets/custom_snackbar.dart';
 import 'package:soko_beauty/feautures/auth/data/controllers/user_controllers.dart';
 import 'package:soko_beauty/feautures/auth/views/screens/signin.dart';
 import 'package:soko_beauty/feautures/auth/views/widgets/auth_buttons.dart';

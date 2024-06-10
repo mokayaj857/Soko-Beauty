@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:soko_beauty/config/colors/colors.dart';
+import 'package:soko_beauty/config/colors/global_colors.dart';
 
 ThemeData darkMode = ThemeData(
   // 1. App-wide settings

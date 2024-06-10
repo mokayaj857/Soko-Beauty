@@ -1,6 +1,6 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
-import 'package:soko_beauty/config/colors/colors.dart';
+import 'package:soko_beauty/config/colors/global_colors.dart';
 
 class CarouselWithDotsPage extends StatefulWidget {
   final List<String> imgList = [

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:soko_beauty/config/theme/themes/dark.dart';
-import 'package:soko_beauty/config/theme/themes/light.dart';
+import 'package:soko_beauty/config/theme/dark.dart';
+import 'package:soko_beauty/config/theme/light.dart';
 
 class ThemeProvider with ChangeNotifier {
   ThemeData _themeData = lightMode;

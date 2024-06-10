@@ -4,12 +4,12 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:soko_beauty/core/data/controllers/cloudinary_controller.dart';
-import 'package:soko_beauty/core/widgets/segmented_control.dart';
+import 'package:soko_beauty/core/controllers/cloudinary_controller.dart';
+import 'package:soko_beauty/core/views/widgets/segmented_control.dart';
 import 'package:soko_beauty/feautures/auth/views/services/user_provider.dart';
 import 'package:soko_beauty/feautures/post/widgets/display_video.dart';
 import 'package:soko_beauty/feautures/video/data/models/video.dart';
-import 'package:soko_beauty/feautures/video/data/models/video_type.dart';
+import 'package:soko_beauty/feautures/video/data/models/type.dart';
 import 'package:soko_beauty/feautures/video/views/services/video_provider.dart';
 import 'package:video_player/video_player.dart';
 

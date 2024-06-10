@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'package:soko_beauty/config/colors/colors.dart';
+import 'package:soko_beauty/config/colors/global_colors.dart';
 import 'package:soko_beauty/feautures/shop/views/widgets/shared/pay_with_card_checkbox.dart';
 import 'package:soko_beauty/feautures/shop/views/widgets/shared/pay_with_card_merchants.dart';
 

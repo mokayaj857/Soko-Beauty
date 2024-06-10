@@ -1,8 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:soko_beauty/feautures/video/views/screens/all_videos.dart';
-import 'package:soko_beauty/feautures/video/views/screens/products_videos.dart';
-import 'package:soko_beauty/feautures/video/views/screens/services_videos.dart';
+import 'package:soko_beauty/feautures/video/data/models/tabs.dart';
+import 'package:soko_beauty/feautures/video/views/screens/watch_videos.dart';
 
 class VideoPage extends StatefulWidget {
   VideoPage({super.key});
@@ -15,7 +14,7 @@ class _VideoPageState extends State<VideoPage> {
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
-      length: 3, // Number of tabs
+      length: VideoTab.values.length, // Number of tabs
       child: Scaffold(
         extendBodyBehindAppBar: true,
         appBar: AppBar(
@@ -40,20 +39,12 @@ class _VideoPageState extends State<VideoPage> {
             unselectedLabelColor: Colors.white.withOpacity(0.9),
             padding: EdgeInsets.symmetric(horizontal: 5.0, vertical: 0.0),
             splashFactory: NoSplash.splashFactory,
-            tabs: [
-              Tab(
-                text: 'Community',
+            tabs: VideoTab.values.map((tab) {
+              return Tab(
+                text: tab.name,
                 height: 20,
-              ),
-              Tab(
-                text: 'Services',
-                height: 20,
-              ),
-              Tab(
-                text: 'Products',
-                height: 20,
-              ),
-            ],
+              );
+            }).toList(),
           ),
           actions: [
             IconButton(
@@ -64,12 +55,11 @@ class _VideoPageState extends State<VideoPage> {
           ],
         ),
         body: TabBarView(
-          children: [
-            AllVideosTab(),
-            ServicesVideosTab(),
-            ProductsVideoTab(),
-          ],
-        ),
+            children: VideoTab.values.map((tab) {
+          return WatchVideos(
+            currentTab: tab,
+          );
+        }).toList()),
       ),
     );
   }

@@ -1,6 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:soko_beauty/feautures/video/data/models/video.dart';
-import 'package:soko_beauty/feautures/video/data/models/video_type.dart';
+import 'package:soko_beauty/feautures/video/data/models/type.dart';
 
 class VideoRepository {
   final CollectionReference _videosCollection =
@@ -22,9 +22,7 @@ class VideoRepository {
   }
 
   Future<List<Video>> getAllVideos({int limit = 50, int page = 1}) async {
-    // get all videos
     QuerySnapshot querySnapshot = await _videosCollection.limit(limit).get();
-
     return querySnapshot.docs
         .map((doc) => Video.fromMap(doc.data() as Map<String, dynamic>, doc.id))
         .toList();

@@ -4,10 +4,9 @@ import 'package:provider/provider.dart';
 import 'package:soko_beauty/feautures/auth/data/models/user_model.dart';
 import 'package:soko_beauty/feautures/auth/views/screens/add_info.dart';
 import 'package:soko_beauty/feautures/auth/views/services/user_provider.dart';
-import 'package:soko_beauty/home/screens/home_page.dart';
-import 'package:soko_beauty/home/screens/landing/splashscreen.dart';
-
-import 'onboarding.dart';
+import 'package:soko_beauty/home.dart';
+import 'package:soko_beauty/core/views/screens/landing/splashscreen.dart';
+import 'core/views/screens/landing/onboarding.dart';
 
 class LandingPage extends StatelessWidget {
   void getUserData(User user, UserProvider userProvider) async {
@@ -24,7 +23,7 @@ class LandingPage extends StatelessWidget {
             builder: (context, snapshot) {
               if (snapshot.connectionState == ConnectionState.waiting) {
                 // Still waiting for authentication state
-                return Center(child: CircularProgressIndicator());
+                return SplashScreen();
               } else if (snapshot.hasData && snapshot.data != null) {
                 // User is authenticated, fetch user data
                 final user = snapshot.data!;

@@ -1,7 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:soko_beauty/feautures/chat/views/services/chat_service.dart';
+import 'package:soko_beauty/feautures/chat/views/services/chat_provider.dart';
 
 class ConversationScreen extends StatefulWidget {
   final String receiverId;
