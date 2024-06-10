@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:soko_beauty/core/enums/camera_enums.dart';
-import 'package:soko_beauty/feautures/post/views/services/camera_state.dart'; // Ensure you have this dependency in your pubspec.yaml
+import 'package:soko_beauty/feautures/post/services/camera_state.dart'; // Ensure you have this dependency in your pubspec.yaml
 
 class CameraErrorWidget extends StatefulWidget {
   final CameraState state;

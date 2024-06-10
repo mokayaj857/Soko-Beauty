@@ -3,9 +3,11 @@ import 'package:soko_beauty/feautures/video/data/models/video.dart';
 import 'package:soko_beauty/feautures/video/views/widgets/hashtags.dart';
 
 class VideoInfo extends StatefulWidget {
-  const VideoInfo({Key? key, required this.videoInfo}) : super(key: key);
+  const VideoInfo({Key? key, required this.videoInfo, required this.onFollow, required this.ownerUsername}) : super(key: key);
 
   final Video videoInfo;
+  final VoidCallback onFollow;
+  final String ownerUsername;
 
   @override
   _VideoInfoState createState() => _VideoInfoState();
@@ -67,7 +69,7 @@ class _VideoInfoState extends State<VideoInfo> {
                 ),
                 SizedBox(width: 8),
                 Text(
-                  widget.videoInfo.ownerId,
+                  widget.ownerUsername,
                   style: TextStyle(
                       fontSize: 15,
                       fontWeight: FontWeight.bold,
@@ -76,20 +78,23 @@ class _VideoInfoState extends State<VideoInfo> {
                       isMinimized ? TextOverflow.ellipsis : TextOverflow.clip,
                 ),
                 SizedBox(width: 25),
-                Container(
-                  padding: EdgeInsets.symmetric(horizontal: 20, vertical: 3),
-                  decoration: BoxDecoration(
-                    color: Colors.white.withOpacity(0.9),
-                    borderRadius: BorderRadius.circular(20),
-                    border: Border.all(
-                        color: Colors.white.withOpacity(0.5), width: 1),
-                  ),
-                  child: Text(
-                    "follow",
-                    style: TextStyle(
-                        fontSize: 14,
-                        color: Colors.black.withOpacity(0.8),
-                        fontWeight: FontWeight.bold),
+                GestureDetector(
+                  onTap: widget.onFollow,
+                  child: Container(
+                    padding: EdgeInsets.symmetric(horizontal: 20, vertical: 3),
+                    decoration: BoxDecoration(
+                      color: Colors.white.withOpacity(0.9),
+                      borderRadius: BorderRadius.circular(20),
+                      border: Border.all(
+                          color: Colors.white.withOpacity(0.5), width: 1),
+                    ),
+                    child: Text(
+                      "follow",
+                      style: TextStyle(
+                          fontSize: 14,
+                          color: Colors.black.withOpacity(0.8),
+                          fontWeight: FontWeight.bold),
+                    ),
                   ),
                 ),
                 Spacer(),
@@ -139,7 +144,7 @@ class _VideoInfoState extends State<VideoInfo> {
                     ),
                     SizedBox(width: 5),
                     Text(
-                      "2 days ago",
+                      timeAgo(widget.videoInfo.createdAt),
                       style: TextStyle(
                           fontSize: 14,
                           fontWeight: FontWeight.bold,
@@ -199,7 +204,10 @@ class _VideoInfoState extends State<VideoInfo> {
                 ),
               ),
               // SizedBox(height: 5),
-              if (!isMinimized) HashtagsWidget(),
+              if (!isMinimized)
+                HashtagsWidget(
+                  hashtags: widget.videoInfo.tags,
+                ),
               if (!isMinimized)
                 Row(
                   crossAxisAlignment: CrossAxisAlignment.end,
@@ -234,5 +242,27 @@ class _VideoInfoState extends State<VideoInfo> {
         ],
       ),
     );
+  }
+
+  // convert video created date to time ago
+  String timeAgo(DateTime date) {
+    final now = DateTime.now();
+    final difference = now.difference(date);
+
+    if (difference.inDays > 365) {
+      return "${(difference.inDays / 365).floor()} years ago";
+    } else if (difference.inDays > 30) {
+      return "${(difference.inDays / 30).floor()} months ago";
+    } else if (difference.inDays > 7) {
+      return "${(difference.inDays / 7).floor()} weeks ago";
+    } else if (difference.inDays > 0) {
+      return "${difference.inDays} days ago";
+    } else if (difference.inHours > 0) {
+      return "${difference.inHours} hours ago";
+    } else if (difference.inMinutes > 0) {
+      return "${difference.inMinutes} minutes ago";
+    } else {
+      return "just now";
+    }
   }
 }

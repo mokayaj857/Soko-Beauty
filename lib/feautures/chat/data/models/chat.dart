@@ -19,10 +19,12 @@ class Chat {
       userId: doc.id,
       username: data['username'],
       lastMessage: data['lastMessage'] ?? 'This is the last message',
-      imageUrl: data['imageUrl'] ??
+      imageUrl: data['profilePhotoUrl'] ??
           'https://icons.iconarchive.com/icons/graphicloads/flat-finance/128/person-icon.png/150',
     );
   }
+
+  get profilePhotoUrl => null;
 
   
 }

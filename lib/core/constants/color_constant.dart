@@ -13,3 +13,5 @@ List<Color> progressBackgroundColor = [
   const Color(0xff7639FB).withOpacity(0.6),
   const Color(0xffFF7A01).withOpacity(0.6),
 ];
+
+

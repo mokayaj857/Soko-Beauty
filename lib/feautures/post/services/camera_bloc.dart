@@ -7,7 +7,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:soko_beauty/core/enums/camera_enums.dart';
 import 'package:soko_beauty/core/utils/camera_utils.dart';
 import 'package:soko_beauty/core/utils/permission_utils.dart';
-import 'package:soko_beauty/feautures/post/views/services/camera_state.dart';
+import 'package:soko_beauty/feautures/post/services/camera_state.dart';
 
 part 'camera_event.dart';
 

@@ -1,9 +1,9 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:soko_beauty/core/utils/screenshot_utils.dart';
-import 'package:soko_beauty/feautures/post/views/services/camera_bloc.dart';
-import 'package:soko_beauty/feautures/post/views/services/camera_state.dart';
-import 'package:soko_beauty/feautures/post/views/widgets/animated_bar.dart';
+import 'package:soko_beauty/feautures/post/services/camera_bloc.dart';
+import 'package:soko_beauty/feautures/post/services/camera_state.dart';
+import 'package:soko_beauty/feautures/post/widgets/animated_bar.dart';
 
 // ignore: must_be_immutable
 class RecordButton extends StatefulWidget {

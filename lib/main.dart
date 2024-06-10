@@ -3,9 +3,12 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
+import 'package:soko_beauty/feautures/video/views/services/video_provider.dart';
 import 'package:soko_beauty/home/screens/landing/splashscreen.dart';
 import 'core/services/theme_provider.dart';
 import 'feautures/auth/views/services/user_provider.dart';
+import 'package:cloudinary_url_gen/cloudinary.dart';
+import 'package:cloudinary_flutter/cloudinary_context.dart';
 import 'firebase_options.dart';
 
 void main() async {
@@ -14,6 +17,11 @@ void main() async {
     DeviceOrientation.portraitUp,
     DeviceOrientation.portraitDown,
   ]);
+
+  // initialize cloudinary
+  CloudinaryContext.cloudinary =
+      Cloudinary.fromCloudName(cloudName: 'dqsflflhg');
+  CloudinaryContext.cloudinary.config.urlConfig.secure = true;
 
   // Initialize Firebase
 
@@ -28,6 +36,7 @@ void main() async {
   runApp(MultiProvider(providers: [
     ChangeNotifierProvider(create: (context) => ThemeProvider()),
     ChangeNotifierProvider(create: (context) => UserProvider()),
+    ChangeNotifierProvider(create: (context) => VideoProvider()),
   ], child: SokoBeauty()));
 }
 

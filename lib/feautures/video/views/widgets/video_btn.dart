@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:soko_beauty/config/colors/colors.dart';
 
 class VideoActionButtons extends StatelessWidget {
-  final VoidCallback onAddPressed;
   final VoidCallback onFavoritePressed;
   final VoidCallback onCommentPressed;
   final VoidCallback onSharePressed;
@@ -13,7 +12,6 @@ class VideoActionButtons extends StatelessWidget {
 
   const VideoActionButtons(
       {Key? key,
-      required this.onAddPressed,
       required this.onFavoritePressed,
       required this.onCommentPressed,
       required this.onSharePressed,

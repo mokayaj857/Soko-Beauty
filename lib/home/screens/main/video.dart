@@ -31,7 +31,7 @@ class _VideoPageState extends State<VideoPage> {
             indicator: BoxDecoration(
               borderRadius: BorderRadius.circular(50),
               color: Colors.black.withOpacity(0.3),
-              border: Border.all(color: Colors.white.withOpacity(0.3)),
+              // border: BorderSide.only( ,
             ),
             labelColor: Colors.white.withOpacity(0.7),
             indicatorPadding:
@@ -65,9 +65,9 @@ class _VideoPageState extends State<VideoPage> {
         ),
         body: TabBarView(
           children: [
-            Expanded(child: AllVideosTab()),
-            Expanded(child: ServicesVideosTab()),
-            Expanded(child: ProductsVideoTab()),
+            AllVideosTab(),
+            ServicesVideosTab(),
+            ProductsVideoTab(),
           ],
         ),
       ),

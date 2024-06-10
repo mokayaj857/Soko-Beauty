@@ -1,13 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:provider/provider.dart';
 import 'package:soko_beauty/core/services/theme_provider.dart';
-import 'package:soko_beauty/core/utils/camera_utils.dart';
-import 'package:soko_beauty/core/utils/permission_utils.dart';
 import 'package:soko_beauty/config/colors/colors.dart';
-import 'package:soko_beauty/feautures/post/views/services/camera_bloc.dart';
 import 'package:soko_beauty/home/screens/main/chat.dart';
 import 'package:soko_beauty/home/screens/main/post.dart';
 import 'package:soko_beauty/home/screens/main/shop.dart';
@@ -23,7 +19,6 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   int _currentIndex = 0;
-  int _previousIndex = 0;
 
   @override
   void initState() {
@@ -36,45 +31,26 @@ class _HomePageState extends State<HomePage> {
   void _setSystemUIOverlayStyle() {
     final themeProvider = Provider.of<ThemeProvider>(context, listen: false);
     SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
-      systemNavigationBarIconBrightness: _currentIndex == 0 || _currentIndex == 2
+      systemNavigationBarIconBrightness: _currentIndex == 0
           ? Brightness.light
           : themeProvider.themeData.brightness == Brightness.dark
               ? Brightness.light
               : Brightness.dark,
-      systemNavigationBarColor: _currentIndex == 0 || _currentIndex == 2
+      systemNavigationBarColor: _currentIndex == 0
           ? Colors.black
           : themeProvider.themeData.scaffoldBackgroundColor,
-      systemNavigationBarDividerColor: _currentIndex == 0 || _currentIndex == 2
+      systemNavigationBarDividerColor: _currentIndex == 0
           ? Colors.black
           : themeProvider.themeData.scaffoldBackgroundColor,
     ));
   }
 
-  Widget _buildPostPage() {
-    return BlocProvider(
-      create: (context) => CameraBloc(
-        cameraUtils: CameraUtils(),
-        permissionUtils: PermissionUtils(),
-      )..add(const CameraInitialize(recordingLimit: 15)),
-      child: PostPage(
-        onExit: () {
-          setState(() {
-            _currentIndex = _previousIndex;
-          });
-          _setSystemUIOverlayStyle();
-        },
-      ),
-    );
-  }
-
   @override
   Widget build(BuildContext context) {
-    final bool isOnCamera = _currentIndex == 2;
 
     final List<Widget> _screens = [
       VideoPage(),
       MarketPage(),
-      _buildPostPage(),
       ChatsPage(),
       ProfilePage(),
     ];
@@ -85,57 +61,44 @@ class _HomePageState extends State<HomePage> {
 
     return Scaffold(
       extendBodyBehindAppBar: true,
-      extendBody: isOnCamera || _currentIndex == 0,
+      extendBody: _currentIndex == 0,
       body: _screens[_currentIndex],
-      bottomNavigationBar: isOnCamera
-          ? null
-          : BottomAppBar(
-              color: _currentIndex == 0
-                  ? Colors.black.withOpacity(0.9)
-                  : Theme.of(context).scaffoldBackgroundColor,
-              shape: CircularNotchedRectangle(),
-              notchMargin: 0,
-              elevation: 0.0,
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
-                children: [
-                  buildNavItem(0, CupertinoIcons.house_alt_fill
-                  , 'Home'),
-                  buildNavItem(1, CupertinoIcons.bag_fill
-                  , 'Shop'),
-                  FloatingActionButton(
-                    backgroundColor: Colors.transparent,
-                    onPressed: () {
-                      setState(() {
-                        _previousIndex = _currentIndex;
-                        _currentIndex = 2;
-                      });
-                      _setSystemUIOverlayStyle();
-                    },
-                    mini: true,
-                    child: Icon(
-                      Icons.add_circle_outline_rounded,
-                      size: 30,
-                      color: _currentIndex == 0
-                          ? Colors.white
-                          : Theme.of(context).hintColor,
-                    ),
-                  ),
-                  buildNavItemWithBadge(
-                      3, CupertinoIcons.chat_bubble_2_fill
-                      , 'Inbox', 3),
-                  buildNavItem(4, CupertinoIcons.person_fill
-                  , 'Profile'),
-                ],
+      bottomNavigationBar: BottomAppBar(
+        color: _currentIndex == 0
+            ? Colors.black.withOpacity(0.9)
+            : Theme.of(context).scaffoldBackgroundColor,
+        shape: CircularNotchedRectangle(),
+        notchMargin: 0,
+        elevation: 0.0,
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          children: [
+            buildNavItem(0, CupertinoIcons.house_alt_fill, 'Home'),
+            buildNavItem(1, CupertinoIcons.bag_fill, 'Shop'),
+            FloatingActionButton(
+              backgroundColor: Colors.transparent,
+              elevation: 0,
+              focusElevation: 0.1,
+              onPressed: () => _showBottomSheet(context),
+              mini: true,
+              child: Icon(
+                Icons.add_circle_outline_rounded,
+                size: 35,
+                color: _currentIndex == 0
+                    ? Colors.white
+                    : Theme.of(context).hintColor,
               ),
             ),
-      floatingActionButton: isOnCamera
-          ? null
-          : SizedBox(
-              width: 10,
-            ),
-      floatingActionButtonLocation:
-          isOnCamera ? null : FloatingActionButtonLocation.centerDocked,
+            buildNavItemWithBadge(
+                2, CupertinoIcons.chat_bubble_2_fill, 'Inbox', 3),
+            buildNavItem(3, CupertinoIcons.person_fill, 'Profile'),
+          ],
+        ),
+      ),
+      floatingActionButton: SizedBox(
+        width: 10,
+      ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
     );
   }
 
@@ -175,7 +138,6 @@ class _HomePageState extends State<HomePage> {
     );
   }
 
-
   Widget buildNavItemWithBadge(
       int index, IconData icon, String label, int badgeCount) {
     return Stack(
@@ -206,6 +168,18 @@ class _HomePageState extends State<HomePage> {
             ),
           ),
       ],
+    );
+  }
+
+  void _showBottomSheet(BuildContext context) {
+    showModalBottomSheet(
+      elevation: 1,
+      barrierColor: Colors.black26,
+      backgroundColor: Colors.transparent,
+      context: context,
+      builder: (context) {
+        return BottomSheetContent();
+      },
     );
   }
 }

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:soko_beauty/feautures/post/views/widgets/custom_button.dart';
+import 'package:soko_beauty/feautures/post/widgets/custom_button.dart';
 
 class PostPageBottomBar extends StatefulWidget {
   final VoidCallback onEffectsPressed;
