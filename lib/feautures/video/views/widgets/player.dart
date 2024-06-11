@@ -9,6 +9,10 @@ import 'package:soko_beauty/core/views/widgets/loading.dart';
 import 'package:video_player/video_player.dart';
 import 'package:cloudinary_flutter/cloudinary_object.dart';
 import 'package:cloudinary_flutter/video/cld_video_controller.dart';
+// import 'package:cloudinary_url_gen/transformation/transformation.dart';
+// import 'package:cloudinary_url_gen/transformation/delivery/delivery.dart';
+// import 'package:cloudinary_url_gen/transformation/resize/resize.dart';
+// import 'package:cloudinary_url_gen/transformation/delivery/delivery_actions.dart';
 import 'package:cloudinary_url_gen/cloudinary.dart';
 
 class Player extends StatefulWidget {
@@ -31,7 +35,10 @@ class Player extends StatefulWidget {
 
 class _PlayerState extends State<Player> with WidgetsBindingObserver {
   late CldVideoController _controller;
-  Cloudinary cloudinary = CloudinaryObject.fromCloudName(cloudName: cloudName);
+  Cloudinary cloudinary = CloudinaryObject.fromCloudName(
+    cloudName: cloudName,
+  );
+
   bool showIcon = false;
   late Future<void> _initializeVideoPlayerFuture;
   late Timer _watchTimer;
@@ -42,8 +49,15 @@ class _PlayerState extends State<Player> with WidgetsBindingObserver {
   void initState() {
     super.initState();
     WidgetsBinding.instance.addObserver(this);
-    _controller =
-        CldVideoController(cloudinary: cloudinary, publicId: widget.publicId);
+    _controller = CldVideoController(
+      cloudinary: cloudinary,
+      publicId: widget.publicId,
+      // transformation: Transformation()
+      // .resize(
+      //   Resize.scale().width(500).height(900),
+      // )
+      // .delivery(Delivery.format(Format.auto))
+    );
     _initializeVideoPlayerFuture = _controller.initialize().then((_) {
       setState(() {
         _controller.play();
@@ -51,6 +65,14 @@ class _PlayerState extends State<Player> with WidgetsBindingObserver {
         _controller.setLooping(true);
       });
     });
+
+    //   transformation: Transformation()
+    // .resize(Resize.scale().width(
+    //   MediaQuery.of(context).size.width.toInt())
+    // )
+    // .delivery(Delivery.format(
+    // Format.auto:video()))
+    // .setAssetType("video")
 
     // Start timer to track video watch time
     _watchTimer = Timer.periodic(Duration(seconds: 1), (timer) {

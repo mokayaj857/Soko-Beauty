@@ -1,6 +1,7 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:soko_beauty/core/views/widgets/custom_empty_state_msg.dart';
+import 'package:soko_beauty/core/views/widgets/profile/posts_tab.dart';
 import 'package:soko_beauty/feautures/auth/views/services/user_provider.dart';
 import 'package:soko_beauty/core/views/widgets/user_profile_card.dart';
 
@@ -10,120 +11,82 @@ class ProfilePage extends StatelessWidget {
     return DefaultTabController(
       length: 3,
       child: Scaffold(
-        body: CustomScrollView(
-          slivers: [
-            Consumer<UserProvider>(
-              builder: (context, userProvider, _) {
-                return UserProfileCard(user: userProvider.user!);
-              },
-            ),
-            SliverToBoxAdapter(
-              child: SizedBox(
-                height: MediaQuery.of(context).size.height,
-                child:
-                    _buildPostGrid(context), // Pass context to _buildPostGrid
+        body: NestedScrollView(
+          headerSliverBuilder: (context, innerBoxIsScrolled) {
+            return [
+              Consumer<UserProvider>(
+                builder: (context, userProvider, _) {
+                  return UserProfileCard(user: userProvider.user!);
+                },
               ),
-            )
-          ],
+              SliverPersistentHeader(
+                delegate: _SliverAppBarDelegate(
+                  TabBar(
+                    dividerColor: Colors.transparent,
+                    tabs: [
+                      Tab(icon: Icon(CupertinoIcons.photo_fill)),
+                      Tab(icon: Icon(CupertinoIcons.heart_fill)),
+                      Tab(icon: Icon(CupertinoIcons.bag_fill)),
+                    ],
+                  ),
+                ),
+                pinned: true,
+              ),
+            ];
+          },
+          body: Consumer<UserProvider>(
+            builder: (context, userProvider, _) {
+              return TabBarView(
+                children: [
+                  PostsTab(),
+                  LikedPostsTab(),
+                  ShopsTab(),
+                ],
+              );
+            },
+          ),
         ),
       ),
     );
   }
-
-  Widget _buildPostGrid(BuildContext context) {
-    // Add context parameter
-    final userProvider =
-        Provider.of<UserProvider>(context); // Access UserProvider
-
-    return TabBarView(
-      children: [
-        PostsTab(postIds: userProvider.user!.posts),
-        LikedPostsTab(likedPostIds: userProvider.user!.posts),
-        ShopsTab(shopIds: userProvider.user!.shops),
-      ],
-    );
-  }
 }
 
-class PostsTab extends StatelessWidget {
-  final List<String> postIds;
+class _SliverAppBarDelegate extends SliverPersistentHeaderDelegate {
+  _SliverAppBarDelegate(this._tabBar);
 
-  const PostsTab({Key? key, required this.postIds}) : super(key: key);
+  final TabBar _tabBar;
 
   @override
-  Widget build(BuildContext context) {
-    return postIds.isEmpty
-        ? Center(
-            child: EmptyStateMessage(
-              message: 'You have no posts yet.',
-              onPressed: () {},
-              buttonText: "Create Post",
-              icon: Icons.post_add,
-            ),
-          )
-        : ListView.builder(
-            itemCount: postIds.length,
-            itemBuilder: (context, index) {
-              // Display post based on postIds[index]
-              return ListTile(
-                title: Text('Post ${postIds[index]}'),
-              );
-            },
-          );
+  double get minExtent => _tabBar.preferredSize.height;
+
+  @override
+  double get maxExtent => _tabBar.preferredSize.height;
+
+  @override
+  Widget build(
+      BuildContext context, double shrinkOffset, bool overlapsContent) {
+    return Container(
+      color: Theme.of(context).scaffoldBackgroundColor,
+      child: _tabBar,
+    );
+  }
+
+  @override
+  bool shouldRebuild(_SliverAppBarDelegate oldDelegate) {
+    return false;
   }
 }
 
 class LikedPostsTab extends StatelessWidget {
-  final List<String> likedPostIds;
-
-  const LikedPostsTab({Key? key, required this.likedPostIds}) : super(key: key);
-
   @override
   Widget build(BuildContext context) {
-    return likedPostIds.isEmpty
-        ? Center(
-            child: EmptyStateMessage(
-              message: 'You have no liked posts yet.',
-              onPressed: () {},
-              buttonText: "Explore Posts",
-              icon: Icons.explore_outlined,
-            ),
-          )
-        : ListView.builder(
-            itemCount: likedPostIds.length,
-            itemBuilder: (context, index) {
-              // Display liked post based on likedPostIds[index]
-              return ListTile(
-                title: Text('Liked Post ${likedPostIds[index]}'),
-              );
-            },
-          );
+    return Center(child: Text('Liked Posts Tab'));
   }
 }
 
 class ShopsTab extends StatelessWidget {
-  final List<String> shopIds;
-
-  const ShopsTab({Key? key, required this.shopIds}) : super(key: key);
-
   @override
   Widget build(BuildContext context) {
-    return shopIds.isEmpty
-        ? Center(
-            child: EmptyStateMessage(
-            message: 'You have no shops yet.',
-            onPressed: () {},
-            buttonText: "Create Shop",
-            icon: Icons.storefront_outlined,
-          ))
-        : ListView.builder(
-            itemCount: shopIds.length,
-            itemBuilder: (context, index) {
-              // Display shop based on shopIds[index]
-              return ListTile(
-                title: Text('Shop ${shopIds[index]}'),
-              );
-            },
-          );
+    return Center(child: Text('Shops Tab'));
   }
 }

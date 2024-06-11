@@ -14,11 +14,10 @@ class UserActionsWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
-        color: Theme.of(context).colorScheme.primary.withOpacity(0.02),
-        borderRadius: BorderRadius.circular(20.0),
+        borderRadius: BorderRadius.circular(10.0),
         border: Border.all(
-          color: Theme.of(context).colorScheme.primary.withOpacity(0.5),
-          width: 0.5,
+          color: Theme.of(context).highlightColor,
+          width: 1,
         ),
       ),
       margin: EdgeInsets.symmetric(horizontal: 10.0, vertical: 8.0),
@@ -88,7 +87,7 @@ class ListTileItem extends StatelessWidget {
                 Text(
                   title,
                   style: TextStyle(
-                    fontSize: 16,
+                    fontSize: 12,
                     fontWeight: FontWeight.bold,
                   ),
                 ),

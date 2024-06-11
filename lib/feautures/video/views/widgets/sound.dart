@@ -18,6 +18,7 @@ class VideoSound extends StatefulWidget {
 class _VideoSoundState extends State<VideoSound>
     with SingleTickerProviderStateMixin {
   late AnimationController _controller;
+  // ignore: unused_field
   late Animation<Offset> _animation;
 
   @override
@@ -50,23 +51,23 @@ class _VideoSoundState extends State<VideoSound>
         child: Row(
           children: [
             SizedBox(width: 4),
-            Container(
-              // constraints: BoxConstraints(maxWidth: 200),
-              // child:
-              //  ClipRect(
-              //   child: SlideTransition(
-              // position: _animation,
-              child: Text(
-                widget.soundTitle,
-                overflow: TextOverflow.ellipsis,
-                style: TextStyle(
-                  fontSize: 12,
-                  color: Colors.white.withOpacity(0.9),
-                ),
-                //   ),
-                // ),
-              ),
-            ),
+            // Container(
+            //   // constraints: BoxConstraints(maxWidth: 200),
+            //   // child:
+            //   //  ClipRect(
+            //   //   child: SlideTransition(
+            //   // position: _animation,
+            //   child: Text(
+            //     widget.soundTitle,
+            //     overflow: TextOverflow.ellipsis,
+            //     style: TextStyle(
+            //       fontSize: 12,
+            //       color: Colors.white.withOpacity(0.9),
+            //     ),
+            //     //   ),
+            //     // ),
+            //   ),
+            // ),
             Spacer(),
             // GestureDetector(
             //   onTap: widget.onUseSound,

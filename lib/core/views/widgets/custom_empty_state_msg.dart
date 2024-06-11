@@ -10,7 +10,8 @@ class EmptyStateMessage extends StatelessWidget {
     Key? key,
     required this.message,
     required this.onPressed,
-    required this.buttonText, required this.icon,
+    required this.buttonText,
+    required this.icon,
   }) : super(key: key);
 
   @override
@@ -21,20 +22,16 @@ class EmptyStateMessage extends StatelessWidget {
         SizedBox(height: 20),
         Image.asset(
           'assets/gif/nothing.gif',
-          width: 200,
-          height: 200,
+          width: 250,
         ),
         SizedBox(height: 20),
         Text(
           message,
           style: TextStyle(
-            fontSize: 16,
-            fontWeight: FontWeight.bold,
-            color: Theme.of(context).primaryColor,
+            fontSize: 13,
           ),
         ),
-                SizedBox(height: 20),
-
+        SizedBox(height: 20),
         ElevatedButton(
           style: ElevatedButton.styleFrom(
             backgroundColor: Theme.of(context).primaryColor,
@@ -42,8 +39,8 @@ class EmptyStateMessage extends StatelessWidget {
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(30),
             ),
-            padding: EdgeInsets.symmetric(horizontal: 40, vertical: 10),
-            textStyle: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+            padding: EdgeInsets.symmetric(horizontal: 20, vertical: 5),
+            textStyle: TextStyle(fontSize: 12),
             foregroundColor: Colors.white,
           ),
           onPressed: onPressed,

@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
 import 'package:soko_beauty/core/constants/cloudinary_constants.dart';
-import 'package:soko_beauty/feautures/video/views/services/reactions_provider.dart';
+import 'package:soko_beauty/feautures/video/views/services/reaction_provider.dart';
 import 'package:soko_beauty/feautures/video/views/services/video_provider.dart';
 import 'core/views/services/theme_provider.dart';
 import 'feautures/auth/views/services/user_provider.dart';
@@ -38,7 +38,7 @@ void main() async {
     ChangeNotifierProvider(create: (context) => ThemeProvider()),
     ChangeNotifierProvider(create: (context) => UserProvider()),
     ChangeNotifierProvider(create: (context) => VideoProvider()),
-    ChangeNotifierProvider(create: (context) => ReactionsProvider()),
+    ChangeNotifierProvider(create: (context) => ReactionProvider()),
   ], child: SokoBeauty()));
 }
 

@@ -12,16 +12,9 @@ class UserModel {
   final DateTime? dob;
   final DateTime? createdAt;
   final String? profilePhotoUrl;
-  final List<String> shops;
-  final List<String> followers;
-  final List<String> following;
-  final List<String> posts;
+  final UserStats stats;
 
-  // Computed fields
-  bool get isVendor => shops.isNotEmpty;
-  int get postsCount => posts.length;
-  int get followersCount => followers.length;
-  int get followingCount => following.length;
+  bool get isVendor => stats.shops > 0;
 
   UserModel({
     required this.id,
@@ -35,15 +28,8 @@ class UserModel {
     this.dob,
     this.createdAt,
     this.profilePhotoUrl,
-    List<String>? shops,
-    List<String>? followers,
-    List<String>? following,
-    List<String>? posts,
-    List<String>? likedPosts,
-  })  : this.shops = shops ?? [],
-        this.followers = followers ?? [],
-        this.following = following ?? [],
-        this.posts = posts ?? [];
+    UserStats? stats, 
+  }) : this.stats = stats ?? UserStats.zero(); 
 
   static UserModel fromDocument(DocumentSnapshot<Map<String, dynamic>> doc) {
     final data = doc.data()!;
@@ -61,10 +47,7 @@ class UserModel {
           : null,
       profilePhotoUrl: data['profilePhotoUrl'],
       phoneNumber: data['phoneNumber'] ?? '',
-      shops: List<String>.from(data['shops'] ?? []),
-      followers: List<String>.from(data['followers'] ?? []),
-      following: List<String>.from(data['following'] ?? []),
-      posts: List<String>.from(data['posts'] ?? []),
+      stats: UserStats.fromMap(data['stats'] ?? {}), 
     );
   }
 
@@ -81,10 +64,53 @@ class UserModel {
       'profilePhotoUrl': profilePhotoUrl,
       'phoneNumber': phoneNumber,
       'isVendor': isVendor,
+      'stats': stats.toMap(),
+    };
+  }
+}
+
+class UserStats {
+  final int shops;
+  final int followers;
+  final int following;
+  final int posts;
+  final int likedPosts;
+
+  UserStats({
+    required this.shops,
+    required this.followers,
+    required this.following,
+    required this.posts,
+    required this.likedPosts,
+  });
+
+  factory UserStats.zero() {
+    return UserStats(
+      shops: 0,
+      followers: 0,
+      following: 0,
+      posts: 0,
+      likedPosts: 0,
+    );
+  }
+
+  static UserStats fromMap(Map<String, dynamic> map) {
+    return UserStats(
+      shops: map['shops'] ?? 0,
+      followers: map['followers'] ?? 0,
+      following: map['following'] ?? 0,
+      posts: map['posts'] ?? 0,
+      likedPosts: map['likedPosts'] ?? 0,
+    );
+  }
+
+  Map<String, dynamic> toMap() {
+    return {
       'shops': shops,
       'followers': followers,
       'following': following,
       'posts': posts,
+      'likedPosts': likedPosts,
     };
   }
 }

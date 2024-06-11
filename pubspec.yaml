@@ -70,6 +70,7 @@ flutter:
   uses-material-design: true
   assets:
     - assets/logo.png
+    - assets/user_avatar.png
     - assets/1015-300x201.jpg
     - assets/icons/ios.png
     - assets/icons/ios-white.png

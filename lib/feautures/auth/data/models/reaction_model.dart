@@ -1,6 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 
-class Reactions {
+class Reaction {
   final String postId;
   bool isLiked;
   bool isSaved;
@@ -13,7 +13,7 @@ class Reactions {
   bool isAddedToCart;
   bool isWatched;
 
-  Reactions({
+  Reaction({
     required this.postId,
     this.isLiked = false,
     this.isSaved = false,
@@ -27,22 +27,20 @@ class Reactions {
     this.isWatched = false,
   });
 
-  factory Reactions.fromDocument(DocumentSnapshot<Map<String, dynamic>> doc) {
+  factory Reaction.fromDocument(DocumentSnapshot<Map<String, dynamic>> doc) {
     final data = doc.data()!;
-    return Reactions(
+    return Reaction(
       postId: doc.id,
       isLiked: data['isLiked'] ?? false,
       isSaved: data['isSaved'] ?? false,
       sharesCount: data['sharesCount'] ?? 0,
       reactedAt: (data['reactedAt'] as Timestamp).toDate(),
       watchTime: data['watchTime'] ?? 0,
-
       loops: data['loops'] ?? 0,
       isBooked: data['isBooked'] ?? false,
       isPurchased: data['isPurchased'] ?? false,
       isAddedToCart: data['isAddedToCart'] ?? false,
       isWatched: data['isWatched'] ?? false,
-      
     );
   }
 
