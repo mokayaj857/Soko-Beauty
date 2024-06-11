@@ -1,3 +1,4 @@
+import 'package:soko_beauty/core/enums/video_enums.dart';
 import 'package:soko_beauty/feautures/video/data/models/video.dart';
 import 'package:soko_beauty/feautures/video/data/models/type.dart';
 import 'package:soko_beauty/feautures/video/data/repositories/video_repo.dart';
@@ -39,5 +40,15 @@ class VideoController {
 
   Future<List<Video>> getAllVideos({int limit = 50, int page = 1}) async {
     return await _videoRepository.getAllVideos(limit: limit, page: page);
+  }
+
+  // New method to increment a metric for a video
+  Future<void> incrementMetric(String videoId, MetricType metricField) async {
+    await _videoRepository.incrementMetric(videoId, metricField);
+  }
+
+  // New method to decrement a metric for a video
+  Future<void> decrementMetric(String videoId, MetricType metricField) async {
+    await _videoRepository.decrementMetric(videoId, metricField);
   }
 }

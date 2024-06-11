@@ -38,7 +38,7 @@ class ProfilePage extends StatelessWidget {
     return TabBarView(
       children: [
         PostsTab(postIds: userProvider.user!.posts),
-        LikedPostsTab(likedPostIds: userProvider.user!.likedPosts),
+        LikedPostsTab(likedPostIds: userProvider.user!.posts),
         ShopsTab(shopIds: userProvider.user!.shops),
       ],
     );
@@ -55,9 +55,10 @@ class PostsTab extends StatelessWidget {
     return postIds.isEmpty
         ? Center(
             child: EmptyStateMessage(
-            message: 'You have no posts yet.',
-            onPressed: () {},
-            buttonText: "Create Post", icon: Icons.post_add,
+              message: 'You have no posts yet.',
+              onPressed: () {},
+              buttonText: "Create Post",
+              icon: Icons.post_add,
             ),
           )
         : ListView.builder(
@@ -82,9 +83,10 @@ class LikedPostsTab extends StatelessWidget {
     return likedPostIds.isEmpty
         ? Center(
             child: EmptyStateMessage(
-            message: 'You have no liked posts yet.',
-            onPressed: () {},
-            buttonText: "Explore Posts", icon: Icons.explore_outlined,
+              message: 'You have no liked posts yet.',
+              onPressed: () {},
+              buttonText: "Explore Posts",
+              icon: Icons.explore_outlined,
             ),
           )
         : ListView.builder(
@@ -111,7 +113,8 @@ class ShopsTab extends StatelessWidget {
             child: EmptyStateMessage(
             message: 'You have no shops yet.',
             onPressed: () {},
-            buttonText: "Create Shop", icon: Icons.storefront_outlined,
+            buttonText: "Create Shop",
+            icon: Icons.storefront_outlined,
           ))
         : ListView.builder(
             itemCount: shopIds.length,

@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:soko_beauty/config/colors/global_colors.dart';
 import 'package:soko_beauty/feautures/shop/views/widgets/common/search_bar.dart';
 import 'package:soko_beauty/feautures/shop/views/widgets/common/selection_chips.dart';
 
@@ -12,7 +11,7 @@ class ShopsAppbar extends StatelessWidget {
   Widget build(BuildContext context) {
     return SliverAppBar(
       backgroundColor: Theme.of(context).scaffoldBackgroundColor,
-      foregroundColor: sbbrickRed,
+      foregroundColor: Theme.of(context).primaryColor,
       pinned: true,
       expandedHeight: 160,
       collapsedHeight: 30,

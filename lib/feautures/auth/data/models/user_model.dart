@@ -16,7 +16,6 @@ class UserModel {
   final List<String> followers;
   final List<String> following;
   final List<String> posts;
-  final List<String> likedPosts;
 
   // Computed fields
   bool get isVendor => shops.isNotEmpty;
@@ -44,8 +43,7 @@ class UserModel {
   })  : this.shops = shops ?? [],
         this.followers = followers ?? [],
         this.following = following ?? [],
-        this.posts = posts ?? [],
-        this.likedPosts = likedPosts ?? [];
+        this.posts = posts ?? [];
 
   static UserModel fromDocument(DocumentSnapshot<Map<String, dynamic>> doc) {
     final data = doc.data()!;
@@ -67,7 +65,6 @@ class UserModel {
       followers: List<String>.from(data['followers'] ?? []),
       following: List<String>.from(data['following'] ?? []),
       posts: List<String>.from(data['posts'] ?? []),
-      likedPosts: List<String>.from(data['likedPosts'] ?? []),
     );
   }
 
@@ -88,7 +85,6 @@ class UserModel {
       'followers': followers,
       'following': following,
       'posts': posts,
-      'likedPosts': likedPosts,
     };
   }
 }

@@ -1,18 +1,20 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:soko_beauty/config/colors/global_colors.dart';
 import 'package:soko_beauty/config/styles/video_styles.dart';
+import 'package:soko_beauty/feautures/auth/data/models/reactions_model.dart';
 import 'package:soko_beauty/feautures/video/data/models/metrics.dart';
 import 'package:soko_beauty/feautures/video/data/models/type.dart';
 
-class VideoActions extends StatelessWidget {
+class VideoActions extends StatefulWidget {
   final VoidCallback onFavoritePressed;
   final VoidCallback onCommentPressed;
   final VoidCallback onSharePressed;
   final VoidCallback shoppingCartPressed;
   final VoidCallback bookingIconPressed;
+  final VoidCallback onMorePressed;
   final VideoType videoType;
   final VideoMetrics metrics;
+  final Reactions? reactions;
 
   const VideoActions({
     Key? key,
@@ -23,8 +25,15 @@ class VideoActions extends StatelessWidget {
     required this.videoType,
     required this.bookingIconPressed,
     required this.metrics,
+    required this.onMorePressed,
+    required this.reactions,
   }) : super(key: key);
 
+  @override
+  _VideoActionsState createState() => _VideoActionsState();
+}
+
+class _VideoActionsState extends State<VideoActions> {
   @override
   Widget build(BuildContext context) {
     return Positioned(
@@ -34,58 +43,47 @@ class VideoActions extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.end,
         children: [
           _buildActionButton(
-            onPressed: onFavoritePressed,
-            icon: CupertinoIcons.heart_fill,
-            label: metrics.likes.toString(),
+            onPressed: () {
+              widget.onFavoritePressed();
+            },
+            icon: widget.reactions?.isLiked == true
+                ? CupertinoIcons.heart_fill
+                : CupertinoIcons.heart_fill,
+            label: widget.metrics.likes.toString(),
             heroTag: 'favorite',
           ),
-          SizedBox(height: 15.0),
           _buildActionButton(
-            onPressed: onCommentPressed,
+            onPressed: widget.onCommentPressed,
             icon: CupertinoIcons.chat_bubble_text_fill,
-            label: metrics.comments.toString(),
+            label: widget.metrics.comments.toString(),
             heroTag: 'comment',
           ),
-          SizedBox(height: 15.0),
           _buildActionButton(
-            onPressed: onSharePressed,
+            onPressed: widget.onSharePressed,
             icon: CupertinoIcons.arrowshape_turn_up_right_fill,
-            label: metrics.shares.toString(),
+            label: widget.metrics.shares.toString(),
             heroTag: 'share',
           ),
-          if (videoType == VideoType.Product)
+          if (widget.videoType == VideoType.Product)
             _buildActionButton(
-              onPressed: shoppingCartPressed,
+              onPressed: widget.shoppingCartPressed,
               icon: CupertinoIcons.cart_fill,
-              label: metrics.cartAdditions.toString(),
+              label: widget.metrics.cartAdditions.toString(),
               heroTag: 'cart',
-              needsIndicator: true,
-              indicatorCount: metrics.cartAdditions,
             ),
-          if (videoType == VideoType.Product)
+          if (widget.videoType == VideoType.Service)
             _buildActionButton(
-              onPressed: bookingIconPressed,
-              icon: CupertinoIcons.calendar_today,
-              label: metrics.bookings.toString(),
+              onPressed: widget.bookingIconPressed,
+              icon: Icons.calendar_month_rounded, // Use your booking icon
+              label: widget.metrics.bookings.toString(),
               heroTag: 'book',
-              needsIndicator: true,
-              indicatorCount: metrics.bookings,
             ),
-          SizedBox(height: 15.0),
-          IconButton(
-            style: ButtonStyle(
-              backgroundColor:
-                  WidgetStateProperty.all(Colors.black.withOpacity(0.15)),
-              shape: WidgetStateProperty.all(CircleBorder()),
-            ),
-            onPressed: () {},
-            icon: Icon(
-              Icons.more_horiz_rounded,
-              color: Colors.white.withOpacity(0.9),
-              size: 30.0,
-            ),
+          _buildActionButton(
+            onPressed: widget.onMorePressed,
+            icon: Icons.more_horiz_rounded,
+            label: '',
+            heroTag: 'more',
           ),
-          SizedBox(height: 40.0),
         ],
       ),
     );
@@ -96,26 +94,39 @@ class VideoActions extends StatelessWidget {
     required IconData icon,
     required String label,
     required String heroTag,
-    bool needsIndicator = false,
-    int? indicatorCount,
   }) {
     return Column(
       children: [
         FloatingActionButton(
-          backgroundColor: Colors.black.withOpacity(0.15),
+          backgroundColor: Colors.black.withOpacity(0.02),
           elevation: 0,
           heroTag: heroTag,
           mini: true,
-          onPressed: onPressed,
+          onPressed: () {
+            _animatedOnPressed(onPressed);
+          },
           child: Stack(
             alignment: Alignment.center,
             children: [
               Icon(
                 icon,
-                size: 30.0,
+                size: 34.0,
+                color: icon == CupertinoIcons.heart_fill &&
+                        widget.reactions?.isLiked == true
+                    ? Colors.red 
+                    : null,
               ),
-              if (needsIndicator)
-                _buildIndicator(indicatorCount: indicatorCount),
+              if (widget.reactions?.isBooked == true ||
+                  widget.reactions?.isAddedToCart == true)
+                Positioned(
+                  right: 0,
+                  bottom: 0,
+                  child: Icon(
+                    Icons.check_circle,
+                    color: Colors.green,
+                    size: 16,
+                  ),
+                ),
             ],
           ),
         ),
@@ -123,30 +134,17 @@ class VideoActions extends StatelessWidget {
           Text(
             label,
             style: TextStyle(
-                fontSize: 12.0,
-                fontWeight: FontWeight.bold,
-                color: Colors.white.withOpacity(0.9)),
+              fontSize: 11.0,
+              fontWeight: FontWeight.bold,
+              color: Colors.white.withOpacity(0.9),
+            ),
           ),
+        SizedBox(height: 8.0),
       ],
     );
   }
 
-  // build indicator widget
-  Widget _buildIndicator({
-    int? indicatorCount,
-  }) {
-    return Align(
-      alignment: Alignment.topRight,
-      child: CircleAvatar(
-        radius: 9.0,
-        backgroundColor: sbbrickRed,
-        child: Center(
-          child: Text(
-            indicatorCount != null ? indicatorCount.toString() : '',
-            style: TextStyle(fontSize: 10.0, color: Colors.white),
-          ),
-        ),
-      ),
-    );
+  void _animatedOnPressed(VoidCallback onPressed) {
+    onPressed();
   }
 }

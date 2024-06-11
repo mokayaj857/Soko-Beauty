@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:soko_beauty/config/colors/global_colors.dart';
+import 'package:soko_beauty/core/views/widgets/loading.dart';
 import 'package:soko_beauty/landing.dart';
 
 class SplashScreen extends StatelessWidget {
@@ -14,21 +15,7 @@ class SplashScreen extends StatelessWidget {
     });
     return Scaffold(
       body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            Image.asset('assets/logo.png', height: 120),
-            SizedBox(height: 10),
-            Text("SokoBeauty",
-                style: TextStyle(
-                  fontSize: 30,
-                  fontWeight: FontWeight.bold,
-                  color: sbdeepRed,
-                ),
-            ),
-          ],
-        ),
+        child: Container(child: Image.asset('assets/logo.png', height: 130)),
       ),
     );
   }

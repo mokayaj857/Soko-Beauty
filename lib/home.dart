@@ -2,8 +2,9 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
-import 'package:soko_beauty/core/views/services/theme_provider.dart';
 import 'package:soko_beauty/config/colors/global_colors.dart';
+import 'package:soko_beauty/config/styles/global_styles.dart';
+import 'package:soko_beauty/core/views/services/theme_provider.dart';
 import 'package:soko_beauty/home/chat.dart';
 import 'package:soko_beauty/home/post.dart';
 import 'package:soko_beauty/home/shop.dart';
@@ -37,17 +38,17 @@ class _HomePageState extends State<HomePage> {
               ? Brightness.light
               : Brightness.dark,
       systemNavigationBarColor: _currentIndex == 0
-          ? Colors.black
+          ? AppColors.black
           : themeProvider.themeData.scaffoldBackgroundColor,
       systemNavigationBarDividerColor: _currentIndex == 0
-          ? Colors.black
+          ? AppColors.black
           : themeProvider.themeData.scaffoldBackgroundColor,
+      systemStatusBarContrastEnforced: false,
     ));
   }
 
   @override
   Widget build(BuildContext context) {
-
     final List<Widget> _screens = [
       VideoPage(),
       MarketPage(),
@@ -64,8 +65,9 @@ class _HomePageState extends State<HomePage> {
       extendBody: _currentIndex == 0,
       body: _screens[_currentIndex],
       bottomNavigationBar: BottomAppBar(
+        height: AppSizes.bottomAppBarHeight,
         color: _currentIndex == 0
-            ? Colors.black.withOpacity(0.9)
+            ? AppColors.black.withOpacity(0.9)
             : Theme.of(context).scaffoldBackgroundColor,
         shape: CircularNotchedRectangle(),
         notchMargin: 0,
@@ -85,7 +87,7 @@ class _HomePageState extends State<HomePage> {
                 Icons.add_circle_outline_rounded,
                 size: 35,
                 color: _currentIndex == 0
-                    ? Colors.white
+                    ? AppColors.white
                     : Theme.of(context).hintColor,
               ),
             ),
@@ -117,9 +119,9 @@ class _HomePageState extends State<HomePage> {
           Icon(
             icon,
             color: _currentIndex == index
-                ? sbbrickRed
+                ? Theme.of(context).primaryColor
                 : _currentIndex == 0
-                    ? Colors.white
+                    ? AppColors.white
                     : Theme.of(context).hintColor,
           ),
           Text(
@@ -127,9 +129,9 @@ class _HomePageState extends State<HomePage> {
             style: TextStyle(
               fontSize: 10,
               color: _currentIndex == index
-                  ? sbbrickRed
+                  ? Theme.of(context).primaryColor
                   : _currentIndex == 0
-                      ? Colors.white
+                      ? AppColors.white
                       : Theme.of(context).hintColor,
             ),
           ),
@@ -150,17 +152,17 @@ class _HomePageState extends State<HomePage> {
             child: Container(
               padding: EdgeInsets.all(1),
               decoration: BoxDecoration(
-                color: Colors.redAccent,
+                color: AppColors.primary,
                 borderRadius: BorderRadius.circular(15),
               ),
               constraints: BoxConstraints(
-                minWidth: 12,
-                minHeight: 12,
+                minWidth: 13,
+                minHeight: 13,
               ),
               child: Text(
                 '$badgeCount',
                 style: TextStyle(
-                  color: Colors.white,
+                  color: AppColors.white,
                   fontSize: 7,
                 ),
                 textAlign: TextAlign.center,
@@ -174,7 +176,7 @@ class _HomePageState extends State<HomePage> {
   void _showBottomSheet(BuildContext context) {
     showModalBottomSheet(
       elevation: 1,
-      barrierColor: Colors.black26,
+      barrierColor: AppColors.black.withOpacity(0.26),
       backgroundColor: Colors.transparent,
       context: context,
       builder: (context) {

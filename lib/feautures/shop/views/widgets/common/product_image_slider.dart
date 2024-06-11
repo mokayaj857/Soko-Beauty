@@ -1,6 +1,5 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
-import 'package:soko_beauty/config/colors/global_colors.dart';
 
 class CarouselWithDotsPage extends StatefulWidget {
   final List<String> imgList = [
@@ -46,18 +45,17 @@ class _CarouselWithDotsPageState extends State<CarouselWithDotsPage> {
       width: double.infinity,
       child: Stack(
         children: [
-        CarouselSlider(
-              items: imageSliders,
-              options: CarouselOptions(
-                  autoPlay: true,
-                  enlargeCenterPage: true,
-                  aspectRatio: 2.0,
-                  onPageChanged: (index, reason) {
-                    setState(() {
-                      _current = index;
-                    });
-                  }),
-          
+          CarouselSlider(
+            items: imageSliders,
+            options: CarouselOptions(
+                autoPlay: true,
+                enlargeCenterPage: true,
+                aspectRatio: 2.0,
+                onPageChanged: (index, reason) {
+                  setState(() {
+                    _current = index;
+                  });
+                }),
           ),
           Align(
             alignment: Alignment.bottomCenter,
@@ -74,7 +72,9 @@ class _CarouselWithDotsPageState extends State<CarouselWithDotsPage> {
                   ),
                   decoration: BoxDecoration(
                     shape: BoxShape.circle,
-                    color: _current == index ? sbbrickRed : Colors.white,
+                    color: _current == index
+                        ? Theme.of(context).primaryColor
+                        : Colors.white,
                   ),
                 );
               }).toList(),

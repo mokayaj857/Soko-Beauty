@@ -1,24 +1,26 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:soko_beauty/config/colors/global_colors.dart';
 import 'package:soko_beauty/config/styles/video_styles.dart';
 import 'package:soko_beauty/core/utils/video_utils.dart';
 import 'package:soko_beauty/feautures/video/views/widgets/hashtags.dart';
 
 class VideoInfo extends StatefulWidget {
-  const VideoInfo(
-      {Key? key,
-      required this.onFollow,
-      required this.username,
-      required this.tags,
-      required this.description,
-      required this.likes,
-      required this.createdAt})
-      : super(key: key);
+  const VideoInfo({
+    Key? key,
+    required this.onFollow,
+    required this.username,
+    required this.tags,
+    required this.description,
+    required this.views,
+    required this.createdAt,
+  }) : super(key: key);
 
   final VoidCallback onFollow;
   final String username;
   final List<String> tags;
   final String description;
-  final int likes;
+  final int views;
   final DateTime createdAt;
 
   @override
@@ -31,235 +33,222 @@ class _VideoInfoState extends State<VideoInfo> {
   @override
   Widget build(BuildContext context) {
     return Positioned(
-      top: VideoItemPosition.info.top,
-      left: VideoItemPosition.info.left,
-      right: VideoItemPosition.info.right,
+      bottom: VideoItemPosition.info.bottom,
       child: AnimatedContainer(
         duration: Duration(milliseconds: 300),
         curve: Curves.easeInOut,
         constraints: BoxConstraints(
           maxWidth: 520,
-          // maxHeight: isMinimized ? 120 : 250,
         ),
-        width: MediaQuery.of(context).size.width,
-        padding: EdgeInsets.only(
-          left: 8,
-          right: 80,
-          top: 0,
-          bottom: 10,
-        ),
-        decoration: BoxDecoration(
-          gradient: !isMinimized
-              ? LinearGradient(
+        decoration: !isMinimized
+            ? BoxDecoration(
+                gradient: LinearGradient(
                   begin: Alignment.topCenter,
                   end: Alignment.bottomCenter,
                   colors: [
                     Colors.black.withOpacity(0.0),
-                    Colors.black.withOpacity(0.3),
-                    Colors.black.withOpacity(0.5),
+                    Colors.black.withOpacity(0.7),
                   ],
-                )
-              : null,
-        ),
+                ),
+              )
+            : null,
+        width: MediaQuery.of(context).size.width,
+        padding: EdgeInsets.only(
+            left: 10,
+            right: 70,
+            top: 5,
+            bottom: VideoItemSizes.videoProgressBarHeight +
+                VideoItemSizes.videoSoundHeight),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           mainAxisAlignment: MainAxisAlignment.end,
           mainAxisSize: MainAxisSize.min,
           children: [
-            Padding(
-              padding: const EdgeInsets.symmetric(vertical: 5.0),
-              child: Row(
-                mainAxisSize: MainAxisSize.min,
-                mainAxisAlignment: MainAxisAlignment.start,
-                children: [
-                  Container(
-                    decoration: BoxDecoration(
-                      border: Border.all(
-                          color: Colors.white.withOpacity(0.5), width: 1),
-                      borderRadius: BorderRadius.circular(50),
-                    ),
-                    child: CircleAvatar(
-                      radius: 18,
-                      backgroundImage:
-                          NetworkImage("https://picsum.photos/200"),
-                    ),
+            Row(
+              mainAxisSize: MainAxisSize.min,
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: [
+                Container(
+                  decoration: BoxDecoration(
+                    border: Border.all(
+                        color: AppColors.primary.withOpacity(0.5), width: 2),
+                    borderRadius: BorderRadius.circular(50),
                   ),
-                  SizedBox(width: 8),
-                  Text(
-                    widget.username,
-                    style: TextStyle(
-                        fontSize: 15,
-                        fontWeight: FontWeight.bold,
-                        color: Colors.white.withOpacity(0.9)),
-                    overflow:
-                        isMinimized ? TextOverflow.ellipsis : TextOverflow.clip,
-                  ),
-                  SizedBox(width: 25),
-                  GestureDetector(
-                    onTap: widget.onFollow,
-                    child: Container(
-                      padding:
-                          EdgeInsets.symmetric(horizontal: 20, vertical: 3),
-                      decoration: BoxDecoration(
-                        color: Colors.white.withOpacity(0.9),
-                        borderRadius: BorderRadius.circular(20),
-                        border: Border.all(
-                            color: Colors.white.withOpacity(0.5), width: 1),
+                  child: Stack(
+                    children: [
+                      CircleAvatar(
+                        radius: 18,
+                        backgroundImage:
+                            NetworkImage("https://picsum.photos/200"),
                       ),
-                      child: Text(
-                        "follow",
-                        style: TextStyle(
-                            fontSize: 14,
-                            color: Colors.black.withOpacity(0.8),
-                            fontWeight: FontWeight.bold),
-                      ),
-                    ),
-                  ),
-                  Spacer(),
-                  if (!isMinimized)
-                    GestureDetector(
-                      onTap: () {
-                        setState(() {
-                          isMinimized = !isMinimized;
-                        });
-                      },
-                      child: Row(
-                        children: [
-                          Icon(
-                            Icons.keyboard_arrow_down,
-                            color: Colors.white,
-                            size: 35,
+                      //positioned badge with plus icon
+                      GestureDetector(
+                        onTap: widget.onFollow,
+                        child: Positioned(
+                          bottom: 0,
+                          right: 0,
+                          child: Container(
+                            padding: EdgeInsets.all(3),
+                            decoration: BoxDecoration(
+                              color: AppColors.primary,
+                              shape: BoxShape.circle,
+                            ),
+                            child: Icon(
+                              Icons.add_outlined,
+                              color: Colors.white,
+                              size: 13,
+                            ),
                           ),
-                        ],
+                        ),
                       ),
+                    ],
+                  ),
+                ),
+                SizedBox(width: 8),
+                Text(
+                  widget.username,
+                  style: TextStyle(
+                      fontSize: 13,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.white.withOpacity(0.9)),
+                  overflow:
+                      isMinimized ? TextOverflow.ellipsis : TextOverflow.clip,
+                ),
+                SizedBox(width: 7),
+                Row(
+                  children: [
+                    Text(
+                      "${widget.views}",
+                      style: TextStyle(
+                          fontSize: 10, color: Colors.white.withOpacity(0.9)),
                     ),
-                ],
-              ),
+                    SizedBox(width: 3),
+                    Icon(
+                      CupertinoIcons.eye_fill,
+                      color: Colors.white.withOpacity(0.9),
+                      size: 14,
+                    ),
+                    SizedBox(width: 8),
+                    Text(
+                      timeAgo(widget.createdAt),
+                      style: TextStyle(
+                          wordSpacing: 0.5,
+                          fontSize: 10,
+                          color: Colors.white.withOpacity(0.9)),
+                    ),
+                  ],
+                ),
+                Spacer(),
+                if (!isMinimized)
+                  GestureDetector(
+                    onTap: () {
+                      setState(() {
+                        isMinimized = !isMinimized;
+                      });
+                    },
+                    child: Row(
+                      children: [
+                        Icon(
+                          Icons.keyboard_arrow_down,
+                          color: Colors.white,
+                          size: 20,
+                        ),
+                      ],
+                    ),
+                  ),
+              ],
             ),
             Column(
               crossAxisAlignment: CrossAxisAlignment.stretch,
               mainAxisAlignment: MainAxisAlignment.end,
               mainAxisSize: MainAxisSize.min,
               children: [
-                Padding(
-                  padding: const EdgeInsets.only(left: 5.0),
-                  child: Row(
-                    children: [
-                      Text(
-                        "${widget.likes} views",
-                        style: TextStyle(
-                            fontSize: 14,
-                            fontWeight: FontWeight.bold,
-                            color: Colors.white.withOpacity(0.9)),
-                      ),
-                      SizedBox(width: 5),
-                      Text(
-                        "•",
-                        style: TextStyle(
-                            fontSize: 18,
-                            fontWeight: FontWeight.bold,
-                            color: Colors.white.withOpacity(0.9)),
-                      ),
-                      SizedBox(width: 5),
-                      Text(
-                        timeAgo(widget.createdAt),
-                        style: TextStyle(
-                            fontSize: 14,
-                            fontWeight: FontWeight.bold,
-                            color: Colors.white.withOpacity(0.9)),
-                      ),
-                    ],
-                  ),
-                ),
-                SizedBox(height: 3),
-                Padding(
-                  padding: const EdgeInsets.only(left: 5.0),
-                  child: Row(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Expanded(
-                        child: SingleChildScrollView(
-                          child: Text(
-                            widget.description,
-                            style: TextStyle(
-                                fontSize: 14,
-                                color: Colors.white.withOpacity(0.9),
-                                fontWeight: FontWeight.bold),
-                            overflow:
-                                isMinimized ? TextOverflow.ellipsis : null,
-                            maxLines: isMinimized ? 1 : null,
-                          ),
-                        ),
-                      ),
-                      if (isMinimized) SizedBox(width: 2),
-                      if (isMinimized)
-                        GestureDetector(
-                          onTap: () {
-                            setState(() {
-                              isMinimized = !isMinimized;
-                            });
-                          },
-                          child: Row(
+                if (widget.description.isNotEmpty || widget.tags.isNotEmpty)
+                  Padding(
+                    padding: const EdgeInsets.only(left: 5.0),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        if (widget.description.isNotEmpty)
+                          Row(
+                            crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              Text(
-                                "see more",
-                                style: TextStyle(
-                                  color: Colors.blue,
-                                  fontWeight: FontWeight.bold,
-                                  decoration: TextDecoration.underline,
-                                  decorationColor: Colors.blue,
+                              Expanded(
+                                child: Text(
+                                  widget.description,
+                                  style: TextStyle(
+                                    fontSize: 13,
+                                    color: Colors.white.withOpacity(0.9),
+                                  ),
+                                  overflow: isMinimized
+                                      ? TextOverflow.ellipsis
+                                      : null,
+                                  maxLines: isMinimized ? 1 : null,
                                 ),
                               ),
-                              SizedBox(width: 2),
-                              Icon(
-                                Icons.keyboard_arrow_up,
-                                color: Colors.blue,
-                                size: 25,
-                              ),
+                              if (isMinimized &&
+                                  widget.description.length > 30) ...[
+                                SizedBox(width: 2),
+                                _buildShowMoreButton(),
+                              ],
+                              if (!isMinimized) _buildHideButton(),
                             ],
                           ),
-                        ),
-                    ],
+                        if (!isMinimized && widget.tags.isNotEmpty)
+                          HashtagsWidget(
+                            hashtags: widget.tags,
+                          ),
+                      ],
+                    ),
                   ),
-                ),
-                // SizedBox(height: 5),
-                if (!isMinimized)
-                  HashtagsWidget(
-                    hashtags: widget.tags,
-                  ),
-                if (!isMinimized)
-                  Row(
-                    crossAxisAlignment: CrossAxisAlignment.end,
-                    textBaseline: TextBaseline.alphabetic,
-                    children: [
-                      Spacer(),
-                      GestureDetector(
-                        onTap: () {
-                          setState(() {
-                            isMinimized = !isMinimized;
-                          });
-                        },
-                        child: Row(
-                          children: [
-                            Text(
-                              "hide",
-                              style: TextStyle(
-                                color: Colors.blue,
-                                fontWeight: FontWeight.bold,
-                                decoration: TextDecoration.underline,
-                                decorationColor: Colors.blue,
-                                fontSize: 16,
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ],
-                  )
               ],
             ),
           ],
         ),
+      ),
+    );
+  }
+
+  Widget _buildShowMoreButton() {
+    return GestureDetector(
+      onTap: () {
+        setState(() {
+          isMinimized = !isMinimized;
+        });
+      },
+      child: Row(
+        children: [
+          Text(
+            "show more",
+            style: TextStyle(
+              color: Colors.white,
+              fontSize: 12,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildHideButton() {
+    return GestureDetector(
+      onTap: () {
+        setState(() {
+          isMinimized = !isMinimized;
+        });
+      },
+      child: Row(
+        children: [
+          Text(
+            "hide",
+            style: TextStyle(
+              color: Colors.white,
+              fontSize: 12,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
+        ],
       ),
     );
   }

@@ -2,49 +2,44 @@ import 'package:flutter/material.dart';
 import 'package:soko_beauty/config/colors/global_colors.dart';
 
 ThemeData lightMode = ThemeData(
-  // 1. App-wide settings
   brightness: Brightness.light,
-  primaryColor: sbdarkBrown,
-  primarySwatch: Colors.red,
+  primaryColor: AppColors.primaryVariant,
+  primarySwatch: Colors.blue,
   canvasColor: Colors.grey.shade50,
   cardColor: Colors.white,
-  fontFamily: 'Poppins',
-  fontFamilyFallback: ['Helvetica'],
+  fontFamily: 'SystemUi',
+  fontFamilyFallback: ['SystemUi'],
   package: 'Soko Beauty',
   useMaterial3: true,
   scaffoldBackgroundColor: Colors.white,
   colorScheme: ColorScheme.light(
-    primary: sbdarkBrown,
-    secondary: sbdeepRed,
+    primary: AppColors.primaryVariant,
+    secondary: AppColors.secondary,
     surface: Colors.white,
-    error: Colors.red,
-    onPrimary: Colors.white,
-    onSecondary: Colors.white,
+    error: AppColors.error,
+    onPrimary: AppColors.onPrimary,
+    onSecondary: AppColors.onSecondary,
     onSurface: Colors.black,
-    onError: Colors.white,
+    onError: AppColors.onError,
     brightness: Brightness.light,
   ),
-
-  //2 - floating ACTIONS BUTTON
   floatingActionButtonTheme: FloatingActionButtonThemeData(
-      backgroundColor: Colors.red.shade50.withOpacity(0.6),
-      foregroundColor: Colors.white,
-      elevation: 0.0,
-      iconSize: 30,
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(50.0),
-      ),
-      splashColor: Color.fromARGB(132, 255, 82, 82)),
-  splashFactory: NoSplash.splashFactory,
-
-  progressIndicatorTheme: ProgressIndicatorThemeData(
-    color: sbbrickRed,
+    backgroundColor: Colors.red.shade50.withOpacity(0.6),
+    foregroundColor: Colors.white,
+    elevation: 0.0,
+    iconSize: 30,
+    shape: RoundedRectangleBorder(
+      borderRadius: BorderRadius.circular(50.0),
+    ),
+    splashColor: Color.fromARGB(132, 255, 82, 82),
   ),
-
-  //TabBar Theme
+  splashFactory: NoSplash.splashFactory,
+  progressIndicatorTheme: ProgressIndicatorThemeData(
+    color: AppColors.primary,
+  ),
   tabBarTheme: TabBarTheme(
-    labelColor: sbbrickRed,
-    indicatorColor: sbbrickRed,
+    labelColor: AppColors.primary,
+    indicatorColor: AppColors.primary,
     labelStyle: TextStyle(
       fontWeight: FontWeight.bold,
     ),
@@ -52,8 +47,6 @@ ThemeData lightMode = ThemeData(
       fontWeight: FontWeight.bold,
     ),
   ),
-
-  //3 - APPBAR THEME
   appBarTheme: AppBarTheme(
     scrolledUnderElevation: 0.0,
     centerTitle: true,
@@ -65,19 +58,16 @@ ThemeData lightMode = ThemeData(
     backgroundColor: Colors.transparent,
     elevation: 0,
   ),
-
-  //4 - NAVBAR THEME
   bottomNavigationBarTheme: BottomNavigationBarThemeData(
-      elevation: 10,
-      backgroundColor: Colors.white,
-      unselectedItemColor: Colors.grey.shade800,
-      unselectedLabelStyle: TextStyle(color: Colors.grey.shade800),
-      type: BottomNavigationBarType.fixed,
-      selectedIconTheme: IconThemeData(color: sbdeepRed),
-      selectedLabelStyle: TextStyle(color: sbdeepRed),
-      selectedItemColor: sbdeepRed),
-
-  //5 - BottomAppbar THEME
+    elevation: 10,
+    backgroundColor: Colors.white,
+    unselectedItemColor: Colors.grey.shade800,
+    unselectedLabelStyle: TextStyle(color: Colors.grey.shade800),
+    type: BottomNavigationBarType.fixed,
+    selectedIconTheme: IconThemeData(color: AppColors.secondary),
+    selectedLabelStyle: TextStyle(color: AppColors.secondary),
+    selectedItemColor: AppColors.secondary,
+  ),
   bottomAppBarTheme: BottomAppBarTheme(
     color: Colors.white,
     surfaceTintColor: Colors.transparent,
@@ -88,7 +78,7 @@ ThemeData lightMode = ThemeData(
   textButtonTheme: TextButtonThemeData(
     style: ButtonStyle(
       padding: WidgetStateProperty.all(EdgeInsets.all(0.0)),
-      foregroundColor: WidgetStateProperty.all(sbdarkBrown),
+      foregroundColor: WidgetStateProperty.all(AppColors.primaryVariant),
     ),
   ),
   iconButtonTheme: IconButtonThemeData(

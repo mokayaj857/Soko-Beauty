@@ -2,105 +2,86 @@ import 'package:flutter/material.dart';
 import 'package:soko_beauty/config/colors/global_colors.dart';
 
 ThemeData darkMode = ThemeData(
-  // 1. App-wide settings
   brightness: Brightness.dark,
-  primaryColor: sbbrickRed,
-  canvasColor: Colors.black,
-  cardColor: Colors.black54,
-  //accentColor: Colors.blueAccent,
-  fontFamily: 'verdana',
-  fontFamilyFallback: ['Helvetica'],
+  primaryColor: AppColors.primary,
+  canvasColor: AppColors.canvas,
+  cardColor: AppColors.card,
+  fontFamily: 'SystemUi',
+  fontFamilyFallback: ['SystemUi'],
   package: 'Soko Beauty',
   useMaterial3: true,
-  shadowColor: Colors.grey,
+  shadowColor: AppColors.shadow,
   colorScheme: ColorScheme.dark(
-    primary: sbbrickRed,
-    secondary: sbdeepRed,
-    // surface: Colors.black,
-    // background: Colors.black,
-    error: Colors.red,
-    onPrimary: Colors.white,
-    onSecondary: Colors.white,
-    onSurface: Colors.white,
-    onError: Colors.white,
+    primary: AppColors.primary,
+    secondary: AppColors.secondary,
+    error: AppColors.error,
+    onPrimary: AppColors.onPrimary,
+    onSecondary: AppColors.onSecondary,
+    onSurface: AppColors.onSurface,
+    onError: AppColors.onError,
     brightness: Brightness.dark,
   ),
-
-  //TabBar Theme
   tabBarTheme: TabBarTheme(
-    labelColor: sbbrickRed,
+    labelColor: AppColors.primary,
     unselectedLabelColor: Colors.grey.shade300,
-    indicatorColor: sbbrickRed,
-    labelStyle: TextStyle(
-      fontWeight: FontWeight.bold,
-    ),
-    unselectedLabelStyle: TextStyle(
-      fontWeight: FontWeight.bold,
-    ),
+    indicatorColor: AppColors.primary,
+    labelStyle: TextStyle(fontWeight: FontWeight.bold),
+    unselectedLabelStyle: TextStyle(fontWeight: FontWeight.bold),
   ),
   progressIndicatorTheme: ProgressIndicatorThemeData(
-    color: sbbrickRed,
+    color: AppColors.primary,
   ),
-
-  //2 - floating ACTIONS BUTTON
   floatingActionButtonTheme: FloatingActionButtonThemeData(
-    backgroundColor: Colors.black.withOpacity(0.6),
+    backgroundColor: AppColors.primary,
     elevation: 1,
     hoverColor: Colors.transparent,
     highlightElevation: 0.0,
-    foregroundColor: Colors.grey.shade100,
+    foregroundColor: Colors.white,
     hoverElevation: 0.0,
-    //extendedIconLabelSpacing: ,
     shape: RoundedRectangleBorder(
       borderRadius: BorderRadius.circular(50.0),
     ),
   ),
-
-  // 3. App Bar Theme
   appBarTheme: AppBarTheme(
     centerTitle: true,
     titleTextStyle: TextStyle(
-      color: sbbrickRed,
+      color: AppColors.primary,
       fontSize: 20,
       fontWeight: FontWeight.bold,
     ),
-    foregroundColor: sbbrickRed,
+    foregroundColor: AppColors.primary,
     elevation: 0,
   ),
-  //chip theme
   chipTheme: ChipThemeData(
-    backgroundColor: Colors.grey.shade900,
+    backgroundColor: AppColors.card,
     disabledColor: Colors.grey.shade300,
-    selectedColor: sbbrickRed,
-    secondarySelectedColor: sbbrickRed,
+    selectedColor: AppColors.primary,
+    secondarySelectedColor: AppColors.primary,
     padding: EdgeInsets.symmetric(vertical: 5, horizontal: 10),
     shape: RoundedRectangleBorder(
       borderRadius: BorderRadius.circular(30.0),
     ),
     labelStyle: TextStyle(
-      color: Colors.grey.shade300,
+      color: Colors.white,
       fontSize: 13,
     ),
     secondaryLabelStyle: TextStyle(
-      color: Colors.grey.shade300,
+      color: Colors.white,
       fontSize: 13,
-      // fontWeight: FontWeight.bolD,
     ),
     brightness: Brightness.dark,
   ),
-
-  // 4. Bottom Navigation Bar Theme
   bottomNavigationBarTheme: BottomNavigationBarThemeData(
     elevation: 10,
-    backgroundColor: Colors.transparent,
+    backgroundColor: AppColors.canvas,
     unselectedItemColor: Colors.grey.shade300,
-    selectedItemColor: sbbrickRed,
+    selectedItemColor: AppColors.primary,
     selectedIconTheme: IconThemeData(size: 30),
     unselectedIconTheme: IconThemeData(size: 30),
     type: BottomNavigationBarType.fixed,
   ),
   bottomAppBarTheme: BottomAppBarTheme(
-    color: Colors.black87,
+    color: AppColors.card,
     surfaceTintColor: Colors.transparent,
     elevation: 10,
     height: 50.0,
@@ -113,7 +94,6 @@ ThemeData darkMode = ThemeData(
       iconColor: WidgetStateProperty.all(Colors.white70),
     ),
   ),
-  // scaffold theme
   iconButtonTheme: IconButtonThemeData(
     style: ButtonStyle(
       padding: WidgetStateProperty.all(EdgeInsets.all(0.0)),

@@ -72,8 +72,13 @@ class _UploadPageState extends State<UploadPage> {
       final publicId = uploadResult['public_id'];
 
       // CONVERT TAGS INTO A LIST
-      final tags =
-          _hashtagsController.text.split(' ').map((tag) => tag.trim()).toList();
+
+      final List<String> tags = _hashtagsController.text.isEmpty
+          ? []
+          : _hashtagsController.text
+              .split(' ')
+              .map((tag) => tag.trim())
+              .toList();
 
       // Add video data to Firebase using Provider
       final videoProvider = Provider.of<VideoProvider>(context, listen: false);

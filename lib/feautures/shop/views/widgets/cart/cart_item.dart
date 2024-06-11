@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:soko_beauty/config/colors/global_colors.dart';
 import 'package:soko_beauty/feautures/shop/data/models/Product.dart';
 
 class CartItem extends StatelessWidget {
@@ -26,14 +25,14 @@ class CartItem extends StatelessWidget {
         child: Row(
           children: [
             Container(
-                width: 100,
-                height: 100,
-                child: Image.asset(
+              width: 100,
+              height: 100,
+              child: Image.asset(
                 'assets/1015-300x201.jpg', // Path to your image asset
                 fit: BoxFit
                     .cover, // Adjust how the image fits inside the container
               ),
-               ),
+            ),
             SizedBox(width: 8.0),
             Expanded(
               child: Column(
@@ -45,7 +44,7 @@ class CartItem extends StatelessWidget {
                     style: TextStyle(
                       fontSize: 16,
                       fontWeight: FontWeight.bold,
-                      color: sbbrickRed,
+                      color: Theme.of(context).primaryColor,
                     ),
                   ),
                   Text(
@@ -66,7 +65,7 @@ class CartItem extends StatelessWidget {
                     children: [
                       IconButton(
                         icon: Icon(Icons.remove_circle_rounded),
-                        color: sbbrickRed,
+                        color: Theme.of(context).primaryColor,
                         onPressed: onRemove,
                       ),
                       Text(
@@ -76,7 +75,7 @@ class CartItem extends StatelessWidget {
                       ),
                       IconButton(
                         icon: Icon(Icons.add_circle_rounded),
-                        color: sbbrickRed,
+                        color: Theme.of(context).primaryColor,
                         onPressed: () {},
                       ),
                     ],
