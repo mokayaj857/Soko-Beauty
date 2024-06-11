@@ -26,23 +26,23 @@ class _VideoPageState extends State<VideoPage> {
           automaticallyImplyLeading: false,
           leading: TabBar(
             dividerColor: Colors.transparent,
-            indicatorSize: TabBarIndicatorSize.tab,
+            indicatorSize: TabBarIndicatorSize.label,
             indicator: BoxDecoration(
-              borderRadius: BorderRadius.circular(50),
-              color: Colors.black.withOpacity(0.3),
-              // border: BorderSide.only( ,
-            ),
-            labelColor: Colors.white.withOpacity(0.7),
-            indicatorPadding:
-                EdgeInsets.only(left: 0.0, right: 0.0, top: 15.0, bottom: 15.0),
+                border: Border(
+              bottom: BorderSide(
+                color: Colors.white.withOpacity(0.9),
+                width: 2.0,
+              ),
+            )),
+            labelColor: Colors.white.withOpacity(0.9),
+            indicatorPadding: EdgeInsets.only(bottom: 8.0, right: 5, left: 5),
             labelPadding: EdgeInsets.zero,
-            unselectedLabelColor: Colors.white.withOpacity(0.9),
-            padding: EdgeInsets.symmetric(horizontal: 5.0, vertical: 0.0),
+            unselectedLabelColor: Colors.white.withOpacity(0.7),
+            padding: EdgeInsets.symmetric(horizontal: 4.0, vertical: 0.0),
             splashFactory: NoSplash.splashFactory,
             tabs: VideoTab.values.map((tab) {
               return Tab(
                 text: tab.name,
-                height: 20,
               );
             }).toList(),
           ),

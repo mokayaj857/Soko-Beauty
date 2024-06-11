@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 
 class LoadingWidget extends StatelessWidget {
+  const LoadingWidget({Key? key, this.color}) : super(key: key);
+
+  final Color? color;
   @override
   Widget build(BuildContext context) {
     return Center(
@@ -13,7 +16,8 @@ class LoadingWidget extends StatelessWidget {
             children: [
               SizedBox(
                   child: LinearProgressIndicator(
-                    valueColor: AlwaysStoppedAnimation<Color>(Colors.white),
+                    valueColor:
+                        AlwaysStoppedAnimation<Color>(color ?? Colors.white),
                     backgroundColor: Colors.transparent,
                   ),
                   width: 100,

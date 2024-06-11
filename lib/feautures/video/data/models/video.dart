@@ -1,4 +1,3 @@
-
 import 'package:soko_beauty/feautures/video/data/models/metrics.dart';
 import 'package:soko_beauty/feautures/video/data/models/type.dart';
 
@@ -8,8 +7,6 @@ class Video {
   String publicId;
   VideoType videoType;
   String associatedItemId;
-  List<String> likes;
-  List<String> shares;
   VideoMetrics metrics;
   String ownerId;
   List<String> tags;
@@ -22,8 +19,6 @@ class Video {
     this.publicId = '',
     required this.videoType,
     this.associatedItemId = '',
-    this.likes = const [],
-    this.shares = const [],
     VideoMetrics? metrics,
     this.ownerId = '',
     this.tags = const [],
@@ -38,8 +33,6 @@ class Video {
       publicId: data['publicId'] ?? '',
       videoType: VideoType.values[data['videoType']],
       associatedItemId: data['associatedItemId'] ?? '',
-      likes: List<String>.from(data['likes'] ?? []),
-      shares: List<String>.from(data['shares'] ?? []),
       metrics: VideoMetrics.fromMap(
           data['metrics'] ?? {}, VideoType.values[data['videoType']]),
       ownerId: data['ownerId'] ?? '',
@@ -55,8 +48,6 @@ class Video {
       'publicId': publicId,
       'videoType': videoType.index,
       'associatedItemId': associatedItemId,
-      'likes': likes,
-      'shares': shares,
       'metrics': metrics.toMap(videoType),
       'ownerId': ownerId,
       'tags': tags,

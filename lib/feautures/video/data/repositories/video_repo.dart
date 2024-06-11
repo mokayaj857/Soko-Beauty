@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:soko_beauty/core/enums/video_enums.dart';
 import 'package:soko_beauty/feautures/video/data/models/video.dart';
 import 'package:soko_beauty/feautures/video/data/models/type.dart';
 
@@ -65,5 +66,35 @@ class VideoRepository {
     return querySnapshot.docs
         .map((doc) => Video.fromMap(doc.data() as Map<String, dynamic>, doc.id))
         .toList();
+  }
+
+  Future<void> incrementMetric(String videoId, MetricType metricField) async {
+    final videoSnapshot = await _videosCollection.doc(videoId).get();
+    final videoData = videoSnapshot.data() as Map<String, dynamic>;
+    final metricData = videoData['metrics'] ?? {};
+
+    final updatedMetric = {
+      ...metricData,
+      metricField.stringValue: (metricData[metricField.stringValue] ?? 0) + 1,
+    };
+
+    await _videosCollection.doc(videoId).update({
+      'metrics': updatedMetric,
+    });
+  }
+
+  Future<void> decrementMetric(String videoId, MetricType metricField) async {
+    final videoSnapshot = await _videosCollection.doc(videoId).get();
+    final videoData = videoSnapshot.data() as Map<String, dynamic>;
+    final metricData = videoData['metrics'] ?? {};
+
+    final updatedMetric = {
+      ...metricData,
+      metricField.stringValue: (metricData[metricField.stringValue] ?? 0) - 1,
+    };
+
+    await _videosCollection.doc(videoId).update({
+      'metrics': updatedMetric,
+    });
   }
 }

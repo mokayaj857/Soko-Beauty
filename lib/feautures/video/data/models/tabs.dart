@@ -1,7 +1,7 @@
 enum VideoTab {
+  all,
   products,
   services,
-  all,
 }
 
 extension VideoTabsExtension on VideoTab {

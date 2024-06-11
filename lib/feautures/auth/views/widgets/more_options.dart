@@ -81,7 +81,7 @@ class MoreSignInOptions extends StatelessWidget {
                 child: Text(
                   'SIGN UP',
                   style: TextStyle(
-                      color: sbdeepRed,
+                      color: Theme.of(context).primaryColor,
                       fontSize: 16,
                       fontWeight: FontWeight.bold),
                 ),

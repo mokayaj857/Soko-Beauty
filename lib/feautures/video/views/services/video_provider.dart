@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:soko_beauty/core/enums/video_enums.dart';
 import 'package:soko_beauty/feautures/video/data/models/video.dart';
 import 'package:soko_beauty/feautures/video/data/models/type.dart';
 import 'package:soko_beauty/feautures/video/data/controllers/video_controller.dart';
@@ -72,21 +73,6 @@ class VideoProvider with ChangeNotifier {
     }
   }
 
-  // method for liking or unlike a video
-  // Future<void> likeVideo(String id) async {
-  //   try {
-  //     await _videoController.likeVideo(id);
-  //     final int index = _videos.indexWhere((video) => video.id == id);
-  //     if (index != -1) {
-  //       _videos[index].likes += 1;
-  //       notifyListeners();
-  //     }
-  //   } catch (error) {
-  //     print('Error liking video: $error');
-  //     throw error;
-  //   }
-  // }
-
   Future<List<Video>> getAllVideos() async {
     print('Getting all videos');
     if (!_isLoading) {
@@ -109,5 +95,27 @@ class VideoProvider with ChangeNotifier {
       }
     }
     return _videos; // Return current videos if already loading
+  }
+
+  // New method to increment a metric for a video
+  Future<void> incrementMetric(String videoId, MetricType metricField) async {
+    await _videoController.incrementMetric(videoId, metricField);
+    // You may want to update the current video's metrics here
+    // For example:
+    // if (_currentVideo?.id == videoId) {
+    //   _currentVideo = await _videoController.viewVideo(videoId);
+    //   notifyListeners();
+    // }
+  }
+
+  // New method to decrement a metric for a video
+  Future<void> decrementMetric(String videoId, MetricType metricField) async {
+    await _videoController.decrementMetric(videoId, metricField);
+    // You may want to update the current video's metrics here
+    // For example:
+    // if (_currentVideo?.id == videoId) {
+    //   _currentVideo = await _videoController.viewVideo(videoId);
+    //   notifyListeners();
+    // }
   }
 }

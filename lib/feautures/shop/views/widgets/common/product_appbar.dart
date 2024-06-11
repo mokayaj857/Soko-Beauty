@@ -1,6 +1,5 @@
 import 'dart:ui';
 import 'package:flutter/material.dart';
-import 'package:soko_beauty/config/colors/global_colors.dart';
 import 'package:soko_beauty/feautures/shop/views/widgets/common/product_selection_chips.dart';
 
 class ProductsAppbar extends StatelessWidget {
@@ -17,7 +16,7 @@ class ProductsAppbar extends StatelessWidget {
   Widget build(BuildContext context) {
     return SliverAppBar(
       backgroundColor: Theme.of(context).cardColor.withOpacity(0.95),
-      foregroundColor: sbbrickRed,
+      foregroundColor: Theme.of(context).primaryColor,
       pinned: true,
       expandedHeight: 300,
       collapsedHeight: 30,
@@ -56,7 +55,7 @@ class ProductsAppbar extends StatelessWidget {
                   Text(
                     shopName,
                     style: TextStyle(
-                      color: sbbrickRed,
+                      color: Theme.of(context).primaryColor,
                       fontSize: 36,
                       fontWeight: FontWeight.bold,
                     ),
@@ -67,7 +66,7 @@ class ProductsAppbar extends StatelessWidget {
                     child: Text(
                       shopDescription,
                       style: TextStyle(
-                        color: sbbrickRed,
+                        color: Theme.of(context).primaryColor,
                         fontSize: 18,
                       ),
                     ),
@@ -89,7 +88,7 @@ class ProductsAppbar extends StatelessWidget {
                                 hintText: 'Search for Products',
                                 prefixIcon: Icon(
                                   Icons.search_outlined,
-                                  color: sbbrickRed,
+                                  color: Theme.of(context).primaryColor,
                                 ),
                                 border: OutlineInputBorder(
                                   borderSide: BorderSide.none,
@@ -117,4 +116,3 @@ class ProductsAppbar extends StatelessWidget {
     );
   }
 }
-

@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:soko_beauty/config/colors/global_colors.dart';
 import 'package:soko_beauty/feautures/shop/data/models/Product.dart';
 
 class CartFavoriteItem extends StatelessWidget {
@@ -45,12 +44,12 @@ class CartFavoriteItem extends StatelessWidget {
                       style: TextStyle(
                         fontSize: 16,
                         fontWeight: FontWeight.bold,
-                        color: sbbrickRed,
+                        color: Theme.of(context).primaryColor,
                       ),
                     ),
                     IconButton(
                       icon: Icon(Icons.favorite),
-                      color: sbbrickRed,
+                      color: Theme.of(context).primaryColor,
                       onPressed: () {},
                     ),
                   ],

@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:soko_beauty/feautures/shop/data/models/shop.dart';
 
-
 class ViewAllShopsScreen extends StatelessWidget {
   final List<Shop> shops;
 
@@ -20,19 +19,13 @@ class ViewAllShopsScreen extends StatelessWidget {
           ),
         ],
       ),
-      body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 16, ),
-        child: GridView.builder(
-          gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
-            maxCrossAxisExtent: 300,
-            mainAxisExtent: 300,
-            mainAxisSpacing: 16,
-            crossAxisSpacing: 16,
+      body: Center(
+        child: Text(
+          'Shops page comming soon...',
+          style: TextStyle(
+            fontSize: 20,
+            fontWeight: FontWeight.bold,
           ),
-          itemCount: shops.length,
-          itemBuilder: (context, index) {
-            return ShopCard(shop: shops[index]);
-          },
         ),
       ),
     );

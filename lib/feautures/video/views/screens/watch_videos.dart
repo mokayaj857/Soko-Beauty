@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:soko_beauty/config/colors/global_colors.dart';
 import 'package:soko_beauty/core/views/widgets/loading.dart';
 import 'package:soko_beauty/feautures/video/data/models/tabs.dart';
 import 'package:soko_beauty/feautures/video/data/models/type.dart';
@@ -63,7 +64,9 @@ class _WatchVideosState extends State<WatchVideos> {
   }
 
   Widget _buildLoadingWidget() {
-    return LoadingWidget();
+    return LoadingWidget(
+      color: AppColors.primary,
+    );
   }
 
   Widget _buildPageView() {

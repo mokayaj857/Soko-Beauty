@@ -5,8 +5,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
 import 'package:soko_beauty/core/constants/cloudinary_constants.dart';
+import 'package:soko_beauty/feautures/video/views/services/reactions_provider.dart';
 import 'package:soko_beauty/feautures/video/views/services/video_provider.dart';
-import 'package:soko_beauty/core/views/screens/landing/splashscreen.dart';
 import 'core/views/services/theme_provider.dart';
 import 'feautures/auth/views/services/user_provider.dart';
 import 'package:cloudinary_url_gen/cloudinary.dart';
@@ -38,6 +38,7 @@ void main() async {
     ChangeNotifierProvider(create: (context) => ThemeProvider()),
     ChangeNotifierProvider(create: (context) => UserProvider()),
     ChangeNotifierProvider(create: (context) => VideoProvider()),
+    ChangeNotifierProvider(create: (context) => ReactionsProvider()),
   ], child: SokoBeauty()));
 }
 
@@ -63,14 +64,14 @@ class SokoBeauty extends StatelessWidget {
       statusBarBrightness: themeProvider.themeData.brightness == Brightness.dark
           ? Brightness.light
           : Brightness.dark,
-      systemStatusBarContrastEnforced: false,
+      systemStatusBarContrastEnforced: true,
     ));
     return MaterialApp(
       theme: themeProvider.themeData,
       home: LandingPage(),
       debugShowCheckedModeBanner: false,
       themeAnimationCurve: Curves.easeInOut,
-      themeAnimationDuration: const Duration(milliseconds: 500),
+      themeAnimationDuration: const Duration(milliseconds: 300),
     );
   }
 }

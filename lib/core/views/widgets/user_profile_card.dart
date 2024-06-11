@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:soko_beauty/config/colors/global_colors.dart';
 import 'package:soko_beauty/config/theme/light.dart';
 import 'package:soko_beauty/core/views/services/theme_provider.dart';
 import 'package:soko_beauty/feautures/auth/data/models/user_model.dart';
@@ -21,7 +20,7 @@ class UserProfileCard extends StatelessWidget {
       scrolledUnderElevation: 0.0,
       backgroundColor:
           Theme.of(context).bottomAppBarTheme.color!.withOpacity(0.9),
-      foregroundColor: sbbrickRed,
+      foregroundColor: Theme.of(context).primaryColor,
       pinned: true,
       expandedHeight: 300,
       leading: IconButton(
@@ -103,7 +102,7 @@ class UserProfileCard extends StatelessWidget {
                             decoration: BoxDecoration(
                               shape: BoxShape.circle,
                               border: Border.all(
-                                color: sbbrickRed,
+                                color: Theme.of(context).primaryColor,
                                 width: 4,
                               ),
                             ),
@@ -148,7 +147,7 @@ class UserProfileCard extends StatelessWidget {
                                       style: TextStyle(
                                         fontSize: 14,
                                         fontWeight: FontWeight.bold,
-                                        color: sbbrickRed,
+                                        color: Theme.of(context).primaryColor,
                                       ),
                                     ),
                                   ),
@@ -171,7 +170,7 @@ class UserProfileCard extends StatelessWidget {
                                       style: TextStyle(
                                         fontSize: 14,
                                         fontWeight: FontWeight.bold,
-                                        color: sbbrickRed,
+                                        color: Theme.of(context).primaryColor,
                                       ),
                                     ),
                                   ),
@@ -194,7 +193,7 @@ class UserProfileCard extends StatelessWidget {
                                       style: TextStyle(
                                         fontSize: 14,
                                         fontWeight: FontWeight.bold,
-                                        color: sbbrickRed,
+                                        color: Theme.of(context).primaryColor,
                                       ),
                                     ),
                                   ),
