@@ -6,7 +6,7 @@
         android:name="android.permission.CAMERA"/>
    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
    <application
-        android:label="soko_beauty"
+        android:label="Soko Beauty"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <activity

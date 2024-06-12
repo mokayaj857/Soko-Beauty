@@ -1,7 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:soko_beauty/config/colors/global_colors.dart';
 import 'package:soko_beauty/config/theme/light.dart';
 import 'package:soko_beauty/core/views/services/theme_provider.dart';
 import 'package:soko_beauty/feautures/auth/data/models/user_model.dart';
@@ -15,20 +14,17 @@ class UserProfileCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SliverAppBar(
-      // title: ,
       scrolledUnderElevation: 0.0,
-      backgroundColor:
-          Theme.of(context).bottomAppBarTheme.color!.withOpacity(0.9),
-      foregroundColor: Theme.of(context).primaryColor,
+      backgroundColor: Theme.of(context).scaffoldBackgroundColor,
       pinned: true,
       forceElevated: true,
-      expandedHeight: 300, // Increased height to accommodate the design
+      expandedHeight: 350, // Increased height to accommodate the design
       leading: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+        padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 8),
         child: Text(
           user.username,
           style: const TextStyle(
-            fontSize: 12,
+            fontSize: 13,
             fontWeight: FontWeight.bold,
           ),
         ),
@@ -74,6 +70,7 @@ class UserProfileCard extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               CircleAvatar(
+                backgroundColor: Theme.of(context).highlightColor.withOpacity(0.5),
                 radius: 45,
                 backgroundImage: user.profilePhotoUrl != null
                     ? NetworkImage(user.profilePhotoUrl!)
@@ -95,7 +92,7 @@ class UserProfileCard extends StatelessWidget {
               ),
               const SizedBox(height: 20),
               _buildUserStats(context),
-              const SizedBox(height: 20),
+              const SizedBox(height: 30),
               _buildButtonsRow(context),
             ],
           ),
@@ -133,53 +130,57 @@ class UserProfileCard extends StatelessWidget {
 
   Widget _buildButtonsRow(BuildContext context) {
     return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+      mainAxisAlignment: MainAxisAlignment.center,
       children: [
         GestureDetector(
-          onTap: () {
-            // Handle edit profile button press
-          },
+          onTap: () {},
           child: Container(
-            padding: const EdgeInsets.symmetric(vertical: 5, horizontal: 20),
+            padding: const EdgeInsets.symmetric(vertical: 6, horizontal: 25),
             decoration: BoxDecoration(
-              color: Colors.white,
-              border: Border.all(color: Theme.of(context).primaryColor),
+              border: Border.all(
+                  width: 1,
+                  color: Theme.of(context).highlightColor.withOpacity(0.5)),
               borderRadius: BorderRadius.circular(20),
             ),
             child: Row(
               children: [
-                Icon(Icons.edit,
-                    color: Theme.of(context).primaryColor, size: 20),
-                const SizedBox(width: 5),
-                const Text(
+                Icon(Icons.edit, size: 22),
+                const SizedBox(width: 10),
+                Text(
                   'Edit Profile',
-                  style: TextStyle(color: AppColors.primary, fontSize: 12),
+                  style: TextStyle(
+                      fontSize: 13,
+                      color: Theme.of(context).highlightColor.withOpacity(0.7)),
                 ),
               ],
             ),
           ),
         ),
+        const SizedBox(width: 10),
         GestureDetector(
           onTap: () {
             // Handle add friends button press
           },
           child: Container(
-            padding: const EdgeInsets.symmetric(vertical: 5, horizontal: 20),
+            padding: const EdgeInsets.symmetric(vertical: 6, horizontal: 20),
             decoration: BoxDecoration(
-              color: Theme.of(context).primaryColor,
               borderRadius: BorderRadius.circular(20),
+              border: Border.all(
+                  width: 1,
+                  color: Theme.of(context).highlightColor.withOpacity(0.5)),
             ),
             child: Row(
               children: [
                 Icon(
                   CupertinoIcons.cart_fill,
-                  color: Colors.white,
-                  size: 20,
+                  size: 22,
                 ),
-                const SizedBox(width: 5),
-                const Text(
+                const SizedBox(width: 10),
+                Text(
                   'View Cart',
-                  style: TextStyle(color: Colors.white, fontSize: 12),
+                  style: TextStyle(
+                      fontSize: 13,
+                      color: Theme.of(context).highlightColor.withOpacity(0.7)),
                 ),
               ],
             ),

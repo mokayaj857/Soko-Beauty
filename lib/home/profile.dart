@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:soko_beauty/core/views/widgets/profile/posts_tab.dart';
+import 'package:soko_beauty/core/views/widgets/profile/shops_tab.dart';
 import 'package:soko_beauty/feautures/auth/views/services/user_provider.dart';
 import 'package:soko_beauty/core/views/widgets/user_profile_card.dart';
 
@@ -84,9 +85,4 @@ class LikedPostsTab extends StatelessWidget {
   }
 }
 
-class ShopsTab extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Center(child: Text('Shops Tab'));
-  }
-}
+

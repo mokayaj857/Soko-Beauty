@@ -22,19 +22,19 @@ class EmptyStateMessage extends StatelessWidget {
         SizedBox(height: 20),
         Image.asset(
           'assets/gif/nothing.gif',
-          width: 250,
+          width: 150,
         ),
-        SizedBox(height: 20),
+        SizedBox(height: 10),
         Text(
           message,
           style: TextStyle(
             fontSize: 13,
           ),
         ),
-        SizedBox(height: 20),
+        SizedBox(height: 10),
         ElevatedButton(
           style: ElevatedButton.styleFrom(
-            backgroundColor: Theme.of(context).primaryColor,
+            backgroundColor: Theme.of(context).primaryColor.withOpacity(0.6),
             elevation: 0,
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(30),

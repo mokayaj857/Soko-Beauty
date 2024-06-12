@@ -48,7 +48,7 @@ class AccountPage extends StatelessWidget {
                           joinDate: user.createdAt ?? DateTime.now(),
                         ),
                         SizedBox(
-                          height: 10,
+                          height: 30,
                         ),
                         Padding(
                           padding: const EdgeInsets.symmetric(horizontal: 16.0),
@@ -76,7 +76,7 @@ class AccountPage extends StatelessWidget {
                           phone: user.phoneNumber,
                         ),
                         SizedBox(
-                          height: 10,
+                          height: 30,
                         ),
                         Padding(
                           padding: const EdgeInsets.symmetric(horizontal: 16.0),

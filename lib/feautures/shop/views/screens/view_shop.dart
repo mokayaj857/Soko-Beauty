@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:soko_beauty/feautures/shop/data/models/shop.dart';
 import 'package:soko_beauty/feautures/shop/views/widgets/common/search_bar.dart';
-import 'package:soko_beauty/feautures/shop/views/widgets/common/selection_chips.dart';
 import 'package:soko_beauty/feautures/shop/views/widgets/common/shop_grid_view.dart';
-
 
 class ViewShopPage extends StatelessWidget {
   final Shop shop;
@@ -29,6 +27,8 @@ class ViewShopPage extends StatelessWidget {
               children: [
                 //avatar
                 CircleAvatar(
+                  backgroundColor:
+                      Theme.of(context).highlightColor.withOpacity(0.5),
                   radius: 10,
                   backgroundImage: NetworkImage(shop.imageUrl),
                 ),
@@ -66,11 +66,11 @@ class ViewShopPage extends StatelessWidget {
           )
         ],
       ),
-      bottomNavigationBar: BottomAppBar(
-        child: SelectionChips(),
-        color: Theme.of(context).scaffoldBackgroundColor,
-        height: 60,
-      ),
+      // bottomNavigationBar: BottomAppBar(
+      //   child: SelectionChips(),
+      //   color: Theme.of(context).scaffoldBackgroundColor,
+      //   height: 60,
+      // ),
     );
   }
 }

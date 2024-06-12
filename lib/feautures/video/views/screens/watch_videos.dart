@@ -65,7 +65,7 @@ class _WatchVideosState extends State<WatchVideos> {
 
   Widget _buildLoadingWidget() {
     return LoadingWidget(
-      color: AppColors.primary,
+      color: Theme.of(context).primaryColor,
     );
   }
 

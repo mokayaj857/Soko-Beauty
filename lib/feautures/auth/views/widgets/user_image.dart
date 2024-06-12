@@ -36,7 +36,7 @@ class UserProfileWidget extends StatelessWidget {
             ),
           ),
           child: CircleAvatar(
-            backgroundColor: Colors.transparent,
+            backgroundColor: Theme.of(context).highlightColor.withOpacity(0.5),
             backgroundImage: image.isNotEmpty
                 ? NetworkImage(image)
                 : null, // If image URL is not resolved, set backgroundImage to null
@@ -49,11 +49,12 @@ class UserProfileWidget extends StatelessWidget {
                 : null,
           ),
         ),
-        const SizedBox(height: 5.0),
+        const SizedBox(height: 10.0),
         Text(
           'Joined on ${formattedJoinDate}',
           style: TextStyle(
-            fontSize: 10,
+            fontSize: 9,
+            fontWeight: FontWeight.w400,
           ),
         ),
       ],

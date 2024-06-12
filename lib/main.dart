@@ -4,6 +4,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
+import 'package:soko_beauty/core/api/firebase_api.dart';
 import 'package:soko_beauty/core/constants/cloudinary_constants.dart';
 import 'package:soko_beauty/feautures/video/views/services/reaction_provider.dart';
 import 'package:soko_beauty/feautures/video/views/services/video_provider.dart';
@@ -25,10 +26,11 @@ void main() async {
   cloudinary.config.urlConfig.secure = true;
 
   // Initialize Firebase
-
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
+
+  await FirebaseApi().initNotifications();
 
   // Enable Firestore offline persistence
   FirebaseFirestore.instance.settings = Settings(

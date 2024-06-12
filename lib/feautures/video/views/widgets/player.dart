@@ -2,7 +2,6 @@ import 'dart:async';
 import 'dart:ui';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:soko_beauty/config/colors/global_colors.dart';
 import 'package:soko_beauty/core/constants/cloudinary_constants.dart';
 import 'package:soko_beauty/config/styles/video_styles.dart';
 import 'package:soko_beauty/core/views/widgets/loading.dart';
@@ -157,7 +156,8 @@ class _PlayerState extends State<Player> with WidgetsBindingObserver {
                         child: VideoPlayer(_controller),
                       );
                     } else {
-                      return LoadingWidget(color: AppColors.primary);
+                      return LoadingWidget(
+                          color: Theme.of(context).primaryColor);
                     }
                   },
                 ),
@@ -193,7 +193,7 @@ class _PlayerState extends State<Player> with WidgetsBindingObserver {
               _controller,
               allowScrubbing: true,
               colors: VideoProgressColors(
-                playedColor: AppColors.primary.withOpacity(0.7),
+                playedColor: Theme.of(context).primaryColor.withOpacity(0.7),
                 bufferedColor: Colors.white.withOpacity(0.0),
                 backgroundColor: Colors.grey.withOpacity(0.4),
               ),

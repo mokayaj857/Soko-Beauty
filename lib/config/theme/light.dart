@@ -9,6 +9,7 @@ ThemeData lightMode = ThemeData(
   cardColor: Colors.white,
   fontFamily: 'SystemUi',
   fontFamilyFallback: ['SystemUi'],
+  highlightColor: AppColors.black.withOpacity(0.8),
   package: 'Soko Beauty',
   useMaterial3: true,
   scaffoldBackgroundColor: Colors.white,

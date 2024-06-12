@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:soko_beauty/feautures/shop/views/booking_page/book_item_screen.dart';
-import 'package:soko_beauty/feautures/shop/views/booking_page/booking_calendar.dart';
+import 'package:soko_beauty/feautures/shop/views/screens/booking_page/book_item_screen.dart';
+import 'package:soko_beauty/feautures/shop/views/screens/booking_page/booking_calendar.dart';
 
 class BookingWidget extends StatefulWidget {
   @override

@@ -78,7 +78,7 @@ class _VideoWidgetBuilderState extends State<VideoWidgetBuilder> {
       builder: (context, snapshot) {
         if (snapshot.connectionState == ConnectionState.waiting) {
           return LoadingWidget(
-            color: AppColors.primary.withOpacity(0.4),
+            color: Theme.of(context).primaryColor.withOpacity(0.4),
           );
         } else if (snapshot.hasError) {
           return _buildErrorMessageWidget('Error loading data');
@@ -164,7 +164,7 @@ class _VideoWidgetBuilderState extends State<VideoWidgetBuilder> {
           );
         } else {
           return LoadingWidget(
-            color: AppColors.primary.withOpacity(0.4),
+            color: Theme.of(context).primaryColor.withOpacity(0.4),
           );
         }
       },

@@ -17,13 +17,13 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
       backgroundColor:
           Theme.of(context).scaffoldBackgroundColor.withOpacity(0.8),
       scrolledUnderElevation: 0.0,
-      bottom: PreferredSize(
-        preferredSize: Size.fromHeight(0.0),
-        child: Container(
-          color: Theme.of(context).colorScheme.primary.withOpacity(0.5),
-          height: 0.3,
-        ),
-      ),
+      // bottom: PreferredSize(
+      //   preferredSize: Size.fromHeight(0.0),
+      //   child: Container(
+      //     color: Theme.of(context).colorScheme.primary.withOpacity(0.5),
+      //     height: 0.3,
+      //   ),
+      // ),
       title: title,
       actions: actions,
       leading: leading ?? CustomBackButton(),

@@ -1,6 +1,5 @@
 import 'dart:ui';
 import 'package:flutter/material.dart';
-import 'package:soko_beauty/feautures/shop/views/widgets/common/product_selection_chips.dart';
 
 class ProductsAppbar extends StatelessWidget {
   final String shopName;
@@ -21,10 +20,10 @@ class ProductsAppbar extends StatelessWidget {
       expandedHeight: 300,
       collapsedHeight: 30,
       toolbarHeight: 0.0,
-      bottom: PreferredSize(
-        preferredSize: Size.fromHeight(30),
-        child: ProductSelectionChips(),
-      ),
+      // bottom: PreferredSize(
+      //   preferredSize: Size.fromHeight(30),
+      //   // child: ProductSelectionChips(),
+      // ),
       flexibleSpace: FlexibleSpaceBar(
         background: Container(
           child: Stack(

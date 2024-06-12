@@ -28,6 +28,8 @@ class _BookingPageState extends State<BookingPage> {
                 child: Row(
                   children: [
                     CircleAvatar(
+                      backgroundColor:
+                          Theme.of(context).highlightColor.withOpacity(0.5),
                       radius: 25,
                       backgroundImage:
                           NetworkImage('https://picsum.photos/200/300'),

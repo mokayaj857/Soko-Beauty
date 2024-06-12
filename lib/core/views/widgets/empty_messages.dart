@@ -44,29 +44,3 @@ class LikedPostsTab extends StatelessWidget {
   }
 }
 
-class ShopsTab extends StatelessWidget {
-  final List<String> shopIds;
-
-  const ShopsTab({Key? key, required this.shopIds}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return shopIds.isEmpty
-        ? Center(
-            child: EmptyStateMessage(
-            message: 'You have no shops yet.',
-            onPressed: () {},
-            buttonText: "Create Shop",
-            icon: Icons.storefront_outlined,
-          ))
-        : ListView.builder(
-            itemCount: shopIds.length,
-            itemBuilder: (context, index) {
-              // Display shop based on shopIds[index]
-              return ListTile(
-                title: Text('Shop ${shopIds[index]}'),
-              );
-            },
-          );
-  }
-}

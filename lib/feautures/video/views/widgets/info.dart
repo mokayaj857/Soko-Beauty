@@ -100,12 +100,15 @@ class _VideoInfoState extends State<VideoInfo> {
                 Container(
                   decoration: BoxDecoration(
                     border: Border.all(
-                        color: AppColors.primary.withOpacity(0.9), width: 1),
+                        color: Theme.of(context).primaryColor.withOpacity(0.9),
+                        width: 1),
                     borderRadius: BorderRadius.circular(50),
                   ),
                   child: Stack(
                     children: [
                       CircleAvatar(
+                        backgroundColor:
+                            Theme.of(context).highlightColor.withOpacity(0.5),
                         radius: 16,
                         backgroundImage: widget.userAvatar.isNotEmpty
                             ? NetworkImage(widget.userAvatar)
@@ -121,7 +124,7 @@ class _VideoInfoState extends State<VideoInfo> {
                           child: Container(
                             padding: EdgeInsets.all(3),
                             decoration: BoxDecoration(
-                              color: AppColors.primary,
+                              color: Theme.of(context).primaryColor,
                               shape: BoxShape.circle,
                             ),
                             child: Icon(

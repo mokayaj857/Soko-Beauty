@@ -3,9 +3,10 @@ import 'package:flutter/material.dart';
 class CommentSection extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(backgroundColor: Colors.transparent,
-
-      appBar: AppBar(automaticallyImplyLeading: false,
+    return Scaffold(
+      backgroundColor: Colors.transparent,
+      appBar: AppBar(
+        automaticallyImplyLeading: false,
         title: Text("Comments"),
         elevation: 0,
         actions: [
@@ -19,10 +20,11 @@ class CommentSection extends StatelessWidget {
         ],
       ),
       body: ListView(
-        
         children: [
           for (int i = 1; i <= 10; i++)
-           ListTile(title: PseudoComment(username: "User$i", comment: "This is comment $i")),
+            ListTile(
+                title: PseudoComment(
+                    username: "User$i", comment: "This is comment $i")),
         ],
       ),
       bottomNavigationBar: BottomAppBar(
@@ -35,6 +37,8 @@ class CommentSection extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               CircleAvatar(
+                backgroundColor:
+                    Theme.of(context).highlightColor.withOpacity(0.5),
                 radius: 12,
                 child: Text("A"),
               ),
@@ -80,6 +84,8 @@ class PseudoComment extends StatelessWidget {
           Row(
             children: [
               CircleAvatar(
+                backgroundColor:
+                    Theme.of(context).highlightColor.withOpacity(0.5),
                 radius: 12,
                 child: Text(username[0]),
               ),
