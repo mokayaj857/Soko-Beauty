@@ -112,8 +112,8 @@ class BottomSheetContent extends StatelessWidget {
   }) {
     return ListTile(
       leading: CircleAvatar(
-        backgroundColor: Theme.of(context).primaryColor.withOpacity(0.1),
-        child: Icon(icon, size: 35, color: Theme.of(context).primaryColor),
+        backgroundColor: Theme.of(context).highlightColor.withOpacity(0.0),
+        child: Icon(icon, size: 45, color: Theme.of(context).primaryColor),
       ),
       title: Text(title, style: TextStyle(fontWeight: FontWeight.bold)),
       subtitle: Text(subtitle),

@@ -18,8 +18,8 @@ class UserProfileWidget extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         Container(
-          width: 150,
-          height: 150,
+          width: 100,
+          height: 100,
           decoration: BoxDecoration(
             boxShadow: [
               BoxShadow(
@@ -36,7 +36,7 @@ class UserProfileWidget extends StatelessWidget {
             ),
           ),
           child: CircleAvatar(
-            backgroundColor: Colors.transparent,
+            backgroundColor: Theme.of(context).highlightColor.withOpacity(0.5),
             backgroundImage: image.isNotEmpty
                 ? NetworkImage(image)
                 : null, // If image URL is not resolved, set backgroundImage to null
@@ -49,13 +49,12 @@ class UserProfileWidget extends StatelessWidget {
                 : null,
           ),
         ),
-        const SizedBox(height: 16.0),
+        const SizedBox(height: 10.0),
         Text(
           'Joined on ${formattedJoinDate}',
           style: TextStyle(
-            fontSize: 16,
-            fontWeight: FontWeight.bold,
-            color: Theme.of(context).colorScheme.primary,
+            fontSize: 9,
+            fontWeight: FontWeight.w400,
           ),
         ),
       ],

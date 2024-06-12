@@ -14,6 +14,7 @@ class VideoInfo extends StatefulWidget {
     required this.description,
     required this.views,
     required this.createdAt,
+    required this.userAvatar,
   }) : super(key: key);
 
   final VoidCallback onFollow;
@@ -22,6 +23,7 @@ class VideoInfo extends StatefulWidget {
   final String description;
   final int views;
   final DateTime createdAt;
+  final String userAvatar;
 
   @override
   _VideoInfoState createState() => _VideoInfoState();
@@ -57,13 +59,40 @@ class _VideoInfoState extends State<VideoInfo> {
             left: 10,
             right: 70,
             top: 5,
-            bottom: VideoItemSizes.videoProgressBarHeight +
-                VideoItemSizes.videoSoundHeight),
+            bottom: VideoItemSizes.videoProgressBarHeight + 5
+            // VideoItemSizes.videoSoundHeight
+            ),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           mainAxisAlignment: MainAxisAlignment.end,
           mainAxisSize: MainAxisSize.min,
           children: [
+            Container(
+              padding: EdgeInsets.only(bottom: 5, left: 2),
+              child: Row(
+                children: [
+                  Text(
+                    "${widget.views}",
+                    style: TextStyle(
+                        fontSize: 10, color: Colors.white.withOpacity(0.9)),
+                  ),
+                  SizedBox(width: 3),
+                  Icon(
+                    CupertinoIcons.eye_fill,
+                    color: Colors.white.withOpacity(0.9),
+                    size: 14,
+                  ),
+                  SizedBox(width: 8),
+                  Text(
+                    timeAgo(widget.createdAt),
+                    style: TextStyle(
+                        wordSpacing: 0.5,
+                        fontSize: 10,
+                        color: Colors.white.withOpacity(0.9)),
+                  ),
+                ],
+              ),
+            ),
             Row(
               mainAxisSize: MainAxisSize.min,
               mainAxisAlignment: MainAxisAlignment.start,
@@ -71,26 +100,31 @@ class _VideoInfoState extends State<VideoInfo> {
                 Container(
                   decoration: BoxDecoration(
                     border: Border.all(
-                        color: AppColors.primary.withOpacity(0.5), width: 2),
+                        color: Theme.of(context).primaryColor.withOpacity(0.9),
+                        width: 1),
                     borderRadius: BorderRadius.circular(50),
                   ),
                   child: Stack(
                     children: [
                       CircleAvatar(
-                        radius: 18,
-                        backgroundImage:
-                            NetworkImage("https://picsum.photos/200"),
+                        backgroundColor:
+                            Theme.of(context).highlightColor.withOpacity(0.5),
+                        radius: 16,
+                        backgroundImage: widget.userAvatar.isNotEmpty
+                            ? NetworkImage(widget.userAvatar)
+                            : AssetImage("assets/user_avatar.png")
+                                as ImageProvider,
                       ),
                       //positioned badge with plus icon
-                      GestureDetector(
-                        onTap: widget.onFollow,
-                        child: Positioned(
-                          bottom: 0,
-                          right: 0,
+                      Positioned(
+                        top: 10,
+                        right: 0,
+                        child: GestureDetector(
+                          onTap: widget.onFollow,
                           child: Container(
                             padding: EdgeInsets.all(3),
                             decoration: BoxDecoration(
-                              color: AppColors.primary,
+                              color: Theme.of(context).primaryColor,
                               shape: BoxShape.circle,
                             ),
                             child: Icon(
@@ -115,29 +149,6 @@ class _VideoInfoState extends State<VideoInfo> {
                       isMinimized ? TextOverflow.ellipsis : TextOverflow.clip,
                 ),
                 SizedBox(width: 7),
-                Row(
-                  children: [
-                    Text(
-                      "${widget.views}",
-                      style: TextStyle(
-                          fontSize: 10, color: Colors.white.withOpacity(0.9)),
-                    ),
-                    SizedBox(width: 3),
-                    Icon(
-                      CupertinoIcons.eye_fill,
-                      color: Colors.white.withOpacity(0.9),
-                      size: 14,
-                    ),
-                    SizedBox(width: 8),
-                    Text(
-                      timeAgo(widget.createdAt),
-                      style: TextStyle(
-                          wordSpacing: 0.5,
-                          fontSize: 10,
-                          color: Colors.white.withOpacity(0.9)),
-                    ),
-                  ],
-                ),
                 Spacer(),
                 if (!isMinimized)
                   GestureDetector(
@@ -158,6 +169,12 @@ class _VideoInfoState extends State<VideoInfo> {
                   ),
               ],
             ),
+            SizedBox(height: 8),
+            if (widget.tags.isNotEmpty)
+              HashtagsWidget(
+                hashtags: widget.tags,
+              ),
+            SizedBox(height: 3),
             Column(
               crossAxisAlignment: CrossAxisAlignment.stretch,
               mainAxisAlignment: MainAxisAlignment.end,
@@ -165,7 +182,7 @@ class _VideoInfoState extends State<VideoInfo> {
               children: [
                 if (widget.description.isNotEmpty || widget.tags.isNotEmpty)
                   Padding(
-                    padding: const EdgeInsets.only(left: 5.0),
+                    padding: const EdgeInsets.only(left: 0.0),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
@@ -177,26 +194,22 @@ class _VideoInfoState extends State<VideoInfo> {
                                 child: Text(
                                   widget.description,
                                   style: TextStyle(
-                                    fontSize: 13,
-                                    color: Colors.white.withOpacity(0.9),
+                                    fontSize: 12,
+                                    color: Colors.white.withOpacity(0.93),
                                   ),
                                   overflow: isMinimized
                                       ? TextOverflow.ellipsis
                                       : null,
-                                  maxLines: isMinimized ? 1 : null,
+                                  maxLines: isMinimized ? 2 : null,
                                 ),
                               ),
                               if (isMinimized &&
-                                  widget.description.length > 30) ...[
+                                  widget.description.length > 60) ...[
                                 SizedBox(width: 2),
                                 _buildShowMoreButton(),
                               ],
                               if (!isMinimized) _buildHideButton(),
                             ],
-                          ),
-                        if (!isMinimized && widget.tags.isNotEmpty)
-                          HashtagsWidget(
-                            hashtags: widget.tags,
                           ),
                       ],
                     ),

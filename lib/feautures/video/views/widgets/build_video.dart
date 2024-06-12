@@ -2,11 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:soko_beauty/config/colors/global_colors.dart';
 import 'package:soko_beauty/core/views/widgets/loading.dart';
-import 'package:soko_beauty/feautures/auth/data/models/reactions_model.dart';
+import 'package:soko_beauty/feautures/auth/data/models/reaction_model.dart';
 import 'package:soko_beauty/feautures/auth/data/models/user_model.dart';
 import 'package:soko_beauty/feautures/auth/views/services/user_provider.dart';
 import 'package:soko_beauty/feautures/video/data/models/video.dart';
-import 'package:soko_beauty/feautures/video/views/services/reactions_provider.dart';
+import 'package:soko_beauty/feautures/video/views/services/reaction_provider.dart';
 import 'package:soko_beauty/feautures/video/views/widgets/actions.dart';
 import 'package:soko_beauty/feautures/video/views/widgets/info.dart';
 import 'package:soko_beauty/feautures/video/views/widgets/player.dart';
@@ -23,42 +23,42 @@ class VideoWidgetBuilder extends StatefulWidget {
 
 class _VideoWidgetBuilderState extends State<VideoWidgetBuilder> {
   late Future<UserModel?> _ownerFuture;
-  Stream<Reactions?>? _reactionsStream;
-  Reactions? _userReaction;
+  Stream<Reaction?>? _reactionStream;
+  Reaction? _userReaction;
 
   @override
   void initState() {
     super.initState();
     _ownerFuture = getOwner(widget.video.ownerId);
     _fetchUserReaction();
-    _subscribeToReactionsUpdates();
+    _subscribeToReactionUpdates();
   }
 
   Future<void> _fetchUserReaction() async {
     final userProvider = Provider.of<UserProvider>(context, listen: false);
-    final reactionsProvider =
-        Provider.of<ReactionsProvider>(context, listen: false);
+    final reactionProvider =
+        Provider.of<ReactionProvider>(context, listen: false);
     if (userProvider.user != null) {
-      final reaction = await reactionsProvider.getCurrentUserReactionsOnVideo(
+      final reaction = await reactionProvider.getCurrentUserReactionOnVideo(
         userProvider.user!.id,
         widget.video.id,
       );
       setState(() {
-        _userReaction = reaction as Reactions?;
+        _userReaction = reaction as Reaction?;
       });
     }
   }
 
-  void _subscribeToReactionsUpdates() {
-    final reactionsProvider =
-        Provider.of<ReactionsProvider>(context, listen: false);
-    _reactionsStream = reactionsProvider.getCurrentUserReactionsOnVideo(
+  void _subscribeToReactionUpdates() {
+    final reactionProvider =
+        Provider.of<ReactionProvider>(context, listen: false);
+    _reactionStream = reactionProvider.getCurrentUserReactionOnVideo(
       Provider.of<UserProvider>(context, listen: false).user!.id,
       widget.video.id,
     );
-    _reactionsStream!.listen((reactions) {
+    _reactionStream!.listen((Reaction) {
       setState(() {
-        _userReaction = reactions;
+        _userReaction = Reaction;
       });
     });
   }
@@ -71,14 +71,14 @@ class _VideoWidgetBuilderState extends State<VideoWidgetBuilder> {
   @override
   Widget build(BuildContext context) {
     final userProvider = Provider.of<UserProvider>(context);
-    final reactionsProvider = Provider.of<ReactionsProvider>(context);
+    final reactionProvider = Provider.of<ReactionProvider>(context);
 
     return FutureBuilder<UserModel?>(
       future: _ownerFuture,
       builder: (context, snapshot) {
         if (snapshot.connectionState == ConnectionState.waiting) {
           return LoadingWidget(
-            color: AppColors.primary.withOpacity(0.4),
+            color: Theme.of(context).primaryColor.withOpacity(0.4),
           );
         } else if (snapshot.hasError) {
           return _buildErrorMessageWidget('Error loading data');
@@ -100,13 +100,13 @@ class _VideoWidgetBuilderState extends State<VideoWidgetBuilder> {
                   videoUrl: '${widget.video.url}',
                   publicId: '${widget.video.publicId}',
                   onEnded: (watchedTime, loops, totalWatched) async {
-                    await reactionsProvider.updateWatchMetrics(
+                    await reactionProvider.updateWatchMetrics(
                       userProvider.user!.id,
                       widget.video.id,
                       watchedTime,
                       loops,
                     );
-                    await reactionsProvider.setWatched(
+                    await reactionProvider.setWatched(
                       userProvider.user!.id,
                       widget.video.id,
                     );
@@ -114,6 +114,7 @@ class _VideoWidgetBuilderState extends State<VideoWidgetBuilder> {
                   onWatched: () {},
                 ),
                 VideoInfo(
+                  userAvatar: videoOwner.profilePhotoUrl ?? '',
                   onFollow: () {},
                   username: videoOwner.username,
                   tags: widget.video.tags,
@@ -127,7 +128,7 @@ class _VideoWidgetBuilderState extends State<VideoWidgetBuilder> {
                 ),
                 VideoActions(
                   onFavoritePressed: () async {
-                    await reactionsProvider.toggleLike(
+                    await reactionProvider.toggleLike(
                       userProvider.user!.id,
                       widget.video.id,
                     );
@@ -136,19 +137,19 @@ class _VideoWidgetBuilderState extends State<VideoWidgetBuilder> {
                     // handle comment pressed
                   },
                   onSharePressed: () async {
-                    await reactionsProvider.incrementShare(
+                    await reactionProvider.incrementShare(
                       userProvider.user!.id,
                       widget.video.id,
                     );
                   },
                   shoppingCartPressed: () async {
-                    await reactionsProvider.toggleAddedToCart(
+                    await reactionProvider.toggleAddedToCart(
                       userProvider.user!.id,
                       widget.video.id,
                     );
                   },
                   bookingIconPressed: () async {
-                    await reactionsProvider.toggleBooked(
+                    await reactionProvider.toggleBooked(
                       userProvider.user!.id,
                       widget.video.id,
                     );
@@ -156,14 +157,14 @@ class _VideoWidgetBuilderState extends State<VideoWidgetBuilder> {
                   videoType: widget.video.videoType,
                   metrics: widget.video.metrics,
                   onMorePressed: () {},
-                  reactions: _userReaction,
+                  reaction: _userReaction,
                 ),
               ],
             ),
           );
         } else {
           return LoadingWidget(
-            color: AppColors.primary.withOpacity(0.4),
+            color: Theme.of(context).primaryColor.withOpacity(0.4),
           );
         }
       },

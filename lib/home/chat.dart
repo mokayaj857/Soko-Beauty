@@ -20,9 +20,30 @@ class ChatsPage extends StatelessWidget {
     String? currentUserId = currentUser?.uid;
 
     return Scaffold(
+      extendBody: true,
+      extendBodyBehindAppBar: true,
       appBar: AppBar(
-        backgroundColor: Theme.of(context).bottomAppBarTheme.color,
-        title: Text('Chats'),
+        backgroundColor:
+            Theme.of(context).scaffoldBackgroundColor.withOpacity(0.95),
+        scrolledUnderElevation: 0.0,
+        bottom: PreferredSize(
+          preferredSize: Size.fromHeight(1),
+          child: Container(
+            decoration: BoxDecoration(
+              border: Border(
+                bottom: BorderSide(
+                  color: Theme.of(context).highlightColor.withOpacity(0.1),
+                  width: 0.5,
+                ),
+              ),
+            ),
+          ),
+        ),
+        centerTitle: false,
+        title: Text(
+          "Messages",
+          style: TextStyle(fontWeight: FontWeight.w500, fontSize: 14),
+        ),
         actions: [
           IconButton(
             icon: Icon(Icons.search),

@@ -75,12 +75,14 @@ class _HomePageState extends State<HomePage> {
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
-            buildNavItem(0, CupertinoIcons.house_alt_fill, 'Home'),
+            buildNavItem(0, Icons.home_filled, 'Home'),
             buildNavItem(1, CupertinoIcons.bag_fill, 'Shop'),
             FloatingActionButton(
               backgroundColor: Colors.transparent,
               elevation: 0,
-              focusElevation: 0.1,
+              focusElevation: 0.0,
+              hoverElevation: 0.0,
+              focusColor: Theme.of(context).primaryColor,
               onPressed: () => _showBottomSheet(context),
               mini: true,
               child: Icon(
@@ -88,11 +90,10 @@ class _HomePageState extends State<HomePage> {
                 size: 35,
                 color: _currentIndex == 0
                     ? AppColors.white
-                    : Theme.of(context).hintColor,
+                    : Theme.of(context).highlightColor,
               ),
             ),
-            buildNavItemWithBadge(
-                2, CupertinoIcons.chat_bubble_2_fill, 'Inbox', 3),
+            buildNavItem(2, CupertinoIcons.chat_bubble_2_fill, 'Inbox'),
             buildNavItem(3, CupertinoIcons.person_fill, 'Profile'),
           ],
         ),
@@ -122,7 +123,7 @@ class _HomePageState extends State<HomePage> {
                 ? Theme.of(context).primaryColor
                 : _currentIndex == 0
                     ? AppColors.white
-                    : Theme.of(context).hintColor,
+                    : Theme.of(context).highlightColor,
           ),
           Text(
             label,
@@ -132,44 +133,11 @@ class _HomePageState extends State<HomePage> {
                   ? Theme.of(context).primaryColor
                   : _currentIndex == 0
                       ? AppColors.white
-                      : Theme.of(context).hintColor,
+                      : Theme.of(context).highlightColor,
             ),
           ),
         ],
       ),
-    );
-  }
-
-  Widget buildNavItemWithBadge(
-      int index, IconData icon, String label, int badgeCount) {
-    return Stack(
-      children: [
-        buildNavItem(index, icon, label),
-        if (badgeCount > 0)
-          Positioned(
-            right: 5,
-            top: 3,
-            child: Container(
-              padding: EdgeInsets.all(1),
-              decoration: BoxDecoration(
-                color: AppColors.primary,
-                borderRadius: BorderRadius.circular(15),
-              ),
-              constraints: BoxConstraints(
-                minWidth: 13,
-                minHeight: 13,
-              ),
-              child: Text(
-                '$badgeCount',
-                style: TextStyle(
-                  color: AppColors.white,
-                  fontSize: 7,
-                ),
-                textAlign: TextAlign.center,
-              ),
-            ),
-          ),
-      ],
     );
   }
 

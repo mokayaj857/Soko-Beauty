@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:soko_beauty/config/styles/video_styles.dart';
-import 'package:soko_beauty/feautures/auth/data/models/reactions_model.dart';
+import 'package:soko_beauty/feautures/auth/data/models/reaction_model.dart';
 import 'package:soko_beauty/feautures/video/data/models/metrics.dart';
 import 'package:soko_beauty/feautures/video/data/models/type.dart';
 
@@ -14,7 +14,7 @@ class VideoActions extends StatefulWidget {
   final VoidCallback onMorePressed;
   final VideoType videoType;
   final VideoMetrics metrics;
-  final Reactions? reactions;
+  final Reaction? reaction;
 
   const VideoActions({
     Key? key,
@@ -26,7 +26,7 @@ class VideoActions extends StatefulWidget {
     required this.bookingIconPressed,
     required this.metrics,
     required this.onMorePressed,
-    required this.reactions,
+    required this.reaction,
   }) : super(key: key);
 
   @override
@@ -46,7 +46,7 @@ class _VideoActionsState extends State<VideoActions> {
             onPressed: () {
               widget.onFavoritePressed();
             },
-            icon: widget.reactions?.isLiked == true
+            icon: widget.reaction?.isLiked == true
                 ? CupertinoIcons.heart_fill
                 : CupertinoIcons.heart_fill,
             label: widget.metrics.likes.toString(),
@@ -112,21 +112,21 @@ class _VideoActionsState extends State<VideoActions> {
                 icon,
                 size: 34.0,
                 color: icon == CupertinoIcons.heart_fill &&
-                        widget.reactions?.isLiked == true
-                    ? Colors.red 
+                        widget.reaction?.isLiked == true
+                    ? Colors.red
                     : null,
               ),
-              if (widget.reactions?.isBooked == true ||
-                  widget.reactions?.isAddedToCart == true)
-                Positioned(
-                  right: 0,
-                  bottom: 0,
-                  child: Icon(
-                    Icons.check_circle,
-                    color: Colors.green,
-                    size: 16,
-                  ),
-                ),
+              // if (widget.reaction?.isBooked == true ||
+              //     widget.reaction?.isAddedToCart == true)
+              //   Positioned(
+              //     right: 0,
+              //     bottom: 0,
+              //     child: Icon(
+              //       Icons.check_circle,
+              //       color: Colors.green,
+              //       size: 16,
+              //     ),
+              //   ),
             ],
           ),
         ),
@@ -139,7 +139,7 @@ class _VideoActionsState extends State<VideoActions> {
               color: Colors.white.withOpacity(0.9),
             ),
           ),
-        SizedBox(height: 8.0),
+        // SizedBox(height: 8.0),
       ],
     );
   }

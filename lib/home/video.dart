@@ -18,33 +18,70 @@ class _VideoPageState extends State<VideoPage> {
       child: Scaffold(
         extendBodyBehindAppBar: true,
         appBar: AppBar(
+          toolbarHeight: 70.0,
           titleSpacing: 0.0,
           backgroundColor: Colors.transparent,
           elevation: 0,
-          leadingWidth: 300,
+          leadingWidth: MediaQuery.of(context).size.width - 30,
           centerTitle: false,
           automaticallyImplyLeading: false,
-          leading: TabBar(
-            dividerColor: Colors.transparent,
-            indicatorSize: TabBarIndicatorSize.label,
-            indicator: BoxDecoration(
-                border: Border(
-              bottom: BorderSide(
-                color: Colors.white.withOpacity(0.9),
-                width: 2.0,
-              ),
-            )),
-            labelColor: Colors.white.withOpacity(0.9),
-            indicatorPadding: EdgeInsets.only(bottom: 8.0, right: 5, left: 5),
-            labelPadding: EdgeInsets.zero,
-            unselectedLabelColor: Colors.white.withOpacity(0.7),
-            padding: EdgeInsets.symmetric(horizontal: 4.0, vertical: 0.0),
-            splashFactory: NoSplash.splashFactory,
-            tabs: VideoTab.values.map((tab) {
-              return Tab(
-                text: tab.name,
-              );
-            }).toList(),
+          leading: Padding(
+            padding: const EdgeInsets.symmetric(
+              horizontal: 12.0,
+              vertical: 20.0,
+            ),
+            child: TabBar(
+              dividerColor: Colors.transparent,
+              indicatorSize: TabBarIndicatorSize.label,
+              indicator: BoxDecoration(
+                  border: Border(
+                bottom: BorderSide(
+                  color: Colors.white.withOpacity(0.9),
+                  width: 2.0,
+                ),
+              )),
+              labelColor: Colors.white.withOpacity(0.9),
+              indicatorPadding:
+                  EdgeInsets.symmetric(horizontal: 16.0, vertical: 0.0),
+              isScrollable: true,
+              labelPadding: EdgeInsets.zero,
+              unselectedLabelColor: Colors.white.withOpacity(0.7),
+              padding: EdgeInsets.zero,
+              tabAlignment: TabAlignment.start,
+              splashFactory: NoSplash.splashFactory,
+              tabs: VideoTab.values.map((tab) {
+                return Container(
+                  margin: EdgeInsets.only(
+                    right: 8.0,
+                  ),
+                  padding: EdgeInsets.symmetric(horizontal: 8.0, vertical: 0.0),
+                  child: Row(
+                    mainAxisSize: MainAxisSize.min,
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      if (tab != VideoTab.all) ...[
+                        Padding(
+                          padding: const EdgeInsets.only(bottom: 3),
+                          child: Icon(
+                            getIcon(tab),
+                            size: 21,
+                          ),
+                        ),
+                      ],
+                      SizedBox(width: 5.0),
+                      Text(
+                        tab.name,
+                        style: TextStyle(
+                          fontSize: 14.0,
+                          fontWeight: FontWeight.w400,
+                        ),
+                      ),
+                    ],
+                  ),
+                );
+              }).toList(),
+            ),
           ),
           actions: [
             IconButton(
@@ -62,5 +99,17 @@ class _VideoPageState extends State<VideoPage> {
         }).toList()),
       ),
     );
+  }
+
+  // method to get icon based on tab value
+  IconData getIcon(VideoTab tab) {
+    switch (tab) {
+      case VideoTab.services:
+        return Icons.face;
+      case VideoTab.all:
+        return Icons.all_inbox;
+      case VideoTab.products:
+        return CupertinoIcons.bag;
+    }
   }
 }

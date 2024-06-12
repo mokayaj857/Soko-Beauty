@@ -1,6 +1,3 @@
-import 'package:soko_beauty/feautures/shop/data/models/Product.dart';
-import 'package:soko_beauty/feautures/shop/data/models/payment.dart';
-import 'package:soko_beauty/feautures/shop/data/models/service.dart';
 
 class Shop {
   final String id;
@@ -10,11 +7,8 @@ class Shop {
   final String imageUrl;
   final double rating;
   final bool isOpen;
-  String location;
-  List<Map> openHours;
-  List<Product> products;
-  List<Service> services;
-  List<PaymentDetails> payment;
+  final String location;
+  final List<Map> openHours;
 
   Shop({
     required this.id,
@@ -26,8 +20,35 @@ class Shop {
     required this.isOpen,
     required this.openHours,
     required this.location,
-    required this.products,
-    required this.services,
-    required this.payment,
   });
+
+  // Convert a Shop object into a Map object
+  Map<String, dynamic> toMap() {
+    return {
+      'id': id,
+      'name': name,
+      'category': category,
+      'description': description,
+      'imageUrl': imageUrl,
+      'rating': rating,
+      'isOpen': isOpen,
+      'location': location,
+      'openHours': openHours,
+    };
+  }
+
+  // Extract a Shop object from a Map object
+  factory Shop.fromMap(Map<String, dynamic> map) {
+    return Shop(
+      id: map['id'],
+      name: map['name'],
+      category: map['category'],
+      description: map['description'],
+      imageUrl: map['imageUrl'],
+      rating: map['rating'],
+      isOpen: map['isOpen'],
+      location: map['location'],
+      openHours: List<Map>.from(map['openHours']),
+    );
+  }
 }

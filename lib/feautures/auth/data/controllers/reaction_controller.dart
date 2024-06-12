@@ -1,7 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:soko_beauty/feautures/auth/data/models/reactions_model.dart';
+import 'package:soko_beauty/feautures/auth/data/models/reaction_model.dart';
 
-class ReactionsController {
+class ReactionController {
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
 
   // Add or update a reaction for a specific user and post
@@ -21,7 +21,7 @@ class ReactionsController {
     final docRef = _firestore
         .collection('users')
         .doc(userId)
-        .collection('reactions')
+        .collection('Reaction')
         .doc(postId);
 
     await docRef.set({
@@ -38,19 +38,19 @@ class ReactionsController {
     }, SetOptions(merge: true));
   }
 
-  // Get reactions for a specific user and post
-  Future<Reactions?> getReaction({
+  // Get Reaction for a specific user and post
+  Future<Reaction?> getReaction({
     required String userId,
     required String postId,
   }) async {
     final docSnapshot = await _firestore
         .collection('users')
         .doc(userId)
-        .collection('reactions')
+        .collection('Reaction')
         .doc(postId)
         .get();
     if (docSnapshot.exists) {
-      return Reactions.fromDocument(docSnapshot);
+      return Reaction.fromDocument(docSnapshot);
     } else {
       return null;
     }
@@ -64,18 +64,19 @@ class ReactionsController {
     await _firestore
         .collection('users')
         .doc(userId)
-        .collection('reactions')
+        .collection('Reaction')
         .doc(postId)
         .delete();
   }
 
-  // Get reactions for a specific post across all users
-  Future<Map<String, dynamic>> getVideoReactions({
+  // Get Reaction for a specific post across all users
+  Future<Map<String, dynamic>> getVideoReaction({
     required String postId,
   }) async {
-    final querySnapshot = await _firestore.collectionGroup('reactions')
-      .where('postId', isEqualTo: postId)
-      .get();
+    final querySnapshot = await _firestore
+        .collectionGroup('Reaction')
+        .where('postId', isEqualTo: postId)
+        .get();
 
     int totalLikes = 0;
     int totalSaves = 0;
@@ -88,7 +89,7 @@ class ReactionsController {
     int totalWatched = 0;
 
     for (var doc in querySnapshot.docs) {
-      final reaction = Reactions.fromDocument(doc);
+      final reaction = Reaction.fromDocument(doc);
       if (reaction.isLiked) totalLikes++;
       if (reaction.isSaved) totalSaves++;
       totalShares += reaction.sharesCount;
@@ -113,19 +114,19 @@ class ReactionsController {
     };
   }
 
-  // Get reactions for a specific post by a specific user
-  Future<Reactions?> getCurrentUserReactionsOnVideo({
+  // Get Reaction for a specific post by a specific user
+  Future<Reaction?> getCurrentUserReactionOnVideo({
     required String userId,
     required String postId,
   }) async {
     final docSnapshot = await _firestore
         .collection('users')
         .doc(userId)
-        .collection('reactions')
+        .collection('Reaction')
         .doc(postId)
         .get();
     if (docSnapshot.exists) {
-      return Reactions.fromDocument(docSnapshot);
+      return Reaction.fromDocument(docSnapshot);
     } else {
       return null;
     }

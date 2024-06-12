@@ -138,7 +138,9 @@ class _AddAccountInfoState extends State<AddAccountInfo> {
                                 ),
                               ),
                               child: CircleAvatar(
-                                backgroundColor: Colors.transparent,
+                                backgroundColor: Theme.of(context)
+                                    .highlightColor
+                                    .withOpacity(0.5),
                                 radius: 55,
                                 backgroundImage: _profilePhotoUrlController
                                         .text.isNotEmpty

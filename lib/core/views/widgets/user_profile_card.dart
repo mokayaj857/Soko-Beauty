@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:soko_beauty/config/theme/light.dart';
@@ -13,204 +14,179 @@ class UserProfileCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SliverAppBar(
-      title: Text(user.username,
-          style: TextStyle(
-            fontSize: 16,
-          )),
       scrolledUnderElevation: 0.0,
-      backgroundColor:
-          Theme.of(context).bottomAppBarTheme.color!.withOpacity(0.9),
-      foregroundColor: Theme.of(context).primaryColor,
+      backgroundColor: Theme.of(context).scaffoldBackgroundColor,
       pinned: true,
-      expandedHeight: 300,
-      leading: IconButton(
-        onPressed: () {
-          // Handle back button tap
-        },
+      forceElevated: true,
+      expandedHeight: 350, // Increased height to accommodate the design
+      leading: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 8),
+        child: Text(
+          user.username,
+          style: const TextStyle(
+            fontSize: 13,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
+      ),
+      leadingWidth: 200,
+      actions: _buildActions(context),
+      flexibleSpace: _buildFlexibleSpace(context),
+    );
+  }
+
+  List<Widget> _buildActions(BuildContext context) {
+    return [
+      IconButton(
         icon: Icon(
-          Icons.search_outlined,
-        ),
-      ),
-      actions: [
-        IconButton(
-          style: ButtonStyle(
-            padding: WidgetStateProperty.all(EdgeInsets.all(0)),
-          ),
-          icon: Icon(Provider.of<ThemeProvider>(context).themeData == lightMode
+          Provider.of<ThemeProvider>(context).themeData == lightMode
               ? Icons.dark_mode
-              : Icons.light_mode),
-          onPressed: () {
-            // Toggle theme
-            Provider.of<ThemeProvider>(context, listen: false)
-                .toggleTheme(context);
-          },
+              : Icons.light_mode,
         ),
-        IconButton(
-          onPressed: () {
-            //navigate to settings page
-            Navigator.push(
-              context,
-              MaterialPageRoute(
-                builder: (context) => AccountPage(),
-              ),
-            );
-          },
-          icon: Icon(
-            Icons.settings,
-          ),
-        ),
-      ],
-      bottom: PreferredSize(
-        preferredSize: Size.fromHeight(30),
-        child: TabBar(
-          indicatorSize: TabBarIndicatorSize.tab,
-          dividerHeight: 0,
-          padding: EdgeInsets.all(0),
-          tabs: [
-            Tab(
-              text: 'Posts',
-            ),
-            Tab(
-              text: 'Liked',
-            ),
-            Tab(
-              text: 'Shops',
-            ),
-          ],
-        ),
+        onPressed: () {
+          Provider.of<ThemeProvider>(context, listen: false)
+              .toggleTheme(context);
+        },
       ),
-      flexibleSpace: FlexibleSpaceBar(
-        collapseMode: CollapseMode.pin,
-        centerTitle: false,
-        background: Container(
-          margin: EdgeInsets.only(top: 30),
-          child: Stack(
+      IconButton(
+        onPressed: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => AccountPage()),
+          );
+        },
+        icon: const Icon(CupertinoIcons.settings),
+      ),
+    ];
+  }
+
+  Widget _buildFlexibleSpace(BuildContext context) {
+    return FlexibleSpaceBar(
+      collapseMode: CollapseMode.pin,
+      background: Container(
+        margin: const EdgeInsets.only(top: 10),
+        child: SafeArea(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Positioned(
-                top: 0,
-                left: 0,
-                right: 0,
-                bottom: 0,
-                child: SafeArea(
-                  child: Container(
-                    padding: EdgeInsets.all(16),
-                    child: Center(
-                      child: Column(
-                        children: [
-                          // USER PROFILE BORDERED IMAGE AND NAME
-                          Container(
-                            decoration: BoxDecoration(
-                              shape: BoxShape.circle,
-                              border: Border.all(
-                                color: Theme.of(context).primaryColor,
-                                width: 4,
-                              ),
-                            ),
-                            child: CircleAvatar(
-                              radius: 35,
-                              backgroundImage: NetworkImage(
-                                  user.profilePhotoUrl ?? ''), // Use user data
-                            ),
-                          ),
-                          Text(
-                            '${user.fname ?? ''} ${user.lname ?? ''}',
-                            style: TextStyle(
-                              fontSize: 20,
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
-                          Text(
-                            user.bio ?? '', // Use user data
-                            style: TextStyle(
-                              fontSize: 12,
-                            ),
-                          ),
-                          SizedBox(
-                            height: 10,
-                          ),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                            children: [
-                              Column(
-                                children: [
-                                  Text(
-                                    user.postsCount.toString(), // Use user data
-                                    style: TextStyle(
-                                      fontSize: 16,
-                                      fontWeight: FontWeight.bold,
-                                    ),
-                                  ),
-                                  GestureDetector(
-                                    onTap: () {},
-                                    child: Text(
-                                      'Posts',
-                                      style: TextStyle(
-                                        fontSize: 14,
-                                        fontWeight: FontWeight.bold,
-                                        color: Theme.of(context).primaryColor,
-                                      ),
-                                    ),
-                                  ),
-                                ],
-                              ),
-                              Column(
-                                children: [
-                                  Text(
-                                    user.followersCount
-                                        .toString(), // Use user data
-                                    style: TextStyle(
-                                      fontSize: 16,
-                                      fontWeight: FontWeight.bold,
-                                    ),
-                                  ),
-                                  GestureDetector(
-                                    onTap: () {},
-                                    child: Text(
-                                      'Followers',
-                                      style: TextStyle(
-                                        fontSize: 14,
-                                        fontWeight: FontWeight.bold,
-                                        color: Theme.of(context).primaryColor,
-                                      ),
-                                    ),
-                                  ),
-                                ],
-                              ),
-                              Column(
-                                children: [
-                                  Text(
-                                    user.followingCount
-                                        .toString(), // Use user data
-                                    style: TextStyle(
-                                      fontSize: 16,
-                                      fontWeight: FontWeight.bold,
-                                    ),
-                                  ),
-                                  GestureDetector(
-                                    onTap: () {},
-                                    child: Text(
-                                      'Following',
-                                      style: TextStyle(
-                                        fontSize: 14,
-                                        fontWeight: FontWeight.bold,
-                                        color: Theme.of(context).primaryColor,
-                                      ),
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ],
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
-                ),
+              CircleAvatar(
+                backgroundColor: Theme.of(context).highlightColor.withOpacity(0.5),
+                radius: 45,
+                backgroundImage: user.profilePhotoUrl != null
+                    ? NetworkImage(user.profilePhotoUrl!)
+                    : const AssetImage("assets/user_avatar.png")
+                        as ImageProvider,
               ),
+              const SizedBox(height: 5),
+              Text(
+                '${user.fname ?? ''} ${user.lname ?? ''}',
+                style: const TextStyle(
+                  fontWeight: FontWeight.bold,
+                  fontSize: 14,
+                ),
+                overflow: TextOverflow.ellipsis,
+              ),
+              Text(
+                '${user.bio ?? ''}',
+                style: TextStyle(fontSize: 12),
+              ),
+              const SizedBox(height: 20),
+              _buildUserStats(context),
+              const SizedBox(height: 30),
+              _buildButtonsRow(context),
             ],
           ),
         ),
       ),
+    );
+  }
+
+  Widget _buildUserStats(BuildContext context) {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+      children: [
+        _buildStatColumn(context, user.stats.posts, 'Posts'),
+        _buildStatColumn(context, user.stats.followers, 'Followers'),
+        _buildStatColumn(context, user.stats.following, 'Following'),
+      ],
+    );
+  }
+
+  Widget _buildStatColumn(BuildContext context, int count, String label) {
+    return Row(
+      children: [
+        Text(
+          count.toString(),
+          style: const TextStyle(fontSize: 14, fontWeight: FontWeight.bold),
+        ),
+        SizedBox(width: 5),
+        Text(
+          label,
+          style: const TextStyle(fontSize: 10),
+        ),
+      ],
+    );
+  }
+
+  Widget _buildButtonsRow(BuildContext context) {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        GestureDetector(
+          onTap: () {},
+          child: Container(
+            padding: const EdgeInsets.symmetric(vertical: 6, horizontal: 25),
+            decoration: BoxDecoration(
+              border: Border.all(
+                  width: 1,
+                  color: Theme.of(context).highlightColor.withOpacity(0.5)),
+              borderRadius: BorderRadius.circular(20),
+            ),
+            child: Row(
+              children: [
+                Icon(Icons.edit, size: 22),
+                const SizedBox(width: 10),
+                Text(
+                  'Edit Profile',
+                  style: TextStyle(
+                      fontSize: 13,
+                      color: Theme.of(context).highlightColor.withOpacity(0.7)),
+                ),
+              ],
+            ),
+          ),
+        ),
+        const SizedBox(width: 10),
+        GestureDetector(
+          onTap: () {
+            // Handle add friends button press
+          },
+          child: Container(
+            padding: const EdgeInsets.symmetric(vertical: 6, horizontal: 20),
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(20),
+              border: Border.all(
+                  width: 1,
+                  color: Theme.of(context).highlightColor.withOpacity(0.5)),
+            ),
+            child: Row(
+              children: [
+                Icon(
+                  CupertinoIcons.cart_fill,
+                  size: 22,
+                ),
+                const SizedBox(width: 10),
+                Text(
+                  'View Cart',
+                  style: TextStyle(
+                      fontSize: 13,
+                      color: Theme.of(context).highlightColor.withOpacity(0.7)),
+                ),
+              ],
+            ),
+          ),
+        ),
+      ],
     );
   }
 }

@@ -24,7 +24,7 @@ class AccountPage extends StatelessWidget {
               ),
               actions: [
                 IconButton(
-                  icon: Icon(Icons.settings),
+                  icon: Icon(Icons.edit),
                   onPressed: () {},
                 ),
               ],
@@ -48,7 +48,8 @@ class AccountPage extends StatelessWidget {
                           joinDate: user.createdAt ?? DateTime.now(),
                         ),
                         SizedBox(
-                            height: MediaQuery.of(context).size.height * 0.02),
+                          height: 30,
+                        ),
                         Padding(
                           padding: const EdgeInsets.symmetric(horizontal: 16.0),
                           child: Row(
@@ -56,8 +57,6 @@ class AccountPage extends StatelessWidget {
                             children: [
                               Text(
                                 'Personal Information',
-                                style:
-                                    Theme.of(context).textTheme.headlineSmall,
                                 textAlign: TextAlign.start,
                               ),
                               //edit button
@@ -77,7 +76,8 @@ class AccountPage extends StatelessWidget {
                           phone: user.phoneNumber,
                         ),
                         SizedBox(
-                            height: MediaQuery.of(context).size.height * 0.02),
+                          height: 30,
+                        ),
                         Padding(
                           padding: const EdgeInsets.symmetric(horizontal: 16.0),
                           child: Row(
@@ -85,8 +85,6 @@ class AccountPage extends StatelessWidget {
                             children: [
                               Text(
                                 'Utilities',
-                                style:
-                                    Theme.of(context).textTheme.headlineSmall,
                                 textAlign: TextAlign.start,
                               ),
                             ],
