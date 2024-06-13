@@ -47,9 +47,3 @@ _Home Module_:
 
 - Screens, services, and widgets directly related to the main navigation and home screen functionalities.
 
-These folders and files help us maintain a clear separation of concerns, organize our codebase efficiently, and facilitate seamless collaboration. If you have any questions or need further clarification, feel free to reach out.
-
-Let's continue our journey of building exceptional products together! 🚀
-
-Best regards,
-Alidante

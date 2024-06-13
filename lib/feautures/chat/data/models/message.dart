@@ -5,7 +5,7 @@ class Message {
   String senderName; //remove this
   String content;
   Timestamp timestamp;
-  String receiverId;
+  String receiverId; //remove this
 
   Message({
     required this.senderId,
