@@ -1,6 +1,5 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:soko_beauty/config/colors/global_colors.dart';
 import 'package:soko_beauty/config/styles/video_styles.dart';
 import 'package:soko_beauty/core/utils/video_utils.dart';
 import 'package:soko_beauty/feautures/video/views/widgets/hashtags.dart';

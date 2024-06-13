@@ -12,7 +12,7 @@ extension VideoTabsExtension on VideoTab {
       case VideoTab.services:
         return 'Services';
       case VideoTab.all:
-        return 'All';
+        return 'For You';
       default:
         return '';
     }

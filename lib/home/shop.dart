@@ -83,7 +83,7 @@ class _MarketPageState extends State<MarketPage>
               dividerColor: Colors.transparent,
               tabs: [
                 SelectionChip(
-                  label: Text('All'),
+                  label: Text('For You'),
                   onPressed: () {
                     _tabController.animateTo(0);
                   },
